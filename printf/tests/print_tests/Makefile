@@ -1,0 +1,58 @@
+NAME				=	print_tests
+CC					=	gcc
+FLAGS				=	-w	#Remove this flag "-w" if you want to see the warning os gcc
+LIBFTPRINTF			=	../../libftprintf.a
+
+$(info )
+$(info =========== TEST DESCRIPTION ===========)
+$(info )
+$(info This test will print 2 strings: )
+$(info )
+$(info * First string  => Original printf output)
+$(info * Second string => 42 printf output)
+$(info )
+$(info The outputs must be equal!)
+$(info )
+$(info Obs: These tests may have compiler warnings!!)
+$(info )
+$(info =========== RUNNING PRINT TESTS ==========)
+
+all:	$(NAME) clean
+	$(info )
+
+print_tests:	no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer
+
+no_conversion_test:
+	$(info ) $(info =====> NO CONVERSION TESTS || File = TEST_no_conversion.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_no_conversion.c $(LIBFTPRINTF) -o bin_TEST_no_conversion
+	@./bin_TEST_no_conversion
+
+ft_ptr_funct_character:
+	$(info ) $(info =====> CHARACTER CONVERSION TESTS (%c) || File = TEST_ft_ptr_funct_character.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_ft_ptr_funct_character.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_character
+	@./bin_TEST_ft_ptr_funct_character
+
+ft_ptr_funct_string:
+	$(info ) $(info =====> STRING CONVERSION TESTS (%s) || File = TEST_ft_ptr_funct_string.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_ft_ptr_funct_string.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_string
+	@./bin_TEST_ft_ptr_funct_string
+
+ft_ptr_funct_pointer:
+	$(info ) $(info =====> VOID POINTER CONVERSION TESTS (%d - %i - %u) || File = TEST_ft_ptr_funct_pointer.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_ft_ptr_funct_pointer.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_pointer
+	@./bin_TEST_ft_ptr_funct_pointer
+
+ft_ptr_funct_integer:
+	$(info ) $(info =====> INTEGER CONVERSION TESTS (%d - %i - %u) || File = TEST_ft_ptr_funct_integer.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_ft_ptr_funct_integer.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_integer
+	@./bin_TEST_ft_ptr_funct_integer
+
+ft_ptr_funct_hexadecimal:
+	$(info ) $(info =====> HEXADECIMAL CONVERSION TESTS (%x - %X) || File = TEST_ft_ptr_funct_hexadecimal.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_ft_ptr_funct_hexadecimal.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_hexadecimal
+	@./bin_TEST_ft_ptr_funct_hexadecimal
+
+ft_ptr_funct_percent:
+
+clean:
+	@rm bin_*
