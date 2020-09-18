@@ -20,7 +20,7 @@ $(info =========== RUNNING PRINT TESTS ==========)
 all:	$(NAME) clean
 	$(info )
 
-print_tests:	no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer
+print_tests:	no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent
 
 no_conversion_test:
 	$(info ) $(info =====> NO CONVERSION TESTS || File = TEST_no_conversion.c <=====) $(info )
@@ -53,6 +53,9 @@ ft_ptr_funct_hexadecimal:
 	@./bin_TEST_ft_ptr_funct_hexadecimal
 
 ft_ptr_funct_percent:
+	$(info ) $(info =====> PERCENT CONVERSION TESTS (%%) || File = TEST_ft_ptr_funct_percent.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_ft_ptr_funct_percent.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_percent
+	@./bin_TEST_ft_ptr_funct_percent
 
 clean:
 	@rm bin_*

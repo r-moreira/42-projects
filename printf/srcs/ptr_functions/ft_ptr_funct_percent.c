@@ -4,5 +4,6 @@ int				ft_ptr_funct_percent(va_list *args, t_conversion tools)
 {
 	(void)args;
 	(void)tools;
-	return (0);
+	ft_putchar_fd('%', 1);
+	return (1);
 }
