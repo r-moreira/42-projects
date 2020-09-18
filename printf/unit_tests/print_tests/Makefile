@@ -1,6 +1,9 @@
 NAME				=	print_tests
 CC					=	gcc
 FLAGS				=	-w	#Remove this flag "-w" if you want to see the warning os gcc
+SRCS_DIR			= 	../../srcs/print_functions/
+INCS_DIR			=	-I ../../includes -I ../../libft
+LIBFT				=	../../libft/libft.a
 LIBFTPRINTF			=	../../libftprintf.a
 
 $(info )
@@ -16,14 +19,16 @@ $(info )
 $(info Obs: These tests may have compiler warnings!!)
 $(info )
 $(info =========== RUNNING PRINT TESTS ==========)
+$(info )
 
 all:	$(NAME) clean
 	$(info )
 
-print_tests:	no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent
+print_tests:	ft_print_width_precision no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent ft_print_width_precision
 
 ft_print_width_precision: #to do
-	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_print_width_precision.c $(LIBFT) -o bin_TEST_ft_print_width_precision
+	$(info ) $(info =====> WIDTH AND PRECISION TESTS || File = TEST_no_conversion.c <=====) $(info )
+	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_print_width_precision.c $(SRCS_DIR)ft_print_width_precision.c $(LIBFT) -o bin_TEST_ft_print_width_precision
 	@./bin_TEST_ft_print_width_precision
 
 no_conversion_test:
