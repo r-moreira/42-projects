@@ -22,6 +22,10 @@ all:	$(NAME) clean
 
 print_tests:	no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent
 
+ft_print_width_precision: #to do
+	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_print_width_precision.c $(LIBFT) -o bin_TEST_ft_print_width_precision
+	@./bin_TEST_ft_print_width_precision
+
 no_conversion_test:
 	$(info ) $(info =====> NO CONVERSION TESTS || File = TEST_no_conversion.c <=====) $(info )
 	@$(CC) $(FLAGS) TEST_no_conversion.c $(LIBFTPRINTF) -o bin_TEST_no_conversion

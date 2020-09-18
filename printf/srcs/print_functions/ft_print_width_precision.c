@@ -39,3 +39,11 @@ void ft_print_width(t_conversion tools, int len)
 	if (IS_NBR_CONV(tools.conv))
 		ft_print_number_width(tools, len);
 }
+
+void		ft_print_precision(t_conversion tools, int len)
+{
+	if (tools.opts.precision <= len)
+		return ;
+	while (tools.opts.precision-- > len)
+		ft_putchar_fd('0', 1);
+}
