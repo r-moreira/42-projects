@@ -24,10 +24,10 @@ $(info )
 all:	$(NAME) clean
 	$(info )
 
-print_tests:	ft_print_width_precision no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent ft_print_width_precision
+print_tests:	ft_print_width_precision no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent ft_print_width_precision ft_print_multiple_conversions
 
 ft_print_width_precision: #ft_print_width and ft_print_precision tests
-	$(info ) $(info =====> WIDTH AND PRECISION TESTS || File = TEST_no_conversion.c <=====) $(info )
+	$(info ) $(info =====> WIDTH AND PRECISION TESTS || File = TEST_ft_print_width_precision.c <=====) $(info )
 	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_print_width_precision.c $(SRCS_DIR)ft_print_width_precision.c $(LIBFT) -o bin_TEST_ft_print_width_precision
 	@./bin_TEST_ft_print_width_precision
 
@@ -65,6 +65,11 @@ ft_ptr_funct_percent:
 	$(info ) $(info =====> PERCENT CONVERSION TESTS (%%) || File = TEST_ft_ptr_funct_percent.c <=====) $(info )
 	@$(CC) $(FLAGS) TEST_ft_ptr_funct_percent.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_percent
 	@./bin_TEST_ft_ptr_funct_percent
+
+ft_print_multiple_conversions: #to do
+	$(info ) $(info =====> PRINT MULTIPLE CONVERSIONS || File = TEST_print_multiple_conversions.c <=====) $(info )
+	@$(CC) $(FLAGS) TEST_ft_print_multiple_conversions.c $(LIBFTPRINTF) -o bin_TEST_print_multiple_conversions
+	@./bin_TEST_print_multiple_conversions
 
 clean:
 	@rm bin_*

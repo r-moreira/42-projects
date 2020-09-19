@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "../../includes/ft_printf.h"
 
-int		ft_printf(const char *format, ...);
+int			ft_printf(const char *format, ...);
 
-void check_return(int ret, int ret42)
+static void check_return(int ret, int ret42)
 {
 	if (ret == ret42)
 		printf("---- Return OK ----\n");
