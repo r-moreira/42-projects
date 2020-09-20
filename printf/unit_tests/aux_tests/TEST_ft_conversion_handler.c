@@ -105,7 +105,7 @@ t_ptr_functs *ptr, t_conversion *tools)
 	}
 	if (ft_is_conversion(**str))
 	{
-//		tools->conv == **str; This test don't need this line
+		tools->conv = **str;
 		index = -1;
 		while (ptr->conversions[++index])
 			if (ptr->conversions[index] == **str)

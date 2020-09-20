@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:41 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 17:52:49 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:47:34 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_ptr_functs *ptr, t_conversion *tools)
 	}
 	if (ft_is_conversion(**str))
 	{
-		tools->conv == **str;
+		tools->conv = **str;
 		index = -1;
 		while (ptr->conversions[++index])
 			if (ptr->conversions[index] == **str)
