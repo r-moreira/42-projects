@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:21 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:14:54 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:19:18 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int			ft_ptr_funct_pointer(va_list *args, t_conversion tools)
 		return (ft_handle_zero_input(type, tools));
 	arg_str = ft_nbr_to_str(LOWER_HEXA, type, tools);
 	len = ft_strlen(arg_str) + 2;
-	if (ZERO_FLAG)
+	if (tools.flags.zero && tools.opts.precision == -1 && !tools.flags.minus)
 		ft_putstr_fd("0x", 1);
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
-	if (!(ZERO_FLAG))
+	if (!(tools.flags.zero && tools.opts.precision == -1 && !tools.flags.minus))
 		ft_putstr_fd("0x", 1);
 	ft_print_precision(tools, len - 2);
 	len ? ft_putstr_fd(arg_str, 1) : len;

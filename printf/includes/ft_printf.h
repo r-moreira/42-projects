@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:11:28 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:25:44 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,9 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdbool.h>
-# define PAD_LEFT(len)	tools.opts.width > (len) && !tools.flags.minus
-# define PAD_RIGTH(len)	tools.opts.width > (len) && tools.flags.minus
-# define ZERO_FLAG		tools.flags.zero && tools.opts.precision == -1 &&\
-						!tools.flags.minus
 # define DECIMAL		10
 # define LOWER_HEXA		97
 # define UPPER_HEXA		65
-# define ABS(n) 		((n < 0) ? -(n) : (n))
 
 typedef struct	s_flags
 {
