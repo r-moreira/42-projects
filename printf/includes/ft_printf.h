@@ -8,7 +8,6 @@
 #include <stdbool.h>
 #include <wchar.h>
 
-
 # define IS_FLAG(c)		(((c) == '0' || (c) == '-') ? true : false)
 # define IS_CONV(c)		(((c) == 'c' || (c) == 's' || (c) == 'p' ||\
 						(c) == 'd' || (c) == 'i' || (c) == 'u' ||\
@@ -66,7 +65,6 @@ typedef union	u_arg_types
 	long unsigned int	_luint;
 	char				*_char_ptr;
 	void				*_void_ptr;
-
 }				t_arg_types;
 
 int				ft_set_ptr_functs(t_ptr_functs **ptr);
