@@ -133,8 +133,6 @@ static int	TEST_ft_define_precision(const char *format, ...)
 	if (tools.opts.precision == 0)
 		test_result_only_prec_str = true;
 
-
-
 	va_end(args);
 	return (test_result_digit_str * test_result_star_str * test_result_negative_star_str * test_result_only_prec_str);
 }

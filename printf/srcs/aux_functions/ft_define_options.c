@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:55 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 17:49:28 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 18:48:28 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_define_width(const char **str, va_list *args, t_conversion *tools)
 
 	if (**str == '0')
 		return ;
-	if (IS_STAR(**str))
+	if (ft_is_option(**str) == E_STAR)
 	{
 		tools->opts.width = va_arg(*args, int);
 		if (tools->opts.width < 0)
@@ -50,17 +50,18 @@ void	ft_define_width(const char **str, va_list *args, t_conversion *tools)
 	}
 }
 
-void	ft_define_precision(const char **str, va_list *args, t_conversion *tools)
+void	ft_define_precision(const char **str, va_list *args,
+t_conversion *tools)
 {
 	int		digits;
 
-	if (!ft_isdigit(*(*str + 1)) && !IS_STAR(*(*str + 1)))
+	if (!ft_isdigit(*(*str + 1)) && ft_is_option(*(*str + 1)) != E_STAR)
 	{
 		tools->opts.precision = 0;
 		return ;
 	}
 	*str += 1;
-	if (IS_STAR(**str))
+	if (ft_is_option(**str) == E_STAR)
 	{
 		tools->opts.precision = va_arg(*args, int);
 		if (tools->opts.precision < 0)
