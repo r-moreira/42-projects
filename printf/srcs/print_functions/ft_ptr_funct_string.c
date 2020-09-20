@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptr_funct_string.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:12:28 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:16:05 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int			ft_ptr_funct_string(va_list *args, t_conversion tools)
 	len = ft_strlen(type._char_ptr);
 	if (tools.opts.precision != -1 && tools.opts.precision < len)
 		len = tools.opts.precision;
-	if (PAD_LEFT(len))
+	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
 	while (++index < len)
 		ft_putchar_fd(type._char_ptr[index], 1);
-	if (PAD_RIGTH(len))
+	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);
 	return (tools.opts.width > len ? tools.opts.width : len);
 }

@@ -6,35 +6,22 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 17:48:09 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:11:28 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include "../libft/libft.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdbool.h>
-#include <wchar.h>
-
-# define IS_FLAG(c)		(((c) == '0' || (c) == '-') ? true : false)
-# define IS_CONV(c)		(((c) == 'c' || (c) == 's' || (c) == 'p' ||\
-						(c) == 'd' || (c) == 'i' || (c) == 'u' ||\
-						(c) == 'x' || (c) == 'X' || (c) == '%') ? true : false)
-# define IS_STAR(c)		(((c) == '*') ? true : false)
-# define IS_PREC(c)		(((c) == '.') ? true: false)
-# define IS_OPTN(c)		((IS_FLAG(c) || IS_STAR(c) ||\
-						IS_PREC (c)) ? true : false)
+# include "../libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <stdbool.h>
 # define PAD_LEFT(len)	tools.opts.width > (len) && !tools.flags.minus
 # define PAD_RIGTH(len)	tools.opts.width > (len) && tools.flags.minus
 # define ZERO_FLAG		tools.flags.zero && tools.opts.precision == -1 &&\
 						!tools.flags.minus
-# define IS_STR_CONV(c)	(((c) == 'c' || (c) == 's') ? true: false)
-# define IS_NBR_CONV(c)	(((c) == 'd' || (c) == 'i' || (c) == 'u' ||\
-						(c) == 'x' || (c) == 'X' || (c) == 'p') ? true: false)
 # define DECIMAL		10
 # define LOWER_HEXA		97
 # define UPPER_HEXA		65

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptr_funct_pointer.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:21 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:12:21 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:14:54 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static int ft_handle_zero_input(t_arg_types type, t_conversion tools)
+static int	ft_handle_zero_input(t_arg_types type, t_conversion tools)
 {
 	int		len;
 	int		width_len;
@@ -21,11 +21,11 @@ static int ft_handle_zero_input(t_arg_types type, t_conversion tools)
 		return (0);
 	len = ft_strlen("(nil)");
 	width_len = tools.opts.width;
-	if (PAD_LEFT(len))
+	if (tools.opts.width > (len) && !tools.flags.minus)
 		while (width_len-- > len)
 			ft_putchar_fd(' ', 1);
 	ft_putstr_fd("(nil)", 1);
-	if (PAD_RIGTH(len))
+	if (tools.opts.width > (len) && tools.flags.minus)
 		while (width_len-- > len)
 			ft_putchar_fd(' ', 1);
 	return (len > tools.opts.width ? len : tools.opts.width);
@@ -44,14 +44,14 @@ int			ft_ptr_funct_pointer(va_list *args, t_conversion tools)
 	len = ft_strlen(arg_str) + 2;
 	if (ZERO_FLAG)
 		ft_putstr_fd("0x", 1);
-	if (PAD_LEFT(len))
+	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
 	if (!(ZERO_FLAG))
 		ft_putstr_fd("0x", 1);
 	ft_print_precision(tools, len - 2);
 	len ? ft_putstr_fd(arg_str, 1) : len;
 	free(arg_str);
-	if (PAD_RIGTH(len))
+	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);
 	if (tools.opts.width > tools.opts.precision && tools.opts.width > len)
 		return (tools.opts.width);
