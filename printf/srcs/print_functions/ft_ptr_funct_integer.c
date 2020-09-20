@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:12:44 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:34:30 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int			ft_ptr_funct_integer(va_list *args, t_conversion tools)
 	int			len;
 
 	if (tools.conv == 'd' || tools.conv == 'i')
-		type._int = va_arg(*args, int);
+		type.u_int = va_arg(*args, int);
 	else
-		type._uint = va_arg(*args, unsigned int);
+		type.u_uint = va_arg(*args, unsigned int);
 	arg_str = ft_nbr_to_str(DECIMAL, type, tools);
 	len = ft_get_output_len(arg_str, tools);
 	if (tools.opts.width > (len) && !tools.flags.minus)

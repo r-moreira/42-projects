@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:11:53 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:27:02 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:34:20 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				ft_ptr_funct_hexadecimal(va_list *args, t_conversion tools)
 	char		*arg_str;
 	int			len;
 
-	type._uint = va_arg(*args, unsigned int);
+	type.u_uint = va_arg(*args, unsigned int);
 	if (tools.conv == 'x')
 		arg_str = ft_nbr_to_str(LOWER_HEXA, type, tools);
 	else

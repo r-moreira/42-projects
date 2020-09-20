@@ -6,13 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:23 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:25:17 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:36:28 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static char			*ft_make_str(unsigned long nbr, int sign, int base_len,
+static char				*ft_make_str(unsigned long nbr, int sign, int base_len,
 char *digits)
 {
 	unsigned long	temp;
@@ -48,22 +48,22 @@ int *sign)
 
 	if (tools.conv == 'd' || tools.conv == 'i')
 	{
-		if (arg._int < 0)
+		if (arg.u_int < 0)
 			*sign = -1;
-		snbr = arg._int;
+		snbr = arg.u_int;
 		if (snbr < 0)
 			nbr = -(snbr);
 		else
 			nbr = snbr;
 	}
 	else if (tools.conv == 'u' || tools.conv == 'x' || tools.conv == 'X')
-		nbr = arg._uint;
+		nbr = arg.u_uint;
 	else
-		nbr = arg._luint;
+		nbr = arg.u_luint;
 	return (nbr);
 }
 
-char 					*ft_nbr_to_str(int base, t_arg_types arg,
+char					*ft_nbr_to_str(int base, t_arg_types arg,
 t_conversion tools)
 {
 	unsigned long	nbr;

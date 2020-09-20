@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:25:44 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:32:23 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ typedef	struct	s_ptr_functs
 
 typedef union	u_arg_types
 {
-	char				_char;
-	int					_int;
-	unsigned int		_uint;
-	long unsigned int	_luint;
-	char				*_char_ptr;
-	void				*_void_ptr;
+	char				u_char;
+	int					u_int;
+	unsigned int		u_uint;
+	long unsigned int	u_luint;
+	char				*u_char_ptr;
+	void				*u_void_ptr;
 }				t_arg_types;
 
 typedef enum	e_conversion_params
@@ -73,7 +73,7 @@ typedef enum	e_conversion_params
 
 int				ft_set_ptr_functs(t_ptr_functs **ptr);
 void			ft_set_parse_tools(t_conversion *tools);
-int 			ft_is_input_valid(const char *str);
+int				ft_is_input_valid(const char *str);
 int				ft_is_option(char c);
 int				ft_is_conversion(char c);
 void			ft_define_flags(const char **str, t_conversion *tools);
@@ -84,7 +84,7 @@ t_conversion *tools);
 void			ft_print_width(t_conversion tools, int len);
 void			ft_print_precision(t_conversion tools, int len);
 int				ft_get_output_len(char *arg_str, t_conversion tools);
-char 			*ft_nbr_to_str(int base, t_arg_types arg, t_conversion tools);
+char			*ft_nbr_to_str(int base, t_arg_types arg, t_conversion tools);
 int				ft_ptr_funct_character(va_list *args, t_conversion tools);
 int				ft_ptr_funct_string(va_list *args, t_conversion tools);
 int				ft_ptr_funct_pointer(va_list *args, t_conversion tools);

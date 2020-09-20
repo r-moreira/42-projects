@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:21 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:19:18 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:34:47 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_handle_zero_input(t_arg_types type, t_conversion tools)
 	int		len;
 	int		width_len;
 
-	if (type._luint != 0)
+	if (type.u_luint != 0)
 		return (0);
 	len = ft_strlen("(nil)");
 	width_len = tools.opts.width;
@@ -37,8 +37,8 @@ int			ft_ptr_funct_pointer(va_list *args, t_conversion tools)
 	char		*arg_str;
 	int			len;
 
-	type._luint = (long unsigned int)va_arg(*args, void *);
-	if (type._luint == 0)
+	type.u_luint = (long unsigned int)va_arg(*args, void *);
+	if (type.u_luint == 0)
 		return (ft_handle_zero_input(type, tools));
 	arg_str = ft_nbr_to_str(LOWER_HEXA, type, tools);
 	len = ft_strlen(arg_str) + 2;
