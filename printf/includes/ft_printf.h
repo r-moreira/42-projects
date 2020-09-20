@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:09:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/20 17:48:09 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,21 @@ typedef union	u_arg_types
 	void				*_void_ptr;
 }				t_arg_types;
 
+typedef enum	e_conversion_params
+{
+	E_FALSE,
+	E_DIGIT,
+	E_STAR,
+	E_PREC,
+	E_FLAG,
+	E_CONV
+}				t_conversion_params;
+
 int				ft_set_ptr_functs(t_ptr_functs **ptr);
 void			ft_set_parse_tools(t_conversion *tools);
 int 			ft_is_input_valid(const char *str);
+int				ft_is_option(char c);
+int				ft_is_conversion(char c);
 void			ft_define_flags(const char **str, t_conversion *tools);
 void			ft_define_width(const char **str, va_list *args,
 t_conversion *tools);

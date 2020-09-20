@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set_things.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:36 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:10:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/20 17:56:04 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_set_ptr_functs(t_ptr_functs **ptr)
 	return (1);
 }
 
-void		ft_set_parse_tools(t_conversion *tools)
+void	ft_set_parse_tools(t_conversion *tools)
 {
 	tools->flags.minus = false;
 	tools->flags.zero = false;

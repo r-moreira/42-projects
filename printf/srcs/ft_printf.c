@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:41 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:12:41 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/20 17:52:49 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,19 @@ t_ptr_functs *ptr, t_conversion *tools)
 	int				index;
 
 	ft_set_parse_tools(tools);
-	while((!(IS_CONV(**str))) && ((ft_isdigit(**str)) || (IS_OPTN(**str))))
+	while ((!ft_is_conversion(**str)) && ft_is_option(**str))
 	{
-		if (IS_FLAG(**str))
+		if (ft_is_option(**str) == E_FLAG)
 			ft_define_flags(str, tools);
-		if ((IS_STAR(**str)) || ((ft_isdigit(**str) && **str != '0')))
+		if (ft_is_option(**str) == E_STAR || ft_is_option(**str) == E_DIGIT)
 			ft_define_width(str, args, tools);
-		if (IS_PREC(**str))
+		if (ft_is_option(**str) == E_PREC)
 			ft_define_precision(str, args, tools);
 		*str += 1;
 	}
-	if (IS_CONV(tools->conv = **str))
+	if (ft_is_conversion(**str))
 	{
+		tools->conv == **str;
 		index = -1;
 		while (ptr->conversions[++index])
 			if (ptr->conversions[index] == **str)

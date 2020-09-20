@@ -13,6 +13,7 @@ SRCS_PFTS_DIR		=	./srcs/print_functions
 SRC_CORE_FT			=	srcs
 SRCS_AUX			=	${SRCS_AUX_DIR}/ft_set_things.c				\
 						${SRCS_AUX_DIR}/ft_define_options.c			\
+						${SRCS_AUX_DIR}/ft_handle_parse_options.c	\
 						${SRCS_AUX_DIR}/ft_is_input_valid.c			\
 						${SRCS_AUX_DIR}/ft_nbr_to_str.c				\
 						${SRCS_AUX_DIR}/ft_get_output_len.c

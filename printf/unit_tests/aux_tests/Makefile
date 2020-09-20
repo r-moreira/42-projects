@@ -17,7 +17,7 @@ ft_set_things:	#ft_set_ptr_functs and ft_set_parse_tools tests
 	@./bin_TEST_ft_set_things
 
 ft_is_input_valid:
-	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_is_input_valid.c $(SRCS_DIR)/ft_is_input_valid.c $(LIBFT) -o bin_TEST_ft_is_input_valid
+	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_is_input_valid.c $(SRCS_DIR)/ft_is_input_valid.c $(SRCS_DIR)ft_handle_parse_options.c $(LIBFT) -o bin_TEST_ft_is_input_valid
 	@./bin_TEST_ft_is_input_valid
 
 ft_conversion_handler:	ft_define_options

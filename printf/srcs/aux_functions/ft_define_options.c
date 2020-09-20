@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_define_options.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:55 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:09:55 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/20 17:49:28 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_define_width(const char **str, va_list *args, t_conversion *tools)
 {
 	int		digits;
 
+	if (**str == '0')
+		return ;
 	if (IS_STAR(**str))
 	{
 		tools->opts.width = va_arg(*args, int);
