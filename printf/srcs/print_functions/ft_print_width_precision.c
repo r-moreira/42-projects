@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_width_precision.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:10:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:00:00 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ static void	ft_print_number_width(t_conversion tools, int len)
 		ft_putchar_fd(pad_char, 1);
 }
 
-void ft_print_width(t_conversion tools, int len)
+void		ft_print_width(t_conversion tools, int len)
 {
-	if (IS_STR_CONV(tools.conv))
+	if (tools.conv == 'c' || tools.conv == 's')
 		ft_print_string_width(tools, len);
-	if (IS_NBR_CONV(tools.conv))
+	if (tools.conv == 'd' || tools.conv == 'i' || tools.conv == 'u' ||
+		tools.conv == 'x' || tools.conv == 'X' || tools.conv == 'p')
 		ft_print_number_width(tools, len);
 }
 
