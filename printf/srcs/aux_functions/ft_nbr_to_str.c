@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_nbr_to_str.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/20 14:10:23 by romoreir          #+#    #+#             */
+/*   Updated: 2020/09/20 14:10:23 by romoreir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/ft_printf.h"
 
 static char	*ft_make_str(unsigned long nbr, int sign, int base_len,

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_width_precision.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
+/*   Updated: 2020/09/20 14:10:50 by romoreir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/ft_printf.h"
 
 static void	ft_print_string_width(t_conversion tools, int len)
