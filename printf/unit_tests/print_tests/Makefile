@@ -1,6 +1,6 @@
 NAME				=	print_tests
 CC					=	gcc
-FLAGS				=	-w	#Remove this flag "-w" if you want to see the warning os gcc
+FLAGS				=	-w	#Remove this flag "-w" if you want to see gcc warnings
 SRCS_DIR			= 	../../srcs/print_functions/
 INCS_DIR			=	-I ../../includes -I ../../libft
 LIBFT				=	../../libft/libft.a
