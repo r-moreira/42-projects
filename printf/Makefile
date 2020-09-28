@@ -94,6 +94,13 @@ print_tests:			all
 unit_tests:				aux_tests print_tests
 
 # ft_printf_bonus tests
+aux_tests_bonus:		$(LIBFT)
+	$(MAKE) -C unit_tests_bonus/aux_tests
+
+print_tests_bonus:		all
+	$(MAKE) -C unit_tests_bonus/print_tests
+
+unit_tests:				aux_tests_bonus print_tests_bonus
 
 clean:
 	$(MAKE) clean -C ${LIBFT_DIR}

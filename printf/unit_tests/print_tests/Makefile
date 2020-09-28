@@ -66,7 +66,7 @@ ft_ptr_funct_percent:
 	@$(CC) $(FLAGS) TEST_ft_ptr_funct_percent.c $(LIBFTPRINTF) -o bin_TEST_ft_ptr_funct_percent
 	@./bin_TEST_ft_ptr_funct_percent
 
-ft_print_multiple_conversions: #to do
+ft_print_multiple_conversions:
 	$(info ) $(info =====> PRINT MULTIPLE CONVERSIONS || File = TEST_print_multiple_conversions.c <=====) $(info )
 	@$(CC) $(FLAGS) TEST_ft_print_multiple_conversions.c $(LIBFTPRINTF) -o bin_TEST_print_multiple_conversions
 	@./bin_TEST_print_multiple_conversions

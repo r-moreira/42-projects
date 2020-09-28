@@ -32,7 +32,7 @@ ft_get_output_len:
 	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_get_output_len.c $(SRCS_DIR)/ft_get_output_len.c $(LIBFT) -o bin_TEST_ft_get_output_len
 	@./bin_TEST_ft_get_output_len
 
-ft_nbr_to_str: #to do
+ft_nbr_to_str:
 	@$(CC) $(FLAGS) $(INCS_DIR) TEST_ft_nbr_to_str.c $(SRCS_DIR)/ft_nbr_to_str.c $(LIBFT) -o bin_TEST_ft_nbr_to_str
 	@./bin_TEST_ft_nbr_to_str
 
