@@ -38,6 +38,9 @@ int		main(void)
 		//conversion with flags
 		ft_is_input_valid("-c") &&
 		ft_is_input_valid("0c") &&
+		ft_is_input_valid("+d") &&
+		ft_is_input_valid("#x") &&
+		ft_is_input_valid(" u") &&
 
 		//conversion with width and precision
 		ft_is_input_valid("42.42c") &&
@@ -53,8 +56,10 @@ int		main(void)
 		ft_is_input_valid("042424242.42424242c") &&
 		ft_is_input_valid("000*.42c") &&
 		ft_is_input_valid("-02.*c") &&
-		ft_is_input_valid("0-*.*c")
-	)
+		ft_is_input_valid("0-*.*c") &&
+		ft_is_input_valid(" +*.*u") &&
+		ft_is_input_valid("###*.*d")
+		)
 		test_result = true;
 
 	if

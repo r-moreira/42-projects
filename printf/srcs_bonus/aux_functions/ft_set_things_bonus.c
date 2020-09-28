@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_things.c                                    :+:      :+:    :+:   */
+/*   ft_set_things_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:36 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 17:56:04 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/28 20:40:16 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ void	ft_set_parse_tools(t_conversion *tools)
 {
 	tools->flags.minus = false;
 	tools->flags.zero = false;
+	tools->flags.sharp = false;
+	tools->flags.space = false;
+	tools->flags.plus = false;
 	tools->opts.width = 0;
 	tools->opts.precision = -1;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_options.c                                :+:      :+:    :+:   */
+/*   ft_handle_options_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:42:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:42:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/09/28 20:48:55 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_is_option(char c)
 		return (E_STAR);
 	if (c == '.')
 		return (E_PREC);
-	if (c == '0' || c == '-')
+	if (c == '0' || c == '-' || c == '#' || c == ' ' || c == '+')
 		return (E_FLAG);
 	if (ft_isdigit(c))
 		return (E_DIGIT);

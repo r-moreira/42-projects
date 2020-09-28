@@ -34,8 +34,9 @@ int		main(void)
 
 	ft_set_parse_tools(&tools);
 	//checking if structs s_flags and s_options ins initiliazed
-	if (tools.flags.minus == false && tools.flags.minus == false && tools.opts.width == 0 && tools.opts.precision == -1)
-		printf("ft_set_parse_tools --> OK\n");
+	if (tools.flags.minus == false && tools.flags.minus == false && tools.flags.sharp == false &&
+		tools.flags.space == false && tools.flags.plus == false && tools.opts.width == 0 && tools.opts.precision == -1)
+			printf("ft_set_parse_tools --> OK\n");
 	else
 		printf("ft_set_parse_tools --> FAILED\n");
 	return (0);
