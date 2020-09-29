@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptr_funct_integer.c                             :+:      :+:    :+:   */
+/*   ft_ptr_funct_integer_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:34:30 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/28 22:40:02 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
+
+static int	ft_print_integer(t_conversion tools, char *arg_str, int len)
+{
+	if (tools.flags.plus || tools.flags.space)
+		len++;
+	if (tools.flags.space && !tools.flags.plus)
+		ft_putchar_fd(' ', 1);
+	if (tools.flags.plus)
+		ft_putchar_fd('+', 1);
+	ft_putstr_fd(arg_str, 1);
+	return (len);
+}
 
 int			ft_ptr_funct_integer(va_list *args, t_conversion tools)
 {
@@ -27,7 +39,7 @@ int			ft_ptr_funct_integer(va_list *args, t_conversion tools)
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
 	ft_print_precision(tools, len);
-	len ? ft_putstr_fd(arg_str, 1) : len;
+	len = ft_print_integer(tools, arg_str, len);
 	free(arg_str);
 	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);

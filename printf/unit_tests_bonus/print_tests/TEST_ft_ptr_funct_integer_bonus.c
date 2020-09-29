@@ -439,6 +439,42 @@ static void unsigned_int_zero_flag_test()
 	check_return(ret1, ret2);
 }
 
+
+static void signed_int_plus_space_flags_test()
+{
+
+	int		ret1;
+	int		ret2;
+
+	printf("\n---- Line = %d -> Print signed integer with space flag test ----\n", __LINE__);
+	ret1 =    printf("This is a |% d| signed integer test!!\n", 42);
+	ret2 = ft_printf("This is a |% d| signed integer test!!\n", 42);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print signed integer with plus flag test ----\n", __LINE__);
+	ret1 =    printf("This is a |%+d| signed integer test!!\n", 42);
+	ret2 = ft_printf("This is a |%+d| signed integer test!!\n", 42);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print signed integer with space and plus flags test ----\n", __LINE__);
+	ret1 =    printf("This is a |% +d| signed integer test!!\n", 42);
+	ret2 = ft_printf("This is a |% +d| signed integer test!!\n", 42);
+	check_return(ret1, ret2);
+}
+
+static void	signed_int_plus_space_zero_flags_width_precision_test()
+{
+	int		ret1;
+	int		ret2;
+
+	//TO DO
+	printf("\n---- Line = %d -> Print  test ----\n", __LINE__);
+	ret1 =    printf("This is a |%d| signed integer test!!\n", 42);
+	ret2 = ft_printf("This is a |%d| signed integer test!!\n", 42);
+	check_return(ret1, ret2);
+}
+
+
 int		main(void)
 {
 	signed_int_only_conversion_test();
@@ -451,5 +487,7 @@ int		main(void)
 	unsigned_int_precision_options_test();
 	unsigned_int_width_precision_options_test();
 	unsigned_int_zero_flag_test();
+	signed_int_plus_space_flags_test();
+//	signed_int_plus_space_zero_flags_width_precision_test();
 	return (0);
 }
