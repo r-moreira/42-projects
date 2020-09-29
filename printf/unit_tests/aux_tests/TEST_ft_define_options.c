@@ -24,6 +24,7 @@ static int	TEST_ft_define_flags()
 	test_result_minus = false;
 	test_result_zero = false;
 	test_result_minus2 = false;
+	test_result_zero2 = false;
 	p_minus_str = minus_str;
 	p_zero_str = zero_str;
 

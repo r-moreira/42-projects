@@ -14,18 +14,34 @@ static int	TEST_ft_define_flags()
 	t_conversion	tools;
 	char			minus_str[] = "-c";
 	char			zero_str[] = "0d";
+	char			sharp_str[] = "#X";
+	char			space_str[] = " d";
+	char			plus_str[] = "+d";
 	const char		*p_minus_str;
 	const char		*p_zero_str;
+	const char		*p_sharp_str;
+	const char		*p_space_str;
+	const char		*p_plus_str;
 	char			test_result_minus;
 	char			test_result_minus2;
+	char			test_result_sharp;
+	char			test_result_space;
+	char			test_result_plus;
 	char			test_result_zero;
 	char			test_result_zero2;
 
 	test_result_minus = false;
 	test_result_zero = false;
+	test_result_sharp = false;
+	test_result_space = false;
+	test_result_plus = false;
 	test_result_minus2 = false;
+	test_result_zero2 = false;
 	p_minus_str = minus_str;
 	p_zero_str = zero_str;
+	p_sharp_str = sharp_str;
+	p_space_str = space_str;
+	p_plus_str = plus_str;
 
 	set_tools(&tools); //here tools.flags.minus is = false
 	ft_define_flags(&p_minus_str, &tools); //now tools.flags.minus must be true
@@ -34,6 +50,18 @@ static int	TEST_ft_define_flags()
 	set_tools(&tools); //here tools.flags.zero is = false
 	ft_define_flags(&p_zero_str, &tools); //now tools.flags.zero must be true
 	test_result_zero = tools.flags.zero;
+
+	set_tools(&tools); //here tools.flags.sharp is = false
+	ft_define_flags(&p_sharp_str, &tools); //now tools.flags.sharp must be true
+	test_result_sharp = tools.flags.sharp;
+
+	set_tools(&tools); //here tools.flags.space is = false
+	ft_define_flags(&p_space_str, &tools); //now tools.flags.space must be true
+	test_result_space = tools.flags.space;
+
+	set_tools(&tools); //here tools.flags.plus is = false
+	ft_define_flags(&p_plus_str, &tools); //now tools.flags.plus must be true
+	test_result_plus = tools.flags.plus;
 
 	set_tools(&tools);
 	tools.opts.precision = 42; //this is not -1, tools.flags.minus must continue false
@@ -47,7 +75,8 @@ static int	TEST_ft_define_flags()
 	if (tools.flags.zero == false)
 		test_result_zero2 = true;
 
-	return (test_result_zero * test_result_minus * test_result_minus2 * test_result_zero2);
+	return (test_result_zero * test_result_minus * test_result_sharp * test_result_space *
+			test_result_plus * test_result_minus2 * test_result_zero2);
 }
 
 static int	TEST_ft_define_width(const char *format, ...)

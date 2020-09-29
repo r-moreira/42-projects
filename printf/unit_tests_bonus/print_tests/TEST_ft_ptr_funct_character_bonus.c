@@ -58,8 +58,8 @@ static void	char_width_options_test()
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print char with flag minus and width (star option) test ----\n", __LINE__);
-	ret1 =    printf("This is |%-*c| char test!!\n", 5, 'a');
-	ret2 = ft_printf("This is |%-*c| char test!!\n", 5, 'a');
+	ret1 =    printf("This is |%-------*c| char test!!\n", 5, 'a');
+	ret2 = ft_printf("This is |%-------*c| char test!!\n", 5, 'a');
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print char with minus flag and negative width (star option) test ----\n", __LINE__);
@@ -72,5 +72,6 @@ int		main(void)
 {
 	char_only_conversion_test();
 	char_width_options_test();
+
 	return (0);
 }

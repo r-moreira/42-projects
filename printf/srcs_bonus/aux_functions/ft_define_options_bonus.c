@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_define_options.c                                :+:      :+:    :+:   */
+/*   ft_define_options_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:55 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 18:48:28 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/28 21:44:28 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	ft_define_flags(const char **str, t_conversion *tools)
 			tools->flags.minus = true;
 		else if (**str == '0')
 			tools->flags.zero = true;
+		else if (**str == '#')
+			tools->flags.sharp = true;
+		else if (**str == ' ')
+			tools->flags.space = true;
+		else if (**str == '+')
+			tools->flags.plus = true;
 	}
 }
 
