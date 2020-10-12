@@ -6,6 +6,10 @@ static void	TEST_ft_print_width()
 	int				strlen;
 	t_conversion	tools;
 
+	tools.flags.space = 0;
+	tools.flags.plus = 0;
+	tools.flags.sharp = 0;
+	
 	tools.conv = 'c';
 	tools.opts.width = 5;
 	strlen = 1;

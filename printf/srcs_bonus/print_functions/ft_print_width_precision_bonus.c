@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/12 01:31:17 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/12 02:27:30 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	ft_print_number_width(t_conversion tools, int len)
 		pad_char = '0';
 	else
 		pad_char = ' ';
+	if (tools.flags.space || tools.flags.plus)
+		pad_len--;
 	while (pad_len--)
 		ft_putchar_fd(pad_char, 1);
 }

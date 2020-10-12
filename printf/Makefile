@@ -53,7 +53,9 @@ $(NAME):				$(LIBFT) $(OBJS_AUX) $(OBJS_PFTS) $(OBJS_CORE_FT)
 	ranlib $@
 
 # Compiling libftprintf.a with bonus files
-bonus:					$(NAME)	$(OBJS_AUX_BONUS) $(OBJS_PFTS_BONUS) $(OBJS_CORE_FT_BONUS)
+bonus:					$(LIBFT) $(OBJS_AUX_BONUS) $(OBJS_PFTS_BONUS) $(OBJS_CORE_FT_BONUS)
+	cp $(LIBFT) ./
+	mv $(subst $(LIBFT_DIR)/,, $(LIBFT)) $(NAME)
 	ar rc  $(NAME) $(OBJS_AUX_BONUS) $(OBJS_PFTS_BONUS) $(OBJS_CORE_FT_BONUS)
 	ranlib $(NAME)
 
