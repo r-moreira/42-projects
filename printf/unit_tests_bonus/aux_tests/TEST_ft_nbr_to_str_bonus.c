@@ -1,4 +1,4 @@
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 #include <stdio.h>
 
 static int	TEST_ft_nbr_to_str()
