@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:11:53 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/11 22:20:28 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/12 00:04:39 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int				ft_ptr_funct_hexadecimal(va_list *args, t_conversion tools)
 		arg_str = ft_nbr_to_str(LOWER_HEXA, type, tools);
 	else
 		arg_str = ft_nbr_to_str(UPPER_HEXA, type, tools);
-	len = ft_get_output_len(arg_str, tools);
+	len = ft_strlen(arg_str);
+	if (len == 1 && arg_str[0] == '0' && tools.opts.precision == 0)
+		len = 0;
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
 	ft_print_precision(tools, len);

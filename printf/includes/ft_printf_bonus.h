@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/28 20:39:48 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/11 23:49:54 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void			ft_define_precision(const char **str, va_list *args,
 t_conversion *tools);
 void			ft_print_width(t_conversion tools, int len);
 void			ft_print_precision(t_conversion tools, int len);
-int				ft_get_output_len(char *arg_str, t_conversion tools);
 char			*ft_nbr_to_str(int base, t_arg_types arg, t_conversion tools);
 int				ft_ptr_funct_character(va_list *args, t_conversion tools);
 int				ft_ptr_funct_string(va_list *args, t_conversion tools);
