@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_input_valid.c                                :+:      :+:    :+:   */
+/*   ft_is_input_valid_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:13 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 18:35:54 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:17:58 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
 static int	check_flags(const char *str, int i)
 {

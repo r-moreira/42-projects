@@ -6,11 +6,11 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:55 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/28 21:44:28 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:17:16 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
 void	ft_define_flags(const char **str, t_conversion *tools)
 {

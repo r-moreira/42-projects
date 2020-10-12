@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptr_funct_string.c                              :+:      :+:    :+:   */
+/*   ft_ptr_funct_string_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:35:02 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:21:32 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
 int			ft_ptr_funct_string(va_list *args, t_conversion tools)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_output_len.c                                :+:      :+:    :+:   */
+/*   ft_get_output_len_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:05 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 14:10:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/10/11 22:17:41 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
 int		ft_get_output_len(char *arg_str, t_conversion tools)
 {

@@ -6,11 +6,11 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/28 22:40:02 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:20:36 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
 static int	ft_print_integer(t_conversion tools, char *arg_str, int len)
 {

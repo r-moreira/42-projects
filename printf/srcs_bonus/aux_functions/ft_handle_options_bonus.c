@@ -6,11 +6,11 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:42:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/28 20:48:55 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:17:51 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
 int		ft_is_option(char c)
 {

@@ -6,11 +6,11 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:36 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/28 20:40:16 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:18:17 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
 int		ft_set_ptr_functs(t_ptr_functs **ptr)
 {
