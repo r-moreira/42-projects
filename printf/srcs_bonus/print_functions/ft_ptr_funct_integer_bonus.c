@@ -6,16 +6,25 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/12 00:04:52 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/12 01:47:08 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf_bonus.h"
 
+static int	ft_get_ptr_funct_return(t_conversion tools, int len)
+{
+	if (tools.opts.width > tools.opts.precision && tools.opts.width > len)
+		return (tools.opts.width);
+	else if (tools.opts.precision > len)
+		return (tools.opts.precision);
+	return (len);
+}
+
 static int	ft_print_flags(t_conversion tools, int len)
 {
 	if (tools.flags.plus || tools.flags.space)
-		len++;
+		len--;
 	if (tools.flags.space && !tools.flags.plus && tools.opts.width < len)
 		ft_putchar_fd(' ', 1);
 	if (tools.flags.plus)
@@ -37,17 +46,15 @@ int			ft_ptr_funct_integer(va_list *args, t_conversion tools)
 	len = ft_strlen(arg_str);
 	if (len == 1 && arg_str[0] == '0' && tools.opts.precision == 0)
 		len = 0;
+//	if (tools.flags.plus && (tools.opts.precision > len || tools.opts.width > len))
+//		len++;
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
-	ft_print_precision(tools, len);
 	len = ft_print_flags(tools, len);
-	len > 0 ? ft_putstr_fd(arg_str, 1): len;
+	ft_print_precision(tools, len);
+	len > 0 ? ft_putstr_fd(arg_str, 1) : len;
 	free(arg_str);
 	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);
-	if (tools.opts.width > tools.opts.precision && tools.opts.width > len)
-		return (tools.opts.width);
-	else if (tools.opts.precision > len)
-		return (tools.opts.precision);
-	return (len);
+	return (ft_get_ptr_funct_return(tools, len));
 }
