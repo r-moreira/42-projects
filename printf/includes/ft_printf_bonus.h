@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:32:23 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/09/28 20:39:48 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct	s_flags
 {
 	bool		zero;
 	bool		minus;
+	bool		sharp;
+	bool		space;
+	bool		plus;
 }				t_flags;
 
 typedef	struct	s_options
