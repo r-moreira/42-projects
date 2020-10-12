@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/12 00:05:15 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/12 00:33:44 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			ft_ptr_funct_integer(va_list *args, t_conversion tools)
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
 	ft_print_precision(tools, len);
-	len > 0 ? ft_putstr_fd(arg_str, 1): len;
+	len > 0 ? ft_putstr_fd(arg_str, 1) : len;
 	free(arg_str);
 	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);
