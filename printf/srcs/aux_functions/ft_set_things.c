@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:36 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 17:56:04 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/22 00:41:19 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	ft_set_parse_tools(t_conversion *tools)
 	tools->flags.zero = false;
 	tools->opts.width = 0;
 	tools->opts.precision = -1;
+	tools->sign = 1;
 }

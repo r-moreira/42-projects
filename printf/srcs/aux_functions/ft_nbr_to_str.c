@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:23 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:36:28 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/22 00:57:22 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,22 @@ char *digits)
 	return (str);
 }
 
-static unsigned long	ft_get_arg_nbr(t_arg_types arg, t_conversion tools,
-int *sign)
+static unsigned long	ft_get_arg_nbr(t_arg_types arg, t_conversion *tools)
 {
 	unsigned long	nbr;
 	long			snbr;
 
-	if (tools.conv == 'd' || tools.conv == 'i')
+	if (tools->conv == 'd' || tools->conv == 'i')
 	{
 		if (arg.u_int < 0)
-			*sign = -1;
+			tools->sign = -1;
 		snbr = arg.u_int;
 		if (snbr < 0)
 			nbr = -(snbr);
 		else
 			nbr = snbr;
 	}
-	else if (tools.conv == 'u' || tools.conv == 'x' || tools.conv == 'X')
+	else if (tools->conv == 'u' || tools->conv == 'x' || tools->conv == 'X')
 		nbr = arg.u_uint;
 	else
 		nbr = arg.u_luint;
@@ -64,14 +63,12 @@ int *sign)
 }
 
 char					*ft_nbr_to_str(int base, t_arg_types arg,
-t_conversion tools)
+t_conversion *tools)
 {
 	unsigned long	nbr;
-	int				sign;
 	int				base_len;
 
-	sign = 1;
-	nbr = ft_get_arg_nbr(arg, tools, &sign);
+	nbr = ft_get_arg_nbr(arg, tools);
 	if (base == LOWER_HEXA || base == UPPER_HEXA)
 		base_len = 16;
 	else
@@ -79,10 +76,10 @@ t_conversion tools)
 	if (nbr == 0)
 		return (ft_strdup("0"));
 	if (base == DECIMAL)
-		return (ft_make_str(nbr, sign, base_len, "0123456789"));
+		return (ft_make_str(nbr, tools->sign, base_len, "0123456789"));
 	if (base == LOWER_HEXA)
-		return (ft_make_str(nbr, sign, base_len, "0123456789abcdef"));
+		return (ft_make_str(nbr, tools->sign, base_len, "0123456789abcdef"));
 	if (base == UPPER_HEXA)
-		return (ft_make_str(nbr, sign, base_len, "0123456789ABCDEF"));
+		return (ft_make_str(nbr, tools->sign, base_len, "0123456789ABCDEF"));
 	return (NULL);
 }

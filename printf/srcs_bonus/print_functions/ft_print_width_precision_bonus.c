@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/12 02:27:30 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/22 01:37:44 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void		ft_print_precision(t_conversion tools, int len)
 {
 	if (tools.opts.precision <= len)
 		return ;
+	if (tools.sign == -1)
+		ft_putchar_fd('-', 1);
 	while (tools.opts.precision-- > len)
 		ft_putchar_fd('0', 1);
 }

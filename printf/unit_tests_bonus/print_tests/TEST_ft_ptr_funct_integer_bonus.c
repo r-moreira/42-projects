@@ -89,6 +89,12 @@ static void	signed_int_width_options_test()
 	ret1 =    printf("This is a |%-*i| signed integer test!!\n", -9, 42);
 	ret2 = ft_printf("This is a |%-*i| signed integer test!!\n", -9, 42);
 	check_return(ret1, ret2);
+
+
+	printf("\n---- Line = %d -> Print negative signed integer with width (digits option) test ----\n", __LINE__);
+	ret1 =    printf("This is a |%9d| signed integer test!!\n", -42);
+	ret2 = ft_printf("This is a |%9d| signed integer test!!\n", -42);
+	check_return(ret1, ret2);
 }
 
 static void	signed_int_precision_options_test()
@@ -114,6 +120,17 @@ static void	signed_int_precision_options_test()
 	printf("\n---- Line = %d -> Print signed integer with precision (star option) test ----\n", __LINE__);
 	ret1 =    printf("This is a |%.*d| signed integer test!!\n", 7, 42);
 	ret2 = ft_printf("This is a |%.*d| signed integer test!!\n", 7, 42);
+	check_return(ret1, ret2);
+
+
+	printf("\n---- Line = %d -> Print negative signed integer with precision (digits option) test ----\n", __LINE__);
+	ret1 =    printf("This is a |%.5d| signed integer test!!\n", -42);
+	ret2 = ft_printf("This is a |%.5d| signed integer test!!\n", -42);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with precision (star option) test ----\n", __LINE__);
+	ret1 =    printf("This is a |%.*d| signed integer test!!\n", 7, -42);
+	ret2 = ft_printf("This is a |%.*d| signed integer test!!\n", 7, -42);
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print signed integer with negative precision (star option) test ----\n", __LINE__);
@@ -473,9 +490,15 @@ static void	signed_int_plus_space_zero_flags_width_precision_test()
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print signed integer with plus flag and width (star option) test ----\n", __LINE__);
-	ret1 =    printf("This is a |%+*d| signed integer test!!\n", 10, 42);
-	ret2 = ft_printf("This is a |%+*d| signed integer test!!\n", 10, 42);
+	ret1 =    printf("This is a |%+*i| signed integer test!!\n", 10, 42);
+	ret2 = ft_printf("This is a |%+*i| signed integer test!!\n", 10, 42);
 	check_return(ret1, ret2);
+
+		printf("\n---- Line = %d -> Print negative signed integer with plus flag and width (star option) test ----\n", __LINE__);
+	ret1 =    printf("This is a |%+*i| signed integer test!!\n", 10, -42);
+	ret2 = ft_printf("This is a |%+*i| signed integer test!!\n", 10, -42);
+	check_return(ret1, ret2);
+
 
 	printf("\n---- Line = %d -> Print signed integer with space, plus flags and width (digits options) test ----\n", __LINE__);
 	ret1 =    printf("This is a |% +7d| signed integer test!!\n", 42);
@@ -483,13 +506,18 @@ static void	signed_int_plus_space_zero_flags_width_precision_test()
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print signed integer with space flag and precision (digits options) test ----\n", __LINE__);
-	ret1 =    printf("This is a |% .7d| signed integer test!!\n", 42);
-	ret2 = ft_printf("This is a |% .7d| signed integer test!!\n", 42);
+	ret1 =    printf("This is a |% .7i| signed integer test!!\n", 42);
+	ret2 = ft_printf("This is a |% .7i| signed integer test!!\n", 42);
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print signed integer with plus flag and precision (star option) test ----\n", __LINE__);
 	ret1 =    printf("This is a |%+.*d| signed integer test!!\n", 10, 42);
 	ret2 = ft_printf("This is a |%+.*d| signed integer test!!\n", 10, 42);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with plus flag and precision (star option) test ----\n", __LINE__);
+	ret1 =    printf("This is a |%+.*d| signed integer test!!\n", 10, -42);
+	ret2 = ft_printf("This is a |%+.*d| signed integer test!!\n", 10, -42);
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print signed integer with space, plus flags and precision (digits options) test ----\n", __LINE__);

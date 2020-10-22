@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/12 01:31:35 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/22 01:41:11 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void			ft_define_precision(const char **str, va_list *args,
 t_conversion *tools);
 void			ft_print_width(t_conversion tools, int len);
 void			ft_print_precision(t_conversion tools, int len);
-char			*ft_nbr_to_str(int base, t_arg_types arg, t_conversion tools);
+char			*ft_nbr_to_str(int base, t_arg_types arg, t_conversion *tools);
 int				ft_ptr_funct_character(va_list *args, t_conversion tools);
 int				ft_ptr_funct_string(va_list *args, t_conversion tools);
 int				ft_ptr_funct_pointer(va_list *args, t_conversion tools);
