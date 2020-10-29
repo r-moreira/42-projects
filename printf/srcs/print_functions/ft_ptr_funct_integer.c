@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptr_funct_integer.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: romoreir <romoreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/28 22:59:45 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/29 02:11:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ static  int	ft_get_ptr_integer_return(int len, t_conversion tools)
 			return (tools.opts.precision);
 	}
 	return (len);
+}
+
+static void	ft_print_integer_arg(char *arg_str, int len, t_conversion tools)
+{
+	if (len == 0)
+		return ;
+	else if ((tools.sign == -1 && tools.opts.precision > len) ||
+	(tools.flags.zero && !tools.flags.minus && tools.sign == -1))
+		ft_putstr_fd((arg_str + 1), 1);
+	else
+		ft_putstr_fd(arg_str, 1);
 }
 
 int			ft_ptr_funct_integer(va_list *args, t_conversion tools)
