@@ -459,6 +459,72 @@ static void unsigned_int_zero_flag_test()
 	check_return(ret1, ret2);
 }
 
+negative_int_tests()
+{
+	int ret1, ret2;
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%0d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%0d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%0.2d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%0.2d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%07d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%07d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%1d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%1d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%3d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%3d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+		printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%.3d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%.3d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%04d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%04d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%.5d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%.5d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%-07d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%-07d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%0.7d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%0.7d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%-05.7d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%-05.7d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+		printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%-09.6d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%-09.6d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+}
+
 int		main(void)
 {
 	signed_int_only_conversion_test();
@@ -472,47 +538,6 @@ int		main(void)
 	unsigned_int_width_precision_options_test();
 	unsigned_int_zero_flag_test();
 
-	int ret1, ret2;
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%0d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%0d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
-
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%05d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%05d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
-
-
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%1d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%1d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
-
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%3d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%3d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
-
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%5d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%5d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
-
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%-07d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%-07d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
-
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%0.7d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%0.7d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
-
-	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
-	ret1 =    printf("This is a |%-05.7d| negative igned integer test!!\n", -579);
-	ret2 = ft_printf("This is a |%-05.7d| negative signed integer test!!\n", -579);
-	check_return(ret1, ret2);
 
 	return (0);
 }

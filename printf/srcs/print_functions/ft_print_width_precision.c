@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/28 22:57:02 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/29 05:14:38 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_print_number_width(t_conversion tools, int len)
 	int		pad_len;
 	char	pad_char;
 
-	if (tools.opts.width <= len || tools.opts.width <= tools.opts.precision)
+	if (tools.opts.width <= tools.opts.precision)
 		return ;
 	if (tools.opts.precision > len && tools.opts.width > tools.opts.precision)
 	{
@@ -40,7 +40,10 @@ static void	ft_print_number_width(t_conversion tools, int len)
 		pad_char = '0';
 	else
 		pad_char = ' ';
-	if (tools.flags.zero && !tools.flags.minus && tools.sign == -1)
+	if (tools.sign == -1)
+		pad_len--;
+	if (tools.sign == -1 && tools.flags.zero && tools.opts.precision == -1 &&
+	!tools.flags.minus)
 		ft_putchar_fd('-', 1);
 	while (pad_len--)
 		ft_putchar_fd(pad_char, 1);
@@ -57,9 +60,10 @@ void		ft_print_width(t_conversion tools, int len)
 
 void		ft_print_precision(t_conversion tools, int len)
 {
-	if (tools.opts.precision <= len)
+
+	if (tools.opts.precision <= len && tools.sign == 1)
 		return ;
-	if (tools.sign == -1)
+	if (tools.opts.precision > len && tools.sign == -1)
 		ft_putchar_fd('-', 1);
 	while (tools.opts.precision-- > len)
 		ft_putchar_fd('0', 1);

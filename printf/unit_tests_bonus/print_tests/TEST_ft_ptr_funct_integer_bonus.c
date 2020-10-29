@@ -461,6 +461,70 @@ static void unsigned_int_zero_flag_test()
 	check_return(ret1, ret2);
 }
 
+negative_int_tests()
+{
+	int ret1, ret2;
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%0d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%0d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%0.2d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%0.2d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%07d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%07d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%1d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%1d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%3d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%3d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+		printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%.3d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%.3d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%04d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%04d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%.5d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%.5d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%-07d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%-07d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%0.7d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%0.7d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%-05.7d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%-05.7d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+
+		printf("\n---- Line = %d -> Print negative signed integer with only zero flag and conversion test ----\n", __LINE__);
+	ret1 =    printf("This is a |%-09.6d| negative signed integer test!!\n", -579);
+	ret2 = ft_printf("This is a |%-09.6d| negative signed integer test!!\n", -579);
+	check_return(ret1, ret2);
+}
 
 static void signed_int_plus_space_flags_test()
 {
@@ -529,7 +593,6 @@ static void	signed_int_plus_space_zero_flags_width_precision_test()
 	ret1 =    printf("This is a |% +.7d| signed integer test!!\n", 42);
 	ret2 = ft_printf("This is a |% +.7d| signed integer test!!\n", 42);
 	check_return(ret1, ret2);
-
 }
 
 
@@ -545,6 +608,7 @@ int		main(void)
 	unsigned_int_precision_options_test();
 	unsigned_int_width_precision_options_test();
 	unsigned_int_zero_flag_test();
+	negative_int_tests();
 	signed_int_plus_space_flags_test();
 	signed_int_plus_space_zero_flags_width_precision_test();
 
