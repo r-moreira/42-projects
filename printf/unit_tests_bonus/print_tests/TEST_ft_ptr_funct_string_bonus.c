@@ -146,6 +146,32 @@ static void	string_width_precision_options_test()
 	check_return(ret1, ret2);
 }
 
+string_null_cases_test()
+{
+	int 	ret1;
+	int		ret2;
+
+	printf("\n---- Line = %d -> Print string with arg == NULL ----\n", __LINE__);
+	ret1 =    printf("This is a |%.3s| test!!\n", NULL);
+	ret2 = ft_printf("This is a |%.3s| test!!\n", NULL);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print string with arg == NULL ----\n", __LINE__);
+	ret1 =    printf("This is a |%12.s| test!!\n", NULL);
+	ret2 = ft_printf("This is a |%12.s| test!!\n", NULL);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print string with arg == NULL ----\n", __LINE__);
+	ret1 =    printf("This is a |%12.3s| test!!\n", NULL);
+	ret2 = ft_printf("This is a |%12.3s| test!!\n", NULL);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print string with arg == NULL ----\n", __LINE__);
+	ret1 =    printf("This is a |%s| test!!\n", NULL);
+	ret2 = ft_printf("This is a |%s| test!!\n", NULL);
+	check_return(ret1, ret2);
+}
+
 int		main(void)
 {
 
@@ -153,5 +179,6 @@ int		main(void)
 	string_width_options_test();
 	string_precision_option_test();
 	string_width_precision_options_test();
+	string_null_cases_test();
 	return (0);
 }
