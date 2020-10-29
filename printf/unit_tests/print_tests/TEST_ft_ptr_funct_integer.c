@@ -466,10 +466,10 @@ int		main(void)
 	signed_int_precision_options_test();
 	signed_int_width_precision_options_test();
 	signed_int_zero_flag_test();
-//	unsigned_int_only_conversion_test();
-//	unsigned_int_width_options_test();
-//	unsigned_int_precision_options_test();
-//	unsigned_int_width_precision_options_test();
-//	unsigned_int_zero_flag_test();
+	unsigned_int_only_conversion_test();
+	unsigned_int_width_options_test();
+	unsigned_int_precision_options_test();
+	unsigned_int_width_precision_options_test();
+	unsigned_int_zero_flag_test();
 	return (0);
 }
