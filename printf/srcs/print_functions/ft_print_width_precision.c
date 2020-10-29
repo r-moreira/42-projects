@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/29 05:14:38 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/29 19:43:05 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void		ft_print_width(t_conversion tools, int len)
 
 void		ft_print_precision(t_conversion tools, int len)
 {
-
 	if (tools.opts.precision <= len && tools.sign == 1)
 		return ;
 	if (tools.opts.precision > len && tools.sign == -1)

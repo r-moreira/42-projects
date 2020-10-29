@@ -6,13 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/29 05:22:04 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/29 19:43:19 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static  int	ft_get_ptr_integer_return(int len, t_conversion tools)
+static int	ft_get_ptr_integer_return(int len, t_conversion tools)
 {
 	if (tools.opts.width > tools.opts.precision && tools.opts.width > len)
 		return (tools.opts.width);

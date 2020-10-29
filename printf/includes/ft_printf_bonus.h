@@ -6,12 +6,12 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/22 01:41:11 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/29 19:42:07 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
 # include "../libft/libft.h"
 # include <stdlib.h>
