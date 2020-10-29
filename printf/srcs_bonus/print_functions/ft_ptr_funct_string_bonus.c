@@ -6,12 +6,11 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/29 00:08:44 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/29 00:28:58 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf_bonus.h"
-
 
 static int	ft_print_str_arg(t_conversion tools, char *str, int len)
 {
@@ -22,15 +21,23 @@ static int	ft_print_str_arg(t_conversion tools, char *str, int len)
 		while (++index < len)
 			ft_putchar_fd(str[index], 1);
 	else if (tools.opts.width && tools.opts.precision != -1 &&
-			tools.opts.precision <= 6)
+	tools.opts.precision <= 6 && tools.opts.width > tools.opts.precision)
 		while (tools.opts.precision--)
 			ft_putchar_fd(' ', 1);
+	else if (tools.opts.width && tools.opts.precision != -1 &&
+	tools.opts.precision <= 6 && tools.opts.width < tools.opts.precision)
+	{
+		index = tools.opts.width;
+		while (index--)
+			ft_putchar_fd(' ', 1);
+		return (tools.opts.width);
+	}
 	else if (!tools.opts.width && tools.opts.precision != -1 &&
 			tools.opts.precision <= 6)
 		return (0);
 	else
 		ft_putstr_fd("(null)", 1);
-	return (1);
+	return (len);
 }
 
 int			ft_ptr_funct_string(va_list *args, t_conversion tools)
@@ -48,8 +55,7 @@ int			ft_ptr_funct_string(va_list *args, t_conversion tools)
 		len = tools.opts.precision;
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
-	if (!ft_print_str_arg(tools, type.u_char_ptr, len))
-		len = 0;
+	len = ft_print_str_arg(tools, type.u_char_ptr, len);
 	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);
 	return (tools.opts.width > len ? tools.opts.width : len);

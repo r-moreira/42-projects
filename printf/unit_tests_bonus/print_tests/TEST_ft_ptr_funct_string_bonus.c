@@ -167,6 +167,11 @@ string_null_cases_test()
 	check_return(ret1, ret2);
 
 	printf("\n---- Line = %d -> Print string with arg == NULL ----\n", __LINE__);
+	ret1 =    printf("This is a |%2.4s| test!!\n", NULL);
+	ret2 = ft_printf("This is a |%2.4s| test!!\n", NULL);
+	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print string with arg == NULL ----\n", __LINE__);
 	ret1 =    printf("This is a |%s| test!!\n", NULL);
 	ret2 = ft_printf("This is a |%s| test!!\n", NULL);
 	check_return(ret1, ret2);
