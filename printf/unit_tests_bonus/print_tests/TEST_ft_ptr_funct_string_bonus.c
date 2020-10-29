@@ -20,6 +20,11 @@ static void	string_only_conversion_test()
 	ret1 =    printf("This is a %s test!!\n", "string");
 	ret2 = ft_printf("This is a %s test!!\n", "string");
 	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print string with arg == NULL test ----\n", __LINE__);
+	ret1 =    printf("This is a |%s| test!!\n", NULL);
+	ret2 = ft_printf("This is a |%s| test!!\n", NULL);
+	check_return(ret1, ret2);
 }
 
 

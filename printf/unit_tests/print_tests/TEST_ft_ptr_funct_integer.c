@@ -243,6 +243,11 @@ static void signed_int_zero_flag_test()
 	ret1 =    printf("This is a |%0*.*d| signed integer test!!\n", -12, -9, 42);
 	ret2 = ft_printf("This is a |%0*.*d| signed integer test!!\n", -12, -9, 42);
 	check_return(ret1, ret2);
+
+	printf("\n---- Line = %d -> Print negative signed integer with zero flag and width (digit option) test ----\n", __LINE__);
+	ret1 =    printf("This is a |%08i| signed integer test!!\n", -71);
+	ret2 = ft_printf("This is a |%08i| signed integer test!!\n", -71);
+	check_return(ret1, ret2);
 }
 
 
@@ -461,10 +466,10 @@ int		main(void)
 	signed_int_precision_options_test();
 	signed_int_width_precision_options_test();
 	signed_int_zero_flag_test();
-	unsigned_int_only_conversion_test();
-	unsigned_int_width_options_test();
-	unsigned_int_precision_options_test();
-	unsigned_int_width_precision_options_test();
-	unsigned_int_zero_flag_test();
+//	unsigned_int_only_conversion_test();
+//	unsigned_int_width_options_test();
+//	unsigned_int_precision_options_test();
+//	unsigned_int_width_precision_options_test();
+//	unsigned_int_zero_flag_test();
 	return (0);
 }

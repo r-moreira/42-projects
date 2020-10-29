@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/11 22:21:32 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/28 22:36:07 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int			ft_ptr_funct_string(va_list *args, t_conversion tools)
 
 	index = -1;
 	type.u_char_ptr = va_arg(*args, char *);
+		if (type.u_char_ptr == NULL)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
 	len = ft_strlen(type.u_char_ptr);
 	if (tools.opts.precision != -1 && tools.opts.precision < len)
 		len = tools.opts.precision;

@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/22 01:41:28 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/28 22:59:58 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ static void	ft_print_integer_arg(char *arg_str, int len, t_conversion tools)
 {
 	if (len == 0)
 		return ;
-	if (tools.opts.precision > len)
-	{
+	else if ((tools.sign == -1 && tools.opts.precision > len) ||
+	(tools.flags.zero && !tools.flags.minus && tools.sign == -1))
 		ft_putstr_fd((arg_str + 1), 1);
-	}
 	else
 		ft_putstr_fd(arg_str, 1);
 }
