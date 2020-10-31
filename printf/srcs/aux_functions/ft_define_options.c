@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:55 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/31 01:08:21 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/31 01:20:44 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	ft_define_width(const char **str, va_list *args, t_conversion *tools)
 {
 	int		digits;
 
-	if (**str == '0')
+	if (**str == '0' || **str == '.')
 		return ;
+	ft_putchar_fd(**str, 1);
 	if (ft_is_option(**str) == E_STAR)
 	{
 		tools->opts.width = va_arg(*args, int);
