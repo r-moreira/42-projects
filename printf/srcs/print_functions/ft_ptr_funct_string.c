@@ -6,11 +6,12 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/29 19:43:50 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/31 01:31:03 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
+#include <stdio.h> //APAGAR
 
 static int	ft_print_str_arg(t_conversion tools, char *str, int len)
 {

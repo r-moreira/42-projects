@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:36 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/22 00:41:19 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/31 01:24:42 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int		ft_set_ptr_functs(t_ptr_functs **ptr)
 
 void	ft_set_parse_tools(t_conversion *tools)
 {
-	tools->flags.minus = false;
-	tools->flags.zero = false;
+	tools->flags.minus = 0;
+	tools->flags.zero = 0;
 	tools->opts.width = 0;
 	tools->opts.precision = -1;
 	tools->sign = 1;
