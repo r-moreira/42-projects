@@ -6,12 +6,45 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/31 01:31:03 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/10/31 03:05:09 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
-#include <stdio.h> //APAGAR
+
+static void	ft_print_null_space(int index)
+{
+	while (index--)
+		ft_putchar_fd(' ', 1);
+}
+
+static int	ft_handle_null_input(t_conversion tools, int len)
+{
+	if (!tools.opts.width && tools.opts.precision == -1)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (len);
+	}
+	if (!tools.opts.width && tools.opts.precision != 1 &&
+	tools.opts.precision < 6)
+		return (0);
+	if (tools.opts.width > tools.opts.precision && tools.opts.precision != -1
+	&& tools.opts.precision < 6)
+	{
+		ft_print_null_space(tools.opts.width - (tools.opts.width -
+		tools.opts.precision));
+		return (len);
+	}
+	if (tools.opts.precision > tools.opts.width && tools.opts.width
+	&& tools.opts.precision < 6)
+	{
+		ft_print_null_space(tools.opts.precision - tools.opts.width);
+		return (tools.opts.precision - tools.opts.width);
+	}
+	if (tools.opts.precision || tools.opts.width)
+		ft_putstr_fd("(null)", 1);
+	return (len);
+}
 
 static int	ft_print_str_arg(t_conversion tools, char *str, int len)
 {
@@ -19,26 +52,12 @@ static int	ft_print_str_arg(t_conversion tools, char *str, int len)
 
 	index = -1;
 	if (str != NULL)
+	{
 		while (++index < len)
 			ft_putchar_fd(str[index], 1);
-	else if (tools.opts.width && tools.opts.precision != -1 &&
-	tools.opts.precision <= 6 && tools.opts.width > tools.opts.precision)
-		while (tools.opts.precision--)
-			ft_putchar_fd(' ', 1);
-	else if (tools.opts.width && tools.opts.precision != -1 &&
-	tools.opts.precision <= 6 && tools.opts.width < tools.opts.precision)
-	{
-		index = tools.opts.width;
-		while (index--)
-			ft_putchar_fd(' ', 1);
-		return (tools.opts.width);
+		return (len);
 	}
-	else if (!tools.opts.width && tools.opts.precision != -1 &&
-			tools.opts.precision <= 6)
-		return (0);
-	else
-		ft_putstr_fd("(null)", 1);
-	return (len);
+	return (ft_handle_null_input(tools, len));
 }
 
 int			ft_ptr_funct_string(va_list *args, t_conversion tools)
