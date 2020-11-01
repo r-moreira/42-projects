@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/31 03:05:09 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/01 02:18:22 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_handle_null_input(t_conversion tools, int len)
 		ft_putstr_fd("(null)", 1);
 		return (len);
 	}
-	if (!tools.opts.width && tools.opts.precision != 1 &&
+	if (!tools.opts.width && tools.opts.precision != -1 &&
 	tools.opts.precision < 6)
 		return (0);
 	if (tools.opts.width > tools.opts.precision && tools.opts.precision != -1
