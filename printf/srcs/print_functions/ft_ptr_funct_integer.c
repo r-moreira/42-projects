@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:02 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/29 19:43:19 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/01 01:48:27 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,16 @@ static int	ft_print_integer_arg(char *arg_str, int len, t_conversion tools)
 	if (len == 0)
 		return (0);
 	if (tools.sign == -1)
-		arg_str++;
-	if ((tools.sign == -1 && !tools.flags.zero && !tools.opts.width &&
-	tools.opts.precision <= len) ||
-	(tools.sign == -1 && tools.flags.zero && !tools.opts.width &&
-	tools.opts.precision <= len) ||
-	(tools.sign == -1 && tools.opts.width > 0 && tools.opts.width <= len &&
-	tools.opts.precision <= len) ||
-	(tools.sign == -1 && tools.opts.width > len &&
-	tools.opts.precision == -1 && !tools.flags.zero) ||
-	(tools.sign == -1 && tools.flags.minus && tools.flags.zero &&
-	tools.opts.precision == -1))
-		ft_putchar_fd('-', 1);
-	ft_putstr_fd(arg_str, 1);
+	{
+		if ((tools.flags.zero && !tools.flags.minus &&
+		tools.opts.precision == -1 && tools.opts.width > len) ||
+		(tools.opts.precision > len))
+			ft_putstr_fd((arg_str + 1), 1);
+		else
+			ft_putstr_fd(arg_str, 1);
+	}
+	else
+		ft_putstr_fd(arg_str, 1);
 	return (len);
 }
 
