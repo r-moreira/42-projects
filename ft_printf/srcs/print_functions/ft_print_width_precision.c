@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/03 23:39:14 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/04 16:19:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 static void	ft_print_percent_width(t_conversion tools, int len)
 {
-	(void)tools;
-	(void)len;
-	//fazer
+	int		pad_len;
+	char	pad_char;
+
+	pad_len = tools.opts.width - len;
+	
+	if (tools.flags.zero && !tools.flags.minus)
+		pad_char = '0';
+	else
+		pad_char = ' ';
+	while (pad_len--)
+		ft_putchar_fd(pad_char, 1);
 	return ;
 }
 

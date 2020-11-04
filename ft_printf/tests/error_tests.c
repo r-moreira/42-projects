@@ -15,20 +15,24 @@ static void	ft_test_percent()
 {
 	int		ret1, ret2;
 
-	ret1 =    printf("|%5%|");
-	ret2 = ft_printf("|%5%|");
+	ret1 =    printf("|%5%|\n");
+	ret2 = ft_printf("|%5%|\n");
 	check_return(ret1, ret2);
 
-	ret1 =    printf("|%-5%|");
+	ret1 =    printf("|%-5%|\n");
 	ret2 = ft_printf("|%-5%|\n");
 	check_return(ret1, ret2);
 
-	ret1 =    printf("|%05%|");
+	ret1 =    printf("|%05%|\n");
 	ret2 = ft_printf("|%05%|\n");
 	check_return(ret1, ret2);
 
 	ret1 =    printf("|%-05%|\n");
 	ret2 = ft_printf("|%-05%|\n");
+	check_return(ret1, ret2);
+
+	ret1 =    printf("|%.5%|\n");
+	ret2 = ft_printf("|%.5%|\n");
 	check_return(ret1, ret2);
 
 	ret1 =    printf("|%-042.*%|\n", 42);
@@ -113,7 +117,7 @@ int			main() {
 
 	printf("\n----RUNNING TESTS----\n\n");
 
-	//ft_test_percent();
+	ft_test_percent();
 	//ft_test_null_pointer();
 	//ft_test_null_str();
 
