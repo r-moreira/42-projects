@@ -48,7 +48,7 @@ static void	ft_test_percent()
 	check_return(ret1, ret2);
 }
 
-static void	test_null_pointer()
+static void	ft_test_null_pointer()
 {
 	int		ret1, ret2;
 
@@ -56,8 +56,12 @@ static void	test_null_pointer()
 	ret2 = ft_printf("|%p|\n", NULL);
 	check_return(ret1, ret2);
 
-	ret1 =    printf("|%15p|\n", NULL);
-	ret2 = ft_printf("|%15p|\n", NULL);
+	ret1 =    printf("|%3p|\n", NULL);
+	ret2 = ft_printf("|%3p|\n", NULL);
+	check_return(ret1, ret2);
+
+	ret1 =    printf("|%10p|\n", NULL);
+	ret2 = ft_printf("|%10p|\n", NULL);
 	check_return(ret1, ret2);
 
 	ret1 =    printf("|%-15p|\n", NULL);
@@ -68,12 +72,16 @@ static void	test_null_pointer()
 	ret2 = ft_printf("|%.p|\n", NULL);
 	check_return(ret1, ret2);
 
-	ret1 =    printf("|%.0p|\n", NULL);
-	ret2 = ft_printf("|%.0p|\n", NULL);
+	ret1 =    printf("|%.9p|\n", NULL);
+	ret2 = ft_printf("|%.9p|\n", NULL);
 	check_return(ret1, ret2);
 
 	ret1 =    printf("|%.1p|\n", NULL);
 	ret2 = ft_printf("|%.1p|\n", NULL);
+	check_return(ret1, ret2);
+
+	ret1 =    printf("|%.0p|\n", NULL);
+	ret2 = ft_printf("|%.0p|\n", NULL);
 	check_return(ret1, ret2);
 
 	ret1 =    printf("|%.2p|\n", NULL);
@@ -83,15 +91,14 @@ static void	test_null_pointer()
 	ret1 =    printf("|%.3p|\n", NULL);
 	ret2 = ft_printf("|%.3p|\n", NULL);
 	check_return(ret1, ret2);
-
+/*
 	ret1 =    printf("|%.4p|\n", NULL);
 	ret2 = ft_printf("|%.4p|\n", NULL);
 	check_return(ret1, ret2);
 
-	ret1 =    printf("|%.5p|\n", NULL);
-	ret2 = ft_printf("|%.5p|\n", NULL);
+	ret1 =    printf("|%8.5p|\n", NULL);
+	ret2 = ft_printf("|%8.5p|\n", NULL);
 	check_return(ret1, ret2);
-
 
 	ret1 =    printf("|%.6p|\n", NULL);
 	ret2 = ft_printf("|%.6p|\n", NULL);
@@ -108,6 +115,7 @@ static void	test_null_pointer()
 	ret1 =    printf("|%12.5p|\n", NULL);
 	ret2 = ft_printf("|%12.5p|\n", NULL);
 	check_return(ret1, ret2);
+*/
 }
 
 
@@ -117,8 +125,8 @@ int			main() {
 
 	printf("\n----RUNNING TESTS----\n\n");
 
-	ft_test_percent();
-	//ft_test_null_pointer();
+	//ft_test_percent();
+	ft_test_null_pointer();
 	//ft_test_null_str();
 
 	return (0);
