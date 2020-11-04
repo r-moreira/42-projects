@@ -272,9 +272,9 @@ int			main() {
 
 	//ft_test_percent();
 	//ft_test_null_pointer();jkkk
-	ft_test_null_str_width();
+	//ft_test_null_str_width();
 	//ft_test_null_str_precision();
-	//ft_test_null_str_width_precision();
+	ft_test_null_str_width_precision();
 
 	return (0);
 }

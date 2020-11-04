@@ -6,16 +6,27 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 18:50:39 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 20:48:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static int	ft_handle_str_null_input()
+static void	ft_print_string_arg(char *arg_str, int len)
 {
-	//refazer
-	return (0);
+	int			index;
+	char		null_str[7];
+
+	index = -1;
+	if (arg_str == NULL)
+	{
+		ft_strlcpy(null_str, "(null)", 7);
+		while (++index < len)
+			ft_putchar_fd(null_str[index], 1);
+	}
+	else
+		while (++index < len)
+			ft_putchar_fd(arg_str[index], 1);
 }
 
 int			ft_ptr_funct_string(va_list *args, t_conversion tools)
@@ -27,16 +38,14 @@ int			ft_ptr_funct_string(va_list *args, t_conversion tools)
 	index = -1;
 	type.u_char_ptr = va_arg(*args, char *);
 	if (type.u_char_ptr == NULL)
-		return (ft_handle_str_null_input());
+		len = 6;
 	else
 		len = ft_strlen(type.u_char_ptr);
 	if (tools.opts.precision != -1 && tools.opts.precision < len)
 		len = tools.opts.precision;
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		ft_print_width(tools, len);
-	index = -1;
-	while (++index < len)
-		ft_putchar_fd(type.u_char_ptr[index], 1);
+	ft_print_string_arg(type.u_char_ptr, len);
 	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);
 	return (tools.opts.width > len ? tools.opts.width : len);
