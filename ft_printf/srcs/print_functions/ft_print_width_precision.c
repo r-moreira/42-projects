@@ -6,13 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 18:48:00 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 19:55:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static void	ft_print_percent_width(t_conversion tools, int len)
+static void	ft_print_string_width(t_conversion tools, int len)
 {
 	int		pad_len;
 	char	pad_char;
@@ -25,15 +25,6 @@ static void	ft_print_percent_width(t_conversion tools, int len)
 	while (pad_len--)
 		ft_putchar_fd(pad_char, 1);
 	return ;
-}
-
-static void	ft_print_string_width(t_conversion tools, int len)
-{
-	int		pad_len;
-
-	pad_len = tools.opts.width - len;
-	while (pad_len--)
-		ft_putchar_fd(' ', 1);
 }
 
 static void	ft_print_number_width(t_conversion tools, int len)
