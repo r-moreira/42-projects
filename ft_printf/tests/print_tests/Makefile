@@ -24,7 +24,7 @@ $(info )
 all:	$(NAME) clean
 	$(info )
 
-print_tests:	ft_print_width_precision no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent ft_print_width_precision ft_print_multiple_conversions
+print_tests:	ft_print_width_precision no_conversion_test ft_ptr_funct_character ft_ptr_funct_string ft_ptr_funct_integer ft_ptr_funct_hexadecimal ft_ptr_funct_pointer ft_ptr_funct_percent ft_print_width_precision ft_print_multiple_conversions clean
 
 ft_print_width_precision: #ft_print_width and ft_print_precision tests
 	$(info ) $(info =====> WIDTH AND PRECISION TESTS || File = TEST_ft_print_width_precision.c <=====) $(info )

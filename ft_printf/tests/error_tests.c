@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-int			ft_printf(const char *format, ...);
+static int	ft_printf(const char *format, ...);
 
 static int	check_return(int ret1, int ret2)
 {
@@ -11,11 +11,9 @@ static int	check_return(int ret1, int ret2)
 		printf("---Return ERROR--- Libc -> %d | 42 = %d\n\n", ret1, ret2);
 }
 
-int			main() {
-
-	int	ret1, ret2;
-
-	printf("\n----RUNNING TESTS----\n\n");
+static void	ft_test_percent()
+{
+	int		ret1, ret2;
 
 	ret1 =    printf("|%5%|");
 	ret2 = ft_printf("|%5%|");
@@ -44,7 +42,11 @@ int			main() {
 	ret1 =    printf("|%024.*%|\n", 42);
 	ret2 = ft_printf("|%024.*%|\n", 42);
 	check_return(ret1, ret2);
+}
 
+static void	test_null_pointer()
+{
+	int		ret1, ret2;
 
 	ret1 =    printf("|%p|\n", NULL);
 	ret2 = ft_printf("|%p|\n", NULL);
@@ -102,6 +104,18 @@ int			main() {
 	ret1 =    printf("|%12.5p|\n", NULL);
 	ret2 = ft_printf("|%12.5p|\n", NULL);
 	check_return(ret1, ret2);
+}
+
+
+int			main() {
+
+	int	ret1, ret2;
+
+	printf("\n----RUNNING TESTS----\n\n");
+
+	//ft_test_percent();
+	//ft_test_null_pointer();
+	//ft_test_null_str();
 
 	return (0);
 }
