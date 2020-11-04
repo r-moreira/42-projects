@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 17:31:07 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 18:48:00 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ static void	ft_print_percent_width(t_conversion tools, int len)
 	int		pad_len;
 	char	pad_char;
 
-	if (tools.opts.precision == 0)
-		len--;
 	pad_len = tools.opts.width - len;	
-	ft_putnbr_fd(pad_len, 1);
 	if (tools.flags.zero && !tools.flags.minus)
 		pad_char = '0';
 	else
