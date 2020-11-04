@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:21 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 17:38:37 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 18:02:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static int	ft_print_null_pointer(t_conversion tools, int len)
 {
 	if (tools.opts.precision)
 		ft_putchar_fd('0', 1);
-	else
-		len--;
 	return (len);	
 }
 
