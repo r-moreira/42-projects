@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/01 01:44:36 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/03 22:32:25 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ static void	ft_print_number_width(t_conversion tools, int len)
 
 void		ft_print_width(t_conversion tools, int len)
 {
-	if (tools.conv == 'c' || tools.conv == 's')
+	if (tools.conv == 'c' || tools.conv == 's' )
 		ft_print_string_width(tools, len);
 	if (tools.conv == 'd' || tools.conv == 'i' || tools.conv == 'u' ||
-		tools.conv == 'x' || tools.conv == 'X' || tools.conv == 'p')
+		tools.conv == 'x' || tools.conv == 'X' || tools.conv == 'p' ||
+		tools.conv == '%')
 		ft_print_number_width(tools, len);
 }
 
