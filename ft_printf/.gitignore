@@ -1,4 +1,2 @@
 *.a
 *.o
-*tests/
-ft_printf_test

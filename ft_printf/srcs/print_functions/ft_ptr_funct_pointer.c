@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:21 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/22 01:42:30 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/03 22:37:13 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static int	ft_handle_zero_input(t_arg_types type, t_conversion tools)
 
 	if (type.u_luint != 0)
 		return (0);
-	len = ft_strlen("(nil)");
+	len = ft_strlen("0x0");
 	width_len = tools.opts.width;
 	if (tools.opts.width > (len) && !tools.flags.minus)
 		while (width_len-- > len)
 			ft_putchar_fd(' ', 1);
-	ft_putstr_fd("(nil)", 1);
+	ft_putstr_fd("0x0", 1);
 	if (tools.opts.width > (len) && tools.flags.minus)
 		while (width_len-- > len)
 			ft_putchar_fd(' ', 1);
