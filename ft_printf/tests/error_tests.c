@@ -71,7 +71,7 @@ static void	ft_test_null_pointer()
 	ret1 =    printf("|%.p|\n", NULL);
 	ret2 = ft_printf("|%.p|\n", NULL);
 	check_return(ret1, ret2);
-*/
+
 	ret1 =    printf("|%.9p|\n", NULL);
 	ret2 = ft_printf("|%.9p|\n", NULL);
 	check_return(ret1, ret2);
@@ -95,7 +95,7 @@ static void	ft_test_null_pointer()
 	ret1 =    printf("|%.4p|\n", NULL);
 	ret2 = ft_printf("|%.4p|\n", NULL);
 	check_return(ret1, ret2);
-/*
+*/
 	ret1 =    printf("|%8.5p|\n", NULL);
 	ret2 = ft_printf("|%8.5p|\n", NULL);
 	check_return(ret1, ret2);
@@ -115,7 +115,6 @@ static void	ft_test_null_pointer()
 	ret1 =    printf("|%12.5p|\n", NULL);
 	ret2 = ft_printf("|%12.5p|\n", NULL);
 	check_return(ret1, ret2);
-*/
 }
 
 

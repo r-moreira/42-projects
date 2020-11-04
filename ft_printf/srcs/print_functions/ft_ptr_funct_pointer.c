@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:21 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 18:02:34 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 18:34:38 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ static int ft_get_ptr_pointer_return(t_conversion tools, int len)
 		return (tools.opts.width);
 	else if (tools.opts.precision > len)
 		return (tools.opts.precision + 2);
+	else if (tools.opts.precision == 2)
+		return (len + 1);
+	else if (tools.opts.precision == 3)
+		return (len + 2);	
 	return (len);
-}
-
-static int	ft_print_null_pointer(t_conversion tools, int len)
-{
-	if (tools.opts.precision)
-		ft_putchar_fd('0', 1);
-	return (len);	
 }
 
 int			ft_ptr_funct_pointer(va_list *args, t_conversion tools)
@@ -45,8 +42,8 @@ int			ft_ptr_funct_pointer(va_list *args, t_conversion tools)
 	ft_print_precision(tools, len - 2);
 	if (type.u_luint)
 		ft_putstr_fd(arg_str, 1);
-	else
-		len = ft_print_null_pointer(tools, len);
+	else if (tools.opts.precision)
+		ft_putchar_fd('0', 1);
 	free(arg_str);
 	if (tools.opts.width > (len) && tools.flags.minus)
 		ft_print_width(tools, len);
