@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/03 22:32:25 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/03 23:16:29 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_print_number_width(t_conversion tools, int len)
 	int		pad_len;
 	char	pad_char;
 
-	if (tools.opts.width <= tools.opts.precision)
+	if (tools.opts.width <= tools.opts.precision && tools.conv != '%')
 		return ;
 	if (tools.opts.precision > len && tools.opts.width > tools.opts.precision)
 	{
