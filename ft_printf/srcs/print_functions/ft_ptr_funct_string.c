@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:28 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 20:48:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 21:20:29 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int			ft_ptr_funct_string(va_list *args, t_conversion tools)
 {
 	t_arg_types	type;
 	int			len;
-	int			index;
 
-	index = -1;
 	type.u_char_ptr = va_arg(*args, char *);
 	if (type.u_char_ptr == NULL)
 		len = 6;
