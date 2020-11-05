@@ -6,13 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:12:21 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 18:50:13 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 21:02:54 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static int ft_get_ptr_pointer_return(t_conversion tools, int len)
+static int	ft_get_ptr_pointer_return(t_conversion tools, int len)
 {
 	if (tools.opts.width > tools.opts.precision && tools.opts.width > len)
 		return (tools.opts.width);
@@ -21,7 +21,7 @@ static int ft_get_ptr_pointer_return(t_conversion tools, int len)
 	else if (tools.opts.precision == 2)
 		return (len + 1);
 	else if (tools.opts.precision == 3)
-		return (len + 2);	
+		return (len + 2);
 	return (len);
 }
 

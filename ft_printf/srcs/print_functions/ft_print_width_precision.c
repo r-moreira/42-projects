@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:50 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/04 20:25:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2020/11/04 21:02:21 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_print_string_width(t_conversion tools, int len)
 	int		pad_len;
 	char	pad_char;
 
-	pad_len = tools.opts.width - len;	
+	pad_len = tools.opts.width - len;
 	if (tools.flags.zero && !tools.flags.minus)
 		pad_char = '0';
 	else
@@ -57,7 +57,7 @@ static void	ft_print_number_width(t_conversion tools, int len)
 
 void		ft_print_width(t_conversion tools, int len)
 {
-	if (tools.conv == 'c' || tools.conv == 's' || tools.conv == '%' )
+	if (tools.conv == 'c' || tools.conv == 's' || tools.conv == '%')
 		ft_print_string_width(tools, len);
 	if (tools.conv == 'd' || tools.conv == 'i' || tools.conv == 'u' ||
 		tools.conv == 'x' || tools.conv == 'X' || tools.conv == 'p')
