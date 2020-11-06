@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:10:13 by romoreir          #+#    #+#             */
-/*   Updated: 2020/11/06 13:28:21 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/06 14:03:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_check_width(const char *str, int i)
 	return (i);
 }
 
-static int	check_precision(const char *str, int i)
+static int	ft_check_precision(const char *str, int i)
 {
 	if (ft_is_option(str[i]) == E_PREC)
 		i++;
