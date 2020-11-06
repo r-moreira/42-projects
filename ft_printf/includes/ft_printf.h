@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:09:19 by romoreir          #+#    #+#             */
-/*   Updated: 2020/10/22 01:22:14 by rodrigo          ###   ########.fr       */
+/*   Updated: 2020/11/06 13:05:48 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdbool.h>
 # define DECIMAL		10
 # define LOWER_HEXA		97
 # define UPPER_HEXA		65
 
 typedef struct	s_flags
 {
-	bool		zero;
-	bool		minus;
+	char		zero;
+	char		minus;
 }				t_flags;
 
 typedef	struct	s_options
