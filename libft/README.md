@@ -14,7 +14,7 @@ There is a PDF in the subject folder containing details about the project.
 ## 🖥️ Compiling the lib
 ```bash
 # Clone the repository
-git clone https://github.com/r-moreira/nlw-proffy
+git clone https://github.com/r-moreira/42-projects.git
 
 # Enter the project directory
 cd libft/
