@@ -1,5 +1,4 @@
-## 🚀 The first 42 college project!
-This is the third project at 42 college.
+## 🚀 The the third project at 42 college!
 The ft_printf function writes the C string pointed by format to the standard output (stdout). If format includes format specifiers (subsequences beginning with %), the additional arguments following format are formatted and inserted in the resulting string replacing their respective specifiers.\
 In this project we are introduced to new concepts like variadic function.\
 We need to make libftprintf.a lib that contains this function
