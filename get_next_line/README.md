@@ -9,8 +9,9 @@ There is a PDF in the subject folder containing details about the project.
 
 ---
 
-## 🖥️ Test
-There is also a simple test just to see the function being performed.\
+## 🖥️ Running Tests
+
+Just a simple test just to see the function being performed.\
 Note: The project was developed on MacOS, in other operating systems there may be undefined behaviors.
 
 ```bash
