@@ -19,13 +19,13 @@ git clone https://github.com/r-moreira/nlw-proffy
 # Enter the project directory
 cd libft/
 
-# For the standard lib whithout bonus functions run
-make 
+# For the standard lib without bonus functions run
+make
 
 # To compile with the bonus functions run
 make bonus
 
-# (On progress) If you want a function description and a simple test run: 
+# (On progress) If you want a function description and a simple test run:
 make -C tests/
 ```
 
