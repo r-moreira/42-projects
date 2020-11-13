@@ -25,7 +25,6 @@ https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_
 
 ## Resume of my research
 
-### What is an IP address
  - IP address stands for internet protocol address; it is an identifying number that is associated with a specific computer or computer network. When connected to the internet, the IP address allows the computers to send and receive information.
  - 192.196.0.0 -> IP example
  - It's four **octets** separeted by **dots**
@@ -38,12 +37,32 @@ https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_
 	2. Network Address
 
  - Since 1981, the IP space is broken in to **five classes**
-	1. A (Large networks - First octet is the network, and the three remaining is the host)
-	2. B (Medium networks - First two octets is the network, and the two remaining is the host )
-	3. C (Devices)
+	1. A (Large networks - First octet minus one fixed bit is the network, and the three remaining is the host)
+	2. B (Medium networks - First two octets minus two fixed bits is the network, and the two remaining is the host)
+	3. C (Small networks - First three octets minus three fixed bits is the network, and the remaining octet is the host)
 	4. D (Multicast)
 	5. E (Reserved)
 
-<img src="./imgs/ip-classes.png" alt="IP octets" width="600" height="300">
+<img src="./imgs/ip-classes.png" alt="IP octets" width="600" height="250">
 
-### What is a Netmask
+- The first IP is used to network
+- The last IP is used to broadcast
+- Example (172.16.200.0/30)
+	1. Network: 172.16.200.0 (not usable IP)
+	2. First usable IP: 172.16.200.1
+	3. Last usable IP: 172.16.200.2
+	4. Broadcast: 172.16.200.3
+
+- The subnetmask tell us which part of the ip is from network, and which part is from host.
+- Examples:
+	1. 225.0.0.0
+	2. 225.225.0.0
+	3. 225.225.225.0
+
+<img src="./imgs/subnet-mask.png" alt="IP octets" width="600" height="350">
+
+- Private IP's are not allowed in the internet
+
+<img src="./imgs/ip-private.png" alt="IP octets" width="600" height="150">
+
+
