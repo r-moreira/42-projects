@@ -1,5 +1,7 @@
 ### Links
 https://www.youtube.com/watch?v=QKfk7YFILws -> studying
+### The network layer (47:00)
+
 https://www.youtube.com/watch?v=qiQR5rTSshw
 https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_O_I
 
@@ -19,45 +21,29 @@ https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_
  - How does routing work with IP◦What is a default gateway for routing
  - What is a port from an IP point of view and what is it used for when connectingto another device
 
-## The TCP/IP Five-Layer Network Model
+---
 
-### Physical Layer
-Represents the physical devices that interconnect computers
+## Resume of my research
 
-### Data Link Layer
-Responsible for defining a common way of interpreting these signals so network devices can communicate.\
-The most common Data Link Layer protocol is the Ethernet.
-The Ethernet standards also define a protocol responsible for getting data to nodes on the same network or link.
+### What is an IP address
+ - IP address stands for internet protocol address; it is an identifying number that is associated with a specific computer or computer network. When connected to the internet, the IP address allows the computers to send and receive information.
+ - 192.196.0.0 -> IP example
+ - It's four **octets** separeted by **dots**
 
-### Network Layer
-Allows different networks to communicate with each other through devices known as routers
+<img src="./imgs/ip-octets.png" alt="IP octets" width="250" height="150">
 
-### Internetwork
-A collection of networks connected together through routers, the most famous of these being the Internet
-The most common Internetwork Layer protocol is the IP
-IP is the heart of the Internet and most smaller networks around the world.
+ - Each number is an 8-bit value (which is range from 0 to 255)
+ - IP Addresses are **two adresses in one**:
+ 	1. Host Address
+	2. Network Address
 
-### Transport Layer
-Sorts out which client and server programs are supposed to get that data
-THe most common Transport Layer protocol is the TCP (Transmission Control Protocal), this layer also has the UDP (User Datagram Protocol)
+ - Since 1981, the IP space is broken in to **five classes**
+	1. A (Large networks - First octet is the network, and the three remaining is the host)
+	2. B (Medium networks - First two octets is the network, and the two remaining is the host )
+	3. C (Devices)
+	4. D (Multicast)
+	5. E (Reserved)
 
-### Application Layer
-It is the layer through which users interact. This layer has a lot of protocols.
+<img src="./imgs/ip-classes.png" alt="IP octets" width="600" height="300">
 
-## The Basics of Networking Devices
-
-### Cables
-Connect different devices to each other, allowing data to be transmitted over them
-
-### Crosstalk
-When an electrical pulse on one wire is accidentally detected on another wire
-
-### Hubs and switches
-The primary devices used to connect computers on a single network, usually
-referred to as a LAN, or local area network
-
-### Router
-A device that knows how to forward data between independent networks. Routers share data with each other via BGP (Border Gateway Protocol), which lets them learn about the most optimal paths to forward traffic
-
-## The Physical Layer
-continuar de 24:34
+### What is a Netmask
