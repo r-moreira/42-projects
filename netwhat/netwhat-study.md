@@ -2,23 +2,32 @@
 https://www.youtube.com/watch?v=QKfk7YFILws -> studying
 ### The network layer (47:00)
 
+https://www.youtube.com/watch?v=xOqwxluUCc8&list=PLDQaRcbiSnqF5U8ffMgZzS7fq1rHUI3Q8&index=10
+### How switching works
+
+https://www.youtube.com/watch?v=ddM9AcreVqY&list=PLl9NdZbdtA0wK8OIgttkScKRxcMkvoev_
+
+https://www.youtube.com/watch?v=AJPZxXwOc-4&list=PLl9NdZbdtA0y9eayRnxOYVE400ohaKyYD
+
 https://www.youtube.com/watch?v=qiQR5rTSshw
-https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_O_I
+
+https://www.youtube.com/watch?v=0PbTi_Prpgs&
+list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_O_I
 
 # My netwhat study notes
 
 ## Netwhat topics
- - What is an IP address
- - What is a Netmask
- - What is the subnet of an IP with Netmask
- - What is the broadcast address of a subnet
- - What are the different ways to represent an ip address with the Netmask
- - What are the differences between public and private IPs
- - What is a class of IP addresses
- - What is TCP
- - What is UDP
- - What are the network layers
- - What is the OSI model
+ - What is an IP address - OK
+ - What is a Netmask - OK
+ - What is the subnet of an IP with Netmask - OK
+ - What is the broadcast address of a subnet - OK
+ - What are the different ways to represent an ip address with the Netmask - OK
+ - What are the differences between public and private IPs - OK
+ - What is a class of IP addresses - OK
+ - What is TCP - OK
+ - What is UDP - OK
+ - What are the network layers - OK
+ - What is the OSI model - OK
  - What is a DHCP server and the DHCP protocol
  - What is a DNS server and the DNS protocol
  - What are the rules to make 2 devices communicate using IP addresses
@@ -54,30 +63,53 @@ https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_
 <img src="./imgs/ip-classes.png" alt="IP octets" width="600" height="250">
 
 - The first IP is used to network
-- The last IP is used to broadcast
+- The last IP is used to **broadcast**
 - Example (172.16.200.0/30)
 	1. Network: 172.16.200.0 (not usable IP)
 	2. First usable IP: 172.16.200.1
 	3. Last usable IP: 172.16.200.2
 	4. Broadcast: 172.16.200.3
 
-- The subnetmask tell us which part of the ip is from network, and which part is from host.
+- Different from public IP, **Private IP's are not allowed in the internet**
+
+<img src="./imgs/ip-private.png" alt="IP octets" width="600" height="150">
+
+---
+
+### Subnet mask
+
+- The sub netmask tell us which part of the ip is from network, and which part is from host.
 - Examples in dotted decimal:
 	1. 225.0.0.0
 	2. 225.225.0.0
 	3. 225.225.225.0
 
-- There are currently three ways of showing the subnet masks for IPv4 addresses; you can show them in dotted decimal, binary, or classless interdomain routing (CIDR).
+- There are currently **three ways of showing the subnet masks** for IPv4 addresses; you can show them in **dotted decimal, binary, or classless interdomain routing (CIDR).**
 
 - CIDR is based on variable-length subnet masking (VLSM). This allows it to define prefixes of arbitrary lengths making it much more efficient than the old system. CIDR IP addresses are composed of two sets of numbers. The network address is written as a prefix, like you would see a normal IP address (e.g. 192.255.255.255). The second part is the suffix which indicates how many bits are in the entire address (e.g. /12). Putting it together, a CIDR IP address would look like the following: 192.255.255.255/12
 
-<img src="./imgs/subnet-mask.png" alt="IP octets" width="800" height="600">
+<img src="./imgs/subnet-mask.png" alt="IP octets" width="600" height="600">
 
-- Private IP's are not allowed in the internet
+### TCP
+- Keeps track of lost packages, makes sure that lost packages are re-sent
+- Addes sequesce numbers to packets and reorders any packets that arrive in thenworng order.
+- Slower, because of all added additional functionality.
+- Requieres more computer resources, because the OS needs to keep track of ongoing communication sessions and manage them on a much deeper level.
 
-<img src="./imgs/ip-private.png" alt="IP octets" width="600" height="150">
+---
 
-----
+### UDP
+- Doesn't keep track of lost packages
+- Doesn't care about package arrival order.
+- Faster, bacause it lacks any extra features.
+- Requieres less computer resources.
+- Examples of programs and services that use UDP:
+  1. DNS
+  2. IP telephony
+  3. DHCP
+  4. Many computer games
+
+---
 
 ### OSI Model and Network Layers
 - The OSI Model (Open Systems Interconnection Model) is a conceptual framework used to describe the functions of a networking system. The OSI model characterizes computing functions into a universal set of rules and requirements in order to support interoperability between different products and software. In the OSI reference model, the communications between a computing system are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.
@@ -109,10 +141,7 @@ https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_
 
 ---
 
-### TCP x UDP
 
-
----
 
 ### DHCP Server and DHCP Protocol
 
