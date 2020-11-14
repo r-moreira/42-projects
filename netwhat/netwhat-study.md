@@ -15,16 +15,24 @@ https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_
  - What are the different ways to represent an ip address with the Netmask
  - What are the differences between public and private IPs
  - What is a class of IP addresses
- - What is TCP◦What is UDP◦What are the network layers
- - What is the OSI model◦What is a DHCP server and the DHCP protocol
- - What is a DNS server and the DNS protocol◦What are the rules to make 2 devices communicate using IP addresses
- - How does routing work with IP◦What is a default gateway for routing
- - What is a port from an IP point of view and what is it used for when connectingto another device
+ - What is TCP
+ - What is UDP
+ - What are the network layers
+ - What is the OSI model
+ - What is a DHCP server and the DHCP protocol
+ - What is a DNS server and the DNS protocol
+ - What are the rules to make 2 devices communicate using IP addresses
+ - How does routing work with IP
+ - What is a default gateway for routing
+ - What is a port from an IP point of view and what is it used for when connecting to another device
 
 ---
 
 ## Resume of my research
 
+---
+
+### IP
  - IP address stands for internet protocol address; it is an identifying number that is associated with a specific computer or computer network. When connected to the internet, the IP address allows the computers to send and receive information.
  - 192.196.0.0 -> IP example
  - It's four **octets** separeted by **dots**
@@ -54,15 +62,58 @@ https://www.youtube.com/watch?v=0PbTi_Prpgs&list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_
 	4. Broadcast: 172.16.200.3
 
 - The subnetmask tell us which part of the ip is from network, and which part is from host.
-- Examples:
+- Examples in dotted decimal:
 	1. 225.0.0.0
 	2. 225.225.0.0
 	3. 225.225.225.0
 
-<img src="./imgs/subnet-mask.png" alt="IP octets" width="600" height="350">
+- There are currently three ways of showing the subnet masks for IPv4 addresses; you can show them in dotted decimal, binary, or classless interdomain routing (CIDR).
+
+- CIDR is based on variable-length subnet masking (VLSM). This allows it to define prefixes of arbitrary lengths making it much more efficient than the old system. CIDR IP addresses are composed of two sets of numbers. The network address is written as a prefix, like you would see a normal IP address (e.g. 192.255.255.255). The second part is the suffix which indicates how many bits are in the entire address (e.g. /12). Putting it together, a CIDR IP address would look like the following: 192.255.255.255/12
+
+<img src="./imgs/subnet-mask.png" alt="IP octets" width="800" height="600">
 
 - Private IP's are not allowed in the internet
 
 <img src="./imgs/ip-private.png" alt="IP octets" width="600" height="150">
 
+----
 
+### OSI Model and Network Layers
+- The OSI Model (Open Systems Interconnection Model) is a conceptual framework used to describe the functions of a networking system. The OSI model characterizes computing functions into a universal set of rules and requirements in order to support interoperability between different products and software. In the OSI reference model, the communications between a computing system are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.
+
+#### Physical Layer
+- The lowest layer of the OSI Model is concerned with electrically or optically transmitting raw unstructured data bits across the network from the physical layer of the sending device to the physical layer of the receiving device. It can include specifications such as voltages, pin layout, cabling, and radio frequencies. At the physical layer, one might find “physical” resources such as network hubs, cabling, repeaters, network adapters or modems.
+
+#### Data Link Layer
+- At the data link layer, directly connected nodes are used to perform node-to-node data transfer where data is packaged into frames. The data link layer also corrects errors that may have occurred at the physical layer.
+- The data link layer encompasses two sub-layers of its own. The first, media access control (MAC), provides flow control and multiplexing for device transmissions over a network. The second, the logical link control (LLC), provides flow and error control over the physical medium as well as identifies line protocols.
+
+#### Network Layer
+- The network layer is responsible for receiving frames from the data link layer, and delivering them to their intended destinations among based on the addresses contained inside the frame. The network layer finds the destination by using logical addresses, such as IP (internet protocol). At this layer, routers are a crucial component used to quite literally route information where it needs to go between networks.
+
+
+#### Transport Layer
+- The transport layer manages the delivery and error checking of data packets. It regulates the size, sequencing, and ultimately the transfer of data between systems and hosts. One of the most common examples of the transport layer is TCP or the Transmission Control Protocol.
+
+#### Session Layer
+- The session layer controls the conversations between different computers. A session or connection between machines is set up, managed, and termined at layer 5. Session layer services also include authentication and reconnections.
+
+#### Presentation Layer
+- The presentation layer formats or translates data for the application layer based on the syntax or semantics that the application accepts. Because of this, it at times also called the syntax layer. This layer can also handle the encryption and decryption required by the application layer.
+
+#### Application Layer
+- At this layer, both the end user and the application layer interact directly with the software application. This layer sees network services provided to end-user applications such as a web browser or Office 365. The application layer identifies communication partners, resource availability, and synchronizes communication.
+
+<img src="./imgs/osi-model.png" alt="IP octets" width="600" height="450">
+
+---
+
+### TCP x UDP
+
+
+---
+
+### DHCP Server and DHCP Protocol
+
+### DNS Server and DNS Protocol
