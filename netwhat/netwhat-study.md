@@ -1,19 +1,3 @@
-### Links
-https://www.youtube.com/watch?v=QKfk7YFILws -> studying
-### The network layer (47:00)
-
-https://www.youtube.com/watch?v=xOqwxluUCc8&list=PLDQaRcbiSnqF5U8ffMgZzS7fq1rHUI3Q8&index=10
-### How switching works
-
-https://www.youtube.com/watch?v=ddM9AcreVqY&list=PLl9NdZbdtA0wK8OIgttkScKRxcMkvoev_
-
-https://www.youtube.com/watch?v=AJPZxXwOc-4&list=PLl9NdZbdtA0y9eayRnxOYVE400ohaKyYD
-
-https://www.youtube.com/watch?v=qiQR5rTSshw
-
-https://www.youtube.com/watch?v=0PbTi_Prpgs&
-list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_O_I
-
 # My netwhat study notes
 
 ## Netwhat topics
@@ -28,8 +12,8 @@ list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_O_I
  - What is UDP - OK
  - What are the network layers - OK
  - What is the OSI model - OK
- - What is a DHCP server and the DHCP protocol
- - What is a DNS server and the DNS protocol
+ - What is a DHCP server and the DHCP protocol - OK
+ - What is a DNS server and the DNS protocol - OK
  - What are the rules to make 2 devices communicate using IP addresses
  - How does routing work with IP
  - What is a default gateway for routing
@@ -137,12 +121,40 @@ list=PLmAuaUS7wSOP5wYwirQbMv5vKdPpJ_O_I
 #### Application Layer
 - At this layer, both the end user and the application layer interact directly with the software application. This layer sees network services provided to end-user applications such as a web browser or Office 365. The application layer identifies communication partners, resource availability, and synchronizes communication.
 
-<img src="./imgs/osi-model.png" alt="IP octets" width="600" height="450">
+<img src="./imgs/osi-model.png" alt="IP octets" width="800" height="450">
 
 ---
 
-
-
 ### DHCP Server and DHCP Protocol
+- DHCP server: DHCP (Dynamic Host Confivguration Protocol), is a protocol that provides quick, automatic, and central management for the distribution of IP addresses within a network. DHCP is also used to configure the subnet mask, default gateway and DNS server information on the device.
+
+---
 
 ### DNS Server and DNS Protocol
+- Domain Name System (DNS) is the phonebook of internet. Web browsers interact through Internet Protocol (IP) addresses. DNS translates domain names to IP addresses so browsers can load internet resources.
+
+- The Domain Network System (DNS) protocol helps internet users and network devises discover websites using human-readable hostnames, instead of numeric IP addresses.
+
+---
+
+### What are the rules to make 2 devices communicate using IP addresses
+- When a ‘message’ such as a file, image or video is transmitted across a network, it is first broken down into small blocks called segments. These are placed into containers called packets, typically by the Internet Protocol (IP). There are two versions of IP: version 4 and version 6.
+- IP is responsible for delivering the packets from source to destination, and regardless of the version being used, packets must use some form of addressing to uniquely identify the message source and message destination
+- The information added to the data to create the packet is called the IP header. The process of adding the IP header to the data is called ‘encapsulation’.
+
+---
+
+### How does routing work with IP
+- IP Routing describes the process of determining the path for data to follow in order to navigate from one computer or server to another. A packet of data traverses from its source router through a web of routers across many networks until it finally reaches its destination router using a routing algorithm. The routing algorithm takes into account factors such as the size of a packet and its header to determine the most efficient route to the destination. When a packet has reached a router, the source and destination address of the packet are used in conjunction with a routing table (list that contains the routes to a certain network) to determine the next hop address. This process is repeated for the next router using its own routing table until the packet has reached its destination. Because the data is divided into packets, each packet travels independently from each other and is treated as such. As a result, each packet can be sent through a different route to the destination if necessary.
+
+---
+
+### What is a default gateway for routing
+- When a host wants to reach a destination that is outside of its own network, it has to use a default gateway. We use a router or multilayer switch (that’s a switch that can do routing) as a default gateway.
+- A default gateway is an intermediate device between the local network and the internet. The default gateway transfers internal data to the internet and back again
+
+---
+
+### What is a port from an IP point of view and what is it used for when connecting to another device
+- A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer's operating system. Each port is associated with a specific process or service. Ports allow computers to easily differentiate between different kinds of traffic.
+- A port number is always associated with an IP address of a host and the type of transport protocol used for communication. It completes the destination or origination network address of a message.
