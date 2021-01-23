@@ -13,6 +13,10 @@ chown -R www-data:www-data /var/www/html/*
 # Removing nginx html view
 rm var/www/html/index.nginx-debian.html
 
+# Setup SSL key and certificate (C = Country, ST = State, L = Location, O = Organization, CN = Name)
+openssl req -newkey rsa:4096 -x509 -nodes -days 365 \
+-subj '/C=BR/ST=SP/L=SP/O=42SP/CN=ftserver' \
+-keyout /etc/ssl/certs/localhost.key -out /etc/ssl/certs/localhost.crt
 
 # Start services
 service mysql start

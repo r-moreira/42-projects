@@ -10,6 +10,7 @@ RUN apt-get install -y \
 	php-mysql \
 	php-mbstring \
 	mariadb-server \
+	openssl \
 	wget
 
 ## Install PHPMyAdmin
