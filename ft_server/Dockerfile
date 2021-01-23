@@ -1,5 +1,7 @@
 FROM debian:buster
 
+LABEL maintainer="romoreir romoreir@student.42.sp"
+
 ## Updates OS
 RUN apt-get -y update && apt-get upgrade
 
@@ -25,9 +27,17 @@ RUN wget https://wordpress.org/latest.tar.gz && \
 	mv wordpress /var/www/html/ && \
 	rm -rf latest.tar.gz
 
+# Copying srcs folder files to the container's temporary directory
 COPY srcs/ /tmp/
 
-EXPOSE 80
+# Giving permissions to the setup script
+RUN chmod 777 /tmp/setup.sh
+
+# Ports that will be used to access the server
+EXPOSE 80 443
+
+# This variable choses wich nginx configuration file that will be used
+ENV AUTOINDEX=0N
 
 # Start services
-ENTRYPOINT bash /tmp/setup.sh
+ENTRYPOINT /tmp/setup.sh

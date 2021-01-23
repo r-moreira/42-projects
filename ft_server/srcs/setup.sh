@@ -7,9 +7,15 @@ mv /tmp/config.inc.php /var/www/html/phpmyadmin/
 mv /tmp/wp-config.php /var/www/html/wordpress
 
 # Setup NGINX config file.
-mv /tmp/nginx.conf /etc/nginx/sites-available/default
+if [ $AUTOINDEX = ON ]; then
+	mv /tmp/nginx_autoindexON.conf /etc/nginx/sites-available/default
+else
+	mv /tmp/nginx_autoindexOFF.conf /etc/nginx/sites-available/default
+fi
+
 # Giving NGINX's user-group rights over page files
 chown -R www-data:www-data /var/www/html/*
+
 # Removing nginx html view
 rm var/www/html/index.nginx-debian.html
 

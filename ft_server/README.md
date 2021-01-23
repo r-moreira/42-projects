@@ -9,6 +9,7 @@
 		* -d  -> detach mode
 		* --name [container-name] -> set container-name
 		* -p [port:port] -> link localhost and container ports
+		* --env AUTOINDEX=ON / --env AUTOINDEX=OFF
 
 * docker stop [container-name] -> to stop a running container
 
