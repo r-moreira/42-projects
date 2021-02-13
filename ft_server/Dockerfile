@@ -3,7 +3,7 @@ FROM debian:buster
 LABEL maintainer="romoreir romoreir@student.42.sp"
 
 ## Updates OS
-RUN apt-get -y update && apt-get upgrade
+RUN apt-get update -y && apt-get upgrade -y
 
 ## Install dependencies
 RUN apt-get install -y \
