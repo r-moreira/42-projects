@@ -12,6 +12,7 @@ CFILES		=	ft_memset.c \
 				ft_strlen.c \
 				ft_strlcpy.c \
 				ft_strlcat.c \
+				ft_strcat.c \
 				ft_strchr.c \
 				ft_strrchr.c \
 				ft_strnstr.c \
@@ -26,12 +27,14 @@ CFILES		=	ft_memset.c \
 				ft_tolower.c \
 				ft_calloc.c \
 				ft_strdup.c \
+				ft_isspace.c \
 				ft_substr.c \
 				ft_strjoin.c \
 				ft_strtrim.c \
 				ft_split.c \
 				ft_itoa.c \
 				ft_strmapi.c \
+				ft_remove_all_chars.c \
 				ft_putchar_fd.c \
 				ft_putstr_fd.c \
 				ft_putendl_fd.c \

@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 20:17:16 by romoreir          #+#    #+#             */
-/*   Updated: 2020/03/03 20:15:38 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:23:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*
-** All these auxiliary functions were taken from libft project.
-*/
-
-char		*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	total_size;
 	size_t	i;
@@ -26,8 +22,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	total_size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	if (!(new_str = (char *)malloc(sizeof(char) * total_size + 1)))
-		return (NULL);
+	new_str = (char *)malloc(sizeof(char) * total_size + 1);
 	i = -1;
 	while (s1[++i])
 		new_str[i] = s1[i];
@@ -41,7 +36,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	return (new_str);
 }
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	available_len;
@@ -54,8 +49,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	available_len = ft_strlen((char *)s + start);
 	if (available_len < len)
 		len = available_len;
-	if (!(sub_str = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
+	sub_str = (char *)malloc(sizeof(char) * (len + 1));
 	i = 0;
 	while (i < len)
 	{
@@ -66,7 +60,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub_str);
 }
 
-char		*ft_strchr(char const *s, int c)
+char	*ft_strchr(char const *s, int c)
 {
 	while (*s && *s != (char)c)
 		s++;
@@ -75,13 +69,12 @@ char		*ft_strchr(char const *s, int c)
 	return (NULL);
 }
 
-char		*ft_strdup(char const *s1)
+char	*ft_strdup(char const *s1)
 {
 	char	*dest;
 	size_t	i;
 
-	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + 1))))
-		return (NULL);
+	dest = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + 1));
 	i = 0;
 	while (s1[i])
 	{
@@ -92,7 +85,7 @@ char		*ft_strdup(char const *s1)
 	return (dest);
 }
 
-size_t		ft_strlen(char const *s)
+size_t	ft_strlen(char const *s)
 {
 	size_t	i;
 

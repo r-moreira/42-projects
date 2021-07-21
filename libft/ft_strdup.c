@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:36:26 by romoreir          #+#    #+#             */
-/*   Updated: 2020/01/27 19:36:28 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:45:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*dest;
 
-	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + 1))))
-		return (NULL);
+	dest = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + 1));
 	ft_strcpy(dest, (char *)s1);
 	return (dest);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 19:33:24 by romoreir          #+#    #+#             */
-/*   Updated: 2020/02/06 20:29:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:47:30 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	if (!lst)
 		return (NULL);
-	if (!(mapped_list = ft_lstnew(f(lst->content))))
-		return (NULL);
+	mapped_list = ft_lstnew(f(lst->content));
 	head = mapped_list;
 	while (lst)
 	{
 		if (lst->next)
 		{
-			if (!(mapped_list->next = ft_lstnew(f(lst->next->content))))
+			mapped_list->next = ft_lstnew(f(lst->next->content));
+			if (!mapped_list)
 			{
 				ft_lstclear(&head, del);
 				return (0);

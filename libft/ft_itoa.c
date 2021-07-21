@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 14:03:18 by romoreir          #+#    #+#             */
-/*   Updated: 2020/02/02 15:03:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:49:28 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_get_nbrlen(long nbr, int sign)
+size_t	ft_get_nbrlen(long nbr, int sign)
 {
 	size_t	len;
 
@@ -49,7 +49,7 @@ static void	ft_convert_str(char *str, long nbr, int sign, size_t len)
 	}
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*str;
 	int				sign;
@@ -61,8 +61,7 @@ char		*ft_itoa(int n)
 		sign = -1;
 	nbr = (long)n * sign;
 	len = ft_get_nbrlen(nbr, sign);
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	ft_convert_str(str, nbr, sign, len);
 	return (str);
 }

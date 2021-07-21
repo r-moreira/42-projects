@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:33:46 by romoreir          #+#    #+#             */
-/*   Updated: 2020/02/03 16:03:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:40:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*head;
 
-	if (!(head = (t_list *)malloc((sizeof(t_list)))))
+	head = (t_list *)malloc((sizeof(t_list)));
+	if (!head)
 		return (NULL);
 	head->content = content;
 	head->next = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 22:20:25 by romoreir          #+#    #+#             */
-/*   Updated: 2020/02/02 13:36:55 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:50:48 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	if (dst == NULL && src == NULL)
 		return (NULL);
-	buffer_dest = (unsigned char*)dst;
-	buffer_src = (unsigned char*)src;
+	buffer_dest = (unsigned char *)dst;
+	buffer_src = (unsigned char *)src;
 	i = 0;
 	if (buffer_src < buffer_dest)
 		while (++i <= len)

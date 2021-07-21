@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_remove_all_chars.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 20:55:36 by romoreir          #+#    #+#             */
-/*   Updated: 2021/07/19 17:49:39 by romoreir         ###   ########.fr       */
+/*   Created: 2021/07/16 20:09:38 by romoreir          #+#    #+#             */
+/*   Updated: 2021/07/19 17:48:45 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+void	ft_remove_all_chars(char *str, char c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	char	*pr;
+	char	*pw;
+
+	pr = str;
+	pw = str;
+	while (*pr)
+	{
+		*pw = *pr++;
+		pw += (*pw != c);
+	}
+	*pw = '\0';
 }

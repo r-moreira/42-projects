@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 20:58:56 by romoreir          #+#    #+#             */
-/*   Updated: 2020/01/31 20:58:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:35:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static unsigned int	ft_c_in_set(char c, char const *set)
 	return (0);
 }
 
-char				*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int				i;
 	unsigned int	trim_len;
@@ -40,7 +40,8 @@ char				*ft_strtrim(char const *s1, char const *set)
 	while (s1[i] && ft_c_in_set(s1[i], set))
 		i++;
 	trim_start = (char *)&s1[i];
-	if ((i = (int)ft_strlen((char *)s1) - 1) > 0)
+	i = (int)ft_strlen((char *)s1) - 1;
+	if (i > 0)
 		while (i >= 0 && ft_c_in_set(s1[i], set))
 			i--;
 	trim_end = (char *)&s1[i];
@@ -48,8 +49,7 @@ char				*ft_strtrim(char const *s1, char const *set)
 		trim_len = 2;
 	else
 		trim_len = trim_end - trim_start + 1;
-	if (!(trimmed_str = (char *)malloc(sizeof(char) * (trim_len + 1))))
-		return (NULL);
+	trimmed_str = (char *)malloc(sizeof(char) * (trim_len + 1));
 	ft_strlcpy(trimmed_str, trim_start, trim_len + 1);
 	return (trimmed_str);
 }

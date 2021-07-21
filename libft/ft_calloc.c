@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <romoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:42:23 by romoreir          #+#    #+#             */
-/*   Updated: 2020/01/27 19:42:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/07/19 17:42:58 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ void	*ft_calloc(size_t count, size_t size)
 	total = count * size;
 	if (!total)
 	{
-		if (!(ptr = malloc(sizeof(NULL))))
+		ptr = malloc(sizeof(NULL));
+		if (!ptr)
 			return (NULL);
 		return (ft_memset(ptr, 0, sizeof(NULL)));
 	}
-	if (!(ptr = malloc(total)))
+	ptr = malloc(total);
+	if (!ptr)
 		return (NULL);
 	return (ft_memset(ptr, 0, total));
 }
