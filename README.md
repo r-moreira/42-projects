@@ -8,8 +8,8 @@ In this repository are all my projects at the 42 programming college!
 ---
 
 ## 📖 About 42
- "42 is an innovative engineering and programming college that offers rigorous, industry-leading education in a professional environment. Our program is designed to prepare students for the workplace using an instructional design that means students learn skills for the digital world and for the technology industry."  
-Source: https://www.42.us.org/program/the-42-program/ 
+ "42 is an innovative engineering and programming college that offers rigorous, industry-leading education in a professional environment. Our program is designed to prepare students for the workplace using an instructional design that means students learn skills for the digital world and for the technology industry."
+Source: https://www.42.us.org/program/the-42-program/
 
 ---
 
