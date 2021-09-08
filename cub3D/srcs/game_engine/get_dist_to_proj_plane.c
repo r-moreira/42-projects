@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_dist_to_proj_plane.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <romoreir@student.42sp.org.br >   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/10 18:27:37 by romoreir          #+#    #+#             */
-/*   Updated: 2021/08/10 18:27:51 by romoreir         ###   ########.fr       */
+/*   Created: 2021/09/08 12:56:07 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/08 12:56:07 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

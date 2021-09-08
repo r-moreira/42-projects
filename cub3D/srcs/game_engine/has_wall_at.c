@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   has_wall_at.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <romoreir@student.42sp.org.br >   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/10 20:03:36 by romoreir          #+#    #+#             */
-/*   Updated: 2021/08/10 20:05:05 by romoreir         ###   ########.fr       */
+/*   Created: 2021/09/08 12:56:07 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/08 12:56:07 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

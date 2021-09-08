@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptr_funct_character.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: romoreir <romoreir@student.42sp.org.br >   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/20 14:11:45 by romoreir          #+#    #+#             */
-/*   Updated: 2020/09/20 19:34:12 by rodrigo          ###   ########.fr       */
+/*   Created: 2021/09/08 12:56:07 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/08 12:56:07 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

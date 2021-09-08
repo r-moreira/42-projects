@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <romoreir@student.42sp.org.br >   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/04 00:54:43 by romoreir          #+#    #+#             */
-/*   Updated: 2021/08/10 13:50:38 by romoreir         ###   ########.fr       */
+/*   Created: 2021/09/08 12:56:07 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/08 12:56:07 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

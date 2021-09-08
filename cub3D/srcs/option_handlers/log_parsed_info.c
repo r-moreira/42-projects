@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   log_parsed_info.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <romoreir@student.42sp.org.br >   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 12:07:49 by romoreir          #+#    #+#             */
-/*   Updated: 2021/08/10 16:02:06 by romoreir         ###   ########.fr       */
+/*   Created: 2021/09/08 12:56:07 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/08 12:56:07 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
