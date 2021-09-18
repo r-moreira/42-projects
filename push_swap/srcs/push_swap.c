@@ -1,7 +1,8 @@
 #include "../includes/push_swap.h"
 
 int main() {
-	printf("Hello, World!\n");
+
+	ft_putstr_fd("Hello World!\n", STDOUT_FILENO);
 
 	return 0;
 }

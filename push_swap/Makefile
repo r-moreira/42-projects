@@ -11,11 +11,11 @@ LIBFT				= ${LIBFT_DIR}/libft.a
 
 #Objects
 OBJS_DIR 			= objs
-OBJS				= $(patsubst $(MAIN_DIR)/%.c, $(OBJS_DIR)/%.o, $(MAIN_SRCS))
+OBJS				= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 #Sources
 SRCS_DIR 			= srcs
-SRCS				= $(SRC_DIR)/push_swap.c
+SRCS				= $(SRCS_DIR)/push_swap.c
 
 all:				$(NAME)
 
@@ -27,7 +27,7 @@ libs:
 	$(MAKE) -C $(LIBFT_DIR)
 
 #Compiling main
-$(OBJS_DIR)/%.o:	$(MAIN_DIR)/%.c
+$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 clean:
