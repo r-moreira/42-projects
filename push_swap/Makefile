@@ -15,7 +15,9 @@ OBJS				= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 #Sources
 SRCS_DIR 			= srcs
-SRCS				= $(SRCS_DIR)/push_swap.c
+SRCS				= $(SRCS_DIR)/push_swap.c \
+					  $(SRCS_DIR)/exit_failure.c \
+					  $(SRCS_DIR)/handle_args.c
 
 all:				$(NAME)
 
