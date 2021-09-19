@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-void numbers_is_sorted(int argc, int *numbers)
+static void numbers_is_sorted(int argc, int *numbers)
 {
 	int	i;
 	int	len = argc - 2;
@@ -12,7 +12,7 @@ void numbers_is_sorted(int argc, int *numbers)
 		exit(EXIT_SUCCESS);
 }
 
-int *get_numbers(int argc, char **argv)
+static int *get_numbers(int argc, char **argv)
 {
 	int	i;
 	int	*numbers;
@@ -26,7 +26,7 @@ int *get_numbers(int argc, char **argv)
 	return numbers;
 }
 
-void validate_integers(char *argv)
+static void validate_integers(char *argv)
 {
 	int	i;
 	long num;

@@ -14,7 +14,24 @@ typedef enum e_bool
 	TRUE
 }			t_bool;
 
+typedef struct s_stack
+{
+	char				*bin;
+	int					index;
+	struct s_stack		*next;
+}						t_stack;
+
+typedef struct s_all
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		limit;
+	int		len;
+}			t_all;
+
+
 void exit_failure(char *info);
 int	 *handle_args(int argc, char **argv);
+int *create_index(int *numbers, int argc);
 
 #endif
