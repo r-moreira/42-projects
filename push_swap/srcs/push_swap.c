@@ -1,31 +1,38 @@
 #include "../includes/push_swap.h"
 
-////////////////TO-DO//////////////
-//Simplificar números
-//Criar structs para listas ligadas
-//Criar um array de strings com os valores dos números simplificados em binário
-//Adicionar string de binários na lista ligada
-//Dividir o algoritmo de ordenação em short e long
-//Desenvolver operações de lista ligada e swap
-//Desenvolver algoritmo de ordenação long
-//Desenvolver algoritmo de ordenação short
-//////////////////////////////////
+//////////////TO-DO////////////////////
+///Adicionar index na lista ligada da stack A
+//////////////////////////////////////
+
+void print_binary(unsigned int number) //Temporary
+{
+    if (number >> 1) {
+        print_binary(number >> 1);
+    }
+    putc((number & 1) ? '1' : '0', stdout);
+}
 
 int main(int argc, char **argv) {
 
-	int *numbers;
-	int *index;
+	int 			*numbers;
+	unsigned int 	*index;
 
 	numbers = handle_args(argc, argv);
 
 	for (int i = 0; i < argc - 1; i++) //Temporary
-		printf("%d\n", numbers[i]); //Temporary
+		printf("%d\n", numbers[i]);
 
 	index = create_index(numbers, argc);
 
-	printf("-------\n");
-	for (int i = 0; i < argc - 1; i++) //Temporary
-		printf("%d\n", index[i]); //Temporary
+	printf("-------\n"); //Temporary
+	for (int i = 0; i < argc - 1; i++)
+		printf("%d\n", index[i]);
+
+	printf("-------\n"); //Temporary
+	for (int i = 0; i < argc - 1; i++) {
+		print_binary(index[i]);
+		printf("\n");
+	}
 
 	free(index);
 	free(numbers);
