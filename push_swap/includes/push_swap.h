@@ -24,7 +24,7 @@ typedef struct s_stacks
 {
 	t_stack	*a;
 	t_stack	*b;
-}			t_stack;
+}			t_stacks;
 
 
 void			exit_failure(char *info);

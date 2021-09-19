@@ -1,7 +1,7 @@
 #include "../includes/push_swap.h"
 
 //////////////TO-DO////////////////////
-///Adicionar index na lista ligada da stack A
+///Adicionar index na lista ligada da stack A de trás para frente
 //////////////////////////////////////
 
 void print_binary(unsigned int number) //Temporary
