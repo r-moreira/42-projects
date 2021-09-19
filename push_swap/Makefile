@@ -19,6 +19,7 @@ SRCS				= $(SRCS_DIR)/push_swap.c \
 					  $(SRCS_DIR)/exit_failure.c \
 					  $(SRCS_DIR)/handle_args.c \
 					  $(SRCS_DIR)/create_index.c \
+					  $(SRCS_DIR)/setup_stacks.c
 
 all:				$(NAME)
 

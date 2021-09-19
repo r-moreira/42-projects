@@ -16,18 +16,17 @@ int main(int argc, char **argv) {
 
 	int 			*numbers;
 	unsigned int 	*index;
+	t_stacks		stacks;
 
 	numbers = handle_args(argc, argv);
+	index = create_index(numbers, argc);
+	setup_stacks(&stacks, argc, index); //TO-DO
 
 	for (int i = 0; i < argc - 1; i++) //Temporary
 		printf("%d\n", numbers[i]);
-
-	index = create_index(numbers, argc);
-
 	printf("-------\n"); //Temporary
 	for (int i = 0; i < argc - 1; i++)
 		printf("%d\n", index[i]);
-
 	printf("-------\n"); //Temporary
 	for (int i = 0; i < argc - 1; i++) {
 		print_binary(index[i]);
