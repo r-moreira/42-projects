@@ -20,8 +20,8 @@ int main(int argc, char **argv) {
 
 	numbers = handle_args(argc, argv);
 	index = create_index(numbers, argc);
-	setup_stacks(&stacks, argc, index); //TO-DO
 
+	printf("-------\n"); //Temporary
 	for (int i = 0; i < argc - 1; i++) //Temporary
 		printf("%d\n", numbers[i]);
 	printf("-------\n"); //Temporary
@@ -32,6 +32,9 @@ int main(int argc, char **argv) {
 		print_binary(index[i]);
 		printf("\n");
 	}
+
+	printf("-------\n");
+	setup_stacks(&stacks, argc, index); //TO-DO
 
 	free(index);
 	free(numbers);
