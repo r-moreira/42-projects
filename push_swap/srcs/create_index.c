@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_index.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/24 20:39:03 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/24 20:39:05 by romoreir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 static int	*copy_vector(int *numbers, int argc)
@@ -38,8 +50,8 @@ static int	*quick_sort(int *numbers, int argc)
 static unsigned int	*get_index(int *numbers, int *sorted, int argc)
 {
 	unsigned int	*index;
-	int	i;
-	int	j;
+	int				i;
+	int				j;
 
 	index = malloc((sizeof(unsigned int) * argc));
 	i = -1;

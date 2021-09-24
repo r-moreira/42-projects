@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_args.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/24 20:40:19 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/24 20:42:30 by romoreir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
-static void numbers_is_sorted(int argc, int *numbers)
+static void	numbers_is_sorted(int argc, int *numbers)
 {
 	int	i;
-	int	len = argc - 2;
+	int	len;
 
+	len = argc - 2;
 	i = 0;
 	while (i < len && numbers[i] < numbers[i + 1])
 		i++;
@@ -12,7 +25,7 @@ static void numbers_is_sorted(int argc, int *numbers)
 		exit(EXIT_SUCCESS);
 }
 
-static int *get_numbers(int argc, char **argv)
+static int	*get_numbers(int argc, char **argv)
 {
 	int	i;
 	int	*numbers;
@@ -23,14 +36,14 @@ static int *get_numbers(int argc, char **argv)
 	i = -1;
 	while (++i < argc - 1)
 		numbers[i] = ft_atoi(argv[i + 1]);
-	return numbers;
+	return (numbers);
 }
 
-static void validate_integers(char *argv)
+static void	validate_integers(char *argv)
 {
-	int	i;
-	long num;
-	t_bool is_negative;
+	int		i;
+	long	num;
+	t_bool	is_negative;
 
 	num = 0;
 	if (argv[0] == '-' && !ft_isdigit(argv[1]))
@@ -47,15 +60,15 @@ static void validate_integers(char *argv)
 		num = num * 10 + argv[i] - '0';
 	}
 	if (is_negative)
-			num = -num;
+		num = -num;
 	if (num < INT_MIN || num > INT_MAX)
 		exit_failure("The arguments must not overflow integers range");
 }
 
-int *handle_args(int argc, char **argv)
+int	*handle_args(int argc, char **argv)
 {
 	int	i;
-	int *numbers;
+	int	*numbers;
 
 	if (argc < 3)
 		exit_failure("Must be at least two numbers to sort");

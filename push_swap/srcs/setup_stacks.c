@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_stacks.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/24 20:42:19 by romoreir          #+#    #+#             */
+/*   Updated: 2021/09/24 20:42:20 by romoreir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 void	init_stacks(t_stacks *stacks, int argc)
@@ -9,7 +21,7 @@ void	init_stacks(t_stacks *stacks, int argc)
 
 void	push_a(t_stacks *stacks, unsigned int index)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = (t_node *)malloc(sizeof(t_node));
 	new->index = index;
@@ -25,7 +37,8 @@ void	put_indexes_into_stack_a(t_stacks *stacks, unsigned int *index)
 	int	 i;
 
 	i = stacks->len;
-	while (i > 0) {
+	while (i > 0)
+	{
 		push_a(stacks, index[i - 1]);
 		i--;
 	}
