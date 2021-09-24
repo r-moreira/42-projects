@@ -99,6 +99,9 @@ int main(int argc, char **argv) {
 	numbers = handle_args(argc, argv);
 	index = create_index(numbers, argc);
 	setup_stacks(&stacks, argc, index);
-	sort_big_stack(&stacks);
+	if (stacks.len <= 5)
+		printf("TO-DO | sort_small_stack\n");
+	else
+		sort_big_stack(&stacks);
 	return (exit_free(numbers, index, &stacks));
 }
