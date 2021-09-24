@@ -2,3 +2,4 @@ push_swap
 objs/*.o
 libft/*.o
 libft/*.a
+push_swap_tester

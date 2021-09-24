@@ -60,11 +60,6 @@ unsigned int	*create_index(int *numbers, int argc)
 
 	sorted = quick_sort(numbers, argc);
 	index = get_index(numbers, sorted, argc);
-
-	printf("-------\n");
-	for (int i = 0; i < argc - 1; i++) //Temporary
-		printf("%d\n", sorted[i]); //Temporary
-
 	free(sorted);
 	return (index);
 }

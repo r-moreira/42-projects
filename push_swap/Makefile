@@ -20,7 +20,9 @@ SRCS				= $(SRCS_DIR)/push_swap.c \
 					  $(SRCS_DIR)/exit_free.c \
 					  $(SRCS_DIR)/handle_args.c \
 					  $(SRCS_DIR)/create_index.c \
-					  $(SRCS_DIR)/setup_stacks.c
+					  $(SRCS_DIR)/setup_stacks.c \
+					  $(SRCS_DIR)/instructions.c \
+					  $(SRCS_DIR)/sort_big_stack.c
 
 all:				$(NAME)
 

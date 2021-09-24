@@ -22,8 +22,6 @@ typedef struct s_node
 
 typedef struct s_stacks
 {
-	t_node			*top_a;
-	t_node			*top_b;
 	t_node			*a;
 	t_node			*b;
 	unsigned int	len;
@@ -35,5 +33,8 @@ int				exit_free(int *numbers, unsigned int *index, t_stacks *stacks);
 int				*handle_args(int argc, char **argv);
 unsigned int	*create_index(int *numbers, int argc);
 void 			setup_stacks(t_stacks *stacks, int argc, unsigned int *index);
-
+void			sort_big_stack(t_stacks *stacks);
+void			ra(t_stacks *stacks);
+void			pb(t_stacks *stacks);
+void			pa(t_stacks *stacks);
 #endif

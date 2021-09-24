@@ -4,8 +4,6 @@ void	init_stacks(t_stacks *stacks, int argc)
 {
 	stacks->a = NULL;
 	stacks->b = NULL;
-	stacks->top_a = NULL;
-	stacks->top_b = NULL;
 	stacks->len = argc - 1;
 }
 
@@ -15,11 +13,11 @@ void	push_a(t_stacks *stacks, unsigned int index)
 
 	new = (t_node *)malloc(sizeof(t_node));
 	new->index = index;
-	if (stacks->top_a == NULL)
+	if (stacks->a == NULL)
 		new->next = NULL;
 	else
-		new->next = stacks->top_a;
-	stacks->top_a = new;
+		new->next = stacks->a;
+	stacks->a = new;
 }
 
 void	put_indexes_into_stack_a(t_stacks *stacks, unsigned int *index)
