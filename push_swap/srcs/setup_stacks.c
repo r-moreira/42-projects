@@ -9,23 +9,6 @@ void	init_stacks(t_stacks *stacks, int argc)
 	stacks->len = argc - 1;
 }
 
-void display_a(t_stacks *stacks)
-{
-    t_node *temp;
-
-	temp = stacks->top_a;
-	if (stacks->top_a == NULL)
-		printf("\nStack is Empty!!!\n");
-	else
-	{
-		while (temp->next != NULL)
-		{
-			printf("%d--->",temp->index);
-			temp = temp -> next;
-		}
-    	printf("%d--->NULL",temp->index);
-	}
-}
 void	push_a(t_stacks *stacks, unsigned int index)
 {
 	t_node *new;
@@ -37,18 +20,6 @@ void	push_a(t_stacks *stacks, unsigned int index)
 	else
 		new->next = stacks->top_a;
 	stacks->top_a = new;
-}
-
-void	free_a(t_stacks *stacks)
-{
-	t_node *temp;
-
-   	while (stacks->top_a != NULL)
-	{
-		temp = stacks->top_a;
-		stacks->top_a = temp->next;
-		free(temp);
-   	}
 }
 
 void	put_indexes_into_stack_a(t_stacks *stacks, unsigned int *index)
@@ -66,6 +37,4 @@ void	setup_stacks(t_stacks *stacks, int argc, unsigned int *index)
 {
 	init_stacks(stacks, argc);
 	put_indexes_into_stack_a(stacks, index);
-	display_a(stacks);
-	free_a(stacks);
 }

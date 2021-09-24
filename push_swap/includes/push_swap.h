@@ -31,6 +31,7 @@ typedef struct s_stacks
 
 
 void			exit_failure(char *info);
+int				exit_free(int *numbers, unsigned int *index, t_stacks *stacks);
 int				*handle_args(int argc, char **argv);
 unsigned int	*create_index(int *numbers, int argc);
 void 			setup_stacks(t_stacks *stacks, int argc, unsigned int *index);
