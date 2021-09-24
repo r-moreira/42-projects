@@ -15,13 +15,13 @@ void	sort_big_stack(t_stacks *stacks)
 	int	num;
 
 	i = 0;
-	while (++i < max_bits)
+	while (i < max_bits)
 	{
 		j = 0;
-		while (++j < stacks->len)
+		while (j < stacks->len)
 		{
 			num = stacks->a->index;
-			if (((num >> i) & i) == 1)
+			if (((num >> i)&1) == 1)
 				ra(stacks);
 			else
 				pb(stacks);
