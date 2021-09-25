@@ -1,12 +1,10 @@
-#ifndef FT_PUSH_SWAP_H
-# define FT_PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <stdio.h> //Temporary
-
 
 typedef enum e_bool
 {
@@ -27,14 +25,15 @@ typedef struct s_stacks
 	unsigned int	len;
 }			t_stacks;
 
-
 void			exit_failure(char *info);
 int				exit_free(int *numbers, unsigned int *index, t_stacks *stacks);
 int				*handle_args(int argc, char **argv);
 unsigned int	*create_index(int *numbers, int argc);
-void 			setup_stacks(t_stacks *stacks, int argc, unsigned int *index);
-void			sort_big_stack(t_stacks *stacks);
+void			setup_stacks(t_stacks *stacks, int argc, unsigned int *index);
 void			ra(t_stacks *stacks);
 void			pb(t_stacks *stacks);
 void			pa(t_stacks *stacks);
+void			sort_big_stack(t_stacks *stacks);
+void			sort_small_stack(t_stacks *stacks);
+
 #endif

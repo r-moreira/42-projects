@@ -22,7 +22,8 @@ SRCS				= $(SRCS_DIR)/push_swap.c \
 					  $(SRCS_DIR)/create_index.c \
 					  $(SRCS_DIR)/setup_stacks.c \
 					  $(SRCS_DIR)/instructions.c \
-					  $(SRCS_DIR)/sort_big_stack.c
+					  $(SRCS_DIR)/sort_big_stack.c \
+					  $(SRCS_DIR)/sort_small_stack.c
 
 all:				$(NAME)
 
