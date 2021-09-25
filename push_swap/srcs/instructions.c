@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:40:57 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/24 20:40:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/25 14:22:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,20 @@ void	pa(t_stacks *stacks)
 		top->next = stacks->a;
 		stacks->a = top;
 		ft_putstr_fd("pa\n", 1);
+	}
+}
+
+void	sa(t_stacks *stacks)
+{
+	int	first;
+	int	second;
+
+	if (stacks->a)
+	{
+		first = stacks->a->index;
+		second = stacks->a->next->index;
+		stacks->a->index = second;
+		stacks->a->next->index = first;
+		ft_putstr_fd("sa\n", 1);
 	}
 }

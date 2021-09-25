@@ -31,6 +31,7 @@ int		*handle_args(int argc, char **argv);
 int		*create_index(int *numbers, int argc);
 void	setup_stacks(t_stacks *stacks, int argc, int *index);
 void	ra(t_stacks *stacks);
+void	sa(t_stacks *stacks);
 void	pb(t_stacks *stacks);
 void	pa(t_stacks *stacks);
 void	sort_big_stack(t_stacks *stacks);
