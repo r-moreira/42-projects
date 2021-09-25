@@ -6,22 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:10:16 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/25 16:53:16 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/25 17:09:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static void	sort_two(t_stacks *stacks)
-{
-	int	first;
-	int	second;
-
-	first = stacks->a->index;
-	second = stacks->a->next->index;
-	if (first > second)
-		ra(stacks);
-}
 
 static void	sort_three_first_less_than_second(t_stacks *stacks,
 int first, int second, int third)
@@ -44,7 +33,7 @@ int first, int second, int third)
 	}
 }
 
-static void sort_three_first_greater_than_second(t_stacks *stacks,
+static void	sort_three_first_greater_than_second(t_stacks *stacks,
 int first, int second, int third)
 {
 	if (first < third)
@@ -85,10 +74,11 @@ static void	sort_five(t_stacks *stacks)
 	int	first;
 	int	second;
 	int	third;
-	int i;
+	int	i;
 
 	i = -1;
-	while (++i < 5) {
+	while (++i < 5)
+	{
 		if (stacks->a->index == 0 || stacks->a->index == 1)
 			pb(stacks);
 		else
@@ -117,7 +107,10 @@ void	sort_small_stack(t_stacks *stacks)
 	second = stacks->a->next->index;
 	third = stacks->a->next->next->index;
 	if (stacks->len == 2)
-		sort_two(stacks);
+	{
+		if (first > second)
+			ra(stacks);
+	}
 	else if (stacks->len == 3)
 	{
 		if (first > second)
