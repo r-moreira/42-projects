@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:39:03 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/24 20:39:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/25 13:11:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ static int	*quick_sort(int *numbers, int argc)
 	return (copy);
 }
 
-static unsigned int	*get_index(int *numbers, int *sorted, int argc)
+static int	*get_index(int *numbers, int *sorted, int argc)
 {
-	unsigned int	*index;
-	int				i;
-	int				j;
+	int	*index;
+	int	i;
+	int	j;
 
-	index = malloc((sizeof(unsigned int) * argc));
+	index = malloc((sizeof(int) * argc));
 	i = -1;
 	while (++i < argc - 1)
 	{
@@ -65,10 +65,10 @@ static unsigned int	*get_index(int *numbers, int *sorted, int argc)
 	return (index);
 }
 
-unsigned int	*create_index(int *numbers, int argc)
+int	*create_index(int *numbers, int argc)
 {
-	int				*sorted;
-	unsigned int	*index;
+	int	*sorted;
+	int	*index;
 
 	sorted = quick_sort(numbers, argc);
 	index = get_index(numbers, sorted, argc);

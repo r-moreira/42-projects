@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:39:43 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/24 20:39:45 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/25 13:12:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_b(t_stacks *stacks)
 	}
 }
 
-int	exit_free(int *numbers, unsigned int *index, t_stacks *stacks)
+int	exit_free(int *numbers, int *index, t_stacks *stacks)
 {
 	free(index);
 	free(numbers);

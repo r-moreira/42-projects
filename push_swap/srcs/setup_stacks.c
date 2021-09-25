@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:42:19 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/24 20:42:20 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/25 13:12:55 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_stacks(t_stacks *stacks, int argc)
 	stacks->len = argc - 1;
 }
 
-void	push_a(t_stacks *stacks, unsigned int index)
+void	push_a(t_stacks *stacks, int index)
 {
 	t_node	*new;
 
@@ -32,7 +32,7 @@ void	push_a(t_stacks *stacks, unsigned int index)
 	stacks->a = new;
 }
 
-void	put_indexes_into_stack_a(t_stacks *stacks, unsigned int *index)
+void	put_indexes_into_stack_a(t_stacks *stacks, int *index)
 {
 	int	 i;
 
@@ -44,7 +44,7 @@ void	put_indexes_into_stack_a(t_stacks *stacks, unsigned int *index)
 	}
 }
 
-void	setup_stacks(t_stacks *stacks, int argc, unsigned int *index)
+void	setup_stacks(t_stacks *stacks, int argc, int *index)
 {
 	init_stacks(stacks, argc);
 	put_indexes_into_stack_a(stacks, index);
