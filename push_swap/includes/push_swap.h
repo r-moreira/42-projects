@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 17:19:45 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/25 17:19:46 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/29 20:22:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_stacks
 	int		len;
 }			t_stacks;
 
-void	exit_failure(char *info);
+void	exit_failure(void);
 int		exit_free(int *numbers, int *index, t_stacks *stacks);
 int		*handle_args(int argc, char **argv);
 int		*create_index(int *numbers, int argc);
