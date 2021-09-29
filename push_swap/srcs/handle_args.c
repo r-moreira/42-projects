@@ -6,24 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:40:19 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/28 23:33:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/29 19:52:05 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static void	numbers_is_sorted(int argc, int *numbers)
-{
-	int	i;
-	int	len;
-
-	len = argc - 2;
-	i = 0;
-	while (i < len && numbers[i] < numbers[i + 1])
-		i++;
-	if (i == len)
-		exit(EXIT_SUCCESS);
-}
 
 static int	*get_numbers(int argc, char **argv)
 {
@@ -65,6 +52,36 @@ static void	validate_integers(char *argv)
 		exit_failure("The arguments must not overflow integers range");
 }
 
+static void	numbers_is_sorted(int argc, int *numbers)
+{
+	int	i;
+	int	len;
+
+	len = argc - 2;
+	i = 0;
+	while (i < len && numbers[i] < numbers[i + 1])
+		i++;
+	if (i == len)
+		exit(EXIT_SUCCESS);
+}
+
+static void	check_for_duplicated_nums(int argc, int *numbers)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	len = argc - 1;
+	i = -1;
+	while (++i < len)
+	{
+		j = i;
+		while (++j < len)
+			if (numbers[i] == numbers[j])
+				exit_failure("There is duplicated numbers");
+	}
+}
+
 int	*handle_args(int argc, char **argv)
 {
 	int	i;
@@ -77,5 +94,6 @@ int	*handle_args(int argc, char **argv)
 		validate_integers(argv[i]);
 	numbers = get_numbers(argc, argv);
 	numbers_is_sorted(argc, numbers);
+	check_for_duplicated_nums(argc, numbers);
 	return (numbers);
 }
