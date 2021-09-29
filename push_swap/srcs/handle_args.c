@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:40:19 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/24 20:42:30 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/28 23:33:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	*handle_args(int argc, char **argv)
 	int	i;
 	int	*numbers;
 
-	if (argc < 3)
-		exit_failure("Must be at least two numbers to sort");
+	if (argc == 1)
+		exit(EXIT_SUCCESS);
 	i = 0;
 	while (++i < argc)
 		validate_integers(argv[i]);

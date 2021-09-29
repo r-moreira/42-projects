@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:10:16 by romoreir          #+#    #+#             */
-/*   Updated: 2021/09/25 17:09:22 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:55:28 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ void	sort_small_stack(t_stacks *stacks)
 
 	first = stacks->a->index;
 	second = stacks->a->next->index;
-	third = stacks->a->next->next->index;
+	if (stacks->len > 2)
+		third = stacks->a->next->next->index;
 	if (stacks->len == 2)
 	{
 		if (first > second)
