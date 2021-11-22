@@ -3,12 +3,10 @@ NAME				= minishell
 #Compiler
 CC					= clang
 CFLAGS				= -Wextra -Wall -Werror -g -fsanitize=address
-IFLAGS 				= -I includes
+LIBFT_DIR 			= libft
+LFLAGS 				= -L ./$(LIBFT_DIR) -lft -lreadline
 
 #External Libs
-LIBFT_DIR 			= libft
-LIBFT				= ${LIBFT_DIR}/libft.a
-
 #Objects
 OBJS_DIR 			= objs
 OBJS				= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
@@ -20,7 +18,7 @@ SRCS				= $(SRCS_DIR)/minishell.c
 all:				$(NAME)
 
 $(NAME): 			libs $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) $(CFLAGS) $(-IFLAGS)  -o ${NAME}
+	$(CC) $(OBJS) $(CFLAGS) $(LFLAGS)  -o ${NAME}
 
 #Compiling external libs
 libs:
