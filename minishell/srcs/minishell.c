@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/22 21:14:35 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/11/22 21:57:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	create_input_tokens(t_shell *sh)
 
 int	main(void)
 {
-	t_shell sh;
+	t_shell	sh;
 
 	init_shell(&sh);
 	welcome_message();
