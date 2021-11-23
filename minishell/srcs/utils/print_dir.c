@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:09 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/22 21:11:12 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/11/22 21:34:52 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_dir(void)
 {
-	char	cwd[1024];
+	char	cwd[DIR_MAX_SIZE];
 
 	getcwd(cwd, sizeof(cwd));
 	printf("\n%s", cwd);
