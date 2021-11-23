@@ -4,33 +4,45 @@ NAME				= minishell
 CC					= clang
 CFLAGS				= -Wextra -Wall -Werror -g -fsanitize=address
 LIBFT_DIR 			= libft
-LFLAGS 				= -L ./$(LIBFT_DIR) -lft -lreadline
+LIBFT 				= -L ./$(LIBFT_DIR) -lft
+LIBREADLINE			= -lreadline
 
 #External Libs
 #Objects
 OBJS_DIR 			= objs
-OBJS				= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
+MAIN_OBJ			= $(patsubst $(MAIN_DIR)/%.c, $(OBJS_DIR)/%.o, $(MAIN_SRCS))
+UTILS_OBJS			= $(patsubst $(UTILS_DIR)/%.c, $(OBJS_DIR)/%.o, $(UTILS_SRCS))
 
 #Sources
-SRCS_DIR 			= srcs
-SRCS				= $(SRCS_DIR)/minishell.c
+MAIN_DIR 			= srcs
+MAIN_SRCS			= $(MAIN_DIR)/minishell.c
+
+#Utils
+UTILS_DIR			= $(MAIN_DIR)/utils
+UTILS_SRCS			= $(UTILS_DIR)/print_dir.c \
+					  $(UTILS_DIR)/take_input.c \
+					  $(UTILS_DIR)/welcome_message.c
 
 all:				$(NAME)
 
-$(NAME): 			libs $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LFLAGS)  -o ${NAME}
+$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS)
+	$(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
 
 #Compiling external libs
-libs:
+libft:
 	$(MAKE) -C $(LIBFT_DIR)
 
 #Compiling main
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+$(OBJS_DIR)/%.o:	$(MAIN_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+#Compiling auxiliary functions
+$(OBJS_DIR)/%.o:	$(UTILS_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(RM) $(OBJS)
+	$(RM) $(MAIN_OBJ) $(UTILS_OBJS)
 
 fclean: clean
 	$(RM) $(NAME) $(LIBFT)

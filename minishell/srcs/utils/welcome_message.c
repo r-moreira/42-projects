@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   welcome_message.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/22 21:14:35 by romoreir         ###   ########.fr       */
+/*   Created: 2021/11/22 21:11:36 by romoreir          #+#    #+#             */
+/*   Updated: 2021/11/22 21:11:46 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	init_shell(t_shell *sh)
+void	welcome_message(void)
 {
-	(void)sh;
-}
+	char	*username;
 
-void	create_input_tokens(t_shell *sh)
-{
-	(void)sh;
-}
-
-int	main(void)
-{
-	t_shell sh;
-
-	init_shell(&sh);
-	welcome_message();
-	while (TRUE)
-	{
-		print_dir();
-		take_input(&sh);
-		create_input_tokens(&sh);
-	}
-	return (EXIT_SUCCESS);
+	username = getenv("USER");
+	printf(CLEAR_CLI);
+	printf("\n===============================================\n");
+	printf("\n---- Welcome: @%s!\n", username);
+	printf("\n---- This is romoreir shell\n");
+	printf("\n===============================================\n");
 }

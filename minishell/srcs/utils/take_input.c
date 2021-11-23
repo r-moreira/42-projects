@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   take_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/22 21:14:35 by romoreir         ###   ########.fr       */
+/*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
+/*   Updated: 2021/11/22 21:10:56 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	init_shell(t_shell *sh)
+int	take_input(t_shell *sh)
 {
-	(void)sh;
-}
+	char	*buf;
 
-void	create_input_tokens(t_shell *sh)
-{
-	(void)sh;
-}
-
-int	main(void)
-{
-	t_shell sh;
-
-	init_shell(&sh);
-	welcome_message();
-	while (TRUE)
+	buf = readline(" $> ");
+	if (strlen(buf) != 0)
 	{
-		print_dir();
-		take_input(&sh);
-		create_input_tokens(&sh);
+		add_history(buf);
+		ft_strlcpy(sh->input_string, buf, ft_strlen(buf) + 1);
+		return (FALSE);
 	}
-	return (EXIT_SUCCESS);
+	else
+		return (TRUE);
 }
