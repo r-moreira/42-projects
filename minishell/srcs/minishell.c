@@ -6,13 +6,14 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/28 00:31:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/11/28 01:43:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 #include "../libft/libft.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void	init_shell(t_shell *sh)
 {
@@ -21,8 +22,8 @@ void	init_shell(t_shell *sh)
 
 char	*command_tokenizer(char *input)
 {
-	int i;
-	char *token;
+	int		i;
+	char	*token;
 
 	token = (char *)malloc(sizeof(char) * (ft_strlen((char *)input) + 1));
 	i = -1;
@@ -30,7 +31,8 @@ char	*command_tokenizer(char *input)
 	{
 		if (input[i] != '|' && input[i] != '>' && input[i] != '<')
 			token[i] = input[i];
-		else {
+		else
+		{
 			token[i] = input[i];
 			if (input[i + 1] == '>' || input[i + 1] == '<')
 			{
@@ -46,29 +48,24 @@ char	*command_tokenizer(char *input)
 	return (token);
 }
 
-//void	create_command_struct(t_shell *sh)
-//{
-//	sh->commands[0].name = ft_strdup("ls");
-//	sh->commands[0].args[0] = ft_strdup("-l");
-//	sh->commands[0].args[1] = ft_strdup("-a");
-//	sh->commands[0].args[2] = NULL;
-//	sh->commands->flag = PIPE;
-//}
-
 void	analyzer(t_shell *sh)
 {
-	char *input;
-	char *command_token;
+	char	*command_tokens[MAX_COMMANDS_NUM];
+	int		pointer_position;
+	int		i;
 
-	input = ft_strdup("");
-	ft_strlcpy(input, sh->input_string, sizeof(sh->input_string));
-	command_token = command_tokenizer(input);
+	pointer_position = 0;
+	i = 0;
+	while (pointer_position < ft_strlen(sh->input_string))
+	{
+		command_tokens[i] = command_tokenizer(sh->input_string + pointer_position);
+		pointer_position += ft_strlen(command_tokens[i]);
+		printf("%s\n", command_tokens[i]);
+		i++;
+	}
 
-	printf("%s\n", command_token);
-	printf("%s\n", input + ft_strlen(command_token));
-
-	free(command_token);
-	free(input);
+	while (--i > 0)
+		free(command_tokens[i]);
 }
 
 int	main(void)
