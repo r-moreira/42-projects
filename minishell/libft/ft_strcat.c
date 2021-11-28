@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir <romoreir@student.42sp.org.br >   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,15 @@
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+char	*ft_strcat(char *destination, const char *source)
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 32;
-	return (c);
+	char	*ptr;
+
+	ptr = destination + ft_strlen(destination);
+	while (*source != '\0')
+	{
+		*ptr++ = *source++;
+	}
+	*ptr = '\0';
+	return (destination);
 }

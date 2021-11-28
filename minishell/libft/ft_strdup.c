@@ -23,12 +23,11 @@ static char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*dest;
 
-	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + 1))))
-		return (NULL);
+	dest = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + 1));
 	ft_strcpy(dest, (char *)s1);
 	return (dest);
 }

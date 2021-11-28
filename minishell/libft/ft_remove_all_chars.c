@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_remove_all_chars.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir <romoreir@student.42sp.org.br >   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,17 @@
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+void	ft_remove_all_chars(char *str, char c)
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 32;
-	return (c);
+	char	*pr;
+	char	*pw;
+
+	pr = str;
+	pw = str;
+	while (*pr)
+	{
+		*pw = *pr++;
+		pw += (*pw != c);
+	}
+	*pw = '\0';
 }

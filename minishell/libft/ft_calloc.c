@@ -20,11 +20,13 @@ void	*ft_calloc(size_t count, size_t size)
 	total = count * size;
 	if (!total)
 	{
-		if (!(ptr = malloc(sizeof(NULL))))
+		ptr = malloc(sizeof(NULL));
+		if (!ptr)
 			return (NULL);
 		return (ft_memset(ptr, 0, sizeof(NULL)));
 	}
-	if (!(ptr = malloc(total)))
+	ptr = malloc(total);
+	if (!ptr)
 		return (NULL);
 	return (ft_memset(ptr, 0, total));
 }
