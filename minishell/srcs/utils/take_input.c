@@ -6,11 +6,14 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/23 22:53:06 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/05 17:00:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+//TO-DO: Lidar com aspas, se tiver aspas abertas, ler linhas no terminal até fechar aspas,
+//depois concatenar com o que veio antes das aspas
 
 int	take_input(t_shell *sh)
 {

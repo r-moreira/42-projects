@@ -12,6 +12,7 @@ LIBREADLINE			= -lreadline
 OBJS_DIR 			= objs
 MAIN_OBJ			= $(patsubst $(MAIN_DIR)/%.c, $(OBJS_DIR)/%.o, $(MAIN_SRCS))
 UTILS_OBJS			= $(patsubst $(UTILS_DIR)/%.c, $(OBJS_DIR)/%.o, $(UTILS_SRCS))
+ANALYZER_OBJS		= $(patsubst $(UTILS_DIR)/%.c, $(OBJS_DIR)/%.o, $(ANALYZER_SRCS))
 
 #Sources
 MAIN_DIR 			= srcs
@@ -23,10 +24,14 @@ UTILS_SRCS			= $(UTILS_DIR)/print_dir.c \
 					  $(UTILS_DIR)/take_input.c \
 					  $(UTILS_DIR)/welcome_message.c
 
+#Analyzer
+ANALYZER_DIR		= $(MAIN_DIR)/analyzer
+ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
+
 all:				$(NAME)
 
-$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS)
-	$(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
+$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(ANALYZER_OBJS)
+	$(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(ANALYZER_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
 
 #Compiling external libs
 libft:
@@ -38,6 +43,10 @@ $(OBJS_DIR)/%.o:	$(MAIN_DIR)/%.c
 
 #Compiling auxiliary functions
 $(OBJS_DIR)/%.o:	$(UTILS_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+#Compiling analyzer functions
+$(OBJS_DIR)/%.o:	$(ANALYZER_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

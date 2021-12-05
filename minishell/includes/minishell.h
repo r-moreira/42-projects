@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/27 23:33:06 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/11/28 23:38:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 
 # define MAX_LINE_INPUT 1248
 # define MAX_COMMANDS_NUM 136
+# define MAX_COMMAND_NAME 50
 # define MAX_ARGS_NUM 42
+# define MAX_ARGS_NAME 50
 # define DIR_MAX_SIZE 1024
 
 # define CLEAR_CLI "\033[H\033[J"
@@ -48,20 +50,25 @@ typedef enum e_flags
 
 typedef struct s_commands
 {
-	char	*name;
-	char	*args[MAX_ARGS_NUM];
+	char	name[MAX_COMMAND_NAME];
+	char	args[MAX_ARGS_NUM][MAX_ARGS_NAME];
+	int		args_count;
 	e_flags	flag;
 }	t_commands;
 
 typedef struct s_minishell
 {
-	char	input_string[MAX_LINE_INPUT];
-	t_commands	commands[MAX_COMMANDS_NUM];
+	char		input_string[MAX_LINE_INPUT];
+	t_commands	cmds[MAX_COMMANDS_NUM];
+	int			cmds_count;
 }	t_shell;
 
 //UTILS
 void	welcome_message(void);
 void	print_dir(void);
 int		take_input(t_shell *sh);
+
+//ANALYZER
+void	analyzer(t_shell *sh);
 
 #endif
