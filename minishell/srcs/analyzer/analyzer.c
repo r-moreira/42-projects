@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/05 17:24:23 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/05 21:09:53 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,23 @@ t_bool	is_flag(char c)
 	}
 }*/
 
+static t_bool	is_closed_quotes(char c, char *input)
+{
+	int	i;
+
+	i = 0;
+	if (c == '\'' || c == '"')
+	{
+		while (input[++i]) {
+			if (input[i] == c)
+				return (TRUE);
+		}
+		return (FALSE);
+	}
+	else
+		return (FALSE);
+}
+
 static char	*cmd_tokenizer(char *input)
 {
 	int		i;
@@ -66,13 +83,13 @@ static char	*cmd_tokenizer(char *input)
 	i = -1;
 	while (input[++i])
 	{
-		if (!open_quotes && input[i] == '\'' || input[i] == '"')
+		if (!open_quotes && is_closed_quotes(input[i], input + i))
 		{
 			quote = input[i];
 			open_quotes = TRUE;
-		} else if (open_quotes && input[i] == quote)
+		}
+		else if (open_quotes && input[i] == quote)
 			open_quotes = FALSE;
-
 		if (!open_quotes)
 		{
 			if (input[i] != '|' && input[i] != '>' && input[i] != '<')
@@ -123,6 +140,7 @@ void	analyzer(t_shell *sh)
 	pointer_position = 0;
 	while (pointer_position < ft_strlen(sh->input_string))
 	{
+		//handle_input_vars(sh->input_string); TO-DO: Substituir "$VARS" pelo valor correto
 		cmd_tokens[++i] = cmd_tokenizer(sh->input_string + pointer_position);
 		if (ft_strncmp(cmd_tokens[i], "", ft_strlen(cmd_tokens[i])))
 			pointer_position += ft_strlen(cmd_tokens[i]);
