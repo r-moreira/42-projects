@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/12 21:38:57 by romoreir         ###   ########.fr       */
+/*   Created: 2021/12/12 21:07:04 by romoreir          #+#    #+#             */
+/*   Updated: 2021/12/12 21:55:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-#include "../libft/libft.h"
-#include <stdio.h>
+#include "../../includes/minishell.h"
 #include <stdlib.h>
+#include <unistd.h>
 
-void	init_shell(t_shell *sh)
+t_status	print_error(char *err_message)
 {
-	sh->cmds_count = 0;
-	sh->cmds->args_count = 0;
-}
-
-int	main(void)
-{
-	t_shell	sh;
-
-	init_shell(&sh);
-	welcome_message();
-	while (TRUE)
-	{
-		print_dir();
-		if (take_input(&sh) == SUCCESS)
-			analyzer(&sh);
-	}
-	return (EXIT_SUCCESS);
+	ft_putstr_fd("ERROR: ", STDOUT_FILENO);
+	ft_putstr_fd(err_message, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
+	return (ERROR);
 }

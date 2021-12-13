@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/28 23:38:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/12 21:55:30 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,16 @@
 
 # define CLEAR_CLI "\033[H\033[J"
 
+typedef enum e_status
+{
+	ERROR,
+	SUCCESS
+}	t_status;
+
 typedef enum e_bool
 {
 	FALSE,
-	TRUE
+	TRUE,
 }	t_bool;
 
 typedef enum e_flags
@@ -64,9 +70,10 @@ typedef struct s_minishell
 }	t_shell;
 
 //UTILS
-void	welcome_message(void);
-void	print_dir(void);
-int		take_input(t_shell *sh);
+t_status	print_error(char *err_message);
+void		welcome_message(void);
+void		print_dir(void);
+t_status	take_input(t_shell *sh);
 
 //ANALYZER
 void	analyzer(t_shell *sh);
