@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/05 21:09:53 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:40:45 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ static void	parse_cmds(t_shell *sh, char **cmd_tokens)
 	i = -1;
 	while (++i < sh->cmds_count)
 	{
-		printf("cmd_token[%d] = %s\n", i, cmd_tokens[i]);	//tmp
+		printf("cmd_token[%d] = %s\n", i, cmd_tokens[i]); //TEMP
 		//parse_cmd_flag(sh, cmd_tokens[i]);
 		//parse_cmd_bin
 		//parse_cmd_args

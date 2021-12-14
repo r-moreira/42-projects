@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/12 21:55:30 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:37:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define MAX_ARGS_NUM 42
 # define MAX_ARGS_NAME 50
 # define DIR_MAX_SIZE 1024
+# define HERE_DOCUMENT_BUFFER_SIZE 1248
 
 # define CLEAR_CLI "\033[H\033[J"
 
@@ -66,6 +67,7 @@ typedef struct s_minishell
 {
 	char		input_string[MAX_LINE_INPUT];
 	t_commands	cmds[MAX_COMMANDS_NUM];
+	char		*heredoc_file_buffer; //Dar free depois da solução
 	int			cmds_count;
 }	t_shell;
 
@@ -73,6 +75,7 @@ typedef struct s_minishell
 t_status	print_error(char *err_message);
 void		welcome_message(void);
 void		print_dir(void);
+void		handle_variables(char *line_read);
 t_status	take_input(t_shell *sh);
 
 //ANALYZER
