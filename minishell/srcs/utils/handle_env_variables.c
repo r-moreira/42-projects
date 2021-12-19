@@ -6,24 +6,22 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 00:28:17 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:52:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../includes/minishell.h"
-#include <stdio.h>
 
-//TO-DO:
-static	t_bool is_open_sglquote(char *input)
+static	t_bool is_closed_sglquote(char *input)
 {
 	int	i;
 
 	i = 0;
 	while (input[++i])
 		if (input[i] == '\'')
-			return (i);
-	return 0;
+			return (TRUE);
+	return FALSE;
 }
 
 char	*get_env_token(char *input)
@@ -32,7 +30,7 @@ char	*get_env_token(char *input)
 	char	*env_token;
 
 	i = 1;
-	while (!ft_isspace(input[i]) && input[i] != '$')
+	while (!ft_isspace(input[i]) && input[i] != '$' && input[i] != '"')
 		i++;
 	env_token = ft_substr(input, 1, i - 1);
 	return (env_token);
@@ -61,9 +59,6 @@ void	get_env_value(char *line_read, int *i, int *j, char *parsed_line_read)
 	*i += ft_strlen(get_env_token(line_read + *i));
 }
 
-// TO-DOs
-//Handle envvars, ex: $USER aloalo $TERM aaaaaaaaaaa$USER $USER $USR AAAAAAoo $USER$TERM - OK
-//Handle quotes and vars, ex: -
 char	*handle_env_variables(char *line_read)
 {
 	int		i;
@@ -76,14 +71,18 @@ char	*handle_env_variables(char *line_read)
 	j = -1;
 	while (line_read[++i])
 	{
-		if (line_read[i] == '$')
+		if (line_read[i] == '\'' && is_closed_sglquote(line_read + i))
 		{
-			get_env_value(line_read, &i, &j, parsed_line_read);
+			parsed_line_read[++j] = line_read[i++];
+			while(line_read[i] && line_read[i] != '\'')
+				parsed_line_read[++j] = line_read[i++];
+			parsed_line_read[++j] = line_read[i];
 		}
+		else if (line_read[i] == '$')
+			get_env_value(line_read, &i, &j, parsed_line_read);
 		else
 			parsed_line_read[++j] = line_read[i];
 	}
 	parsed_line_read[++j] = '\0';
-	printf("|%s|\n", parsed_line_read);
 	return (parsed_line_read);
 }

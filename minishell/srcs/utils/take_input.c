@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 00:27:42 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:52:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,13 @@ static char *parse_heredoc_input_ending(char *line_read, char *input_ending)
 	return (input_ending);
 }
 
-//TO-DO
-//Lidar com envvariables
 static char *take_heredoc_input(char *input_ending)
 {
 	char	*heredoc_input;
 	char	*hdoc_line_read;
+	char	*parsed_heredoc_in;
 
 	heredoc_input = (char*)malloc(HERE_DOCUMENT_BUFFER_SIZE);
-	//HANDLE_ENV_VARIABLES
 	while (TRUE)
 	{
 		hdoc_line_read = readline("> ");
@@ -61,7 +59,8 @@ static char *take_heredoc_input(char *input_ending)
 		ft_strcat(heredoc_input, "\n");
 		free(hdoc_line_read);
 	}
-	return (heredoc_input);
+	parsed_heredoc_in = handle_env_variables(heredoc_input);
+	return (parsed_heredoc_in);
 }
 
 //TO-DO
@@ -75,7 +74,6 @@ static t_status handle_here_document_input(t_shell *sh, char *line_read)
 	if (input_ending[0] == '\0')
 		return (print_error("Here document '<<' doesn't contain an input ending."));
 	sh->heredoc_file_buffer = take_heredoc_input(input_ending);
-	//printf("%s", sh->heredoc_file_buffer); //TEMP
 	free(input_ending);
 	return (SUCCESS);
 }
