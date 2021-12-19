@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 11:56:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:25:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_minishell
 {
 	char		input_string[MAX_LINE_INPUT];
 	t_commands	cmds[MAX_COMMANDS_NUM];
-	char		*heredoc_file_buffer; //Dar free depois da solução
+	char		*heredoc_file_buffer;
 	int			cmds_count;
 }	t_shell;
 

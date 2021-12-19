@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 12:08:01 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:23:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,10 @@ t_status	take_input(t_shell *sh)
 			add_history(line_read);
 			parsed_line_read = parse_env_variables(line_read);
 			if (is_here_document(parsed_line_read) == TRUE)
-			{
 				if(handle_here_document_input(sh, parsed_line_read) == ERROR)
 					return ERROR;
-			}
-			else
-				ft_strlcpy(sh->input_string, parsed_line_read,
-					ft_strlen(parsed_line_read) + 1);
+			ft_strlcpy(sh->input_string, parsed_line_read,
+				ft_strlen(parsed_line_read) + 1);
 		}
 	}
 	free(line_read);
