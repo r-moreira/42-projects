@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/14 22:00:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:06:06 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(void)
 		print_dir();
 		if (take_input(&sh) == SUCCESS)
 			analyzer(&sh);
+		printf("INPUT = |%s|", sh.input_string); //TEMP
 	}
 	return (EXIT_SUCCESS);
 }

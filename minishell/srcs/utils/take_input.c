@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 11:52:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:08:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char *take_heredoc_input(char *input_ending)
 		ft_strcat(heredoc_input, "\n");
 		free(hdoc_line_read);
 	}
-	parsed_heredoc_in = handle_env_variables(heredoc_input);
+	parsed_heredoc_in = parse_env_variables(heredoc_input);
 	return (parsed_heredoc_in);
 }
 
@@ -72,8 +72,9 @@ static t_status handle_here_document_input(t_shell *sh, char *line_read)
 
 	input_ending = parse_heredoc_input_ending(line_read, input_ending);
 	if (input_ending[0] == '\0')
-		return (print_error("Here document '<<' doesn't contain an input ending."));
+		return (print_error("Heredoc '<<' doesn't contain an input ending."));
 	sh->heredoc_file_buffer = take_heredoc_input(input_ending);
+	printf("Heredoc FB = \n%s\n", sh->heredoc_file_buffer); //TEMP
 	free(input_ending);
 	return (SUCCESS);
 }
@@ -90,14 +91,15 @@ t_status	take_input(t_shell *sh)
 		if (line_read && *line_read)
 		{
 			add_history(line_read);
-			parsed_line_read = handle_env_variables(line_read);
+			parsed_line_read = parse_env_variables(line_read);
 			if (is_here_document(parsed_line_read) == TRUE)
 			{
 				if(handle_here_document_input(sh, parsed_line_read) == ERROR)
 					return ERROR;
 			}
 			else
-				ft_strlcpy(sh->input_string, parsed_line_read, ft_strlen(parsed_line_read) + 1);
+				ft_strlcpy(sh->input_string, parsed_line_read,
+					ft_strlen(parsed_line_read) + 1);
 		}
 	}
 	free(line_read);

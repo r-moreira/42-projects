@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/14 23:00:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:56:44 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ typedef struct s_minishell
 t_status	print_error(char *err_message);
 void		welcome_message(void);
 void		print_dir(void);
-char		*handle_env_variables(char *line_read);
 t_status	take_input(t_shell *sh);
+
+//PARSER
+char		*parse_env_variables(char *line_read);
 
 //ANALYZER
 void		analyzer(t_shell *sh);

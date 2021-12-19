@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_env_variables.c                             :+:      :+:    :+:   */
+/*   parse_env_variables.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 11:52:31 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:04:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	get_env_value(char *line_read, int *i, int *j, char *parsed_line_read)
 	*i += ft_strlen(get_env_token(line_read + *i));
 }
 
-char	*handle_env_variables(char *line_read)
+char	*parse_env_variables(char *line_read)
 {
 	int		i;
 	int		j;
