@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/15 00:05:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/19 00:27:42 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static char *parse_heredoc_input_ending(char *line_read, char *input_ending)
 	return (input_ending);
 }
 
+//TO-DO
+//Lidar com envvariables
 static char *take_heredoc_input(char *input_ending)
 {
 	char	*heredoc_input;
