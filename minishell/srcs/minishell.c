@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/12 21:38:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/14 22:00:36 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	init_shell(t_shell *sh)
 {
 	sh->cmds_count = 0;
 	sh->cmds->args_count = 0;
+	sh->heredoc_file_buffer = NULL;
+}
+
+void	exit_shell(t_shell *sh)
+{
+	 if (sh->heredoc_file_buffer != NULL)
+	 	free(sh->heredoc_file_buffer);
 }
 
 int	main(void)
