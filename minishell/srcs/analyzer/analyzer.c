@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/20 09:27:41 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:40:29 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_bool	is_flag(char c)
 		else if
 	}
 }*/
-
 
 /*static void	*handle_flags(char c, char c2, int i, char *token)
 {
@@ -113,8 +112,6 @@ static char	*cmd_tokenizer(char *input)
 	input = NULL;
 	return (token);
 }
-
-
 
 static void	parse_cmds(t_shell *sh, char **cmd_tokens)
 {

@@ -6,14 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 12:04:21 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:45:48 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/minishell.h"
 
-static	t_bool is_closed_sglquote(char *input)
+static t_bool	is_closed_sglquote(char *input)
 {
 	int	i;
 
@@ -21,7 +20,7 @@ static	t_bool is_closed_sglquote(char *input)
 	while (input[++i])
 		if (input[i] == '\'')
 			return (TRUE);
-	return FALSE;
+	return (FALSE);
 }
 
 char	*get_env_token(char *input)
@@ -66,7 +65,7 @@ char	*parse_env_variables(char *line_read)
 	char	*parsed_line_read;
 	char	*env_value;
 
-	parsed_line_read = (char*)malloc(PARSED_LINE_BUFFER_SIZE);
+	parsed_line_read = (char *)malloc(PARSED_LINE_BUFFER_SIZE);
 	i = -1;
 	j = -1;
 	while (line_read[++i])
@@ -74,7 +73,7 @@ char	*parse_env_variables(char *line_read)
 		if (line_read[i] == '\'' && is_closed_sglquote(line_read + i))
 		{
 			parsed_line_read[++j] = line_read[i++];
-			while(line_read[i] && line_read[i] != '\'')
+			while (line_read[i] && line_read[i] != '\'')
 				parsed_line_read[++j] = line_read[i++];
 			parsed_line_read[++j] = line_read[i];
 		}

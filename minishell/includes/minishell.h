@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/26 20:32:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:44:45 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void		run_signals();
 char		*parse_env_variables(char *line_read);
 
 //ANALYZER
+
 void		analyzer(t_shell *sh);
 
 #endif

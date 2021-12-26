@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/26 20:29:32 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:44:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static t_bool	is_here_document(char *line_read)
 	while (line_read[++i])
 		if (line_read[i - 1] == '<' && line_read[i] == '<')
 			return (TRUE);
-	return FALSE;
+	return (FALSE);
 }
 
-static char *parse_heredoc_input_ending(char *line_read, char *input_ending)
+static char	*parse_heredoc_input_ending(char *line_read, char *input_ending)
 {
 	int	i;
 	int	j;
@@ -37,26 +37,26 @@ static char *parse_heredoc_input_ending(char *line_read, char *input_ending)
 	input_ending = (char *)malloc(sizeof(char) * (len - i) + 1);
 	j = -1;
 	while (i++ < len)
-		if(!ft_isspace(line_read[i]))
+		if (!ft_isspace(line_read[i]))
 			input_ending[++j] = line_read[i];
 	input_ending[++j] = '\0';
 	return (input_ending);
 }
 
-static char *take_heredoc_input(t_shell *sh, char *input_ending)
+static char	*take_heredoc_input(t_shell *sh, char *input_ending)
 {
 	char	*heredoc_input;
 	char	*hdoc_line_read;
 	char	*parsed_heredoc_in;
 
-	heredoc_input = (char*)malloc(HERE_DOCUMENT_BUFFER_SIZE);
+	heredoc_input = (char *)malloc(HERE_DOCUMENT_BUFFER_SIZE);
 	while (TRUE)
 	{
 		hdoc_line_read = readline("> ");
 		if (hdoc_line_read && *hdoc_line_read)
 		{
 			if (!ft_strncmp(input_ending, hdoc_line_read, sizeof(input_ending)))
-				break;
+				break ;
 			ft_strcat(heredoc_input, hdoc_line_read);
 			ft_strcat(heredoc_input, "\n");
 			free(hdoc_line_read);
@@ -68,9 +68,7 @@ static char *take_heredoc_input(t_shell *sh, char *input_ending)
 	return (parsed_heredoc_in);
 }
 
-//TO-DO
-//Lidar com o SIGNAL CONTROL-C, entre outros
-static t_status handle_here_document_input(t_shell *sh, char *line_read)
+static t_status	handle_here_document_input(t_shell *sh, char *line_read)
 {
 	int		len;
 	char	*input_ending;
@@ -92,13 +90,13 @@ t_status	take_input(t_shell *sh)
 	line_read = readline(NULL);
 	if (line_read && *line_read)
 	{
-			add_history(line_read);
-			parsed_line_read = parse_env_variables(line_read);
-			if (is_here_document(parsed_line_read) == TRUE)
-				if(handle_here_document_input(sh, parsed_line_read) == ERROR)
-					return ERROR;
-			ft_strlcpy(sh->input_string, parsed_line_read,
-				ft_strlen(parsed_line_read) + 1);
+		add_history(line_read);
+		parsed_line_read = parse_env_variables(line_read);
+		if (is_here_document(parsed_line_read) == TRUE)
+			if (handle_here_document_input(sh, parsed_line_read) == ERROR)
+				return (ERROR);
+		ft_strlcpy(sh->input_string, parsed_line_read,
+			ft_strlen(parsed_line_read) + 1);
 	}
 	else
 		eof_exit_shell(sh);
