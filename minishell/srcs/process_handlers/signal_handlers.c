@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_dir.c                                        :+:      :+:    :+:   */
+/*   signal_handlers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 21:10:09 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/22 21:34:52 by romoreir         ###   ########.fr       */
+/*   Created: 2021/12/26 19:05:58 by romoreir          #+#    #+#             */
+/*   Updated: 2021/12/26 20:33:40 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_dir(void)
+static void	handle_sigint(int sig)
 {
-	char	cwd[DIR_MAX_SIZE];
+	g_pid_number = 130;
+	print_prompt();
+	(void)sig;
+}
 
-	getcwd(cwd, sizeof(cwd));
-	printf("\n%s", cwd);
+static void	handle_sigquit(int sig)
+{
+	g_pid_number = 131;
+	printf("Quit (core dumped)\n");
+	(void)sig;
+}
+
+void	run_signals()
+{
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit);
 }

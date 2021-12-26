@@ -13,6 +13,7 @@ MAIN_OBJ			= $(patsubst $(MAIN_DIR)/%.c, $(OBJS_DIR)/%.o, $(MAIN_SRCS))
 UTILS_OBJS			= $(patsubst $(UTILS_DIR)/%.c, $(OBJS_DIR)/%.o, $(UTILS_SRCS))
 PARSER_OBJS			= $(patsubst $(PARSER_DIR)/%.c, $(OBJS_DIR)/%.o, $(PARSER_SRCS))
 ANALYZER_OBJS		= $(patsubst $(ANALYZER_DIR)/%.c, $(OBJS_DIR)/%.o, $(ANALYZER_SRCS))
+PHANDLERS_OBJS		= $(patsubst $(PHANDLERS_DIR)/%.c, $(OBJS_DIR)/%.o, $(PHANDLERS_SRCS))
 
 #Sources
 MAIN_DIR 			= srcs
@@ -20,10 +21,15 @@ MAIN_SRCS			= $(MAIN_DIR)/minishell.c
 
 #Utils
 UTILS_DIR			= $(MAIN_DIR)/utils
-UTILS_SRCS			= $(UTILS_DIR)/print_dir.c \
+UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/print_error.c \
 					  $(UTILS_DIR)/take_input.c \
 					  $(UTILS_DIR)/welcome_message.c
+
+#Process Handlers
+PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
+PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
+					  $(PHANDLERS_DIR)/signal_handlers.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
@@ -35,8 +41,8 @@ ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 
 all:				$(NAME)
 
-$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
-	$(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
+$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
+	$(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
 
 #Compiling external libs
 libft:
@@ -50,6 +56,11 @@ $(OBJS_DIR)/%.o:	$(MAIN_DIR)/%.c
 $(OBJS_DIR)/%.o:	$(UTILS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
+#Compiling process handlers functions
+$(OBJS_DIR)/%.o:	$(PHANDLERS_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 #Compiling parser functions
 $(OBJS_DIR)/%.o:	$(PARSER_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -60,7 +71,7 @@ $(OBJS_DIR)/%.o:	$(ANALYZER_DIR)/%.c
 
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(RM) $(MAIN_OBJ) $(UTILS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
+	$(RM) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
 
 fclean: clean
 	$(RM) $(NAME) $(LIBFT)

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/14 22:54:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/20 09:27:41 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ void	analyzer(t_shell *sh)
 	pointer_position = 0;
 	while (pointer_position < ft_strlen(sh->input_string))
 	{
-		//handle_input_vars(sh->input_string); TO-DO: Substituir "$VARS" pelo valor correto
 		cmd_tokens[++i] = cmd_tokenizer(sh->input_string + pointer_position);
 		if (ft_strncmp(cmd_tokens[i], "", ft_strlen(cmd_tokens[i])))
 			pointer_position += ft_strlen(cmd_tokens[i]);

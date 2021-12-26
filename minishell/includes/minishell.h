@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/19 12:25:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:32:44 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -33,6 +34,8 @@
 # define HERE_DOCUMENT_BUFFER_SIZE 1248
 
 # define CLEAR_CLI "\033[H\033[J"
+
+int	g_pid_number;
 
 typedef enum e_status
 {
@@ -75,8 +78,12 @@ typedef struct s_minishell
 //UTILS
 t_status	print_error(char *err_message);
 void		welcome_message(void);
-void		print_dir(void);
+void		print_prompt(void);
 t_status	take_input(t_shell *sh);
+
+//PROCESS HANDLERS
+void		eof_exit_shell(t_shell *sh);
+void		run_signals();
 
 //PARSER
 char		*parse_env_variables(char *line_read);
