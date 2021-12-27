@@ -6,19 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/26 20:40:29 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/26 21:02:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdio.h>
-
-t_bool	is_flag(char c)
-{
-	if (c == '|' || c == '>' || c == '<')
-		return (TRUE);
-	return (FALSE);
-}
 
 //TO-DO: Salvar as flags do comando na struct
 /*static void	parse_cmd_flag(t_shell *sh, char *cmd_token)
@@ -74,22 +66,22 @@ static char	*cmd_tokenizer(char *input)
 {
 	int		i;
 	char	*token;
-	t_bool	open_quotes;
+	t_bool	has_open_quotes;
 	char	quote;
 
-	open_quotes = FALSE;
+	has_open_quotes = FALSE;
 	token = (char *)malloc(sizeof(char) * (ft_strlen((char *)input) + 1));
 	i = -1;
 	while (input[++i])
 	{
-		if (!open_quotes && is_closed_quotes(input[i], input + i))
+		if (!has_open_quotes && is_closed_quotes(input[i], input + i))
 		{
 			quote = input[i];
-			open_quotes = TRUE;
+			has_open_quotes = TRUE;
 		}
-		else if (open_quotes && input[i] == quote)
-			open_quotes = FALSE;
-		if (!open_quotes)
+		else if (has_open_quotes && input[i] == quote)
+			has_open_quotes = FALSE;
+		if (!has_open_quotes)
 		{
 			if (input[i] != '|' && input[i] != '>' && input[i] != '<')
 				token[i] = input[i];
@@ -120,7 +112,7 @@ static void	parse_cmds(t_shell *sh, char **cmd_tokens)
 	i = -1;
 	while (++i < sh->cmds_count)
 	{
-		//printf("cmd_token[%d] = %s\n", i, cmd_tokens[i]); //TEMP
+		printf("cmd_token[%d] = %s\n", i, cmd_tokens[i]); //TEMP
 		//parse_cmd_flag(sh, cmd_tokens[i]);
 		//parse_cmd_bin
 		//parse_cmd_args
@@ -132,6 +124,8 @@ void	analyzer(t_shell *sh)
 	char	*cmd_tokens[MAX_COMMANDS_NUM];
 	int		pointer_position;
 	int		i;
+
+	printf("INPUT = [%s]\n", sh->input_string); //TMP
 
 	i = -1;
 	pointer_position = 0;
