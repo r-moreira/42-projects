@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 14:24:17 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 14:27:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(void)
 		print_prompt();
 		if (take_input(&sh) == SUCCESS)
 			if (analyzer(&sh) == SUCCESS)
-				if (parse_cmds(&sh) == SUCCESS)
+				if (parser(&sh) == SUCCESS)
 					printf("SUCCESS\n");
 	}
 	return (EXIT_SUCCESS);

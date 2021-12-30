@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 14:23:11 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 14:27:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	parse_cmd_flag(t_shell *sh, int token_index)
 	(void)token_index;
 }
 
-t_status	parse_cmds(t_shell *sh)
+t_status	parser(t_shell *sh)
 {
 	int	i;
 

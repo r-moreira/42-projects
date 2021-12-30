@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 14:18:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 14:27:36 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ t_status		analyzer(t_shell *sh);
 
 //PARSER
 char		*parse_env_variables(char *line_read);
-t_status	parse_cmds(t_shell *sh);
+t_status	parser(t_shell *sh);
 
 #endif

@@ -33,8 +33,8 @@ PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
-PARSER_SRCS			= $(PARSER_DIR)/parse_env_variables.c \
-					  $(PARSER_DIR)/parse_cmds.c
+PARSER_SRCS			= $(PARSER_DIR)/env_variables_parser.c \
+					  $(PARSER_DIR)/cmd_parser.c
 
 #Analyzer
 ANALYZER_DIR		= $(MAIN_DIR)/analyzer
