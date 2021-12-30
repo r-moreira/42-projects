@@ -2,7 +2,7 @@ NAME				= minishell
 
 #Compiler
 CC					= clang
-CFLAGS				= #-Wextra -Wall -Werror -g -fsanitize=address
+CFLAGS				= -Wextra -Wall -Werror -g -fsanitize=address
 LIBFT_DIR 			= libft
 LIBFT 				= -L ./$(LIBFT_DIR) -lft
 LIBREADLINE			= -lreadline

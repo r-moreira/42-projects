@@ -6,11 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 14:25:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 14:38:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stddef.h>
 
 static t_bool	is_closed_quotes(char c, char *input)
 {
@@ -76,7 +77,7 @@ static char	*cmd_tokenizer(char *input)
 
 t_status	analyzer(t_shell *sh)
 {
-	int		pointer_position;
+	size_t	pointer_position;
 	int		i;
 
 	printf("INPUT = [%s]\n", sh->input_string); //TMP

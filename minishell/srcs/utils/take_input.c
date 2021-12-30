@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 13:31:14 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 14:47:03 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ static t_bool	is_here_document(char *line_read)
 	return (FALSE);
 }
 
-static char	*parse_heredoc_input_ending(char *line_read, char *input_ending)
+static char	*parse_heredoc_input_ending(char *line_read)
 {
-	int	i;
-	int	j;
-	int	len;
+	int		i;
+	int		j;
+	int		len;
+	char	*input_ending;
 
 	i = 0;
 	while (line_read[i - 1] != '<' && line_read[i] != '<')
@@ -70,10 +71,9 @@ static char	*take_heredoc_input(t_shell *sh, char *input_ending)
 
 static t_status	handle_here_document_input(t_shell *sh, char *line_read)
 {
-	int		len;
 	char	*input_ending;
 
-	input_ending = parse_heredoc_input_ending(line_read, input_ending);
+	input_ending = parse_heredoc_input_ending(line_read);
 	if (input_ending[0] == '\0')
 		return (print_error("Heredoc '<<' doesn't contain an input ending."));
 	sh->heredoc_file_buffer = take_heredoc_input(sh, input_ending);
@@ -85,7 +85,6 @@ t_status	take_input(t_shell *sh)
 {
 	char	*line_read;
 	char	*parsed_line_read;
-	char	quote;
 
 	line_read = readline(NULL);
 	if (line_read && *line_read)
@@ -97,10 +96,10 @@ t_status	take_input(t_shell *sh)
 				return (ERROR);
 		ft_strlcpy(sh->input_string, parsed_line_read,
 			ft_strlen(parsed_line_read) + 1);
+		free(parsed_line_read);
 	}
 	else
 		eof_exit_shell(sh);
 	free(line_read);
-	free(parsed_line_read);
 	return (SUCCESS);
 }

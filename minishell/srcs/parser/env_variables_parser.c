@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_env_variables.c                              :+:      :+:    :+:   */
+/*   env_variables_parser.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/26 20:45:48 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 14:38:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ char	*parse_env_variables(char *line_read)
 	int		i;
 	int		j;
 	char	*parsed_line_read;
-	char	*env_value;
 
 	parsed_line_read = (char *)malloc(PARSED_LINE_BUFFER_SIZE);
 	i = -1;
