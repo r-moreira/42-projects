@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 20:01:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 20:26:58 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static char	*parse_heredoc_input_ending(char *line_read)
 	int		len;
 	char	*input_ending;
 
-	i = 0;
+	i = 1;
 	while (line_read[i - 1] != '<' && line_read[i] != '<')
 		i++;
 	i += 2;
 	len = ft_strlen(line_read);
-	input_ending = (char *)malloc(sizeof(char) * (len - i) + 1);
+	input_ending = (char *)malloc(sizeof(char) * (len - i) + 10);
 	j = -1;
 	while (i++ < len)
 		if (!ft_isspace(line_read[i]))

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 19:56:31 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 20:24:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MAX_ARGS_NUM 42
 # define MAX_ARGS_NAME 50
 # define DIR_MAX_SIZE 1024
-# define PARSED_LINE_BUFFER_SIZE 3672
+# define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1248
 
 # define CLEAR_CLI "\033[H\033[J"
