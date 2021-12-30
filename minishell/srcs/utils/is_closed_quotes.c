@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   is_closed_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/12 21:07:04 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/12 21:55:39 by romoreir         ###   ########.fr       */
+/*   Created: 2021/12/30 18:54:38 by romoreir          #+#    #+#             */
+/*   Updated: 2021/12/30 18:55:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdlib.h>
-#include <unistd.h>
 
-t_status	print_error(char *err_message)
+t_bool	is_closed_quotes(char c, char *input)
 {
-	ft_putstr_fd("ERROR: ", STDOUT_FILENO);
-	ft_putstr_fd(err_message, STDOUT_FILENO);
-	ft_putchar_fd('\n', STDOUT_FILENO);
-	return (ERROR);
+	int	i;
+
+	i = 0;
+	if (c == '\'' || c == '"')
+	{
+		while (input[++i]) {
+			if (input[i] == c)
+				return (TRUE);
+		}
+		return (FALSE);
+	}
+	else
+		return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 14:27:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 19:56:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ typedef enum e_bool
 
 typedef enum e_flags
 {
-	NONE,
-	PIPE,
-	HERE_DOCUMENT,
-	REDIRECT_IN,
-	REDIRECT_OUT,
-	REDIRECT_OUT_APPEND
+	NONE, //0
+	PIPE, //1
+	REDIRECT_OUT, //2
+	REDIRECT_OUT_APPEND, //3
+	REDIRECT_IN, //4
+	HERE_DOCUMENT //5
 }	e_flags;
 
 typedef struct s_commands
@@ -81,6 +81,8 @@ t_status	print_error(char *err_message);
 void		welcome_message(void);
 void		print_prompt(void);
 t_status	take_input(t_shell *sh);
+t_bool		is_closed_quotes(char c, char *input);
+t_status	syntax_error(char *msg);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
@@ -92,5 +94,6 @@ t_status		analyzer(t_shell *sh);
 //PARSER
 char		*parse_env_variables(char *line_read);
 t_status	parser(t_shell *sh);
+t_status	parse_cmd_flag(t_shell *sh, int cmd_num);
 
 #endif

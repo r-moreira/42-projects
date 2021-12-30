@@ -6,29 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 14:38:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 18:55:30 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 #include <stddef.h>
-
-static t_bool	is_closed_quotes(char c, char *input)
-{
-	int	i;
-
-	i = 0;
-	if (c == '\'' || c == '"')
-	{
-		while (input[++i]) {
-			if (input[i] == c)
-				return (TRUE);
-		}
-		return (FALSE);
-	}
-	else
-		return (FALSE);
-}
 
 //TO-DO
 //Add function to 42 NORM

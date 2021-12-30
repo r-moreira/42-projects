@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 14:47:03 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 20:01:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,17 @@ static t_status	handle_here_document_input(t_shell *sh, char *line_read)
 
 	input_ending = parse_heredoc_input_ending(line_read);
 	if (input_ending[0] == '\0')
-		return (print_error("Heredoc '<<' doesn't contain an input ending."));
+		return (syntax_error("Heredoc '<<' doesn't contain an input ending."));
 	sh->heredoc_file_buffer = take_heredoc_input(sh, input_ending);
 	free(input_ending);
 	return (SUCCESS);
 }
 
+//TO-DO
+//FIX heredoc memory leak
+//FIX exit on empty heredoc line
+//FIX heredoc with multiple flags, ex: wc -l | oi > viv >> kk < aaa << EOF
+//Remove heredoc inpud ending from input string
 t_status	take_input(t_shell *sh)
 {
 	char	*line_read;

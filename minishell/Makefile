@@ -2,7 +2,7 @@ NAME				= minishell
 
 #Compiler
 CC					= clang
-CFLAGS				= -Wextra -Wall -Werror -g -fsanitize=address
+CFLAGS				= -Wextra -Wall -Werror #-g -fsanitize=address
 LIBFT_DIR 			= libft
 LIBFT 				= -L ./$(LIBFT_DIR) -lft
 LIBREADLINE			= -lreadline
@@ -22,9 +22,10 @@ MAIN_SRCS			= $(MAIN_DIR)/minishell.c
 #Utils
 UTILS_DIR			= $(MAIN_DIR)/utils
 UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
-					  $(UTILS_DIR)/print_error.c \
 					  $(UTILS_DIR)/take_input.c \
-					  $(UTILS_DIR)/welcome_message.c
+					  $(UTILS_DIR)/welcome_message.c \
+					  $(UTILS_DIR)/syntax_error.c \
+					  $(UTILS_DIR)/is_closed_quotes.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
@@ -34,7 +35,8 @@ PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
 PARSER_SRCS			= $(PARSER_DIR)/env_variables_parser.c \
-					  $(PARSER_DIR)/cmd_parser.c
+					  $(PARSER_DIR)/parser.c \
+					  $(PARSER_DIR)/flags_parser.c
 
 #Analyzer
 ANALYZER_DIR		= $(MAIN_DIR)/analyzer
