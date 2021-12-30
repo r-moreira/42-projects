@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/26 20:44:45 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 14:18:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_minishell
 {
 	char		input_string[MAX_LINE_INPUT];
 	t_commands	cmds[MAX_COMMANDS_NUM];
+	char		*cmd_tokens[MAX_COMMANDS_NUM];
 	char		*heredoc_file_buffer;
 	int			cmds_count;
 }	t_shell;
@@ -85,11 +86,11 @@ t_status	take_input(t_shell *sh);
 void		eof_exit_shell(t_shell *sh);
 void		run_signals();
 
+//ANALYZER
+t_status		analyzer(t_shell *sh);
+
 //PARSER
 char		*parse_env_variables(char *line_read);
-
-//ANALYZER
-
-void		analyzer(t_shell *sh);
+t_status	parse_cmds(t_shell *sh);
 
 #endif
