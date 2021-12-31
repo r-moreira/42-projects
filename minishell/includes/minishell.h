@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 20:24:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 21:23:48 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# define SIGQUIT_NUM 10554
 # define MAX_LINE_INPUT 1248
 # define MAX_COMMANDS_NUM 136
 # define MAX_COMMAND_NAME 50

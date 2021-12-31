@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 20:26:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 21:43:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ static char	*take_heredoc_input(t_shell *sh, char *input_ending)
 	char	*heredoc_input;
 	char	*hdoc_line_read;
 	char	*parsed_heredoc_in;
+	char	*tmp_ptr;
 
-	heredoc_input = (char *)malloc(HERE_DOCUMENT_BUFFER_SIZE);
+	heredoc_input = ft_strdup("");
 	while (TRUE)
 	{
 		hdoc_line_read = readline("> ");
@@ -58,14 +59,17 @@ static char	*take_heredoc_input(t_shell *sh, char *input_ending)
 		{
 			if (!ft_strncmp(input_ending, hdoc_line_read, sizeof(input_ending)))
 				break ;
-			ft_strcat(heredoc_input, hdoc_line_read);
-			ft_strcat(heredoc_input, "\n");
+			tmp_ptr = heredoc_input;
+			heredoc_input = ft_strjoin(
+				ft_strcat(heredoc_input, "\n"), hdoc_line_read);
 			free(hdoc_line_read);
+			free(tmp_ptr);
 		}
-		else
+		else if (hdoc_line_read == NULL)
 			eof_exit_shell(sh);
 	}
 	parsed_heredoc_in = parse_env_variables(heredoc_input);
+	free(heredoc_input);
 	return (parsed_heredoc_in);
 }
 
@@ -82,10 +86,8 @@ static t_status	handle_here_document_input(t_shell *sh, char *line_read)
 }
 
 //TO-DO
-//FIX heredoc memory leak
-//FIX exit on empty heredoc line
-//FIX heredoc with multiple flags, ex: wc -l | oi > viv >> kk < aaa << EOF
-//Remove heredoc inpud ending from input string
+//FIX heredoc with "<" FLAG (< and <<)
+//Remove heredoc input ending from input string
 t_status	take_input(t_shell *sh)
 {
 	char	*line_read;
@@ -103,8 +105,9 @@ t_status	take_input(t_shell *sh)
 			ft_strlen(parsed_line_read) + 1);
 		free(parsed_line_read);
 	}
-	else
+	else if (line_read == NULL)
 		eof_exit_shell(sh);
+
 	free(line_read);
 	return (SUCCESS);
 }
