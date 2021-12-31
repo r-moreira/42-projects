@@ -45,11 +45,7 @@ ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 all:				$(NAME)
 
 $(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
-	$(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
-
-#Compiling external libs
-libft:
-	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR) && $(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
 
 #Compiling main
 $(OBJS_DIR)/%.o:	$(MAIN_DIR)/%.c
@@ -77,7 +73,7 @@ clean:
 	$(RM) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT)
+	$(RM) $(NAME) $(LIBFT_DIR)/libft.a
 
 re: fclean all
 
