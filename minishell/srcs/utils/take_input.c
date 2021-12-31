@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 21:43:22 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/30 21:50:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static t_status	handle_here_document_input(t_shell *sh, char *line_read)
 
 //TO-DO
 //FIX heredoc with "<" FLAG (< and <<)
-//Remove heredoc input ending from input string
+//FIX heredoc wh FLAG <<EOF (No spaces between)
 t_status	take_input(t_shell *sh)
 {
 	char	*line_read;
