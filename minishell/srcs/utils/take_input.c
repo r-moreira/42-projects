@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/31 15:37:00 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:39:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*parse_heredoc_input_end(char *parsed_line)
 			break ;
 		i++;
 	}
-	while(ft_isspace(parsed_line[i]))
+	while (ft_isspace(parsed_line[i]))
 		i++;
 	len = ft_strlen(parsed_line);
 	input_end = (char *)malloc(sizeof(char) * (len - i) + 1);
@@ -66,7 +66,7 @@ static char	*take_heredoc_input(t_shell *sh, char *input_end)
 				break ;
 			tmp_ptr = heredoc_input;
 			heredoc_input = ft_strjoin(
-				ft_strcat(heredoc_input, "\n"), hdoc_line_read);
+					ft_strcat(heredoc_input, "\n"), hdoc_line_read);
 			free(hdoc_line_read);
 			free(tmp_ptr);
 		}
@@ -116,7 +116,6 @@ t_status	take_input(t_shell *sh)
 				ft_strlen(parsed_line) + 1);
 			free(parsed_line);
 		}
-
 	}
 	else if (line_read == NULL)
 		eof_exit_shell(sh);

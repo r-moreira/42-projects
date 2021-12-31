@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:54:38 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 18:55:01 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:41:35 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ t_bool	is_closed_quotes(char c, char *input)
 	i = 0;
 	if (c == '\'' || c == '"')
 	{
-		while (input[++i]) {
+		while (input[++i])
+		{
 			if (input[i] == c)
 				return (TRUE);
 		}

@@ -6,21 +6,21 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 19:55:52 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:40:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-
-static t_bool is_flag(char c)
+static t_bool	is_flag(char c)
 {
 	if (c == '|' || c == '<' || c == '>')
 		return (TRUE);
 	return (FALSE);
 }
 
-static t_status get_cmd_flag(t_shell *sh, char *cmd_token, int cmd_num, int flag_index)
+static t_status	get_cmd_flag(t_shell *sh, char *cmd_token, int cmd_num,
+int flag_index)
 {
 	if (cmd_token[flag_index] == '|')
 		sh->cmds[cmd_num].flag = PIPE;
