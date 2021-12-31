@@ -39,6 +39,7 @@ CFILES		=	ft_memset.c \
 				ft_putstr_fd.c \
 				ft_putendl_fd.c \
 				ft_putnbr_fd.c \
+				ft_remove_substr.c
 
 BON_OBJS	=	$(BON_CFILES:.c=.o)
 BON_CFILES	=	ft_lstnew.c \
