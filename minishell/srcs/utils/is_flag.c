@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eof_handler.c                                      :+:      :+:    :+:   */
+/*   is_flag.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/26 19:28:17 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 01:52:31 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/01 01:15:09 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/01 01:15:20 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdlib.h>
 
-void	eof_exit_shell(t_shell *sh)
+t_bool	is_flag(char c)
 {
-	(void)sh;
-	printf("exit\n");
-	exit(EXIT_SUCCESS);
+	if (c == '|' || c == '<' || c == '>')
+		return (TRUE);
+	return (FALSE);
 }

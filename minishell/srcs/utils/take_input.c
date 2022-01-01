@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/31 15:39:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/01 01:53:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,20 @@ static t_status	handle_here_document_input(t_shell *sh, char *parsed_line)
 {
 	char	*input_end;
 	char	*tmp;
+	char	*hdoc_fb;
 
 	input_end = parse_heredoc_input_end(parsed_line);
 	if (input_end[0] == '\0')
 		return (syntax_error("Heredoc '<<' doesn't contain an input ending."));
-	sh->heredoc_file_buffer = take_heredoc_input(sh, input_end);
+	hdoc_fb = take_heredoc_input(sh, input_end);
+	ft_strlcpy(sh->heredoc_file_buffer, hdoc_fb, ft_strlen(hdoc_fb) + 1);
 	tmp = ft_remove_substr(parsed_line, input_end, ft_strlen(parsed_line));
 	ft_strlcpy(sh->input_string, tmp, ft_strlen(tmp) + 1);
 	free(parsed_line);
 	free(input_end);
+	free(hdoc_fb);
 	free(tmp);
+	printf("hdoc fb = |%s|\n", sh->heredoc_file_buffer);
 	return (SUCCESS);
 }
 

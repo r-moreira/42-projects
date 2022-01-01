@@ -1,16 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   executor_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/31 21:05:28 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/01 01:56:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+//TO-DO
+//Melhorar logica de validação de tokens
+t_status	is_token_valid(char *token)
+{
+	int	i;
+	int	alpha_count;
+	int	flag_count;
+
+	alpha_count = 0;
+	flag_count = 0;
+	i = -1;
+	while (token[++i])
+	{
+		if (ft_isalpha(token[i]))
+			alpha_count++;
+		else if (is_flag(token[i]))
+			flag_count++;
+	}
+	if (alpha_count >= 2 || flag_count >= 1)
+		return (SUCCESS);
+	return (syntax_error("Syntax Error - Check your commands."));
+}
 
 t_status	parser(t_shell *sh)
 {
@@ -19,12 +42,14 @@ t_status	parser(t_shell *sh)
 	i = -1;
 	while (++i < sh->cmds_count)
 	{
-		printf("cmd_token[%d] = %s\n", i, sh->cmd_tokens[i]); //TEMP
-		if (parse_flag(sh, i) == ERROR)
-			return (ERROR);
-		if (parse_cmd(sh, i) == ERROR)
-			return (ERROR);
-		//parse_cmd_args
+		printf("cmd_token[%d] = |%s|\n", i, sh->cmd_tokens[i]); //TEMP
+		if (is_token_valid(sh->cmd_tokens[i]))
+		{
+			if (parse_flag(sh, i) == ERROR)
+				return (ERROR);
+			if (parse_cmd(sh, i) == ERROR)
+				return (ERROR);
+		}
 	}
 	i = -1;
 	while (++i < sh->cmds_count)

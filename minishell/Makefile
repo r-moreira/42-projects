@@ -26,7 +26,8 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/welcome_message.c \
 					  $(UTILS_DIR)/syntax_error.c \
 					  $(UTILS_DIR)/is_closed_quotes.c \
-					  $(UTILS_DIR)/split_null_end.c
+					  $(UTILS_DIR)/split_null_end.c \
+					  $(UTILS_DIR)/is_flag.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers

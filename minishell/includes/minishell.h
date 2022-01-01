@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/31 21:05:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/01 01:49:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 # define MAX_LINE_INPUT 1248
 # define MAX_COMMANDS_NUM 136
 # define MAX_COMMAND_NAME 50
+# define MAX_ARGS_NUM 42
+# define MAX_ARGS_NAME 50
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
-# define HERE_DOCUMENT_BUFFER_SIZE 1248
+# define HERE_DOCUMENT_BUFFER_SIZE 1732
 
 # define CLEAR_CLI "\033[H\033[J"
 
@@ -61,7 +63,7 @@ typedef enum e_flags
 typedef struct s_commands
 {
 	char	name[MAX_COMMAND_NAME];
-	char	**args;
+	char	args[MAX_ARGS_NUM][MAX_ARGS_NAME];
 	int		args_count;
 	e_flags	flag;
 }	t_commands;
@@ -71,7 +73,7 @@ typedef struct s_minishell
 	char		input_string[MAX_LINE_INPUT];
 	t_commands	cmds[MAX_COMMANDS_NUM];
 	char		*cmd_tokens[MAX_COMMANDS_NUM];
-	char		*heredoc_file_buffer;
+	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
 	int			cmds_count;
 }	t_shell;
 
@@ -83,7 +85,7 @@ t_status	take_input(t_shell *sh);
 t_bool		is_closed_quotes(char c, char *input);
 t_status	syntax_error(char *msg);
 char		**split_null_end(char const *s, char c);
-
+t_bool		is_flag(char c);
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
 void		run_signals();
