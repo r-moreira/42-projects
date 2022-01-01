@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 01:49:01 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/01 14:33:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	g_pid_number;
 typedef enum e_status
 {
 	ERROR,
-	SUCCESS
+	SUCCESS,
+	NOT_TOKEN
 }	t_status;
 
 typedef enum e_bool
