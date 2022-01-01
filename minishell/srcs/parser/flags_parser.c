@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/31 15:40:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/31 21:04:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int flag_index)
 	return (SUCCESS);
 }
 
-t_status	parse_cmd_flag(t_shell *sh, int cmd_num)
+t_status	parse_flag(t_shell *sh, int cmd_num)
 {
 	int		i;
 	char	c;

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 21:23:48 by romoreir         ###   ########.fr       */
+/*   Updated: 2021/12/31 21:05:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # define MAX_LINE_INPUT 1248
 # define MAX_COMMANDS_NUM 136
 # define MAX_COMMAND_NAME 50
-# define MAX_ARGS_NUM 42
-# define MAX_ARGS_NAME 50
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1248
@@ -63,7 +61,7 @@ typedef enum e_flags
 typedef struct s_commands
 {
 	char	name[MAX_COMMAND_NAME];
-	char	args[MAX_ARGS_NUM][MAX_ARGS_NAME];
+	char	**args;
 	int		args_count;
 	e_flags	flag;
 }	t_commands;
@@ -84,6 +82,7 @@ void		print_prompt(void);
 t_status	take_input(t_shell *sh);
 t_bool		is_closed_quotes(char c, char *input);
 t_status	syntax_error(char *msg);
+char		**split_null_end(char const *s, char c);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
@@ -95,6 +94,7 @@ t_status		analyzer(t_shell *sh);
 //PARSER
 char		*parse_env_variables(char *line_read);
 t_status	parser(t_shell *sh);
-t_status	parse_cmd_flag(t_shell *sh, int cmd_num);
+t_status	parse_flag(t_shell *sh, int cmd_num);
+t_status	parse_cmd(t_shell *sh, int cmd_num);
 
 #endif

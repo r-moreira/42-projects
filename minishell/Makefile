@@ -25,7 +25,8 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/take_input.c \
 					  $(UTILS_DIR)/welcome_message.c \
 					  $(UTILS_DIR)/syntax_error.c \
-					  $(UTILS_DIR)/is_closed_quotes.c
+					  $(UTILS_DIR)/is_closed_quotes.c \
+					  $(UTILS_DIR)/split_null_end.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
@@ -35,8 +36,9 @@ PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
 PARSER_SRCS			= $(PARSER_DIR)/env_variables_parser.c \
-					  $(PARSER_DIR)/parser.c \
-					  $(PARSER_DIR)/flags_parser.c
+					  $(PARSER_DIR)/executor_parser.c \
+					  $(PARSER_DIR)/flags_parser.c \
+					  $(PARSER_DIR)/cmd_parser.c
 
 #Analyzer
 ANALYZER_DIR		= $(MAIN_DIR)/analyzer

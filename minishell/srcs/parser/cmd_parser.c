@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eof_handler.c                                      :+:      :+:    :+:   */
+/*   cmd_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/26 19:28:17 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/31 21:03:01 by romoreir         ###   ########.fr       */
+/*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
+/*   Updated: 2021/12/31 21:08:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdlib.h>
 
-void	eof_exit_shell(t_shell *sh)
+//TO-DO
+//Remover flags do INPUT
+t_status	parse_cmd(t_shell *sh, int cmd_num)
 {
-	int	i;
-	int	j;
+	int		i;
 
-	if (sh->heredoc_file_buffer != NULL)
-		free(sh->heredoc_file_buffer);
+	if (sh->cmd_tokens[cmd_num] == NULL)
+		return (ERROR);
+	sh->cmds[cmd_num].args = split_null_end(sh->cmd_tokens[cmd_num], ' ');
+	ft_strlcpy(sh->cmds[cmd_num].name, sh->cmds[cmd_num].args[0],
+		ft_strlen(sh->cmds[cmd_num].args[0]));
 	i = -1;
-	while (++i < sh->cmds_count)
+	while (sh->cmds[cmd_num].args[++i])
 	{
-		j = -1;
-		while (sh->cmds[i].args[++j])
-			free(sh->cmds[i].args[j]);
+		printf("CMD[%d] - ARGC[%d] - |%s|\n", cmd_num, i, sh->cmds[cmd_num].args[i]); //TMP
 	}
-	free(sh->cmds->args);
-	printf("exit\n");
-	exit(EXIT_SUCCESS);
+	return (SUCCESS);
 }
