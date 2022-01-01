@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 01:53:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/01 01:57:36 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static t_status	handle_here_document_input(t_shell *sh, char *parsed_line)
 	free(input_end);
 	free(hdoc_fb);
 	free(tmp);
-	printf("hdoc fb = |%s|\n", sh->heredoc_file_buffer);
 	return (SUCCESS);
 }
 

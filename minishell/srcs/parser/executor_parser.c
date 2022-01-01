@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 01:56:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/01 01:59:47 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ t_status	parser(t_shell *sh)
 				return (ERROR);
 		}
 	}
-	i = -1;
-	while (++i < sh->cmds_count)
-		printf("CMD[%d] - FLAG[%d]\n", i, sh->cmds[i].flag);
 	i = -1;
 	while (++i < sh->cmds_count)
 		free(sh->cmd_tokens[i]);
