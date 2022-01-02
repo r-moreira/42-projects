@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 12:56:07 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 12:44:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 12:39:06 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ long	split_count(char *s, char c)
 	return (count);
 }
 
-int	get_str_end(char *s, char c, int end)
+int	get_str_end(char *s, char c, int start)
 {
+	int		end;
 	char	quote;
 
+	end = 0;
 	while (s[end])
 	{
 		if (is_closed_quotes(s[end], s + end))
@@ -56,6 +58,8 @@ int	get_str_end(char *s, char c, int end)
 			break ;
 		end++;
 	}
+	if (end == 0)
+		end = start;
 	return end;
 }
 
@@ -73,8 +77,7 @@ char	**split_null_end(char *s, char c)
 	{
 		while (s[start] == c)
 			start++;
-		end = start;
-		end = get_str_end(s, c, end);
+		end = get_str_end(s, c, start);
 		strs[i] = ft_substr(s, start, (end - start));
 		if (!strs[i])
 			return (NULL);
