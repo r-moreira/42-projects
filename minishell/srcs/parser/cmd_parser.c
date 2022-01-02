@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 12:47:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:41:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static char*	remove_flags(char *token)
 		}
 	}
 	new[++j] = '\0';
-	printf("NFLAG_TKN = [%s]\n", new);
+	if (DEBUGGER)
+		printf("NFLAG_TKN = [%s]\n", new);
 	return (new);
 }
 
@@ -79,9 +80,12 @@ t_status	parse_cmd(t_shell *sh, int cmd_num)
 	while (split[++i])
 	{
 		ft_strlcpy(sh->cmds[cmd_num].args[i], split[i], ft_strlen(split[i]));
-		printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, split[i]); //TMP
+		if (DEBUGGER)
+			printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i,
+				sh->cmds[cmd_num].args[i]);
 	}
-	printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, split[i]); //TMP
+	if (DEBUGGER)
+		printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, split[i]);
 	ft_strlcpy(sh->cmds[cmd_num].name, split[0], ft_strlen(split[0]));
 	free(token);
 	free_split(split);

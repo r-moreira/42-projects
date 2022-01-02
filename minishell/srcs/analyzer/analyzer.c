@@ -6,15 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:11:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:29:41 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stddef.h>
-
-//TO-DO
-//Add function to 42 NORM
 
 static char	handle_quotes(t_bool *has_open_quotes, char c, char *i, char quote)
 {
@@ -71,18 +67,18 @@ static char	*cmd_tokenizer(char *input)
 
 t_status	analyzer(t_shell *sh)
 {
-	size_t	pointer_position;
+	size_t	ptr_pos;
 	int		i;
 
-	printf("INPUT = [%s]\n", sh->input_string); //TMP
-
+	if (DEBUGGER)
+		printf("INPUT = [%s]\n", sh->input_string);
 	i = -1;
-	pointer_position = 0;
-	while (pointer_position < ft_strlen(sh->input_string))
+	ptr_pos = 0;
+	while (ptr_pos < ft_strlen(sh->input_string))
 	{
-		sh->cmd_tokens[++i] = cmd_tokenizer(sh->input_string + pointer_position);
+		sh->cmd_tokens[++i] = cmd_tokenizer(sh->input_string + ptr_pos);
 		if (ft_strncmp(sh->cmd_tokens[i], "", ft_strlen(sh->cmd_tokens[i])))
-			pointer_position += ft_strlen(sh->cmd_tokens[i]);
+			ptr_pos += ft_strlen(sh->cmd_tokens[i]);
 	}
 	sh->cmds_count = i + 1;
 	if (sh->cmds_count <= 0)

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 15:07:29 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:40:53 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_status	parser(t_shell *sh)
 	i = -1;
 	while (++i < sh->cmds_count)
 	{
-		printf("CMD_TOKEN[%d] = [%s]\n", i, sh->cmd_tokens[i]); //TEMP
 		if (is_token_valid(sh->cmd_tokens[i]) == SUCCESS)
 		{
 			if (parse_flag(sh, i) == ERROR)

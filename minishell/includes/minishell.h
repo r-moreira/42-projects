@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 11:48:11 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:24:38 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define SIGQUIT_NUM 10554
+//Set debugger ON/OFF
+# define DEBUGGER 1
+
+//Buffers
 # define MAX_LINE_INPUT 1248
 # define MAX_COMMANDS_NUM 136
 # define MAX_COMMAND_NAME 50
@@ -34,6 +37,8 @@
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
 
+//AUX defines
+# define SIGQUIT_NUM 10554
 # define CLEAR_CLI "\033[H\033[J"
 
 int	g_pid_number;
@@ -99,5 +104,8 @@ char		*parse_env_variables(char *line_read);
 t_status	parser(t_shell *sh);
 t_status	parse_flag(t_shell *sh, int cmd_num);
 t_status	parse_cmd(t_shell *sh, int cmd_num);
+
+//debugger
+void		debugger(t_shell *sh);
 
 #endif
