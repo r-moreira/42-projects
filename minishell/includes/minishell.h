@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 14:33:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 11:48:11 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		print_prompt(void);
 t_status	take_input(t_shell *sh);
 t_bool		is_closed_quotes(char c, char *input);
 t_status	syntax_error(char *msg);
-char		**split_null_end(char const *s, char c);
+char		**split_null_end(char *s, char c);
 t_bool		is_flag(char c);
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 15:08:48 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 12:00:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static char*	remove_flags(char *token)
 	return (new);
 }
 
-//TO-DO
-//Remover flags do INPUT
 t_status	parse_cmd(t_shell *sh, int cmd_num)
 {
 	int		i;
@@ -83,6 +81,7 @@ t_status	parse_cmd(t_shell *sh, int cmd_num)
 		ft_strlcpy(sh->cmds[cmd_num].args[i], split[i], ft_strlen(split[i]));
 		printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, split[i]); //TMP
 	}
+	printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, split[i]); //TMP
 	ft_strlcpy(sh->cmds[cmd_num].name, split[0], ft_strlen(split[0]));
 	free(token);
 	free_split(split);
