@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:00:56 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:11:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ static char	handle_quotes(t_bool *has_open_quotes, char c, char *i, char quote)
 	return (quote);
 }
 
+static char	*handle_2char_flags(char *input, char *token, int i)
+{
+	token[i] = input[i];
+	if (input[i + 1] == '>' || input[i + 1] == '<')
+	{
+		i++;
+		token[i] = input[i];
+	}
+	token[++i] = '\0';
+	return (token);
+}
 
 static char	*cmd_tokenizer(char *input)
 {
@@ -48,16 +59,7 @@ static char	*cmd_tokenizer(char *input)
 			if (input[i] != '|' && input[i] != '>' && input[i] != '<')
 				token[i] = input[i];
 			else
-			{
-				token[i] = input[i];
-				if (input[i + 1] == '>' || input[i + 1] == '<')
-				{
-					i++;
-					token[i] = input[i];
-				}
-				token[++i] = '\0';
-				return (token);
-			}
+				return (handle_2char_flags(input, token, i));
 		}
 		else
 			token[i] = input[i];
