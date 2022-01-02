@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:39:21 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:46:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ static void	debugger_aux(t_shell *sh, int cmd_num)
 {
 	char	*flag_descrpt;
 
-	if (sh->cmds[cmd_num].flag == 1)
-		flag_descrpt = "PIPE | ";
-	else if (sh->cmds[cmd_num].flag == 2)
-		flag_descrpt = "REDIRECT OUT > ";
-	else if (sh->cmds[cmd_num].flag == 3)
-		flag_descrpt = "REDIRECT OUT APPEND >> ";
-	else if (sh->cmds[cmd_num].flag == 4)
-		flag_descrpt = "REDIRECT IN < ";
-	else if (sh->cmds[cmd_num].flag == 5)
-		flag_descrpt = "HERE DOCUMENT << ";
-	else
-		flag_descrpt = "NONE";
-
-	printf("CMD[%d] - FLAG[%s]\n", cmd_num, flag_descrpt);
+	if (DEBUGGER)
+	{
+		if (sh->cmds[cmd_num].flag == 1)
+			flag_descrpt = "PIPE";
+		else if (sh->cmds[cmd_num].flag == 2)
+			flag_descrpt = "REDIRECT OUT";
+		else if (sh->cmds[cmd_num].flag == 3)
+			flag_descrpt = "REDIRECT OUT APPEND";
+		else if (sh->cmds[cmd_num].flag == 4)
+			flag_descrpt = "REDIRECT IN";
+		else if (sh->cmds[cmd_num].flag == 5)
+			flag_descrpt = "HERE DOCUMENT";
+		else
+			flag_descrpt = "NONE";
+		printf("CMD[%d] - FLAG[%s]\n", cmd_num, flag_descrpt);
+	}
 }
 
 static t_status	get_cmd_flag(t_shell *sh, char *cmd_token, int cmd_num,
@@ -57,6 +59,7 @@ int flag_index)
 		else
 			sh->cmds[cmd_num].flag = REDIRECT_OUT;
 	}
+	debugger_aux(sh, cmd_num);
 	return (SUCCESS);
 }
 
@@ -81,8 +84,6 @@ t_status	parse_flag(t_shell *sh, int cmd_num)
 			while (cmd_token[i] != c)
 				i++;
 		}
-	}
-	if (DEBUGGER)
-		debugger_aux(sh, cmd_num);
+	};
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:41:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:45:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static t_bool	is_cmd_valid(char *token)
 	return (FALSE);
 }
 
-static void	free_split(char **split)
+static void	free_splt(char **splt)
 {
 	int	i;
 
 	i = -1;
-	while (split[++i])
-		free(split[i]);
-	free(split);
+	while (splt[++i])
+		free(splt[i]);
+	free(splt);
 }
 
 static char*	remove_flags(char *token)
@@ -69,25 +69,25 @@ static char*	remove_flags(char *token)
 t_status	parse_cmd(t_shell *sh, int cmd_num)
 {
 	int		i;
-	char	**split;
+	char	**splt;
 	char	*token;
 
 	if (!sh->cmd_tokens[cmd_num] || !is_cmd_valid(sh->cmd_tokens[cmd_num]))
 		return (ERROR);
 	token = remove_flags(sh->cmd_tokens[cmd_num]);
-	split = split_null_end(token, ' ');
+	splt = split_null_end(token, ' ');
 	i = -1;
-	while (split[++i])
+	while (splt[++i])
 	{
-		ft_strlcpy(sh->cmds[cmd_num].args[i], split[i], ft_strlen(split[i]));
+		ft_strlcpy(sh->cmds[cmd_num].args[i], splt[i], ft_strlen(splt[i]) + 1);
 		if (DEBUGGER)
 			printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i,
 				sh->cmds[cmd_num].args[i]);
 	}
 	if (DEBUGGER)
-		printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, split[i]);
-	ft_strlcpy(sh->cmds[cmd_num].name, split[0], ft_strlen(split[0]));
+		printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, splt[i]);
+	ft_strlcpy(sh->cmds[cmd_num].name, splt[0], ft_strlen(splt[0]));
 	free(token);
-	free_split(split);
+	free_splt(splt);
 	return (SUCCESS);
 }
