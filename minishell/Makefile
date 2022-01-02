@@ -13,6 +13,7 @@ MAIN_OBJ			= $(patsubst $(MAIN_DIR)/%.c, $(OBJS_DIR)/%.o, $(MAIN_SRCS))
 UTILS_OBJS			= $(patsubst $(UTILS_DIR)/%.c, $(OBJS_DIR)/%.o, $(UTILS_SRCS))
 PARSER_OBJS			= $(patsubst $(PARSER_DIR)/%.c, $(OBJS_DIR)/%.o, $(PARSER_SRCS))
 ANALYZER_OBJS		= $(patsubst $(ANALYZER_DIR)/%.c, $(OBJS_DIR)/%.o, $(ANALYZER_SRCS))
+EXECUTOR_OBJS		= $(patsubst $(EXECUTOR_DIR)/%.c, $(OBJS_DIR)/%.o, $(EXECUTOR_SRCS))
 PHANDLERS_OBJS		= $(patsubst $(PHANDLERS_DIR)/%.c, $(OBJS_DIR)/%.o, $(PHANDLERS_SRCS))
 
 #Sources
@@ -29,11 +30,6 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/split_null_end.c \
 					  $(UTILS_DIR)/is_flag.c
 
-#Process Handlers
-PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
-PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
-					  $(PHANDLERS_DIR)/signal_handlers.c
-
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
 PARSER_SRCS			= $(PARSER_DIR)/env_variables_parser.c \
@@ -45,10 +41,19 @@ PARSER_SRCS			= $(PARSER_DIR)/env_variables_parser.c \
 ANALYZER_DIR		= $(MAIN_DIR)/analyzer
 ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 
+#Executor
+EXECUTOR_DIR		= $(MAIN_DIR)/executor
+EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c
+
+#Process Handlers
+PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
+PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
+					  $(PHANDLERS_DIR)/signal_handlers.c
+
 all:				$(NAME)
 
-$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
-	$(MAKE) -C $(LIBFT_DIR) && $(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
+$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS)
+	$(MAKE) -C $(LIBFT_DIR) && $(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
 
 #Compiling main
 $(OBJS_DIR)/%.o:	$(MAIN_DIR)/%.c
@@ -71,9 +76,13 @@ $(OBJS_DIR)/%.o:	$(PARSER_DIR)/%.c
 $(OBJS_DIR)/%.o:	$(ANALYZER_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+#Compiling executor functions
+$(OBJS_DIR)/%.o:	$(EXECUTOR_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(RM) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS)
+	$(RM) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS)
 
 fclean: clean
 	$(RM) $(NAME) $(LIBFT_DIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:24:38 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 13:54:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ char		*parse_env_variables(char *line_read);
 t_status	parser(t_shell *sh);
 t_status	parse_flag(t_shell *sh, int cmd_num);
 t_status	parse_cmd(t_shell *sh, int cmd_num);
+
+//EXECUTOR
+void		executor(t_shell *sh);
 
 //debugger
 void		debugger(t_shell *sh);
