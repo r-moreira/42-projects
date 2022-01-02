@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:54:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 14:04:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-//Set debugger ON/OFF
+/* ** Set debugger ON/OFF ** */
 # define DEBUGGER 1
 
-//Buffers
+/* ** Buffers ** */
 # define MAX_LINE_INPUT 1248
 # define MAX_COMMANDS_NUM 136
 # define MAX_COMMAND_NAME 50
@@ -37,12 +37,14 @@
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
 
-//AUX defines
+/* ** Aux Defines ** */
 # define SIGQUIT_NUM 10554
 # define CLEAR_CLI "\033[H\033[J"
 
+/* ** Global Variables ** */
 int	g_pid_number;
 
+/* ** Enums ** */
 typedef enum e_status
 {
 	ERROR,
@@ -58,14 +60,15 @@ typedef enum e_bool
 
 typedef enum e_flags
 {
-	NONE, //0
-	PIPE, //1
-	REDIRECT_OUT, //2
-	REDIRECT_OUT_APPEND, //3
-	REDIRECT_IN, //4
-	HERE_DOCUMENT //5
+	NONE,
+	PIPE,
+	REDIRECT_OUT,
+	REDIRECT_OUT_APPEND,
+	REDIRECT_IN,
+	HERE_DOCUMENT
 }	e_flags;
 
+/* ** Structs ** */
 typedef struct s_commands
 {
 	char	name[MAX_COMMAND_NAME];
@@ -83,6 +86,8 @@ typedef struct s_minishell
 	int			cmds_count;
 }	t_shell;
 
+/* ** Functions ** */
+
 //UTILS
 t_status	print_error(char *err_message);
 void		welcome_message(void);
@@ -92,6 +97,7 @@ t_bool		is_closed_quotes(char c, char *input);
 t_status	syntax_error(char *msg);
 char		**split_null_end(char *s, char c);
 t_bool		is_flag(char c);
+
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
 void		run_signals();
@@ -107,8 +113,5 @@ t_status	parse_cmd(t_shell *sh, int cmd_num);
 
 //EXECUTOR
 void		executor(t_shell *sh);
-
-//debugger
-void		debugger(t_shell *sh);
 
 #endif
