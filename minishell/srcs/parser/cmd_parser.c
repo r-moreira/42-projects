@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 12:00:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/02 12:47:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_status	parse_cmd(t_shell *sh, int cmd_num)
 	if (!sh->cmd_tokens[cmd_num] || !is_cmd_valid(sh->cmd_tokens[cmd_num]))
 		return (ERROR);
 	token = remove_flags(sh->cmd_tokens[cmd_num]);
-	split = split_null_end(token, ' '); //TO-DO: se tiver espaço no meio das aspas, não dar split
+	split = split_null_end(token, ' ');
 	i = -1;
 	while (split[++i])
 	{
