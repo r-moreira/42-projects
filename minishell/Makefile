@@ -53,7 +53,13 @@ PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
 
 #Built-ins functions
 BUILTINS_DIR		= $(MAIN_DIR)/built-ins
-BUILTINS_SRCS		= $(BUILTINS_DIR)/echo.c
+BUILTINS_SRCS		= $(BUILTINS_DIR)/echo.c \
+					  $(BUILTINS_DIR)/cd.c \
+					  $(BUILTINS_DIR)/pwd.c \
+					  $(BUILTINS_DIR)/export.c \
+					  $(BUILTINS_DIR)/unset.c \
+					  $(BUILTINS_DIR)/env.c \
+					  $(BUILTINS_DIR)/exit.c
 
 all:				$(NAME)
 
