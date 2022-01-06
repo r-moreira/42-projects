@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:53:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/05 23:34:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_shell(t_shell *sh)
 	sh->cmds->args_count = 0;
 }
 
+// TO-DO -> "$?"
 int	main(void)
 {
 	t_shell	sh;
