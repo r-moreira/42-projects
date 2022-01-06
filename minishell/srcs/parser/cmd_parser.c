@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:48:51 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/05 22:30:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_status	parse_cmd(t_shell *sh, int cmd_num)
 	}
 	if (DEBUGGER)
 		printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, splt[i]);
-	ft_strlcpy(sh->cmds[cmd_num].name, splt[0], ft_strlen(splt[0]));
+	ft_strlcpy(sh->cmds[cmd_num].name, splt[0], ft_strlen(splt[0]) + 1);
 	free(token);
 	free_splt(splt);
 	return (SUCCESS);
