@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/05 23:26:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/05 23:29:14 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ static t_status	handle_builtin(t_shell *sh)
 {
 	size_t		len;
 	char		*cmd;
-	t_bool		is_builtin;
 
-	is_builtin = TRUE;
 	cmd	= sh->cmds[0].name;
 	len = ft_strlen(cmd) + 1;
 	if (ft_strncmp(cmd, "echo", len) == 0)
