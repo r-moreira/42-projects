@@ -15,6 +15,7 @@ PARSER_OBJS			= $(patsubst $(PARSER_DIR)/%.c, $(OBJS_DIR)/%.o, $(PARSER_SRCS))
 ANALYZER_OBJS		= $(patsubst $(ANALYZER_DIR)/%.c, $(OBJS_DIR)/%.o, $(ANALYZER_SRCS))
 EXECUTOR_OBJS		= $(patsubst $(EXECUTOR_DIR)/%.c, $(OBJS_DIR)/%.o, $(EXECUTOR_SRCS))
 PHANDLERS_OBJS		= $(patsubst $(PHANDLERS_DIR)/%.c, $(OBJS_DIR)/%.o, $(PHANDLERS_SRCS))
+BUILTINS_OBJS		= $(patsubst $(BUILTINS_DIR)/%.c, $(OBJS_DIR)/%.o, $(BUILTINS_SRCS))
 
 #Sources
 MAIN_DIR 			= srcs
@@ -50,10 +51,14 @@ PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
 PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
 					  $(PHANDLERS_DIR)/signal_handlers.c
 
+#Built-ins functions
+BUILTINS_DIR		= $(MAIN_DIR)/built-ins
+BUILTINS_SRCS		= $(BUILTINS_DIR)/echo.c
+
 all:				$(NAME)
 
-$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS)
-	$(MAKE) -C $(LIBFT_DIR) && $(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
+$(NAME): 			libft $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS) $(BUILTINS_OBJS)
+	$(MAKE) -C $(LIBFT_DIR) && $(CC) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS) $(BUILTINS_OBJS) $(CFLAGS) $(LIBFT) $(LIBREADLINE) -o ${NAME}
 
 #Compiling main
 $(OBJS_DIR)/%.o:	$(MAIN_DIR)/%.c
@@ -80,9 +85,13 @@ $(OBJS_DIR)/%.o:	$(ANALYZER_DIR)/%.c
 $(OBJS_DIR)/%.o:	$(EXECUTOR_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+#Compiling built-ins functions
+$(OBJS_DIR)/%.o:	$(BUILTINS_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(RM) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS)
+	$(RM) $(MAIN_OBJ) $(UTILS_OBJS) $(PHANDLERS_OBJS) $(PARSER_OBJS) $(ANALYZER_OBJS) $(EXECUTOR_OBJS) $(BUILTINS_OBJS)
 
 fclean: clean
 	$(RM) $(NAME) $(LIBFT_DIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/05 22:31:38 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/05 23:08:49 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@
 /////////////////////////
 
 
-static void	handle_builtin(char *cmd)
+static void	handle_builtin(t_shell *sh)
 {
 	size_t	len;
+	char	*cmd;
 
-	len =  ft_strlen(cmd) + 1;
+	cmd	= sh->cmds[0].name;
+	len = ft_strlen(cmd) + 1;
 	if (ft_strncmp(cmd, "echo", len) == 0)
-		printf("Calling echo\n");
+		echo(sh);
 	else if (ft_strncmp(cmd, "cd", len) == 0)
 		printf("Calling cd\n");
 	else if (ft_strncmp(cmd, "pwd", len) == 0)
@@ -44,10 +46,10 @@ static void	handle_builtin(char *cmd)
 	else if (ft_strncmp(cmd, "exit", len) == 0)
 		printf("Calling exit\n");
 	else
-		printf("Calling non built in bin..\n");
+		printf("Calling non built in bin...\n");
 }
 
 void	executor(t_shell *sh)
 {
-	handle_builtin(sh->cmds[0].name);
+	handle_builtin(sh);
 }

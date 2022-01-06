@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 14:04:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/05 23:05:12 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,8 @@ t_status	parse_cmd(t_shell *sh, int cmd_num);
 
 //EXECUTOR
 void		executor(t_shell *sh);
+
+//BUILT-INS
+void		echo(t_shell *sh);
 
 #endif
