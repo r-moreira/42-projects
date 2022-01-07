@@ -6,11 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 18:24:34 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 18:41:48 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdio.h>
 
 static t_bool	has_n_option(t_shell *sh, int cmd_num)
 {
@@ -26,10 +27,10 @@ static t_bool	has_n_option(t_shell *sh, int cmd_num)
 	return (FALSE);
 }
 
-t_status	ft_echo(t_shell *sh, int cmd_num)
+t_status	input_echo(t_shell *sh, int cmd_num)
 {
-	char	*input;
-	int		i;
+	char			*input;
+	int				i;
 
 	input = sh->input_string + 4;
 	i = 0;
@@ -45,4 +46,14 @@ t_status	ft_echo(t_shell *sh, int cmd_num)
 	else
 		printf("%s\n", input + i);
 	return (SUCCESS);
+}
+
+//TO-DO
+//Adicionar tratamento de flags ao comando (> < | >> <<)
+t_status	ft_echo(t_shell *sh, int cmd_num)
+{
+	if (cmd_num == 0)
+		return (input_echo(sh, cmd_num));
+	printf("ERROR - ECHO ON CMD 2+ NOT IMPLEMENTED\n");
+	return (ERROR);
 }
