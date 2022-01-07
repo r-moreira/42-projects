@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/05 22:30:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:42:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	free_splt(char **splt)
 	free(splt);
 }
 
-static char	*remove_flags(char *token)
+char	*remove_flags(char *token)
 {
 	int		i;
 	int		j;

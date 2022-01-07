@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/05 23:30:53 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:45:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 // Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
 /////////////////////////
 
-static t_status	handle_builtin(t_shell *sh)
+static t_status	handle_builtin(t_shell *sh, int cmd_num)
 {
 	size_t		len;
 	char		*cmd;
 
-	cmd	= sh->cmds[0].name;
+	cmd	= sh->cmds[cmd_num].name;
 	len = ft_strlen(cmd) + 1;
 	if (ft_strncmp(cmd, "echo", len) == 0)
-		return (ft_echo(sh));
+		return (ft_echo(sh, cmd_num));
 	else if (ft_strncmp(cmd, "cd", len) == 0)
 		return (ft_cd(sh));
 	else if (ft_strncmp(cmd, "pwd", len) == 0)
@@ -42,12 +42,12 @@ static t_status	handle_builtin(t_shell *sh)
 	else if (ft_strncmp(cmd, "env", len) == 0)
 		return (ft_env(sh));
 	else if (ft_strncmp(cmd, "exit", len) == 0)
-		return (ft_exit(sh));
+		ft_exit(sh);
 	return (NOT_BUILT_IN);
 }
 
 void	executor(t_shell *sh)
 {
-	if (handle_builtin(sh) == NOT_BUILT_IN)
+	if (handle_builtin(sh, 0) == NOT_BUILT_IN)
 		printf("Calling non built-in bin...\n");
 }

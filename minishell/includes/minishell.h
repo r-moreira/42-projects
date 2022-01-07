@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/05 23:24:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:46:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,17 +111,18 @@ char		*parse_env_variables(char *line_read);
 t_status	parser(t_shell *sh);
 t_status	parse_flag(t_shell *sh, int cmd_num);
 t_status	parse_cmd(t_shell *sh, int cmd_num);
+char		*remove_flags(char *token);
 
 //EXECUTOR
 void		executor(t_shell *sh);
 
 //BUILT-INS
-t_status	ft_echo(t_shell *sh);
+t_status	ft_echo(t_shell *sh, int cmd_num);
 t_status	ft_cd(t_shell *sh);
 t_status	ft_pwd(t_shell *sh);
 t_status	ft_export(t_shell *sh);
 t_status	ft_unset(t_shell *sh);
 t_status	ft_env(t_shell *sh);
-t_status	ft_exit(t_shell *sh);
+void		ft_exit(t_shell *sh);
 
 #endif
