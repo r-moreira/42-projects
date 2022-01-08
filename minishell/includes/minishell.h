@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 17:46:22 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 22:36:53 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,17 @@
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
 
-/* ** Aux Defines ** */
-# define SIGQUIT_NUM 10554
+/* ** Prompt ** */
 # define CLEAR_CLI "\033[H\033[J"
+# define CYAN "\001\033[1;36m\002"
+# define WHITE "\001\033[0m\002"
+# define GREEN "\001\033[1;32m\002"
+
+/* ** Errors messages ** */
+# define ERROR_PIPE "minishell: syntax error near unexpected token `|'\n"
+# define ERROR_DIR "No such file or directory\n"
+# define ERROR_HOME "minishell: cd: HOME not set\n"
+# define ERROR_CMD "command not found\n"
 
 /* ** Global Variables ** */
 int	g_pid_number;
@@ -77,6 +85,18 @@ typedef struct s_commands
 	int		args_count;
 	e_flags	flag;
 }	t_commands;
+
+typedef struct s_env
+{
+	char	*home;
+	char	**path;
+}	t_paths;
+
+typedef struct s_fd
+{
+	int		in;
+	int		out;
+}	t_fd;
 
 typedef struct s_minishell
 {
@@ -119,7 +139,7 @@ void		executor(t_shell *sh);
 //BUILT-INS
 t_status	ft_echo(t_shell *sh, int cmd_num);
 t_status	ft_cd(t_shell *sh);
-t_status	ft_pwd(t_shell *sh);
+t_status	ft_pwd(t_shell *sh, int cmd_num);
 t_status	ft_export(t_shell *sh);
 t_status	ft_unset(t_shell *sh);
 t_status	ft_env(t_shell *sh);
