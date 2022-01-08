@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:11:36 by romoreir          #+#    #+#             */
-/*   Updated: 2021/11/22 21:11:46 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:18:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 void	welcome_message(void)
 {
-	char	*username;
-
-	username = getenv("USER");
-	printf(CLEAR_CLI);
-	printf("\n===============================================\n");
-	printf("\n---- Welcome: @%s!\n", username);
-	printf("\n---- This is romoreir shell\n");
-	printf("\n===============================================\n");
+	char	*username = getenv("USER");
+	if (username != NULL)
+	{
+		printf(CLEAR_CLI);
+		printf("\n%s===============================================\n", RED);
+		printf("\n---- Welcome: %s@%s%s!!\n", WHITE, username, RED);
+		printf("\n---- This is %sromoreir%s shell\n", WHITE, RED);
+		printf("\n===============================================\n\n%s", WHITE);
+	} else
+	{
+		printf(CLEAR_CLI);
+		printf("\n%s===============================================\n", RED);
+		printf("\n---- Welcome!!\n");
+		printf("\n---- This is %sromoreir%s shell\n", WHITE, RED);
+		printf("\n===============================================\n\n%s", WHITE);
+	}
 }

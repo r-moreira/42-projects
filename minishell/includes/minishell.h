@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 22:36:53 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:16:58 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@
 
 /* ** Prompt ** */
 # define CLEAR_CLI "\033[H\033[J"
-# define CYAN "\001\033[1;36m\002"
-# define WHITE "\001\033[0m\002"
-# define GREEN "\001\033[1;32m\002"
+# define RED "\033[0;31m"
+# define WHITE "\033[0m\002"
+# define PURPLE "\033[0;35m"
+# define GREEN "\033[1;32m\002"
 
 /* ** Errors messages ** */
 # define ERROR_PIPE "minishell: syntax error near unexpected token `|'\n"
@@ -86,11 +87,6 @@ typedef struct s_commands
 	e_flags	flag;
 }	t_commands;
 
-typedef struct s_env
-{
-	char	*home;
-	char	**path;
-}	t_paths;
 
 typedef struct s_fd
 {
@@ -105,6 +101,7 @@ typedef struct s_minishell
 	char		*cmd_tokens[MAX_COMMANDS_NUM];
 	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
 	int			cmds_count;
+	char		**paths;
 }	t_shell;
 
 /* ** Functions ** */
@@ -118,6 +115,7 @@ t_bool		is_closed_quotes(char c, char *input);
 t_status	syntax_error(char *msg);
 char		**split_null_end(char *s, char c);
 t_bool		is_flag(char c);
+char		*get_cwd_buffer(void);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);

@@ -6,19 +6,20 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/05 23:34:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:12:38 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <stdlib.h>
 
 void	init_shell(t_shell *sh)
 {
-	sh->cmds_count = 0;
-	sh->cmds->args_count = 0;
+	(void)sh;
 }
 
 // TO-DO -> "$?"
+// TO-DO - ENV/EXPORT se for att USER NAME OU HOME, chamar getEnv novamente
 int	main(void)
 {
 	t_shell	sh;

@@ -6,20 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:36 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 22:40:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 22:56:49 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*get_cwd_buffer(void)
-{
-	char	*buffer;
-
-	buffer = NULL;
-	buffer = getcwd(buffer, DIR_MAX_SIZE);
-	return (buffer);
-}
 
 static t_status	get_pwd(t_shell *sh, int cmd_num)
 {
