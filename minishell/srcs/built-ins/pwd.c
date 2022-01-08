@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:36 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 22:56:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:21:51 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_status	get_pwd(t_shell *sh, int cmd_num)
 //Adicionar in e out fd na struct dependendo da flag;
 t_status	ft_pwd(t_shell *sh, int cmd_num)
 {
-if (cmd_num == 0 && sh->cmds[cmd_num].flag == NONE)
+	if (cmd_num == 0 && sh->cmds[cmd_num].flag == NONE)
 		return (get_pwd(sh, cmd_num));
 	printf("ERROR - PWD ON CMD 2+ AND FLAG NOT IMPLEMENTED\n");
 	return (ERROR);

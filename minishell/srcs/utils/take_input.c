@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/01 01:57:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/08 00:14:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ t_status	take_input(t_shell *sh)
 	char	*line_read;
 	char	*parsed_line;
 
+	ft_strlcpy(sh->input_string, "\0", 1);
 	line_read = readline(NULL);
 	if (line_read && *line_read)
 	{

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 23:16:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:29:16 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void		executor(t_shell *sh);
 
 //BUILT-INS
 t_status	ft_echo(t_shell *sh, int cmd_num);
-t_status	ft_cd(t_shell *sh);
+t_status	ft_cd(t_shell *sh, int cmd_num);
 t_status	ft_pwd(t_shell *sh, int cmd_num);
 t_status	ft_export(t_shell *sh);
 t_status	ft_unset(t_shell *sh);

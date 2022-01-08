@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 20:30:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 23:12:15 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:22:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_prompt(void)
 {
 	char	*buffer;
-	char 	*username;
+	char	*username;
 	char	*name;
 
 	username = getenv("USER");

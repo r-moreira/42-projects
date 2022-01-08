@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:11:36 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 23:18:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:22:06 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	welcome_message(void)
 {
-	char	*username = getenv("USER");
+	char	*username;
+
+	username = getenv("USER");
 	if (username != NULL)
 	{
 		printf(CLEAR_CLI);
@@ -22,7 +24,8 @@ void	welcome_message(void)
 		printf("\n---- Welcome: %s@%s%s!!\n", WHITE, username, RED);
 		printf("\n---- This is %sromoreir%s shell\n", WHITE, RED);
 		printf("\n===============================================\n\n%s", WHITE);
-	} else
+	}
+	else
 	{
 		printf(CLEAR_CLI);
 		printf("\n%s===============================================\n", RED);

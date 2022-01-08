@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 22:37:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:29:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_status	handle_builtin(t_shell *sh, int cmd_num)
 	if (ft_strncmp(cmd, "echo", len) == 0)
 		return (ft_echo(sh, cmd_num));
 	else if (ft_strncmp(cmd, "cd", len) == 0)
-		return (ft_cd(sh));
+		return (ft_cd(sh, cmd_num));
 	else if (ft_strncmp(cmd, "pwd", len) == 0)
 		return (ft_pwd(sh, cmd_num));
 	else if (ft_strncmp(cmd, "export", len) == 0)
