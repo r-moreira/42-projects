@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   get_env_key.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 23:19:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 02:59:18 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/09 02:57:35 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/09 02:57:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//TO-DO
-//Adicionar tratamento de flags ao comando (> < | >> <<)
-//Adicionar in e out fd na struct dependendo da flag;
-t_status	ft_env(t_shell *sh)
+char	*get_env_key(char *env)
 {
-	int	i;
+	char	*env_key;
+	int		i;
 
-	i = -1;
-	while (++i < sh->count.envs)
-		printf("%s\n", sh->envs[i]);
-	return (SUCCESS);
+	env_key = (char *)malloc(sizeof(char) * ft_strlen(env) + 1);
+	i = 0;
+	while (env[i] && env[i] != '=')
+	{
+		env_key[i] = env[i];
+		i++;
+	}
+	env_key[i] = '\0';
+	return (env_key);
 }

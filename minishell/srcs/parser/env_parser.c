@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 23:19:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 02:59:18 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/09 02:54:01 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/09 02:59:42 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//TO-DO
-//Adicionar tratamento de flags ao comando (> < | >> <<)
-//Adicionar in e out fd na struct dependendo da flag;
-t_status	ft_env(t_shell *sh)
+char	*parse_env(char *env)
 {
-	int	i;
+	char	*new;
+	int		i;
+	int		j;
 
-	i = -1;
-	while (++i < sh->count.envs)
-		printf("%s\n", sh->envs[i]);
-	return (SUCCESS);
+	new = (char *)malloc(sizeof(char) * ft_strlen(env) + 1);
+	i = 0;
+	j = 0;
+	while (ft_isspace(env[i]))
+		i++;
+	while (env[i] != '=' && !ft_isspace(env[i]))
+		new[j++] = env[i++];
+	if (env[i] != '=')
+		while (env[i] != '=')
+			i++;
+	new[j] = '=';
+	i++;
+	while (env[i] && !ft_isspace(env[i]))
+		new[++j] = env[i++];
+	new[++j] = '\0';
+	return (new);
 }

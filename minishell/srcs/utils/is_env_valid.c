@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   is_env_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 23:19:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 02:59:18 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/09 02:56:25 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/09 02:59:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//TO-DO
-//Adicionar tratamento de flags ao comando (> < | >> <<)
-//Adicionar in e out fd na struct dependendo da flag;
-t_status	ft_env(t_shell *sh)
+t_bool	is_env_valid(char *env)
 {
-	int	i;
+	t_bool	has_eql;
+	int		i;
+	int		key_count;
 
-	i = -1;
-	while (++i < sh->count.envs)
-		printf("%s\n", sh->envs[i]);
-	return (SUCCESS);
+	i = 0;
+	key_count = 0;
+	has_eql = FALSE;
+	if (ft_strlen(env) < 3 || ft_isdigit(env[0]))
+		return (FALSE);
+	while (env[i] && env[i] != '=')
+	{
+		key_count++;
+		i++;
+	}
+	if (env[i] == '=')
+		has_eql = TRUE;
+	if (key_count && has_eql == TRUE)
+		return (TRUE);
+	return (FALSE);
 }

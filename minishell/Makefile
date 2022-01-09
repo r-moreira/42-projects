@@ -31,14 +31,17 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/is_closed_quotes.c \
 					  $(UTILS_DIR)/split_null_end.c \
 					  $(UTILS_DIR)/is_flag.c \
-					  $(UTILS_DIR)/get_cwd_buffer.c
+					  $(UTILS_DIR)/get_cwd_buffer.c \
+					  $(UTILS_DIR)/is_env_valid.c \
+					  $(UTILS_DIR)/get_env_key.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
 PARSER_SRCS			= $(PARSER_DIR)/env_variables_parser.c \
 					  $(PARSER_DIR)/executor_parser.c \
 					  $(PARSER_DIR)/flags_parser.c \
-					  $(PARSER_DIR)/cmd_parser.c
+					  $(PARSER_DIR)/cmd_parser.c \
+					  $(PARSER_DIR)/env_parser.c
 
 #Analyzer
 ANALYZER_DIR		= $(MAIN_DIR)/analyzer
