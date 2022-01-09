@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 03:07:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 16:12:27 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@
 //	Se encontrar, executar. Caso contrário, printar que o comando não existe
 // Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
 /////////////////////////
+
+static void	clean_cmd_struct(t_shell *sh)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < sh->count.cmds)
+	{
+		ft_strlcpy(sh->cmds[i].name, "\0", 1);
+		j = -1;
+		while (++j < sh->cmds[i].args_count)
+			ft_strlcpy(sh->cmds[i].args[j], "\0", 1);
+		sh->cmds[i].args_count = 0;
+		sh->cmds[i].flag = NONE;
+	}
+}
 
 static t_status	handle_builtin(t_shell *sh, int cmd_num)
 {
@@ -46,11 +63,9 @@ static t_status	handle_builtin(t_shell *sh, int cmd_num)
 	return (NOT_BUILT_IN);
 }
 
-//TO-DO/////////////////////
-//Limpar struct de comandos após execução (BUG de argumentos: ex: $echo oi -> $cd)
 void	executor(t_shell *sh)
 {
 	if (handle_builtin(sh, 0) == NOT_BUILT_IN)
 		printf("Calling non built-in bin...\n");
-	//clean_cmd_struct(sh);
+	clean_cmd_struct(sh);
 }
