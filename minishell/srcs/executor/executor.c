@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 00:29:28 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 03:07:49 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ static t_status	handle_builtin(t_shell *sh, int cmd_num)
 	return (NOT_BUILT_IN);
 }
 
+//TO-DO/////////////////////
+//Limpar struct de comandos após execução (BUG de argumentos: ex: $echo oi -> $cd)
 void	executor(t_shell *sh)
 {
 	if (handle_builtin(sh, 0) == NOT_BUILT_IN)
 		printf("Calling non built-in bin...\n");
+	//clean_cmd_struct(sh);
 }
