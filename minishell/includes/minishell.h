@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 23:29:16 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 00:05:15 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define MAX_COMMAND_NAME 50
 # define MAX_ARGS_NUM 42
 # define MAX_ARGS_NAME 50
+# define MAX_ENVS 256
+# define MAX_PATHS 124
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
@@ -87,6 +89,12 @@ typedef struct s_commands
 	e_flags	flag;
 }	t_commands;
 
+typedef struct s_counters
+{
+	int			cmds;
+	int			envs;
+	int			paths;
+}	t_counters;
 
 typedef struct s_fd
 {
@@ -100,13 +108,15 @@ typedef struct s_minishell
 	t_commands	cmds[MAX_COMMANDS_NUM];
 	char		*cmd_tokens[MAX_COMMANDS_NUM];
 	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
-	int			cmds_count;
-	char		**paths;
+	char		*envs[MAX_ENVS];
+	char		*paths[MAX_PATHS];
+	t_counters	count;
 }	t_shell;
 
 /* ** Functions ** */
 
 //UTILS
+void		init_shell(t_shell *sh, char **envp);
 t_status	print_error(char *err_message);
 void		welcome_message(void);
 void		print_prompt(void);

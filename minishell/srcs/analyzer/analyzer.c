@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:29:41 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 00:08:07 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ t_status	analyzer(t_shell *sh)
 		if (ft_strncmp(sh->cmd_tokens[i], "", ft_strlen(sh->cmd_tokens[i])))
 			ptr_pos += ft_strlen(sh->cmd_tokens[i]);
 	}
-	sh->cmds_count = i + 1;
-	if (sh->cmds_count <= 0)
+	sh->count.cmds = i + 1;
+	if (sh->count.cmds <= 0)
 		return (ERROR);
 	return (SUCCESS);
 }

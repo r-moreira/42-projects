@@ -6,25 +6,21 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/07 23:12:38 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 00:09:52 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include <stdlib.h>
-
-void	init_shell(t_shell *sh)
-{
-	(void)sh;
-}
 
 // TO-DO -> "$?"
 // TO-DO - ENV/EXPORT se for att USER NAME OU HOME, chamar getEnv novamente
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	t_shell	sh;
 
-	init_shell(&sh);
+	(void)argc;
+	(void)argv;
+	init_shell(&sh, envp);
 	run_signals();
 	welcome_message();
 	while (TRUE)

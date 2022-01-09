@@ -24,6 +24,7 @@ MAIN_SRCS			= $(MAIN_DIR)/minishell.c
 #Utils
 UTILS_DIR			= $(MAIN_DIR)/utils
 UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
+					  $(UTILS_DIR)/init_shell.c \
 					  $(UTILS_DIR)/take_input.c \
 					  $(UTILS_DIR)/welcome_message.c \
 					  $(UTILS_DIR)/syntax_error.c \

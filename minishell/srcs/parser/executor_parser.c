@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 13:40:53 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 00:07:09 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_status	parser(t_shell *sh)
 	int	i;
 
 	i = -1;
-	while (++i < sh->cmds_count)
+	while (++i < sh->count.cmds)
 	{
 		if (is_token_valid(sh->cmd_tokens[i]) == SUCCESS)
 		{
@@ -49,7 +49,7 @@ t_status	parser(t_shell *sh)
 		}
 	}
 	i = -1;
-	while (++i < sh->cmds_count)
+	while (++i < sh->count.cmds)
 		free(sh->cmd_tokens[i]);
 	return (SUCCESS);
 }
