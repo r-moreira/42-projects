@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:19:07 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 18:56:32 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 18:59:13 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_bool	is_valid_unset(char *env)
 	return (TRUE);
 }
 
-void	parse_new_env(t_shell *sh, char **tmp, char *arg)
+static void	parse_new_env(t_shell *sh, char **tmp, char *arg)
 {
 	int		i;
 	int		j;
@@ -50,7 +50,7 @@ void	parse_new_env(t_shell *sh, char **tmp, char *arg)
 	}
 }
 
-void	remove_env(t_shell *sh, char *arg)
+static void	remove_env(t_shell *sh, char *arg)
 {
 	int		i;
 	char	*tmp[MAX_ENVS];
