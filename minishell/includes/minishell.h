@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 03:01:43 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:17:20 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@
 # define ERROR_CMD "command not found\n"
 # define ERROR_EXPT_START "minishell: export: `"
 # define ERROR_EXPT_END "': not a valid identifier\n"
-
+# define ERROR_UNSET_START "minishell: unset: `"
+# define ERROR_UNSET_END "': not a valid identifier\n"
 
 /* ** Global Variables ** */
 int	g_pid_number;
@@ -131,6 +132,7 @@ t_bool		is_flag(char c);
 char		*get_cwd_buffer(void);
 t_bool		is_env_valid(char *env);
 char		*get_env_key(char *env);
+size_t		strlen_no_spaces(char *s);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
@@ -154,7 +156,7 @@ t_status	ft_echo(t_shell *sh, int cmd_num);
 t_status	ft_cd(t_shell *sh, int cmd_num);
 t_status	ft_pwd(t_shell *sh, int cmd_num);
 t_status	ft_export(t_shell *sh, int cmd_num);
-t_status	ft_unset(t_shell *sh);
+t_status	ft_unset(t_shell *sh, int cmd_num);
 t_status	ft_env(t_shell *sh);
 void		ft_exit(t_shell *sh);
 

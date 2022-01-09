@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:50 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 02:59:10 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:21:35 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,22 @@ static t_status	export_with_no_arg(t_shell *sh, int cmd_num)
 t_status	ft_export(t_shell *sh, int cmd_num)
 {
 	char	*env;
+	int		i;
 
-	env = sh->input_string + 6;
-	if (ft_strlen(env) == 0)
+	if (ft_strlen(sh->cmds[cmd_num].args[1]) == 0)
 		return (export_with_no_arg(sh, cmd_num));
-	else if (is_env_valid(env))
+	i = 0;
+	while (++i < sh->cmds[cmd_num].args_count)
 	{
-		env = parse_env(env);
-		export_env(sh, env);
-		free(env);
+		env = sh->cmds[cmd_num].args[i];
+		if (is_env_valid(env))
+		{
+			env = parse_env(env);
+			export_env(sh, env);
+			free(env);
+		}
+		else
+			printf("%s%s%s", ERROR_EXPT_START, env, ERROR_EXPT_END);
 	}
-	else
-		printf("%s%s%s", ERROR_EXPT_START, env, ERROR_EXPT_END);
 	return (SUCCESS);
 }
