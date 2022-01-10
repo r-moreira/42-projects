@@ -50,7 +50,8 @@ ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 
 #Executor
 EXECUTOR_DIR		= $(MAIN_DIR)/executor
-EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c
+EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
+					  $(EXECUTOR_DIR)/get_cmd_path.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers

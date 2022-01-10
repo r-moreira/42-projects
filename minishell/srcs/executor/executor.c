@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 17:17:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:19:51 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	clean_cmd_struct(t_shell *sh)
 			ft_strlcpy(sh->cmds[i].args[j], "\0", 1);
 		sh->cmds[i].args_count = 0;
 		sh->cmds[i].flag = NONE;
+		ft_strlcpy(sh->cmds[i].path, "\0", 1);
 	}
 }
 
@@ -63,9 +64,19 @@ static t_status	handle_builtin(t_shell *sh, int cmd_num)
 	return (NOT_BUILT_IN);
 }
 
+static void	exec_bin(t_shell *sh, int cmd_num)
+{
+	printf("Calling non built-in bin, with path: |%s|\n",
+		sh->cmds[cmd_num].path);
+}
+
 void	executor(t_shell *sh)
 {
-	if (handle_builtin(sh, 0) == NOT_BUILT_IN)
-		printf("Calling non built-in bin...\n");
+	int	cmd_num;
+
+	cmd_num = 0;
+	if (handle_builtin(sh, cmd_num) == NOT_BUILT_IN)
+		if (get_cmd_path(sh, cmd_num) == SUCCESS)
+			exec_bin(sh, cmd_num);
 	clean_cmd_struct(sh);
 }

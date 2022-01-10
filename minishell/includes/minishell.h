@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 17:28:15 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:04:14 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include  <sys/stat.h>
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -35,6 +36,7 @@
 # define MAX_ARGS_NAME 50
 # define MAX_ENVS 256
 # define MAX_PATHS 124
+# define MAX_PATH_LEN 512
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
@@ -90,6 +92,7 @@ typedef struct s_commands
 	char	name[MAX_COMMAND_NAME];
 	char	args[MAX_ARGS_NUM][MAX_ARGS_NAME];
 	int		args_count;
+	char	path[MAX_PATH_LEN];
 	e_flags	flag;
 }	t_commands;
 
@@ -136,7 +139,7 @@ size_t		strlen_no_spaces(char *s);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
-void		run_signals();
+void		run_signals(void);
 
 //ANALYZER
 t_status	analyzer(t_shell *sh);
@@ -150,6 +153,7 @@ char		*parse_env(char *env);
 
 //EXECUTOR
 void		executor(t_shell *sh);
+t_status	get_cmd_path(t_shell *sh, int cmd_num);
 
 //BUILT-INS
 t_status	ft_echo(t_shell *sh, int cmd_num);
