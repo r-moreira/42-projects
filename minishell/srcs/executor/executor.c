@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 16:19:51 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:42:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,33 @@ static t_status	handle_builtin(t_shell *sh, int cmd_num)
 	return (NOT_BUILT_IN);
 }
 
-static void	exec_bin(t_shell *sh, int cmd_num)
+//TO-DO trasnformar args em *args[MAX_ARGS_NUM]
+static int	exec_bin(t_shell *sh, int cmd_num)
 {
-	printf("Calling non built-in bin, with path: |%s|\n",
-		sh->cmds[cmd_num].path);
+	int		status;
+	int		errcode;
+	pid_t	pid;
+	char	*tmp_args[] = {sh->cmds[cmd_num].name, NULL};
+
+	if (DEBUGGER)
+		printf("Calling non built-in bin, with path: |%s|\n",
+			sh->cmds[cmd_num].path);
+	errcode = 0;
+	pid = fork();
+	if (!pid)
+	{
+		if (execve(sh->cmds[0].path, tmp_args, sh->envs) == -1)
+		{
+			perror(ERROR_EXEC);
+			exit(errcode);
+		}
+		else
+			exit(errcode);
+	}
+	else
+		wait(&status);
+	errcode = 0;
+	return (errcode);
 }
 
 void	executor(t_shell *sh)

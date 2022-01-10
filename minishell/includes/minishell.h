@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 16:04:14 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:39:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include  <sys/stat.h>
+# include <sys/stat.h>
 # include <signal.h>
+# include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -57,6 +58,7 @@
 # define ERROR_EXPT_END "': not a valid identifier\n"
 # define ERROR_UNSET_START "minishell: unset: `"
 # define ERROR_UNSET_END "': not a valid identifier\n"
+# define ERROR_EXEC "Minishell: Failed to execute the command: "
 
 /* ** Global Variables ** */
 int	g_pid_number;
