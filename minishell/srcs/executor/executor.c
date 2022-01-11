@@ -6,21 +6,17 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 22:25:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:33:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 //////////////////TO-DOs
-//Verificar se é um comando built-in ou do SO
-//Se for um built-in
-//	criar funções para os comandos built-in e chama-los (sugestão, ptr functions - execve)
-//Caso contrário
-//	Procurar o comando em todos os diretórios da variável de ambiente PATH e execua-los (execve)
-//	Se encontrar, executar. Caso contrário, printar que o comando não existe
+// Executar mais de um comando
 // Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
 /////////////////////////
+
 static void	clear_execution(t_shell *sh)
 {
 	int	i;
@@ -45,7 +41,7 @@ static t_status	handle_builtin(t_shell *sh, int num)
 	char		*cmd;
 
 	if (DEBUGGER_BUILTIN)
-			parsed_info_logger(sh);
+		parsed_info_logger(sh);
 	cmd = sh->cmds[num].name;
 	len = ft_strlen(cmd) + 1;
 	if (ft_strncmp(cmd, "echo", len) == 0)

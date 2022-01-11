@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loggers.c                                          :+:      :+:    :+:   */
+/*   logger.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:18:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 22:29:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:33:20 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
 
 static char	*flag_descrpt(t_shell *sh, int num)
 {
@@ -29,7 +28,6 @@ static char	*flag_descrpt(t_shell *sh, int num)
 		flag_descrpt = "HERE DOCUMENT";
 	else
 	flag_descrpt = "NONE";
-
 	return (flag_descrpt);
 }
 
