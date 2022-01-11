@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 21:57:16 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:24:03 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-/* ** Set debugger ON/OFF ** */
-# define DEBUGGER 1
+/* ** Set debuggers ON/OFF ** */
+# define DEBUGGER_BUILTIN 0
+# define DEBUGGER_EXEC 1
 
 /* ** Buffers ** */
 # define MAX_LINE_INPUT 1248
@@ -138,6 +139,7 @@ char		*get_cwd_buffer(void);
 t_bool		is_env_valid(char *env);
 char		*get_env_key(char *env);
 size_t		strlen_no_spaces(char *s);
+void		parsed_info_logger(t_shell *sh);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);

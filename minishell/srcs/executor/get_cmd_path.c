@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 16:02:16 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 21:31:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:27:06 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	path_and_cmd_name(t_shell *sh, int num)
 			break ;
 		}
 	}
-	ft_strlcpy(sh->cmds[num].path, cmd_path, ft_strlen(cmd_path) + 1);
+	if (cmd_path != NULL)
+		ft_strlcpy(sh->cmds[num].path, cmd_path, ft_strlen(cmd_path) + 1);
 	free(cmd_path);
 }
 
