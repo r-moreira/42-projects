@@ -6,16 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 22:33:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:37:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-//////////////////TO-DOs
-// Executar mais de um comando
-// Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
-/////////////////////////
 
 static void	clear_execution(t_shell *sh)
 {
@@ -83,13 +78,19 @@ static void	exec_bin(t_shell *sh, int num)
 		wait(&status);
 }
 
+//////////////////TO-DOs
+// Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
+// Lidar com signals
+// Garantir o retorno do PID para: "$?""
+/////////////////////////
 void	executor(t_shell *sh)
 {
-	int	num;
+	int	i;
 
-	num = 0;
-	if (handle_builtin(sh, num) == NOT_BUILT_IN)
-		if (get_cmd_path(sh, num) == SUCCESS)
-			exec_bin(sh, num);
+	i = -1;
+	while (++i < sh->count.cmds)
+		if (handle_builtin(sh, i) == NOT_BUILT_IN)
+			if (get_cmd_path(sh, i) == SUCCESS)
+				exec_bin(sh, i);
 	clear_execution(sh);
 }
