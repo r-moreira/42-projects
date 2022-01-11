@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:23:35 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 17:28:11 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:02:14 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	setup_envs(t_shell *sh, char **envp)
 		ft_strlcpy(sh->envs[i], envp[i], ft_strlen(envp[i]) + 1);
 	}
 	sh->count.envs = i;
-	sh->envs[i + 1] = NULL;
+	sh->envs[i] = NULL;
 }
 
 static void	setup_paths(t_shell *sh)

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:50 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 17:21:35 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:30:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,28 @@ static void	export_env(t_shell *sh, char *env)
 //Adicionar in e out fd na struct dependendo da flag;
 //No CMD2+ Percorrer input até a flag do comando anterior,
 //	ignorando quando tiver entre aspas
-static t_status	export_with_no_arg(t_shell *sh, int cmd_num)
+static t_status	export_with_no_arg(t_shell *sh, int num)
 {
 	int	i;
 
-	(void)cmd_num;
+	(void)num;
 	i = -1;
 	while (++i < sh->count.envs)
 		printf("declare -x %s\n", sh->envs[i]);
 	return (SUCCESS);
 }
 
-t_status	ft_export(t_shell *sh, int cmd_num)
+t_status	ft_export(t_shell *sh, int num)
 {
 	char	*env;
 	int		i;
 
-	if (ft_strlen(sh->cmds[cmd_num].args[1]) == 0)
-		return (export_with_no_arg(sh, cmd_num));
+	if (ft_strlen(sh->cmds[num].args[1]) == 0)
+		return (export_with_no_arg(sh, num));
 	i = 0;
-	while (++i < sh->cmds[cmd_num].args_count)
+	while (++i < sh->cmds[num].args_count)
 	{
-		env = sh->cmds[cmd_num].args[i];
+		env = sh->cmds[num].args[i];
 		if (is_env_valid(env))
 		{
 			env = parse_env(env);

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 00:08:07 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:56:04 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ t_status	analyzer(t_shell *sh)
 	size_t	ptr_pos;
 	int		i;
 
-	if (DEBUGGER)
-		printf("INPUT = [%s]\n", sh->input_string);
 	i = -1;
 	ptr_pos = 0;
 	while (ptr_pos < ft_strlen(sh->input_string))

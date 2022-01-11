@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:19:07 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 18:59:13 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:30:45 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,17 @@ static void	remove_env(t_shell *sh, char *arg)
 		free(tmp[i]);
 }
 
-t_status	ft_unset(t_shell *sh, int cmd_num)
+t_status	ft_unset(t_shell *sh, int num)
 {
 	char	*env;
 	int		i;
 
-	if (ft_strlen(sh->cmds[cmd_num].args[1]) == 0)
+	if (ft_strlen(sh->cmds[num].args[1]) == 0)
 		return (SUCCESS);
 	i = 0;
-	while (++i < sh->cmds[cmd_num].args_count)
+	while (++i < sh->cmds[num].args_count)
 	{
-		env = sh->cmds[cmd_num].args[i];
+		env = sh->cmds[num].args[i];
 		if (is_valid_unset(env))
 			remove_env(sh, env);
 		else

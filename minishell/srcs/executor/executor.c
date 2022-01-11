@@ -6,12 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 16:46:01 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:10:56 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdlib.h>
 
 //////////////////TO-DOs
 //Verificar se é um comando built-in ou do SO
@@ -23,7 +22,52 @@
 // Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
 /////////////////////////
 
-static void	clean_cmd_struct(t_shell *sh)
+static char	*flag_descrpt(t_shell *sh, int num)
+{
+	char	*flag_descrpt;
+
+	if (sh->cmds[num].flag == 1)
+		flag_descrpt = "PIPE";
+	else if (sh->cmds[num].flag == 2)
+		flag_descrpt = "REDIRECT OUT";
+	else if (sh->cmds[num].flag == 3)
+		flag_descrpt = "REDIRECT OUT APPEND";
+	else if (sh->cmds[num].flag == 4)
+		flag_descrpt = "REDIRECT IN";
+	else if (sh->cmds[num].flag == 5)
+		flag_descrpt = "HERE DOCUMENT";
+	else
+	flag_descrpt = "NONE";
+
+	return (flag_descrpt);
+}
+
+static void	parsed_info_logger(t_shell *sh)
+{
+	int	i;
+	int	j;
+
+	if (!DEBUGGER)
+		return ;
+	printf("\n===== Parsed Info Logger =====\n");
+	printf("Input   = [%s]\n", sh->input_string);
+	i = -1;
+	while (++i < sh->count.cmds)
+	{
+		printf("Command = |%d|\n", i);
+		printf("Name    = |%s|\n", sh->cmds[i].name);
+		printf("Path    = |%s|\n", sh->cmds[i].path);
+		printf("Args    =");
+		j = -1;
+		while (++j < sh->cmds[i].args_count)
+			printf(" |%s|", sh->cmds[i].args[j]);
+		printf("\n");
+		printf("Flag    = |%s|", flag_descrpt(sh, i));
+	}
+	printf("\n==============================\n\n");
+}
+
+static void	clear_execution(t_shell *sh)
 {
 	int	i;
 	int	j;
@@ -31,33 +75,33 @@ static void	clean_cmd_struct(t_shell *sh)
 	i = -1;
 	while (++i < sh->count.cmds)
 	{
-		ft_strlcpy(sh->cmds[i].name, "\0", 1);
 		j = -1;
 		while (++j < sh->cmds[i].args_count)
-			ft_strlcpy(sh->cmds[i].args[j], "\0", 1);
+			free(sh->cmds[i].args[j]);
 		sh->cmds[i].args_count = 0;
 		sh->cmds[i].flag = NONE;
+		ft_strlcpy(sh->cmds[i].name, "\0", 1);
 		ft_strlcpy(sh->cmds[i].path, "\0", 1);
 	}
 }
 
-static t_status	handle_builtin(t_shell *sh, int cmd_num)
+static t_status	handle_builtin(t_shell *sh, int num)
 {
 	size_t		len;
 	char		*cmd;
 
-	cmd = sh->cmds[cmd_num].name;
+	cmd = sh->cmds[num].name;
 	len = ft_strlen(cmd) + 1;
 	if (ft_strncmp(cmd, "echo", len) == 0)
-		return (ft_echo(sh, cmd_num));
+		return (ft_echo(sh, num));
 	else if (ft_strncmp(cmd, "cd", len) == 0)
-		return (ft_cd(sh, cmd_num));
+		return (ft_cd(sh, num));
 	else if (ft_strncmp(cmd, "pwd", len) == 0)
-		return (ft_pwd(sh, cmd_num));
+		return (ft_pwd(sh, num));
 	else if (ft_strncmp(cmd, "export", len) == 0)
-		return (ft_export(sh, cmd_num));
+		return (ft_export(sh, num));
 	else if (ft_strncmp(cmd, "unset", len) == 0)
-		return (ft_unset(sh, cmd_num));
+		return (ft_unset(sh, num));
 	else if (ft_strncmp(cmd, "env", len) == 0)
 		return (ft_env(sh));
 	else if (ft_strncmp(cmd, "exit", len) == 0)
@@ -65,20 +109,15 @@ static t_status	handle_builtin(t_shell *sh, int cmd_num)
 	return (NOT_BUILT_IN);
 }
 
-//TO-DO trasnformar args em *args[MAX_ARGS_NUM]
-static void	exec_bin(t_shell *sh, int cmd_num)
+static void	exec_bin(t_shell *sh, int num)
 {
 	int		status;
 	pid_t	pid;
-	char	*tmp_args[] = {sh->cmds[cmd_num].name, NULL};
 
-	if (DEBUGGER)
-		printf("Calling non built-in bin, with path: |%s|\n",
-			sh->cmds[cmd_num].path);
 	pid = fork();
-	if (!pid)
+	if (pid == 0)
 	{
-		if (execve(sh->cmds[0].path, tmp_args, sh->envs) == -1)
+		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
 		{
 			perror(ERROR_EXEC);
 			exit(errno);
@@ -92,11 +131,13 @@ static void	exec_bin(t_shell *sh, int cmd_num)
 
 void	executor(t_shell *sh)
 {
-	int	cmd_num;
+	int	num;
 
-	cmd_num = 0;
-	if (handle_builtin(sh, cmd_num) == NOT_BUILT_IN)
-		if (get_cmd_path(sh, cmd_num) == SUCCESS)
-			exec_bin(sh, cmd_num);
-	clean_cmd_struct(sh);
+	if (DEBUGGER)
+		parsed_info_logger(sh);
+	num = 0;
+	if (handle_builtin(sh, num) == NOT_BUILT_IN)
+		if (get_cmd_path(sh, num) == SUCCESS)
+			exec_bin(sh, num);
+	clear_execution(sh);
 }

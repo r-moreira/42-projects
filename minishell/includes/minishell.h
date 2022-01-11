@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 16:39:21 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:57:16 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef enum e_flags
 typedef struct s_commands
 {
 	char	name[MAX_COMMAND_NAME];
-	char	args[MAX_ARGS_NUM][MAX_ARGS_NAME];
+	char	*args[MAX_ARGS_NUM];
 	int		args_count;
 	char	path[MAX_PATH_LEN];
 	e_flags	flag;
@@ -149,20 +149,20 @@ t_status	analyzer(t_shell *sh);
 //PARSER
 char		*parse_env_variables(char *line_read);
 t_status	parser(t_shell *sh);
-t_status	parse_flag(t_shell *sh, int cmd_num);
-t_status	parse_cmd(t_shell *sh, int cmd_num);
+t_status	parse_flag(t_shell *sh, int num);
+t_status	parse_cmd(t_shell *sh, int num);
 char		*parse_env(char *env);
 
 //EXECUTOR
 void		executor(t_shell *sh);
-t_status	get_cmd_path(t_shell *sh, int cmd_num);
+t_status	get_cmd_path(t_shell *sh, int num);
 
 //BUILT-INS
-t_status	ft_echo(t_shell *sh, int cmd_num);
-t_status	ft_cd(t_shell *sh, int cmd_num);
-t_status	ft_pwd(t_shell *sh, int cmd_num);
-t_status	ft_export(t_shell *sh, int cmd_num);
-t_status	ft_unset(t_shell *sh, int cmd_num);
+t_status	ft_echo(t_shell *sh, int num);
+t_status	ft_cd(t_shell *sh, int num);
+t_status	ft_pwd(t_shell *sh, int num);
+t_status	ft_export(t_shell *sh, int num);
+t_status	ft_unset(t_shell *sh, int num);
 t_status	ft_env(t_shell *sh);
 void		ft_exit(t_shell *sh);
 

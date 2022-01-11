@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 16:10:42 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:58:00 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_bool	is_cmd_valid(char *token)
 	return (FALSE);
 }
 
-static void	free_splt(char **splt)
+static void	free_parser(char **splt, char *token)
 {
 	int	i;
 
@@ -35,6 +35,7 @@ static void	free_splt(char **splt)
 	while (splt[++i])
 		free(splt[i]);
 	free(splt);
+	free(token);
 }
 
 char	*remove_flags(char *token)
@@ -61,34 +62,30 @@ char	*remove_flags(char *token)
 		}
 	}
 	new[++j] = '\0';
-	if (DEBUGGER)
-		printf("NFLAG_TKN = [%s]\n", new);
 	return (new);
 }
 
-t_status	parse_cmd(t_shell *sh, int cmd_num)
+t_status	parse_cmd(t_shell *sh, int num)
 {
 	int		i;
+	int		len;
 	char	**splt;
 	char	*token;
 
-	if (!sh->cmd_tokens[cmd_num] || !is_cmd_valid(sh->cmd_tokens[cmd_num]))
+	if (!sh->cmd_tokens[num] || !is_cmd_valid(sh->cmd_tokens[num]))
 		return (ERROR);
-	token = remove_flags(sh->cmd_tokens[cmd_num]);
+	token = remove_flags(sh->cmd_tokens[num]);
 	splt = split_null_end(token, ' ');
 	i = -1;
 	while (splt[++i])
 	{
-		ft_strlcpy(sh->cmds[cmd_num].args[i], splt[i], ft_strlen(splt[i]) + 1);
-		if (DEBUGGER)
-			printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i,
-				sh->cmds[cmd_num].args[i]);
+		len = ft_strlen(splt[i]);
+		sh->cmds[num].args[i] = (char *)malloc(sizeof(char) * len + 1);
+		ft_strlcpy(sh->cmds[num].args[i], splt[i], len + 1);
 	}
-	if (DEBUGGER)
-		printf("CMD[%d] - ARGC[%d] - [%s]\n", cmd_num, i, splt[i]);
-	ft_strlcpy(sh->cmds[cmd_num].name, splt[0], ft_strlen(splt[0]) + 1);
-	sh->cmds[cmd_num].args_count = i;
-	free(token);
-	free_splt(splt);
+	sh->cmds[num].args_count = i;
+	sh->cmds[num].args[i] = NULL;
+	ft_strlcpy(sh->cmds[num].name, splt[0], ft_strlen(splt[0]) + 1);
+	free_parser(splt, token);
 	return (SUCCESS);
 }
