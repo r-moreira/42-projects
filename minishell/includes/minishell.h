@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 22:24:03 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/11 21:49:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,23 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <signal.h>
+# include <errno.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
-# include <signal.h>
-# include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
 /* ** Set debuggers ON/OFF ** */
 # define DEBUGGER_BUILTIN 0
-# define DEBUGGER_EXEC 1
+# define DEBUGGER_EXEC 0
+
+/* ** Helpers **/
+# define FORKED_CHILD 0
+# define READ_END 0
+# define WRITE_END 1
 
 /* ** Buffers ** */
 # define MAX_LINE_INPUT 1248
@@ -89,6 +95,13 @@ typedef enum e_flags
 	HERE_DOCUMENT
 }	e_flags;
 
+typedef enum e_fds
+{
+	ANY,
+	IN,
+	OUT
+}	e_fds;
+
 /* ** Structs ** */
 typedef struct s_commands
 {
@@ -108,8 +121,9 @@ typedef struct s_counters
 
 typedef struct s_fd
 {
-	int		in;
-	int		out;
+	int		in[2];
+	int		out[2];
+	e_fds	open;
 }	t_fd;
 
 typedef struct s_minishell
@@ -120,6 +134,8 @@ typedef struct s_minishell
 	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
 	char		*envs[MAX_ENVS];
 	char		*paths[MAX_PATHS];
+	t_fd		fd;
+	e_flags		last_flag;
 	t_counters	count;
 }	t_shell;
 
