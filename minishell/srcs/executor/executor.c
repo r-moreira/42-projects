@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/11 22:01:01 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 11:17:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static t_status	handle_builtin(t_shell *sh, int num)
 	size_t		len;
 	char		*cmd;
 
-	if (DEBUGGER_BUILTIN)
-		parsed_info_logger(sh);
 	cmd = sh->cmds[num].name;
 	len = ft_strlen(cmd) + 1;
 	if (ft_strncmp(cmd, "echo", len) == 0)
@@ -61,6 +59,7 @@ static void	exec_noflag(t_shell *sh, int num)
 {
 	int		status;
 	pid_t	pid;
+	printf("NOFLAG  = |Write FD1|\n");
 
 	pid = fork();
 	if (pid == FORKED_CHILD)
@@ -77,14 +76,16 @@ static void	exec_noflag(t_shell *sh, int num)
 		g_pid_number = wait(&status);
 }
 
-static void	exec_pipe_write_in(t_shell *sh, int num)
+static void	exec_pipe_write_fd1(t_shell *sh, int num)
 {
 	pid_t	pid;
 
-	printf("\nCalling pipe write in\n");
+	if (DEBUGGER_EXEC)
+		printf("PIPE    = |Write FD1|\n");
+
 	sh->fd.open = IN;
 
-	if (pipe(sh->fd.in) == -1)  {
+	if (pipe(sh->fd.one) == -1)  {
 		return ;
 	}
 
@@ -94,9 +95,9 @@ static void	exec_pipe_write_in(t_shell *sh, int num)
 
 	if (pid == FORKED_CHILD)
 	{
-		dup2(sh->fd.in[WRITE_END], STDOUT_FILENO);
-		close(sh->fd.in[READ_END]);
-		close(sh->fd.in[WRITE_END]);
+		dup2(sh->fd.one[WRITE_END], STDOUT_FILENO);
+		close(sh->fd.one[READ_END]);
+		close(sh->fd.one[WRITE_END]);
 		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
 		{
 			perror(ERROR_EXEC);
@@ -109,13 +110,12 @@ static void	exec_pipe_write_in(t_shell *sh, int num)
 		g_pid_number = waitpid(pid, NULL, 0);
 }
 
-static void	exec_pipe_read_in(t_shell *sh, int num)
+static void	exec_pipe_read_fd1(t_shell *sh, int num)
 {
 	pid_t	pid;
 
 	if (DEBUGGER_EXEC)
-		parsed_info_logger(sh);
-	printf("\nCalling pipe read in\n");
+		printf("PIPE    = |Read FD1|\n");
 	sh->fd.open = ANY;
 
 	pid = fork();
@@ -124,9 +124,9 @@ static void	exec_pipe_read_in(t_shell *sh, int num)
 
 	if (pid == FORKED_CHILD)
 	{
-		dup2(sh->fd.in[READ_END], STDIN_FILENO);
-		close(sh->fd.in[READ_END]);
-		close(sh->fd.in[WRITE_END]);
+		dup2(sh->fd.one[READ_END], STDIN_FILENO);
+		close(sh->fd.one[READ_END]);
+		close(sh->fd.one[WRITE_END]);
 		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
 		{
 			perror(ERROR_EXEC);
@@ -137,19 +137,18 @@ static void	exec_pipe_read_in(t_shell *sh, int num)
 	}
 	else
 	{
-		close(sh->fd.in[READ_END]);
-		close(sh->fd.in[WRITE_END]);
+		close(sh->fd.one[READ_END]);
+		close(sh->fd.one[WRITE_END]);
 		g_pid_number = waitpid(pid, NULL, 0);
 	}
 }
 
-static void	exec_pipe_read_out(t_shell *sh, int num)
+static void	exec_pipe_read_fd2(t_shell *sh, int num)
 {
 	pid_t	pid;
 
 	if (DEBUGGER_EXEC)
-		parsed_info_logger(sh);
-	printf("\nCalling pipe read out\n");
+		printf("PIPE    = |Read FD2|\n");
 	sh->fd.open = ANY;
 
 	pid = fork();
@@ -158,9 +157,9 @@ static void	exec_pipe_read_out(t_shell *sh, int num)
 
 	if (pid == FORKED_CHILD)
 	{
-		dup2(sh->fd.out[READ_END], STDIN_FILENO);
-		close(sh->fd.out[READ_END]);
-		close(sh->fd.out[WRITE_END]);
+		dup2(sh->fd.two[READ_END], STDIN_FILENO);
+		close(sh->fd.two[READ_END]);
+		close(sh->fd.two[WRITE_END]);
 		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
 		{
 			perror(ERROR_EXEC);
@@ -171,22 +170,21 @@ static void	exec_pipe_read_out(t_shell *sh, int num)
 	}
 	else
 	{
-		close(sh->fd.out[READ_END]);
-		close(sh->fd.out[WRITE_END]);
+		close(sh->fd.two[READ_END]);
+		close(sh->fd.two[WRITE_END]);
 		g_pid_number = waitpid(pid, NULL, 0);
 	}
 }
 
-static void	exec_pipe_read_in_write_out(t_shell *sh, int num)
+static void	exec_pipe_read_fd1_write_fd2(t_shell *sh, int num)
 {
 	pid_t	pid;
 
 	if (DEBUGGER_EXEC)
-		parsed_info_logger(sh);
-	printf("\nCalling pipe read in write out\n");
+		printf("PIPE    = |Read FD1 - Write FD2|\n");
 	sh->fd.open = OUT;
 
-	if (pipe(sh->fd.out) == -1)  {
+	if (pipe(sh->fd.two) == -1)  {
 		return ;
 	}
 
@@ -196,12 +194,12 @@ static void	exec_pipe_read_in_write_out(t_shell *sh, int num)
 
 	if (pid == FORKED_CHILD)
 	{
-		dup2(sh->fd.in[READ_END], STDIN_FILENO);
-		close(sh->fd.in[READ_END]);
-		close(sh->fd.in[WRITE_END]);
-		dup2(sh->fd.out[WRITE_END], STDOUT_FILENO);
-		close(sh->fd.out[READ_END]);
-		close(sh->fd.out[WRITE_END]);
+		dup2(sh->fd.one[READ_END], STDIN_FILENO);
+		close(sh->fd.one[READ_END]);
+		close(sh->fd.one[WRITE_END]);
+		dup2(sh->fd.two[WRITE_END], STDOUT_FILENO);
+		close(sh->fd.two[READ_END]);
+		close(sh->fd.two[WRITE_END]);
 		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
 		{
 			perror(ERROR_EXEC);
@@ -212,22 +210,22 @@ static void	exec_pipe_read_in_write_out(t_shell *sh, int num)
 	}
 	else
 	{
-		close(sh->fd.in[READ_END]);
-		close(sh->fd.in[WRITE_END]);
+		close(sh->fd.one[READ_END]);
+		close(sh->fd.one[WRITE_END]);
 		g_pid_number = waitpid(pid, NULL, 0);
 	}
 }
 
-static void	exec_pipe_read_out_write_in(t_shell *sh, int num)
+static void	exec_pipe_read_fd2_write_fd1(t_shell *sh, int num)
 {
 	pid_t	pid;
 
 	if (DEBUGGER_EXEC)
-		parsed_info_logger(sh);
-	printf("\nCalling pipe read out write in\n");
+		printf("PIPE    = |Read FD2 - Write FD1|\n");
+
 	sh->fd.open = IN;
 
-	if (pipe(sh->fd.in) == -1)  {
+	if (pipe(sh->fd.one) == -1)  {
 		return ;
 	}
 
@@ -237,12 +235,12 @@ static void	exec_pipe_read_out_write_in(t_shell *sh, int num)
 
 	if (pid == FORKED_CHILD)
 	{
-		dup2(sh->fd.out[READ_END], STDIN_FILENO);
-		close(sh->fd.out[READ_END]);
-		close(sh->fd.out[WRITE_END]);
-		dup2(sh->fd.in[WRITE_END], STDOUT_FILENO);
-		close(sh->fd.in[READ_END]);
-		close(sh->fd.in[WRITE_END]);
+		dup2(sh->fd.two[READ_END], STDIN_FILENO);
+		close(sh->fd.two[READ_END]);
+		close(sh->fd.two[WRITE_END]);
+		dup2(sh->fd.one[WRITE_END], STDOUT_FILENO);
+		close(sh->fd.one[READ_END]);
+		close(sh->fd.one[WRITE_END]);
 		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
 		{
 			perror(ERROR_EXEC);
@@ -253,8 +251,8 @@ static void	exec_pipe_read_out_write_in(t_shell *sh, int num)
 	}
 	else
 	{
-		close(sh->fd.out[READ_END]);
-		close(sh->fd.out[WRITE_END]);
+		close(sh->fd.two[READ_END]);
+		close(sh->fd.two[WRITE_END]);
 		g_pid_number = waitpid(pid, NULL, 0);
 	}
 }
@@ -263,26 +261,31 @@ static void	eval_cmd(t_shell *sh, int num)
 {
 	sh->last_flag = NONE;
 
-
 	if (num > 0)
 		sh->last_flag = sh->cmds[num - 1].flag;
 
 	if (sh->cmds[num].flag == PIPE && sh->last_flag == NONE && sh->fd.open == ANY)
-		exec_pipe_write_in(sh, num);
+		exec_pipe_write_fd1(sh, num);
 	else if (sh->cmds[num].flag == PIPE && sh->last_flag == PIPE && sh->fd.open == IN)
-		exec_pipe_read_in_write_out(sh, num);
+		exec_pipe_read_fd1_write_fd2(sh, num);
 	else if (sh->cmds[num].flag == PIPE && sh->last_flag == PIPE && sh->fd.open == OUT)
-		exec_pipe_read_out_write_in(sh, num);
+		exec_pipe_read_fd2_write_fd1(sh, num);
 	else if (sh->cmds[num].flag != PIPE && sh->last_flag == PIPE && sh->fd.open == IN)
-		exec_pipe_read_in(sh, num);
+		exec_pipe_read_fd1(sh, num);
 	else if (sh->cmds[num].flag != PIPE && sh->last_flag == PIPE && sh->fd.open == OUT)
-		exec_pipe_read_out(sh, num);
+		exec_pipe_read_fd2(sh, num);
 	else
 		exec_noflag(sh, num);
 }
 
+static void	debug_helper(t_shell *sh)
+{
+	parsed_info_logger(sh);
+	printf("\n========= Execution ==========");
+}
+
 //////////////////TO-DOs
-// Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
+// Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..) Built-ins e Não Built-ins
 // Lidar com signals
 // Garantir o retorno do PID para: "$?"
 /////////////////////////
@@ -291,18 +294,12 @@ void	executor(t_shell *sh)
 	int	i;
 
 	sh->fd.open = ANY;
+	if (DEBUGGER_EXEC)
+		debug_helper(sh);
 	i = -1;
 	while (++i < sh->count.cmds)
-	{
 		if (handle_builtin(sh, i) == NOT_BUILT_IN)
-		{
 			if (get_cmd_path(sh, i) == SUCCESS)
-			{
-				if (DEBUGGER_EXEC)
-					parsed_info_logger(sh);
 				eval_cmd(sh, i);
-			}
-		}
-	}
 	clear_execution(sh);
 }

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/11 21:49:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 09:47:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 /* ** Set debuggers ON/OFF ** */
 # define DEBUGGER_BUILTIN 0
-# define DEBUGGER_EXEC 0
+# define DEBUGGER_EXEC 1
 
 /* ** Helpers **/
 # define FORKED_CHILD 0
@@ -119,10 +119,10 @@ typedef struct s_counters
 	int			paths;
 }	t_counters;
 
-typedef struct s_fd
+typedef struct s_fds
 {
-	int		in[2];
-	int		out[2];
+	int		one[2];
+	int		two[2];
 	e_fds	open;
 }	t_fd;
 
