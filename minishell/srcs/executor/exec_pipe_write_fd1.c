@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:19:36 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:24:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 11:59:41 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	exec_pipe_write_fd1(t_shell *sh, int num)
 	pid_t	pid;
 
 	if (DEBUGGER_EXEC)
-		printf("PIPE    = |Write FD1|\n");
+		exec_debugger_helper(sh, num, "Pipe    = |Write FD1|\n");
 
 	sh->fd.open = IN;
 

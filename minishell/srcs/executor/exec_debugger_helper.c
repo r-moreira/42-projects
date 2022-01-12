@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_noflag.c                                      :+:      :+:    :+:   */
+/*   exec_debugger_helper.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:54:55 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/12 11:45:04 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/12 11:54:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	exec_noflag(t_shell *sh, int num)
+void	exec_debugger_helper(t_shell *sh, int num, char *log)
 {
-	int		status;
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		exec_debugger_helper(sh, num, "NOFLAG  = |Write FD1|\n");
-	pid = fork();
-	if (pid == FORKED_CHILD)
-	{
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
-	}
+	if (sh->count.cmds == num + 1)
+		printf("%s======= End Execution ========\n\n", log);
 	else
-		g_pid_number = wait(&status);
+		printf("%s", log);
 }
+

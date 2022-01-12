@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:28:29 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 11:55:32 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	debug_helper(t_shell *sh)
+static void	executor_debug_helper(t_shell *sh)
 {
 	parsed_info_logger(sh);
 	printf("\n========= Execution ==========");
@@ -92,7 +92,7 @@ void	executor(t_shell *sh)
 
 	sh->fd.open = ANY;
 	if (DEBUGGER_EXEC)
-		debug_helper(sh);
+		executor_debug_helper(sh);
 	i = -1;
 	while (++i < sh->count.cmds)
 		if (handle_builtin(sh, i) == NOT_BUILT_IN)

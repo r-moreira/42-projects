@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:20:23 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:23:27 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 11:59:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	exec_pipe_read_fd1(t_shell *sh, int num)
 	pid_t	pid;
 
 	if (DEBUGGER_EXEC)
-		printf("PIPE    = |Read FD1|\n");
+		exec_debugger_helper(sh, num, "Pipe    = |Read FD1|\n");
+
 	sh->fd.open = ANY;
 
 	pid = fork();
