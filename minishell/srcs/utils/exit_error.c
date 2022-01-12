@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:52:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 12:20:03 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 14:27:47 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	exit_error(char *msg)
 {
 	perror(msg);
-		exit(errno);
+	exit(errno);
 }

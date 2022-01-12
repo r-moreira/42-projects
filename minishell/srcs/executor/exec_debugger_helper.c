@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:45:04 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:54:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 14:27:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,3 @@ void	exec_debugger_helper(t_shell *sh, int num, char *log)
 	else
 		printf("%s", log);
 }
-
