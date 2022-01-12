@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:55:32 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 12:29:35 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ static void	call_exec(t_shell *sh, int num)
 
 	if (sh->cmds[num].flag == PIPE && sh->last_flag == NONE && sh->fd.open == ANY)
 		exec_pipe_write_fd1(sh, num);
-	else if (sh->cmds[num].flag == PIPE && sh->last_flag == PIPE && sh->fd.open == IN)
+	else if (sh->cmds[num].flag == PIPE && sh->last_flag == PIPE && sh->fd.open == ONE)
 		exec_pipe_read_fd1_write_fd2(sh, num);
-	else if (sh->cmds[num].flag == PIPE && sh->last_flag == PIPE && sh->fd.open == OUT)
+	else if (sh->cmds[num].flag == PIPE && sh->last_flag == PIPE && sh->fd.open == TWO)
 		exec_pipe_read_fd2_write_fd1(sh, num);
-	else if (sh->cmds[num].flag != PIPE && sh->last_flag == PIPE && sh->fd.open == IN)
+	else if (sh->cmds[num].flag != PIPE && sh->last_flag == PIPE && sh->fd.open == ONE)
 		exec_pipe_read_fd1(sh, num);
-	else if (sh->cmds[num].flag != PIPE && sh->last_flag == PIPE && sh->fd.open == OUT)
+	else if (sh->cmds[num].flag != PIPE && sh->last_flag == PIPE && sh->fd.open == TWO)
 		exec_pipe_read_fd2(sh, num);
 	else
 		exec_noflag(sh, num);
@@ -83,6 +83,7 @@ static void	call_exec(t_shell *sh, int num)
 
 //////////////////TO-DOs
 // Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..) Built-ins e Não Built-ins
+// Adicionar log de execução nos built-ins
 // Lidar com signals
 // Garantir o retorno do PID para: "$?"
 /////////////////////////

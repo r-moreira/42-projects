@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:21:23 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:59:30 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 12:31:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exec_pipe_read_fd2_write_fd1(t_shell *sh, int num)
 	if (DEBUGGER_EXEC)
 		exec_debugger_helper(sh, num, "Pipe    = |Read FD2 - Write FD1|\n");
 
-	sh->fd.open = IN;
+	sh->fd.open = ONE;
 
 	if (pipe(sh->fd.one) == -1)  {
 		return ;

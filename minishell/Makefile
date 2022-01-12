@@ -28,6 +28,7 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/take_input.c \
 					  $(UTILS_DIR)/welcome_message.c \
 					  $(UTILS_DIR)/syntax_error.c \
+					  $(UTILS_DIR)/exit_error.c \
 					  $(UTILS_DIR)/is_closed_quotes.c \
 					  $(UTILS_DIR)/split_null_end.c \
 					  $(UTILS_DIR)/is_flag.c \
@@ -35,7 +36,8 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/is_env_valid.c \
 					  $(UTILS_DIR)/get_env_key.c \
 					  $(UTILS_DIR)/strlen_no_spaces.c \
-					  $(UTILS_DIR)/logger.c
+					  $(UTILS_DIR)/logger.c \
+					  $(UTILS_DIR)/dup_n_close.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser

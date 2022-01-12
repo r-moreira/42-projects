@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:50:11 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 12:36:56 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 
 /* ** Helpers **/
 # define FORKED_CHILD 0
-# define READ_END 0
-# define WRITE_END 1
 
 /* ** Buffers ** */
 # define MAX_LINE_INPUT 1248
@@ -65,7 +63,9 @@
 # define ERROR_EXPT_END "': not a valid identifier\n"
 # define ERROR_UNSET_START "minishell: unset: `"
 # define ERROR_UNSET_END "': not a valid identifier\n"
-# define ERROR_EXEC "Minishell: Failed to execute the command: "
+# define ERROR_EXEC "minishell: Failed to execute the command: "
+# define ERROR_FORK "minishell: Error on forking process\n"
+# define ERROR_PIPE_FD "minishell: Error on creating pipe\n"
 
 /* ** Global Variables ** */
 int	g_pid_number;
@@ -98,9 +98,15 @@ typedef enum e_flags
 typedef enum e_fds
 {
 	ANY,
-	IN,
-	OUT
+	ONE,
+	TWO
 }	e_fds;
+
+typedef enum e_pipe_end
+{
+	READ_END,
+	WRITE_END
+}	e_pipe_end;
 
 /* ** Structs ** */
 typedef struct s_commands
@@ -143,7 +149,8 @@ typedef struct s_minishell
 
 //UTILS
 void		init_shell(t_shell *sh, char **envp);
-t_status	print_error(char *err_message);
+void		exit_error(char *err_message);
+t_status	syntax_error(char *msg);
 void		welcome_message(void);
 void		print_prompt(void);
 t_status	take_input(t_shell *sh);
@@ -156,6 +163,7 @@ t_bool		is_env_valid(char *env);
 char		*get_env_key(char *env);
 size_t		strlen_no_spaces(char *s);
 void		parsed_info_logger(t_shell *sh);
+void		dup_n_close(t_shell *sh, e_fds fd, e_pipe_end end, int fileno);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);

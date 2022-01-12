@@ -1,47 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pipe_write_fd1.c                              :+:      :+:    :+:   */
+/*   dup_n_close.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 11:19:36 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 12:31:49 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/12 12:24:00 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/12 12:37:05 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	exec_pipe_write_fd1(t_shell *sh, int num)
+void	dup_n_close(t_shell *sh, e_fds fd, e_pipe_end end, int fileno)
 {
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		exec_debugger_helper(sh, num, "Pipe    = |Write FD1|\n");
-
-	sh->fd.open = ONE;
-
-	if (pipe(sh->fd.one) == -1)  {
-		return ;
-	}
-
-	pid = fork();
-	if (pid == -1)
-		return ;
-
-	if (pid == FORKED_CHILD)
+	if (fd == ONE && end == READ_END && fileno == STDIN_FILENO)
 	{
-		dup2(sh->fd.one[WRITE_END], STDOUT_FILENO);
+		dup2(sh->fd.one[READ_END], STDIN_FILENO);
 		close(sh->fd.one[READ_END]);
 		close(sh->fd.one[WRITE_END]);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
 	}
-	else
-		g_pid_number = waitpid(pid, NULL, 0);
+	else if (fd == TWO && end == WRITE_END && fileno == STDOUT_FILENO)
+	{
+		dup2(sh->fd.two[WRITE_END], STDOUT_FILENO);
+		close(sh->fd.two[READ_END]);
+		close(sh->fd.two[WRITE_END]);
+	}
 }
