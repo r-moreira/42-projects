@@ -6,12 +6,17 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:17:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 11:28:29 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <unistd.h>
+
+static void	debug_helper(t_shell *sh)
+{
+	parsed_info_logger(sh);
+	printf("\n========= Execution ==========");
+}
 
 static void	clear_execution(t_shell *sh)
 {
@@ -55,209 +60,7 @@ static t_status	handle_builtin(t_shell *sh, int num)
 	return (NOT_BUILT_IN);
 }
 
-static void	exec_noflag(t_shell *sh, int num)
-{
-	int		status;
-	pid_t	pid;
-	printf("NOFLAG  = |Write FD1|\n");
-
-	pid = fork();
-	if (pid == FORKED_CHILD)
-	{
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
-	}
-	else
-		g_pid_number = wait(&status);
-}
-
-static void	exec_pipe_write_fd1(t_shell *sh, int num)
-{
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		printf("PIPE    = |Write FD1|\n");
-
-	sh->fd.open = IN;
-
-	if (pipe(sh->fd.one) == -1)  {
-		return ;
-	}
-
-	pid = fork();
-	if (pid == -1)
-		return ;
-
-	if (pid == FORKED_CHILD)
-	{
-		dup2(sh->fd.one[WRITE_END], STDOUT_FILENO);
-		close(sh->fd.one[READ_END]);
-		close(sh->fd.one[WRITE_END]);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
-	}
-	else
-		g_pid_number = waitpid(pid, NULL, 0);
-}
-
-static void	exec_pipe_read_fd1(t_shell *sh, int num)
-{
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		printf("PIPE    = |Read FD1|\n");
-	sh->fd.open = ANY;
-
-	pid = fork();
-	if (pid == -1)
-		return ;
-
-	if (pid == FORKED_CHILD)
-	{
-		dup2(sh->fd.one[READ_END], STDIN_FILENO);
-		close(sh->fd.one[READ_END]);
-		close(sh->fd.one[WRITE_END]);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		close(sh->fd.one[READ_END]);
-		close(sh->fd.one[WRITE_END]);
-		g_pid_number = waitpid(pid, NULL, 0);
-	}
-}
-
-static void	exec_pipe_read_fd2(t_shell *sh, int num)
-{
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		printf("PIPE    = |Read FD2|\n");
-	sh->fd.open = ANY;
-
-	pid = fork();
-	if (pid == -1)
-		return ;
-
-	if (pid == FORKED_CHILD)
-	{
-		dup2(sh->fd.two[READ_END], STDIN_FILENO);
-		close(sh->fd.two[READ_END]);
-		close(sh->fd.two[WRITE_END]);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		close(sh->fd.two[READ_END]);
-		close(sh->fd.two[WRITE_END]);
-		g_pid_number = waitpid(pid, NULL, 0);
-	}
-}
-
-static void	exec_pipe_read_fd1_write_fd2(t_shell *sh, int num)
-{
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		printf("PIPE    = |Read FD1 - Write FD2|\n");
-	sh->fd.open = OUT;
-
-	if (pipe(sh->fd.two) == -1)  {
-		return ;
-	}
-
-	pid = fork();
-	if (pid == -1)
-		return ;
-
-	if (pid == FORKED_CHILD)
-	{
-		dup2(sh->fd.one[READ_END], STDIN_FILENO);
-		close(sh->fd.one[READ_END]);
-		close(sh->fd.one[WRITE_END]);
-		dup2(sh->fd.two[WRITE_END], STDOUT_FILENO);
-		close(sh->fd.two[READ_END]);
-		close(sh->fd.two[WRITE_END]);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		close(sh->fd.one[READ_END]);
-		close(sh->fd.one[WRITE_END]);
-		g_pid_number = waitpid(pid, NULL, 0);
-	}
-}
-
-static void	exec_pipe_read_fd2_write_fd1(t_shell *sh, int num)
-{
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		printf("PIPE    = |Read FD2 - Write FD1|\n");
-
-	sh->fd.open = IN;
-
-	if (pipe(sh->fd.one) == -1)  {
-		return ;
-	}
-
-	pid = fork();
-	if (pid == -1)
-		return ;
-
-	if (pid == FORKED_CHILD)
-	{
-		dup2(sh->fd.two[READ_END], STDIN_FILENO);
-		close(sh->fd.two[READ_END]);
-		close(sh->fd.two[WRITE_END]);
-		dup2(sh->fd.one[WRITE_END], STDOUT_FILENO);
-		close(sh->fd.one[READ_END]);
-		close(sh->fd.one[WRITE_END]);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-		{
-			perror(ERROR_EXEC);
-			exit(errno);
-		}
-		else
-			exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		close(sh->fd.two[READ_END]);
-		close(sh->fd.two[WRITE_END]);
-		g_pid_number = waitpid(pid, NULL, 0);
-	}
-}
-
-static void	eval_cmd(t_shell *sh, int num)
+static void	call_exec(t_shell *sh, int num)
 {
 	sh->last_flag = NONE;
 
@@ -278,12 +81,6 @@ static void	eval_cmd(t_shell *sh, int num)
 		exec_noflag(sh, num);
 }
 
-static void	debug_helper(t_shell *sh)
-{
-	parsed_info_logger(sh);
-	printf("\n========= Execution ==========");
-}
-
 //////////////////TO-DOs
 // Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..) Built-ins e Não Built-ins
 // Lidar com signals
@@ -300,6 +97,6 @@ void	executor(t_shell *sh)
 	while (++i < sh->count.cmds)
 		if (handle_builtin(sh, i) == NOT_BUILT_IN)
 			if (get_cmd_path(sh, i) == SUCCESS)
-				eval_cmd(sh, i);
+				call_exec(sh, i);
 	clear_execution(sh);
 }
