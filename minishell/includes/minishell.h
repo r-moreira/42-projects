@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 12:36:56 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 12:41:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ char		*get_env_key(char *env);
 size_t		strlen_no_spaces(char *s);
 void		parsed_info_logger(t_shell *sh);
 void		dup_n_close(t_shell *sh, e_fds fd, e_pipe_end end, int fileno);
+void		close_fd(t_shell *sh, e_fds fd);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);

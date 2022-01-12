@@ -37,7 +37,8 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/get_env_key.c \
 					  $(UTILS_DIR)/strlen_no_spaces.c \
 					  $(UTILS_DIR)/logger.c \
-					  $(UTILS_DIR)/dup_n_close.c
+					  $(UTILS_DIR)/dup_n_close.c \
+					  $(UTILS_DIR)/close_fd.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser

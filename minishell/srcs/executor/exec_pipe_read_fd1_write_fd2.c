@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:20:55 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 12:38:20 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/12 12:41:53 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	exec_pipe_read_fd1_write_fd2(t_shell *sh, int num)
 	}
 	else
 	{
-		close(sh->fd.one[READ_END]);
-		close(sh->fd.one[WRITE_END]);
+		//close(sh->fd.one[READ_END]);
+		//close(sh->fd.one[WRITE_END]);
+		close_fd(sh, ONE);
 		g_pid_number = waitpid(pid, NULL, 0);
 	}
 }
