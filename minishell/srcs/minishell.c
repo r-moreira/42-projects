@@ -6,14 +6,14 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 15:59:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:31:37 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // TO-DO -> "$?"
-// TO-DO - ENV/EXPORT se for att USER NAME OU HOME, chamar getEnv novamente
+// Ajustar o tokenizer, incluir os redirects dentro do mesmo token de comando
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	sh;
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **envp)
 		if (take_input(&sh) == SUCCESS)
 			if (analyzer(&sh) == SUCCESS)
 				if (parser(&sh) == SUCCESS)
-					executor(&sh);
+						printf("\n");//executor(&sh);
 	}
 	return (EXIT_SUCCESS);
 }

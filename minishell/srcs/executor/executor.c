@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 14:29:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:02:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ static t_status	handle_builtin(t_shell *sh, int num)
 	return (NOT_BUILT_IN);
 }
 
+void	exec_redir_out(t_shell *sh, int num)
+{
+	(void)sh;
+	(void)num;
+	return ;
+}
+
+void	handle_output_redir(t_shell *sh, int num)
+{
+	e_flags flag;
+
+	flag = sh->cmds[num].flag;
+	if (flag == REDIRECT_OUT && sh->last_flag == NONE && sh->fd.open == ANY)
+		exec_redir_out(sh, num);
+}
+
 static void	call_exec(t_shell *sh, int num)
 {
 	e_flags	flag;
@@ -80,6 +96,8 @@ static void	call_exec(t_shell *sh, int num)
 		exec_pipe_read_fd2(sh, num);
 	else
 		exec_noflag(sh, num);
+	handle_output_redir(sh, num);
+	//handle_input_redir
 }
 
 //////////////////TO-DOs

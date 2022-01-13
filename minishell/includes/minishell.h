@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 12:41:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:27:27 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,11 @@ typedef struct s_commands
 	char	*args[MAX_ARGS_NUM];
 	int		args_count;
 	char	path[MAX_PATH_LEN];
+	t_bool	pipe;
+	int		rd_out;
+	int		rd_out_apnd;
+	int		rd_in;
+	int		here_doc;
 	e_flags	flag;
 }	t_commands;
 
