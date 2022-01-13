@@ -6,11 +6,22 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 16:56:12 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 17:09:15 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	str_close_quotes(char *dest, char *src, int *i, int *j)
+{
+	char	c;
+
+	c = src[*i];
+	dest[++(*j)] = src[*i];
+	while (src[++(*i)] != c)
+		dest[++(*j)] = src[*i];
+	dest[++(*j)] = src[*i];
+}
 
 static char	*cmd_tokenizer(char *input)
 {
@@ -27,18 +38,13 @@ static char	*cmd_tokenizer(char *input)
 		c = input[i];
 		if (c == '|')
 		{
-			token[++j] = input[i];
+			token[++j] = c;
 			break ;
 		}
 		else if ((c == '\'' || c == '"') && is_closed_quotes(c, input + i))
-		{
-			token[++j] = input[i];
-			while (input[++i] != c)
-				token[++j] = input[i];
-			token[++j] = input[i];
-		}
+			str_close_quotes(token, input, &i, &j);
 		else
-			token[++j] = input[i];
+			token[++j] = c;
 	}
 	token[++j] = '\0';
 	input = NULL;
@@ -55,7 +61,6 @@ t_status	analyzer(t_shell *sh)
 	while (ptr_pos < ft_strlen(sh->input_string))
 	{
 		sh->cmd_tokens[++i] = cmd_tokenizer(sh->input_string + ptr_pos);
-		printf("CT = [%s]\n", sh->cmd_tokens[i]); //TMP
 		if (ft_strncmp(sh->cmd_tokens[i], "", ft_strlen(sh->cmd_tokens[i])))
 			ptr_pos += ft_strlen(sh->cmd_tokens[i]);
 	}
