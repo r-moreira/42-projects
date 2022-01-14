@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 11:22:15 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 18:11:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	skip_flags(char *token, int *i)
 	int	j;
 
 	j = *i + 1;
+	if (is_flag(token[j]))
+		j++;
 	while (token[j] && ft_isspace(token[j]))
 		j++;
 	while (token[j] && !ft_isspace(token[j]))
