@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 23:26:41 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 00:06:48 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define MAX_ENVS 256
 # define MAX_PATHS 124
 # define MAX_PATH_LEN 512
+# define MAX_CMD_FLAGS 20
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
@@ -86,7 +87,7 @@ typedef enum e_bool
 	TRUE,
 }	t_bool;
 
-typedef enum e_flags
+typedef enum e_flagname
 {
 	NONE,
 	PIPE,
@@ -94,34 +95,37 @@ typedef enum e_flags
 	REDIRECT_OUT_APPEND,
 	REDIRECT_IN,
 	HERE_DOCUMENT
-}	e_flags;
+}	t_flagname;
 
-typedef enum e_fds
+typedef enum e_fds_num
 {
 	ANY,
 	ONE,
 	TWO
-}	e_fds;
+}	t_fds_num;
 
 typedef enum e_pipe_end
 {
 	READ_END,
 	WRITE_END
-}	e_pipe_end;
+}	t_pipe_end;
 
 /* ** Structs ** */
+typedef struct s_flags
+{
+	t_flagname	name;
+	char		*arg;
+}	t_flags;
+
 typedef struct s_commands
 {
 	char	name[MAX_COMMAND_NAME];
 	char	*args[MAX_ARGS_NUM];
-	int		args_count;
 	char	path[MAX_PATH_LEN];
+	t_flags	flags[MAX_CMD_FLAGS];
+	int		args_count;
+	int		flags_count;
 	t_bool	pipe;
-	int		rd_out;
-	int		rd_out_apnd;
-	int		rd_in;
-	int		here_doc;
-	e_flags	flag;
 }	t_commands;
 
 typedef struct s_counters
@@ -135,8 +139,8 @@ typedef struct s_fds
 {
 	int		one[2];
 	int		two[2];
-	e_fds	open;
-}	t_fd;
+	t_fds_num	open;
+}	t_fds;
 
 typedef struct s_minishell
 {
@@ -146,8 +150,8 @@ typedef struct s_minishell
 	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
 	char		*envs[MAX_ENVS];
 	char		*paths[MAX_PATHS];
-	t_fd		fd;
-	e_flags		last_flag;
+	t_fds		fd;
+	t_flagname	last_flag;
 	t_counters	count;
 }	t_shell;
 
@@ -169,8 +173,8 @@ t_bool		is_env_valid(char *env);
 char		*get_env_key(char *env);
 size_t		strlen_no_spaces(char *s);
 void		parsed_info_logger(t_shell *sh);
-void		dup_n_close(t_shell *sh, e_fds fd, e_pipe_end end, int fileno);
-void		close_fd(t_shell *sh, e_fds fd);
+void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
+void		close_fd(t_shell *sh, t_fds_num fd);
 void		str_close_quotes(char *dest, char *src, int *i, int *j);
 
 //PROCESS HANDLERS

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 16:02:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 23:56:09 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	clear_execution(t_shell *sh)
 		while (++j < sh->cmds[i].args_count)
 			free(sh->cmds[i].args[j]);
 		sh->cmds[i].args_count = 0;
-		sh->cmds[i].flag = NONE;
+		sh->cmds[i].flags[0].name = NONE;
 		ft_strlcpy(sh->cmds[i].name, "\0", 1);
 		ft_strlcpy(sh->cmds[i].path, "\0", 1);
 	}
@@ -69,21 +69,21 @@ void	exec_redir_out(t_shell *sh, int num)
 
 void	handle_output_redir(t_shell *sh, int num)
 {
-	e_flags flag;
+	enum e_flagname flag;
 
-	flag = sh->cmds[num].flag;
+	flag = sh->cmds[num].flags[0].name;
 	if (flag == REDIRECT_OUT && sh->last_flag == NONE && sh->fd.open == ANY)
 		exec_redir_out(sh, num);
 }
 
 static void	call_exec(t_shell *sh, int num)
 {
-	e_flags	flag;
+	enum e_flagname	flag;
 
 	sh->last_flag = NONE;
-	flag = sh->cmds[num].flag;
+	flag = sh->cmds[num].flags[0].name;
 	if (num > 0)
-		sh->last_flag = sh->cmds[num - 1].flag;
+		sh->last_flag = sh->cmds[num - 1].flags[0].name;
 	if (flag == PIPE && sh->last_flag == NONE && sh->fd.open == ANY)
 		exec_pipe_write_fd1(sh, num);
 	else if (flag == PIPE && sh->last_flag == PIPE && sh->fd.open == ONE)
