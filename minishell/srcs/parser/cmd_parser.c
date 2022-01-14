@@ -6,38 +6,39 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 21:58:00 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 23:39:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_bool	is_cmd_valid(char *token)
+static void	free_parser(char **split, char *token)
 {
 	int	i;
-	int	count;
+
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
+	free(token);
+}
+
+t_bool	has_alphanum(char *split)
+{
+	int	i;
+	int count;
 
 	count = 0;
 	i = -1;
-	while (token[++i])
-		if (ft_isalpha(token[i]))
+	while (split[++i])
+		if (ft_isalnum(split[i]))
 			count++;
 	if (count >= 1)
 		return (TRUE);
 	return (FALSE);
 }
 
-static void	free_parser(char **splt, char *token)
-{
-	int	i;
-
-	i = -1;
-	while (splt[++i])
-		free(splt[i]);
-	free(splt);
-	free(token);
-}
-
+//TO-DO - Remover as flags literalmente, ex: ls > tmp.txt > tmp2.txt tmp3.txt = ls tmp3.txt
 char	*remove_flags(char *token)
 {
 	int		i;
@@ -51,41 +52,50 @@ char	*remove_flags(char *token)
 	while (token[++i])
 	{
 		c = token[i];
+		if (is_flag(c))
+			break ;
 		if (!is_flag(c) && c != '\'' && c != '"')
 			new[++j] = c;
 		else if ((c == '\'' || c == '"') && is_closed_quotes(c, token + i))
-		{
-			new[++j] = token[i];
-			while (token[++i] != c)
-				new[++j] = token[i];
-			new[++j] = token[i];
-		}
+			str_close_quotes(new, token, &i, &j);
 	}
 	new[++j] = '\0';
 	return (new);
 }
 
+static void	get_args(t_shell *sh, int num, char *split, int *j)
+{
+	int	len;
+
+	len = ft_strlen(split);
+	if (has_alphanum(split))
+	{
+		sh->cmds[num].args[++(*j)] = (char *)malloc(sizeof(char) * len + 1);
+		ft_strlcpy(sh->cmds[num].args[*j], split, len + 1);
+		printf("cmd[%d] arg [%d][%s]\n", num, *j, sh->cmds[num].args[*j]); //tmp
+	}
+}
+
 t_status	parse_cmd(t_shell *sh, int num)
 {
 	int		i;
-	int		len;
-	char	**splt;
+	int		j;
+	char	**split;
 	char	*token;
 
-	if (!sh->cmd_tokens[num] || !is_cmd_valid(sh->cmd_tokens[num]))
+	if (!sh->cmd_tokens[num])
+		return (ERROR);
+	if (ft_strlen(sh->cmd_tokens[num]) < 1)
 		return (ERROR);
 	token = remove_flags(sh->cmd_tokens[num]);
-	splt = split_null_end(token, ' ');
+	split = split_null_end(token, ' ');
 	i = -1;
-	while (splt[++i])
-	{
-		len = ft_strlen(splt[i]);
-		sh->cmds[num].args[i] = (char *)malloc(sizeof(char) * len + 1);
-		ft_strlcpy(sh->cmds[num].args[i], splt[i], len + 1);
-	}
-	sh->cmds[num].args_count = i;
-	sh->cmds[num].args[i] = NULL;
-	ft_strlcpy(sh->cmds[num].name, splt[0], ft_strlen(splt[0]) + 1);
-	free_parser(splt, token);
+	j = -1;
+	while (split[++i])
+		get_args(sh, num, split[i], &j);
+	sh->cmds[num].args_count = j;
+	sh->cmds[num].args[++j] = NULL;
+	ft_strlcpy(sh->cmds[num].name, split[0], ft_strlen(split[0]) + 1);
+	free_parser(split, token);
 	return (SUCCESS);
 }

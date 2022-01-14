@@ -6,37 +6,51 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 21:49:56 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 23:25:38 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_status	get_cmd_flag(t_shell *sh, char *cmd_token, int num,
-int flag_index)
+static void	initialize_cmd_flags(t_shell *sh, int num)
 {
-	if (cmd_token[flag_index] == '|')
-		sh->cmds[num].flag = PIPE;
-	else if (cmd_token[flag_index] == '<')
+	sh->cmds[num].pipe = FALSE;
+	sh->cmds[num].rd_out = 0;
+	sh->cmds[num].rd_out_apnd = 0;
+	sh->cmds[num].rd_in = 0;
+	sh->cmds[num].here_doc = 0;
+}
+
+static t_status	get_cmd_flags(t_shell *sh, char *cmd_token, int num, int index)
+{
+	initialize_cmd_flags(sh, num);
+	if (cmd_token[index] == '|')
+		sh->cmds[num].pipe = TRUE;
+	else if (cmd_token[index] == '<')
 	{
-		if (cmd_token[flag_index + 1])
+		if (cmd_token[index + 1])
 		{
-			if (cmd_token[flag_index + 1] == '<')
-				sh->cmds[num].flag = HERE_DOCUMENT;
+			if (cmd_token[index + 1] == '<')
+				sh->cmds[num].here_doc++;;
 		}
 		else
-			sh->cmds[num].flag = REDIRECT_IN;
+			sh->cmds[num].rd_in++;
 	}
-	else if (cmd_token[flag_index] == '>')
+	else if (cmd_token[index] == '>')
 	{
-		if (cmd_token[flag_index + 1])
+		if (cmd_token[index + 1])
 		{
-			if (cmd_token[flag_index + 1] == '>')
-				sh->cmds[num].flag = REDIRECT_OUT_APPEND;
+			if (cmd_token[index + 1] == '>')
+				sh->cmds[num].rd_out_apnd++;
 		}
 		else
-			sh->cmds[num].flag = REDIRECT_OUT;
+			sh->cmds[num].rd_out++;
 	}
+	printf("CMD[%d] PIPE=[%d]\n", num, sh->cmds[num].pipe); //tmp
+	printf("CMD[%d] -> RDOUT=[%d]\n", num, sh->cmds[num].rd_out); //tmp
+	printf("CMD[%d] -> RDOUAPD=[%d]\n", num, sh->cmds[num].rd_out_apnd); //tmp
+	printf("CMD[%d] -> RDIN=[%d]\n", num, sh->cmds[num].rd_in); //tmp
+	printf("CMD[%d] -> HDOC=[%d]\n", num, sh->cmds[num].here_doc); //tmp
 	return (SUCCESS);
 }
 
@@ -52,9 +66,9 @@ t_status	parse_flag(t_shell *sh, int num)
 	{
 		c = cmd_token[i];
 		if (is_flag(c) && c != '\'' && c != '"')
-			return (get_cmd_flag(sh, cmd_token, num, i));
+			return (get_cmd_flags(sh, cmd_token, num, i));
 		else if (is_flag(c) && !is_closed_quotes(c, cmd_token + i))
-			return (get_cmd_flag(sh, cmd_token, num, i));
+			return (get_cmd_flags(sh, cmd_token, num, i));
 		else if (is_closed_quotes(c, cmd_token + i))
 		{
 			i++;

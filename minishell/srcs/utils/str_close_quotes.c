@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eof_handler.c                                      :+:      :+:    :+:   */
+/*   str_close_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/26 19:28:17 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 22:53:40 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/13 22:54:25 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/13 22:54:52 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	eof_exit_shell(t_shell *sh)
+void	str_close_quotes(char *dest, char *src, int *i, int *j)
 {
-	int	i;
+	char	c;
 
-	i = -1;
-	while (++i < sh->count.envs)
-		free(sh->envs[i]);
-	i = -1;
-	while (++i < sh->count.paths)
-		free(sh->paths[i]);
-	printf("exit\n");
-	exit(EXIT_SUCCESS);
+	c = src[*i];
+	dest[++(*j)] = src[*i];
+	while (src[++(*i)] != c)
+		dest[++(*j)] = src[*i];
+	dest[++(*j)] = src[*i];
 }

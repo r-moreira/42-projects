@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/09 00:07:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 23:37:40 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@ t_status	is_token_valid(char *token)
 {
 	int	i;
 	int	alpha_count;
-	int	flag_count;
 
 	alpha_count = 0;
-	flag_count = 0;
 	i = -1;
 	while (token[++i])
-	{
 		if (ft_isalpha(token[i]))
 			alpha_count++;
-		else if (is_flag(token[i]))
-			flag_count++;
-	}
-	if (alpha_count >= 2 || flag_count >= 1)
+	if (alpha_count >= 2)
 		return (SUCCESS);
 	return (NOT_TOKEN);
 }

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 12:56:07 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/02 12:45:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/13 22:14:13 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,5 @@ char	**split_null_end(char *s, char c)
 		start = end;
 	}
 	strs[i++] = NULL;
-	strs[i] = 0;
 	return (strs);
 }
