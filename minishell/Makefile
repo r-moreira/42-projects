@@ -39,7 +39,9 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/logger.c \
 					  $(UTILS_DIR)/dup_n_close.c \
 					  $(UTILS_DIR)/close_fd.c \
-					  $(UTILS_DIR)/str_close_quotes.c
+					  $(UTILS_DIR)/str_close_quotes.c \
+					  $(UTILS_DIR)/str_remove_quotes.c \
+					  $(UTILS_DIR)/is_quotes.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser

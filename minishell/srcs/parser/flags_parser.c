@@ -6,63 +6,141 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 00:08:20 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 18:09:51 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stddef.h>
 
-
-/*static t_status	get_cmd_flags(t_shell *sh, char *cmd_token, int num, int index)
+static void	initialize_flag_struct(t_shell *sh, int num)
 {
-	initialize_cmd_flags(sh, num);
-	if (cmd_token[index] == '|')
-		sh->cmds[num].pipe = TRUE;
-	else if (cmd_token[index] == '<')
-	{
-		if (cmd_token[index + 1])
-		{
-			if (cmd_token[index + 1] == '<')
-				sh->cmds[num].here_doc++;;
-		}
-		else
-			sh->cmds[num].rd_in++;
-	}
-	else if (cmd_token[index] == '>')
-	{
-		if (cmd_token[index + 1])
-		{
-			if (cmd_token[index + 1] == '>')
-				sh->cmds[num].rd_out_apnd++;
-		}
-		else
-			sh->cmds[num].rd_out++;
-	}
-	return (SUCCESS);
-}*/
+	sh->cmds[num].heredoc.len = 0;
+	sh->cmds[num].redin.len = 0;
+	sh->cmds[num].redout.len = 0;
+	sh->cmds[num].redout_apd.len = 0;
+	sh->cmds[num].pipe = FALSE;
+}
 
-//TO-DO Adicionar flags na struct de flags dos cmds
-t_status	parse_flag(t_shell *sh, int num)
+static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
+{
+	if (flag == HERE_DOCUMENT)
+	{
+		ft_strlcpy(sh->cmds[num].heredoc.arg[sh->cmds[num].heredoc.len],
+				token, ft_strlen(token) + 1);
+		sh->cmds[num].heredoc.len++;
+	}
+	else if (flag == REDIRECT_IN)
+	{
+		ft_strlcpy(sh->cmds[num].redin.arg[sh->cmds[num].redin.len],
+				token, ft_strlen(token) + 1);
+		sh->cmds[num].redin.len++;
+	}
+	else if (flag == REDIRECT_OUT_APPEND)
+	{
+		ft_strlcpy(sh->cmds[num].redout_apd.arg[sh->cmds[num].redout_apd.len],
+				token, ft_strlen(token) + 1);
+		sh->cmds[num].redout_apd.len++;
+	}
+	else if (flag == REDIRECT_OUT)
+	{
+		ft_strlcpy(sh->cmds[num].redout.arg[sh->cmds[num].redout.len],
+				token, ft_strlen(token) + 1);
+		sh->cmds[num].redout.len++;
+	}
+}
+
+static int	get_flag_token(t_shell *sh, char *token, int num, t_flag flag)
+{
+	char			*arg_token;
+	char			*no_quotes_token;
+	unsigned int	start;
+	size_t			end;
+
+	start = 1;
+	if (flag == HERE_DOCUMENT || flag == REDIRECT_OUT_APPEND)
+		start++;
+	while (token[start] && token[start] == ' ')
+		start++;
+	end = start;
+	while (token[end] && (ft_isalnum(token[end]) || is_quotes(token[end])))
+		end++;
+	arg_token = ft_substr(token, start, end - start);
+	no_quotes_token = str_remove_quotes(arg_token);
+	set_flags(sh, no_quotes_token, num, flag);
+	free(arg_token);
+	free(no_quotes_token);
+	return (end);
+}
+
+static void	get_cmd_flags(t_shell *sh, char *token, int num, int *i)
+{
+	int	j;
+
+	j = *i;
+	if (token[j] == '|')
+		sh->cmds[num].pipe = TRUE;
+	else if (token[j] == '<')
+	{
+		if (token[j + 1] && token[j + 1] == '<')
+			(*i) += get_flag_token(sh, token + j, num, HERE_DOCUMENT);
+		else
+			(*i) += get_flag_token(sh, token + j, num, REDIRECT_IN);
+	}
+	else if (token[j] == '>')
+	{
+		if (token[j + 1] && token[j + 1] == '>')
+			(*i) += get_flag_token(sh, token + j, num, REDIRECT_OUT_APPEND);
+		else
+			(*i) += get_flag_token(sh, token + j, num, REDIRECT_OUT);
+	}
+}
+
+void		tmp_log(t_shell *sh, int num)
+{
+	int	i;
+
+	i = 0;
+	printf("cmd[%d] flags > [%d] >> [%d] < [%d] << [%d] | [%d]\n", num,
+		sh->cmds[num].redout.len,
+		sh->cmds[num].redout_apd.len,
+		sh->cmds[num].redin.len,
+		sh->cmds[num].heredoc.len,
+		sh->cmds[num].pipe);
+	i = -1;
+	while (++i < sh->cmds[num].redout.len)
+		printf("redout arg[%d] = [%s]\n", i, sh->cmds[num].redout.arg[i]);
+	i = -1;
+	while (++i < sh->cmds[num].redout_apd.len)
+		printf("redout_apd arg[%d] = [%s]\n", i, sh->cmds[num].redout_apd.arg[i]);
+	i = -1;
+	while (++i < sh->cmds[num].redin.len)
+		printf("redin arg[%d] = [%s]\n", i, sh->cmds[num].redin.arg[i]);
+	i = -1;
+	while (++i < sh->cmds[num].heredoc.len)
+		printf("heredoc arg[%d] = [%s]\n", i, sh->cmds[num].heredoc.arg[i]);
+}
+
+t_status	parse_flags(t_shell *sh, int num)
 {
 	int		i;
-	char	c;
-	char	*cmd_token;
+	char	*token;
 
-	i = -1;
-	cmd_token = sh->cmd_tokens[num];
-	while (cmd_token[++i])
+	initialize_flag_struct(sh, num);
+	token = sh->cmd_tokens[num];
+	i = 0;
+	while (token[i] && !is_flag(token[i]))
+		i++;
+	i--;
+	while (token[i])
 	{
-		c = cmd_token[i];
-		if (is_flag(c) && c != '\'' && c != '"')
-			return (ERROR);//return (get_cmd_flags(sh, cmd_token, num, i));
-		else if (is_flag(c) && !is_closed_quotes(c, cmd_token + i))
-			return (ERROR);//return (get_cmd_flags(sh, cmd_token, num, i));
-		else if (is_closed_quotes(c, cmd_token + i))
-		{
+		if (is_flag(token[i]))
+			get_cmd_flags(sh, token, num, &i);
+		if (!token[i])
+			break;
+		else
 			i++;
-			while (cmd_token[i] != c)
-				i++;
-		}
 	}
+	tmp_log(sh, num); //TMP
 	return (SUCCESS);
 }

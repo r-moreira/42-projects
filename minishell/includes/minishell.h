@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:43:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:31:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef enum e_flag
 	REDIRECT_OUT_APPEND,
 	REDIRECT_IN,
 	HERE_DOCUMENT
-}	t_flags;
+}	t_flag;
 
 typedef enum e_fds_num
 {
@@ -112,9 +112,8 @@ typedef enum e_pipe_end
 /* ** Structs ** */
 typedef struct s_redir
 {
-	t_flags	flag;
 	char	arg[MAX_CMD_REDIRECTIONS][MAX_ARGS_NAME];
-	int		count;
+	int		len;
 }	t_redir;
 
 typedef struct s_commands
@@ -124,9 +123,9 @@ typedef struct s_commands
 	char	*args[MAX_ARGS_NUM];
 	int		args_count;
 	t_redir	heredoc;
-	t_redir	redir_in;
-	t_redir	redir_out;
-	t_redir	redir_out_apnd;
+	t_redir	redin;
+	t_redir	redout;
+	t_redir	redout_apd;
 	t_bool	pipe;
 }	t_commands;
 
@@ -177,6 +176,8 @@ void		parsed_info_logger(t_shell *sh);
 void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
 void		close_fd(t_shell *sh, t_fds_num fd);
 void		str_close_quotes(char *dest, char *src, int *i, int *j);
+char		*str_remove_quotes(char *str);
+t_bool		is_quotes(char c);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
@@ -188,7 +189,7 @@ t_status	analyzer(t_shell *sh);
 //PARSER
 char		*parse_env_variables(char *line_read);
 t_status	parser(t_shell *sh);
-t_status	parse_flag(t_shell *sh, int num);
+t_status	parse_flags(t_shell *sh, int num);
 t_status	parse_cmd(t_shell *sh, int num);
 char		*parse_env(char *env);
 

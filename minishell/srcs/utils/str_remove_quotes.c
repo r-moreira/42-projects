@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_prompt.c                                     :+:      :+:    :+:   */
+/*   str_remove_quotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/26 20:30:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 17:09:31 by romoreir         ###   ########.fr       */
+/*   Created: 2022/01/14 16:20:42 by romoreir          #+#    #+#             */
+/*   Updated: 2022/01/14 17:51:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdlib.h>
 
-void	print_prompt(void)
+char	*str_remove_quotes(char *str)
 {
-	char	*buffer;
-	char	*username;
-	char	*name;
+	char	*no_quotes_str;
+	int		i;
+	int		j;
 
-	username = getenv("USER");
-	name = getenv("NAME");
-	buffer = get_cwd_buffer();
-	if (username != NULL)
-		printf("\n%s%s@", GREEN, username);
-	if (name != NULL)
-		printf("%s%s%s:", GREEN, name, WHITE);
-	printf("%s%s", PURPLE, buffer);
-	printf("%s$  ", WHITE);
-	free(buffer);
+	no_quotes_str = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
+	i = -1;
+	j = -1;
+	while (str[++i])
+		if (str[i] != '\'' && str[i] != '"')
+			no_quotes_str[++j] = str[i];
+	no_quotes_str[++j] = '\0';
+	return (no_quotes_str);
 }

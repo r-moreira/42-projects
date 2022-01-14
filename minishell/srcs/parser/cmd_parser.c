@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 10:19:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 11:22:15 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool	has_alphanum(char *split)
+static t_bool	has_alphanum(char *split)
 {
 	int	i;
 	int count;
@@ -25,12 +25,9 @@ t_bool	has_alphanum(char *split)
 	if (count >= 1)
 		return (TRUE);
 	return (FALSE);
-}                                                                    //TK SEM FLAG = CMD ARG
-                                        //   |TK|TK       |TK       |        |
-//TO-DO - Remover as flags literalmente, ex: ls > tmp.txt > tmp2.txt tmp3.txt = ls tmp3.txt
-//TOKENS DE FLAGS
+}
 
-void	skip_flags(char *token, int *i)
+static void	skip_flags(char *token, int *i)
 {
 	int	j;
 
@@ -42,7 +39,7 @@ void	skip_flags(char *token, int *i)
 	(*i) = j - 1;
 }
 
-char	*remove_flags(char *token)
+static char	*remove_flags(char *token)
 {
 	int		i;
 	int		j;
@@ -86,11 +83,7 @@ t_status	parse_cmd(t_shell *sh, int num)
 	int		j;
 	char	**split;
 	char	*token;
-
-	printf("CT3 |%s|\n", sh->cmd_tokens[num]);
-	if (!sh->cmd_tokens[num])
-		return (ERROR);
-	if (ft_strlen(sh->cmd_tokens[num]) < 1)
+	if (!sh->cmd_tokens[num] || ft_strlen(sh->cmd_tokens[num]) < 1)
 		return (ERROR);
 	token = remove_flags(sh->cmd_tokens[num]);
 	split = split_null_end(token, ' ');
