@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 21:30:13 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 09:53:04 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 static t_bool	has_n_option(t_shell *sh, int num)
 {
 	char	*option_arg;
@@ -59,3 +59,4 @@ t_status	ft_echo(t_shell *sh, int num)
 	printf("ERROR - ECHO ON CMD 2+ AND FLAG NOT IMPLEMENTED\n");
 	return (ERROR);
 }
+*/

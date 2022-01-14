@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:40:40 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 22:55:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:19:30 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_status	analyzer(t_shell *sh)
 	while (ptr_pos < ft_strlen(sh->input_string))
 	{
 		sh->cmd_tokens[++i] = cmd_tokenizer(sh->input_string + ptr_pos);
-		printf("CT = [%s]\n", sh->cmd_tokens[i]); //TMP
 		if (ft_strncmp(sh->cmd_tokens[i], "", ft_strlen(sh->cmd_tokens[i])))
 			ptr_pos += ft_strlen(sh->cmd_tokens[i]);
 	}

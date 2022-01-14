@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 23:40:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:19:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,23 @@ t_bool	has_alphanum(char *split)
 	if (count >= 1)
 		return (TRUE);
 	return (FALSE);
+}                                                                    //TK SEM FLAG = CMD ARG
+                                        //   |TK|TK       |TK       |        |
+//TO-DO - Remover as flags literalmente, ex: ls > tmp.txt > tmp2.txt tmp3.txt = ls tmp3.txt
+//TOKENS DE FLAGS
+
+void	skip_flags(char *token, int *i)
+{
+	int	j;
+
+	j = *i + 1;
+	while (token[j] && ft_isspace(token[j]))
+		j++;
+	while (token[j] && !ft_isspace(token[j]))
+		j++;
+	(*i) = j - 1;
 }
 
-//TO-DO - Remover as flags literalmente, ex: ls > tmp.txt > tmp2.txt tmp3.txt = ls tmp3.txt
 char	*remove_flags(char *token)
 {
 	int		i;
@@ -36,17 +50,18 @@ char	*remove_flags(char *token)
 	char	*new;
 
 	new = malloc(sizeof(char) * ft_strlen(token) + 1);
-	i = -1;
+	i = 0;
 	j = -1;
-	while (token[++i])
+	while (token[i])
 	{
 		c = token[i];
 		if (is_flag(c))
-			break ;
+			skip_flags(token, &i);
 		if (!is_flag(c) && c != '\'' && c != '"')
 			new[++j] = c;
 		else if ((c == '\'' || c == '"') && is_closed_quotes(c, token + i))
 			str_close_quotes(new, token, &i, &j);
+		i++;
 	}
 	new[++j] = '\0';
 	return (new);
@@ -61,7 +76,7 @@ static void	get_args(t_shell *sh, int num, char *split, int *j)
 	{
 		sh->cmds[num].args[++(*j)] = (char *)malloc(sizeof(char) * len + 1);
 		ft_strlcpy(sh->cmds[num].args[*j], split, len + 1);
-		printf("cmd[%d] arg [%d][%s]\n", num, *j, sh->cmds[num].args[*j]); //tmp
+		printf("cmd[%d] arg [%d][%s]\n", num, *j, sh->cmds[num].args[*j]); //TMP
 	}
 }
 
@@ -72,6 +87,7 @@ t_status	parse_cmd(t_shell *sh, int num)
 	char	**split;
 	char	*token;
 
+	printf("CT3 |%s|\n", sh->cmd_tokens[num]);
 	if (!sh->cmd_tokens[num])
 		return (ERROR);
 	if (ft_strlen(sh->cmd_tokens[num]) < 1)

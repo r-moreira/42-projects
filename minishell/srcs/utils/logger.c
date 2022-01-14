@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:18:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 23:59:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 09:51:58 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	*flag_descrpt(t_shell *sh, int num)
+/*static char	*flag_descrpt(t_shell *sh, int num)
 {
 	char	*flag_descrpt;
 
@@ -50,4 +50,4 @@ void	parsed_info_logger(t_shell *sh)
 		printf("\n");
 		printf("Flag    = |%s|\n", flag_descrpt(sh, i));
 	}
-}
+}*/

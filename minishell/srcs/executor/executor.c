@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 23:56:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 09:52:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 static void	executor_debug_helper(t_shell *sh)
 {
 	parsed_info_logger(sh);
@@ -120,4 +120,4 @@ void	executor(t_shell *sh)
 			if (get_cmd_path(sh, i) == SUCCESS)
 				call_exec(sh, i);
 	clear_execution(sh);
-}
+}*/

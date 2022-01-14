@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 12:40:07 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 12:41:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 09:52:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 void	close_fd(t_shell *sh, e_fds fd)
 {
 	if (fd == ONE)
@@ -25,3 +25,4 @@ void	close_fd(t_shell *sh, e_fds fd)
 		close(sh->fd.two[WRITE_END]);
 	}
 }
+*/

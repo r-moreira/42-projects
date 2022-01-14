@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:36 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/10 21:30:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 09:53:32 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 static t_status	get_pwd(t_shell *sh, int num)
 {
 	char	*buffer;
@@ -41,3 +41,4 @@ t_status	ft_pwd(t_shell *sh, int num)
 	printf("ERROR - PWD ON CMD 2+ AND FLAG NOT IMPLEMENTED\n");
 	return (ERROR);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 23:37:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:19:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_status	is_token_valid(char *token)
 	while (token[++i])
 		if (ft_isalpha(token[i]))
 			alpha_count++;
-	if (alpha_count >= 2)
+	if (alpha_count >= 1)
 		return (SUCCESS);
 	return (NOT_TOKEN);
 }
@@ -36,10 +36,11 @@ t_status	parser(t_shell *sh)
 	{
 		if (is_token_valid(sh->cmd_tokens[i]) == SUCCESS)
 		{
-			if (parse_flag(sh, i) == ERROR)
-				return (ERROR);
+			printf("CT = [%s]\n", sh->cmd_tokens[i]); //TMP
 			if (parse_cmd(sh, i) == ERROR)
 				return (ERROR);
+			//if (parse_flag(sh, i) == ERROR)
+			//	return (ERROR);
 		}
 	}
 	i = -1;

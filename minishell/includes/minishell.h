@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 00:06:48 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 09:43:58 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define MAX_ENVS 256
 # define MAX_PATHS 124
 # define MAX_PATH_LEN 512
-# define MAX_CMD_FLAGS 20
+# define MAX_CMD_REDIRECTIONS 20
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
@@ -87,15 +87,14 @@ typedef enum e_bool
 	TRUE,
 }	t_bool;
 
-typedef enum e_flagname
+typedef enum e_flag
 {
 	NONE,
-	PIPE,
 	REDIRECT_OUT,
 	REDIRECT_OUT_APPEND,
 	REDIRECT_IN,
 	HERE_DOCUMENT
-}	t_flagname;
+}	t_flags;
 
 typedef enum e_fds_num
 {
@@ -111,20 +110,23 @@ typedef enum e_pipe_end
 }	t_pipe_end;
 
 /* ** Structs ** */
-typedef struct s_flags
+typedef struct s_redir
 {
-	t_flagname	name;
-	char		*arg;
-}	t_flags;
+	t_flags	flag;
+	char	arg[MAX_CMD_REDIRECTIONS][MAX_ARGS_NAME];
+	int		count;
+}	t_redir;
 
 typedef struct s_commands
 {
+	char	path[MAX_PATH_LEN];
 	char	name[MAX_COMMAND_NAME];
 	char	*args[MAX_ARGS_NUM];
-	char	path[MAX_PATH_LEN];
-	t_flags	flags[MAX_CMD_FLAGS];
 	int		args_count;
-	int		flags_count;
+	t_redir	heredoc;
+	t_redir	redir_in;
+	t_redir	redir_out;
+	t_redir	redir_out_apnd;
 	t_bool	pipe;
 }	t_commands;
 
@@ -151,7 +153,6 @@ typedef struct s_minishell
 	char		*envs[MAX_ENVS];
 	char		*paths[MAX_PATHS];
 	t_fds		fd;
-	t_flagname	last_flag;
 	t_counters	count;
 }	t_shell;
 

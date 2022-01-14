@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 23:57:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 00:08:20 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 	return (SUCCESS);
 }*/
 
+//TO-DO Adicionar flags na struct de flags dos cmds
 t_status	parse_flag(t_shell *sh, int num)
 {
 	int		i;

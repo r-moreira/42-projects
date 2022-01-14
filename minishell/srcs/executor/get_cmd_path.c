@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 16:02:16 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/12 11:11:10 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/14 09:54:55 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 static void	debug_helper(t_shell *sh, int i)
 {
 	printf("\nCommand = |%d|\n", i);
@@ -77,3 +77,4 @@ t_status	get_cmd_path(t_shell *sh, int num)
 	}
 	return (ERROR);
 }
+*/
