@@ -6,17 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 16:02:16 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:54:55 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:13:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
-static void	debug_helper(t_shell *sh, int i)
-{
-	printf("\nCommand = |%d|\n", i);
-	printf("Path    = |%s|\n", sh->cmds[i].path);
-}
 
 static void	cmd_name_on_path(t_shell *sh, int num)
 {
@@ -63,7 +57,7 @@ t_status	get_cmd_path(t_shell *sh, int num)
 		free(cwd);
 		cmd_name_on_path(sh, num);
 		if (DEBUGGER_EXEC)
-			debug_helper(sh, num);
+			path_debugger_helper(sh, num);
 		return (SUCCESS);
 	}
 	else
@@ -72,9 +66,8 @@ t_status	get_cmd_path(t_shell *sh, int num)
 		chdir(cwd);
 		free(cwd);
 		if (DEBUGGER_EXEC)
-			debug_helper(sh, num);
+			path_debugger_helper(sh, num);
 		return (SUCCESS);
 	}
 	return (ERROR);
 }
-*/

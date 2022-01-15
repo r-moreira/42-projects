@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:18:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:29:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:25:05 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	parsed_info_logger(t_shell *sh)
 	int	i;
 	int	j;
 
-	printf("\n===== Parsed Info Logger =====\n");
+	printf("===== Parsed Info Logger =====\n");
 	printf("Input   = [%s]\n", sh->input_string);
 	i = -1;
 	while (++i < sh->count.cmds)
 	{
-		printf("\nCommand = |%d|\n", i);
+		printf("Command = |%d|\n", i);
 		printf("Name    = |%s|\n", sh->cmds[i].name);
 		printf("Args    =");
 		j = -1;

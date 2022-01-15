@@ -6,17 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 17:36:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:13:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static void	executor_debug_helper(t_shell *sh)
-{
-	parsed_info_logger(sh);
-	printf("\n========= Execution ==========\n");
-}
 
 static void	clear_execution(t_shell *sh)
 {
@@ -70,45 +64,37 @@ static t_status	handle_builtin(t_shell *sh, int num)
 	return (NOT_BUILT_IN);
 }
 
-/*void	exec_redir_out(t_shell *sh, int num)
+static void	handle_pipes(t_shell *sh, int num)
 {
-	(void)sh;
-	(void)num;
-	return ;
-}
+	t_bool	pipe_last_cmd;
 
-void	handle_output_redir(t_shell *sh, int num)
-{
-	enum e_flagname flag;
-
-	flag = sh->cmds[num].flags[0].name;
-	if (flag == REDIRECT_OUT && sh->last_flag == NONE && sh->fd.open == ANY)
-		exec_redir_out(sh, num);
+	pipe_last_cmd = FALSE;
+	if (num > 0)
+		pipe_last_cmd = sh->cmds[num - 1].pipe;
+	if (!pipe_last_cmd && sh->fd.open == ANY)
+		exec_pipe_write_fd1(sh, num);
+	else if (pipe_last_cmd && sh->fd.open == ONE)
+		exec_pipe_read_fd1_write_fd2(sh, num);
+	else if (pipe_last_cmd && sh->fd.open == TWO)
+		exec_pipe_read_fd2_write_fd1(sh, num);
+	else if (pipe_last_cmd && sh->fd.open == ONE)
+		exec_pipe_read_fd1(sh, num);
+	else if (pipe_last_cmd && sh->fd.open == TWO)
+		exec_pipe_read_fd2(sh, num);
+	else
+		exec_no_pipe(sh, num);
 }
 
 static void	call_exec(t_shell *sh, int num)
 {
-	enum e_flagname	flag;
+	//handle_input_redir(sh, num);
+	//handle_output_redir(sh, num);
 
-	sh->last_flag = NONE;
-	flag = sh->cmds[num].flags[0].name;
-	if (num > 0)
-		sh->last_flag = sh->cmds[num - 1].flags[0].name;
-	if (flag == PIPE && sh->last_flag == NONE && sh->fd.open == ANY)
-		exec_pipe_write_fd1(sh, num);
-	else if (flag == PIPE && sh->last_flag == PIPE && sh->fd.open == ONE)
-		exec_pipe_read_fd1_write_fd2(sh, num);
-	else if (flag == PIPE && sh->last_flag == PIPE && sh->fd.open == TWO)
-		exec_pipe_read_fd2_write_fd1(sh, num);
-	else if (flag != PIPE && sh->last_flag == PIPE && sh->fd.open == ONE)
-		exec_pipe_read_fd1(sh, num);
-	else if (flag != PIPE && sh->last_flag == PIPE && sh->fd.open == TWO)
-		exec_pipe_read_fd2(sh, num);
+	if (sh->cmds[num].pipe == TRUE)
+		handle_pipes(sh, num);
 	else
-		exec_noflag(sh, num);
-	handle_output_redir(sh, num);
-	//handle_input_redir
-}*/
+		exec_no_pipe(sh, num);
+}
 
 //////////////////TO-DOs
 // Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
@@ -123,12 +109,11 @@ void	executor(t_shell *sh)
 
 	sh->fd.open = ANY;
 	if (DEBUGGER_EXEC)
-		executor_debug_helper(sh);
+		executor_debugger_helper(sh);
 	i = -1;
 	while (++i < sh->count.cmds)
 		if (handle_builtin(sh, i) == NOT_BUILT_IN)
-			printf("Calling non builtin functions...\n");
-			//if (get_cmd_path(sh, i) == SUCCESS)
-			//	call_exec(sh, i);
+			if (get_cmd_path(sh, i) == SUCCESS)
+				call_exec(sh, i);
 	clear_execution(sh);
 }

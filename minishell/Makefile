@@ -41,7 +41,8 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/close_fd.c \
 					  $(UTILS_DIR)/str_close_quotes.c \
 					  $(UTILS_DIR)/str_remove_quotes.c \
-					  $(UTILS_DIR)/is_quotes.c
+					  $(UTILS_DIR)/is_quotes.c \
+  					  $(UTILS_DIR)/debugger_helpers.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
@@ -59,8 +60,7 @@ ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 EXECUTOR_DIR		= $(MAIN_DIR)/executor
 EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
 					  $(EXECUTOR_DIR)/get_cmd_path.c \
-					  $(EXECUTOR_DIR)/exec_debugger_helper.c \
-					  $(EXECUTOR_DIR)/exec_noflag.c \
+					  $(EXECUTOR_DIR)/exec_no_pipe.c \
 					  $(EXECUTOR_DIR)/exec_pipe_write_fd1.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd1.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd2.c \

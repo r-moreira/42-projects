@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:20:23 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:54:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:08:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
+
 void	exec_pipe_read_fd1(t_shell *sh, int num)
 {
 	pid_t	pid;
@@ -36,4 +36,3 @@ void	exec_pipe_read_fd1(t_shell *sh, int num)
 		g_pid_number = waitpid(pid, NULL, 0);
 	}
 }
-*/

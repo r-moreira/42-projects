@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 15:48:32 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:13:06 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,14 @@ typedef enum e_bool
 typedef enum e_flag
 {
 	NONE,
+	PIPE,
 	REDIRECT_OUT,
 	REDIRECT_OUT_APPEND,
 	REDIRECT_IN,
 	HERE_DOCUMENT
 }	t_flag;
 
-typedef enum e_fds_num
+typedef enum e_fds
 {
 	ANY,
 	ONE,
@@ -138,8 +139,8 @@ typedef struct s_counters
 
 typedef struct s_fds
 {
-	int		one[2];
-	int		two[2];
+	int			one[2];
+	int			two[2];
 	t_fds_num	open;
 }	t_fds;
 
@@ -178,6 +179,9 @@ void		close_fd(t_shell *sh, t_fds_num fd);
 void		str_close_quotes(char *dest, char *src, int *i, int *j);
 char		*str_remove_quotes(char *str);
 t_bool		is_quotes(char c);
+void		executor_debugger_helper(t_shell *sh);
+void		exec_debugger_helper(t_shell *sh, int num, char *log);
+void		path_debugger_helper(t_shell *sh, int i);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
@@ -196,8 +200,7 @@ char		*parse_env(char *env);
 //EXECUTOR
 void		executor(t_shell *sh);
 t_status	get_cmd_path(t_shell *sh, int num);
-void		exec_debugger_helper(t_shell *sh, int num, char *log);
-void		exec_noflag(t_shell *sh, int num);
+void		exec_no_pipe(t_shell *sh, int num);
 void		exec_pipe_write_fd1(t_shell *sh, int num);
 void		exec_pipe_read_fd1(t_shell *sh, int num);
 void		exec_pipe_read_fd2(t_shell *sh, int num);
