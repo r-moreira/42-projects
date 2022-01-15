@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:19:07 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:53:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:08:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
+
 static t_bool	is_valid_unset(char *env)
 {
 	int		i;
@@ -91,4 +91,3 @@ t_status	ft_unset(t_shell *sh, int num)
 	}
 	return (SUCCESS);
 }
-*/

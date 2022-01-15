@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:19:42 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:53:17 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:07:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
+
 void	ft_exit(t_shell *sh)
 {
 	int	i;
@@ -25,4 +25,3 @@ void	ft_exit(t_shell *sh)
 	printf("exit\n");
 	exit(EXIT_SUCCESS);
 }
-*/

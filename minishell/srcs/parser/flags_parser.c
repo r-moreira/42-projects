@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 18:10:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:18:04 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,33 @@
 
 static void	initialize_flag_struct(t_shell *sh, int num)
 {
-	sh->cmds[num].heredoc.len = 0;
 	sh->cmds[num].redin.len = 0;
 	sh->cmds[num].redout.len = 0;
 	sh->cmds[num].redout_apd.len = 0;
+	sh->cmds[num].heredoc = FALSE;
 	sh->cmds[num].pipe = FALSE;
 }
 
 static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
 {
 	if (flag == HERE_DOCUMENT)
-	{
-		ft_strlcpy(sh->cmds[num].heredoc.arg[sh->cmds[num].heredoc.len],
-				token, ft_strlen(token) + 1);
-		sh->cmds[num].heredoc.len++;
-	}
+		sh->cmds[num].heredoc = TRUE;
 	else if (flag == REDIRECT_IN)
 	{
 		ft_strlcpy(sh->cmds[num].redin.arg[sh->cmds[num].redin.len],
-				token, ft_strlen(token) + 1);
+			token, ft_strlen(token) + 1);
 		sh->cmds[num].redin.len++;
 	}
 	else if (flag == REDIRECT_OUT_APPEND)
 	{
 		ft_strlcpy(sh->cmds[num].redout_apd.arg[sh->cmds[num].redout_apd.len],
-				token, ft_strlen(token) + 1);
+			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout_apd.len++;
 	}
 	else if (flag == REDIRECT_OUT)
 	{
 		ft_strlcpy(sh->cmds[num].redout.arg[sh->cmds[num].redout.len],
-				token, ft_strlen(token) + 1);
+			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout.len++;
 	}
 }
@@ -95,31 +91,6 @@ static void	get_cmd_flags(t_shell *sh, char *token, int num, int *i)
 	}
 }
 
-void		tmp_log(t_shell *sh, int num)
-{
-	int	i;
-
-	i = 0;
-	printf("cmd[%d] flags > [%d] >> [%d] < [%d] << [%d] | [%d]\n", num,
-		sh->cmds[num].redout.len,
-		sh->cmds[num].redout_apd.len,
-		sh->cmds[num].redin.len,
-		sh->cmds[num].heredoc.len,
-		sh->cmds[num].pipe);
-	i = -1;
-	while (++i < sh->cmds[num].redout.len)
-		printf("redout arg[%d] = [%s]\n", i, sh->cmds[num].redout.arg[i]);
-	i = -1;
-	while (++i < sh->cmds[num].redout_apd.len)
-		printf("redout_apd arg[%d] = [%s]\n", i, sh->cmds[num].redout_apd.arg[i]);
-	i = -1;
-	while (++i < sh->cmds[num].redin.len)
-		printf("redin arg[%d] = [%s]\n", i, sh->cmds[num].redin.arg[i]);
-	i = -1;
-	while (++i < sh->cmds[num].heredoc.len)
-		printf("heredoc arg[%d] = [%s]\n", i, sh->cmds[num].heredoc.arg[i]);
-}
-
 t_status	parse_flags(t_shell *sh, int num)
 {
 	int		i;
@@ -136,10 +107,9 @@ t_status	parse_flags(t_shell *sh, int num)
 		if (is_flag(token[i]))
 			get_cmd_flags(sh, token, num, &i);
 		if (!token[i])
-			break;
+			break ;
 		else
 			i++;
 	}
-	tmp_log(sh, num); //TMP
 	return (SUCCESS);
 }

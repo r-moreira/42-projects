@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 18:11:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:17:30 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static t_bool	has_alphanum(char *split)
 {
 	int	i;
-	int count;
+	int	count;
 
 	count = 0;
 	i = -1;
@@ -75,7 +75,6 @@ static void	get_args(t_shell *sh, int num, char *split, int *j)
 	{
 		sh->cmds[num].args[++(*j)] = (char *)malloc(sizeof(char) * len + 1);
 		ft_strlcpy(sh->cmds[num].args[*j], split, len + 1);
-		printf("cmd[%d] arg [%d][%s]\n", num, *j, sh->cmds[num].args[*j]); //TMP
 	}
 }
 
@@ -85,6 +84,7 @@ t_status	parse_cmd(t_shell *sh, int num)
 	int		j;
 	char	**split;
 	char	*token;
+
 	if (!sh->cmd_tokens[num] || ft_strlen(sh->cmd_tokens[num]) < 1)
 		return (ERROR);
 	token = remove_flags(sh->cmd_tokens[num]);

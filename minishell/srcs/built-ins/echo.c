@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:53:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:07:40 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
+
 static t_bool	has_n_option(t_shell *sh, int num)
 {
 	char	*option_arg;
@@ -54,9 +54,14 @@ t_status	input_echo(t_shell *sh, int num)
 //	ignorando quando tiver entre aspas
 t_status	ft_echo(t_shell *sh, int num)
 {
-	if (num == 0 && sh->cmds[num].flag == NONE)
+	if (num == 0
+		&& sh->cmds[num].heredoc == FALSE
+		&& sh->cmds[num].redin.len == 0
+		&& sh->cmds[num].redout.len == 0
+		&& sh->cmds[num].redout_apd.len == 0)
+	{
 		return (input_echo(sh, num));
+	}
 	printf("ERROR - ECHO ON CMD 2+ AND FLAG NOT IMPLEMENTED\n");
 	return (ERROR);
 }
-*/

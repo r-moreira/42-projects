@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:50 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:53:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:07:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
+
 static void	export_env(t_shell *sh, char *env)
 {
 	char	*env_key;
@@ -77,4 +77,3 @@ t_status	ft_export(t_shell *sh, int num)
 	}
 	return (SUCCESS);
 }
-*/

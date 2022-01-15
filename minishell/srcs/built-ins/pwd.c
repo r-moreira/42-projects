@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:36 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:53:32 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:08:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
+
 static t_status	get_pwd(t_shell *sh, int num)
 {
 	char	*buffer;
@@ -36,9 +36,14 @@ static t_status	get_pwd(t_shell *sh, int num)
 //Adicionar in e out fd na struct dependendo da flag;
 t_status	ft_pwd(t_shell *sh, int num)
 {
-	if (num == 0 && sh->cmds[num].flag == NONE)
+	if (num == 0
+		&& sh->cmds[num].heredoc == FALSE
+		&& sh->cmds[num].redin.len == 0
+		&& sh->cmds[num].redout.len == 0
+		&& sh->cmds[num].redout_apd.len == 0)
+	{
 		return (get_pwd(sh, num));
+	}
 	printf("ERROR - PWD ON CMD 2+ AND FLAG NOT IMPLEMENTED\n");
 	return (ERROR);
 }
-*/

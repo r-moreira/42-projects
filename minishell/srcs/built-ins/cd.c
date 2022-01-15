@@ -6,12 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:17:30 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/14 09:52:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:07:44 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
+
 t_status	ft_cd(t_shell *sh, int num)
 {
 	char	*arg;
@@ -35,4 +35,3 @@ t_status	ft_cd(t_shell *sh, int num)
 	}
 	return (SUCCESS);
 }
-*/
