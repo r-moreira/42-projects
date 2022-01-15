@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:17:30 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:07:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:35:32 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ t_status	ft_cd(t_shell *sh, int num)
 	char	*arg;
 	char	*home;
 
-	arg = sh->cmds[num].args[1];
-	home = getenv("HOME");
+	arg = "\0";
+	if (sh->cmds[num].args[1] != NULL)
+		arg = sh->cmds[num].args[1];
 	if (ft_strlen(arg) != 0)
 		g_pid_number = chdir(arg);
 	else
 	{
+		home = getenv("HOME");
 		if (home != NULL)
 			g_pid_number = chdir(home);
 		else

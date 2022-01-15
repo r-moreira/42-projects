@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 15:51:21 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:46:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,27 +101,28 @@ static t_status	handle_here_document_input(t_shell *sh, char *parsed_line)
 t_status	take_input(t_shell *sh)
 {
 	char	*line_read;
-	char	*parsed_line;
+	char	*parsed;
 
 	line_read = readline(NULL);
 	if (line_read && *line_read)
 	{
 		add_history(line_read);
-		parsed_line = parse_env_variables(line_read);
-		if (is_here_document(parsed_line) == TRUE)
+		parsed = parse_env_variables(line_read);
+		if (is_here_document(parsed) == TRUE)
 		{
-			if (handle_here_document_input(sh, parsed_line) == ERROR)
+			if (handle_here_document_input(sh, parsed) == ERROR)
 				return (ERROR);
 		}
 		else
 		{
-			ft_strlcpy(sh->input_string, parsed_line,
-				ft_strlen(parsed_line) + 1);
-			free(parsed_line);
+			ft_strlcpy(sh->input_string, parsed, ft_strlen(parsed) + 1);
+			free(parsed);
 		}
 	}
 	else if (line_read == NULL)
 		eof_exit_shell(sh);
+	else
+		printf("\n");
 	free(line_read);
 	return (SUCCESS);
 }

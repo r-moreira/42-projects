@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:12:30 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:36:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	executor_debug_helper(t_shell *sh)
 {
 	parsed_info_logger(sh);
-	printf("\n========= Execution ==========");
+	printf("\n========= Execution ==========\n");
 }
 
 static void	clear_execution(t_shell *sh)
@@ -127,7 +127,7 @@ void	executor(t_shell *sh)
 	i = -1;
 	while (++i < sh->count.cmds)
 		if (handle_builtin(sh, i) == NOT_BUILT_IN)
-			printf("\nCalling non builtin functions...\n");
+			printf("Calling non builtin functions...\n");
 			//if (get_cmd_path(sh, i) == SUCCESS)
 			//	call_exec(sh, i);
 	clear_execution(sh);
