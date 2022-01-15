@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:17:30 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:22:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ t_status	parse_cmd(t_shell *sh, int num)
 	j = -1;
 	while (split[++i])
 		get_args(sh, num, split[i], &j);
-	sh->cmds[num].args_count = j;
-	sh->cmds[num].args[++j] = NULL;
+	sh->cmds[num].args_count = ++j;
+	sh->cmds[num].args[j] = NULL;
 	ft_strlcpy(sh->cmds[num].name, split[0], ft_strlen(split[0]) + 1);
 	i = -1;
 	while (split[++i])
