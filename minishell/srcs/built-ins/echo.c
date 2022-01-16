@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:07:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:16:04 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static t_bool	has_n_option(t_shell *sh, int num)
 	int		arg_len;
 
 	option_arg = sh->cmds[num].args[1];
+	if (!option_arg)
+		return (FALSE);
 	arg_len = ft_strlen(option_arg);
 	if (arg_len <= 0 || arg_len > 2)
 		return (FALSE);
@@ -26,7 +28,30 @@ static t_bool	has_n_option(t_shell *sh, int num)
 	return (FALSE);
 }
 
-t_status	input_echo(t_shell *sh, int num)
+static void	get_echo_str(t_shell *sh, char *input, t_bool n_opt)
+{
+	char	*str;
+	int		i;
+
+	str = (char *)malloc(sizeof(char) * ft_strlen(input) + 1);
+
+	i = 0;
+	while (input[i] && !is_flag(input[i]))
+	{
+		str[i] = input[i];
+		i++;
+	}
+	if (is_flag(input[i]) && str[i - 1] && ft_isspace(str[i - 1]))
+		str[i - 1] = '\0';
+	else
+		str[i] = '\0';
+	ft_strlcpy(sh->builtin_out, str, ft_strlen(str) + 1);
+	if (!n_opt)
+		ft_strcat(sh->builtin_out, "\n");
+	free(str);
+}
+
+t_status	ft_echo(t_shell *sh, int num)
 {
 	char			*input;
 	int				i;
@@ -40,28 +65,9 @@ t_status	input_echo(t_shell *sh, int num)
 		i += 2;
 		while (ft_isspace(input[i]))
 			i++;
-		printf("%s", input + i);
+		get_echo_str(sh, input + i, TRUE);
 	}
 	else
-		printf("%s\n", input + i);
+		get_echo_str(sh, input + i, FALSE);
 	return (SUCCESS);
-}
-
-//TO-DO
-//Adicionar tratamento de flags ao comando (> < | >> <<)
-//Adicionar in e out fd na struct dependendo da flag;
-//No CMD2+ Percorrer input até a flag do comando anterior,
-//	ignorando quando tiver entre aspas
-t_status	ft_echo(t_shell *sh, int num)
-{
-	if (num == 0
-		&& sh->cmds[num].heredoc == FALSE
-		&& sh->cmds[num].redin.len == 0
-		&& sh->cmds[num].redout.len == 0
-		&& sh->cmds[num].redout_apd.len == 0)
-	{
-		return (input_echo(sh, num));
-	}
-	printf("ERROR - ECHO ON CMD 2+ AND FLAG NOT IMPLEMENTED\n");
-	return (ERROR);
 }

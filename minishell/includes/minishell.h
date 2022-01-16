@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 12:06:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 19:10:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
+# define BUILTIN_OUTPUT_BUFFER 4234
 
 /* ** Prompt ** */
 # define CLEAR_CLI "\033[H\033[J"
@@ -129,6 +130,7 @@ typedef struct s_commands
 	t_redir	redout_apd;
 	t_bool	heredoc;
 	t_bool	pipe;
+	t_bool	builtin;
 }	t_commands;
 
 typedef struct s_counters
@@ -151,6 +153,7 @@ typedef struct s_minishell
 	t_commands	cmds[MAX_COMMANDS_NUM];
 	char		*cmd_tokens[MAX_COMMANDS_NUM];
 	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
+	char		builtin_out[BUILTIN_OUTPUT_BUFFER];
 	char		*envs[MAX_ENVS];
 	char		*paths[MAX_PATHS];
 	t_fds		fd;
@@ -187,7 +190,6 @@ void		eof_exit_shell(t_shell *sh);
 void		run_signals(void);
 void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
 void		close_fd(t_shell *sh, t_fds_num fd);
-
 //ANALYZER
 t_status	analyzer(t_shell *sh);
 
@@ -216,7 +218,8 @@ void		handle_pipes(t_shell *sh, int num, t_bool pipe,
 				t_bool pipe_last_cmd);
 
 //BUILT-INS
-t_status	handle_builtin(t_shell *sh, int num);
+t_bool		is_builtin(t_shell *sh, int num);
+t_status	call_builtin(t_shell *sh, int num);
 t_status	ft_echo(t_shell *sh, int num);
 t_status	ft_cd(t_shell *sh, int num);
 t_status	ft_pwd(t_shell *sh, int num);

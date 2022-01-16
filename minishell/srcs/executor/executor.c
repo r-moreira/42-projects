@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 12:21:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 19:54:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ void	executor(t_shell *sh)
 	int	i;
 
 	sh->fd.open = ANY;
+	ft_strlcpy(sh->builtin_out, "\0", 1);
 	if (DEBUGGER_EXEC)
 		executor_debugger_helper(sh);
 	i = -1;
 	while (++i < sh->count.cmds)
-		if (handle_builtin(sh, i) == NOT_BUILT_IN)
-			if (get_cmd_path(sh, i) == SUCCESS)
-				call_exec(sh, i);
+	{
+		sh->cmds[i].builtin = FALSE;
+		if (is_builtin(sh, i) == FALSE)
+			get_cmd_path(sh, i);
+		call_exec(sh, i);
+	}
 	clear_execution(sh);
 }

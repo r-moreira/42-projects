@@ -1,18 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_builtis.c                                   :+:      :+:    :+:   */
+/*   handle_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 00:21:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 19:34:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_status	handle_builtin(t_shell *sh, int num)
+t_bool	is_builtin(t_shell *sh, int num)
+{
+	size_t		len;
+	t_bool		is_builtin;
+
+	is_builtin = FALSE;
+	len = ft_strlen(sh->cmds[num].name) + 1;
+	if (ft_strncmp(sh->cmds[num].name, "echo", len) == 0)
+		is_builtin = TRUE;
+	else if (ft_strncmp(sh->cmds[num].name, "cd", len) == 0)
+		is_builtin = TRUE;
+	else if (ft_strncmp(sh->cmds[num].name, "pwd", len) == 0)
+		is_builtin = TRUE;
+	else if (ft_strncmp(sh->cmds[num].name, "export", len) == 0)
+		is_builtin = TRUE;
+	else if (ft_strncmp(sh->cmds[num].name, "unset", len) == 0)
+		is_builtin = TRUE;
+	else if (ft_strncmp(sh->cmds[num].name, "env", len) == 0)
+		is_builtin = TRUE;
+	else if (ft_strncmp(sh->cmds[num].name, "exit", len) == 0)
+		is_builtin = TRUE;
+	if (is_builtin)
+	{
+		sh->cmds[num].builtin = TRUE;
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+t_status	call_builtin(t_shell *sh, int num)
 {
 	size_t		len;
 	char		*cmd;

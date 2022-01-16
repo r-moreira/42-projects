@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 12:06:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 19:49:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 	return (redir_fd);
 }
 
+static void	exec_builtin(t_shell *sh, int num, int redir_fd)
+{
+	call_builtin(sh, num);
+	ft_putstr_fd(sh->builtin_out, redir_fd);
+}
+
 void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 {
 	int		redir_fd;
@@ -55,11 +61,12 @@ void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 	{
 		redir_fd = open_input_file(sh, num, arg_num, flag);
 		dup2(redir_fd, STDIN_FILENO);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-			exit_error(ERROR_EXEC);
-		else
-			exit(EXIT_SUCCESS);
 		close(redir_fd);
+		if (sh->cmds[num].builtin)
+			exec_builtin(sh, num, redir_fd);
+		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
+			exit_error(ERROR_EXEC);
+		exit(EXIT_SUCCESS);
 	}
 	else
 		g_pid_number = waitpid(pid, NULL, 0);

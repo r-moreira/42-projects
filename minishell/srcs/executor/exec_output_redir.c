@@ -6,11 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 23:55:59 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 11:25:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 19:58:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdio.h>
 
 static int	open_output_file(t_shell *sh, int num, int arg_num, t_flag flag)
 {
@@ -30,6 +31,12 @@ static int	open_output_file(t_shell *sh, int num, int arg_num, t_flag flag)
 	return (redir_fd);
 }
 
+static void	exec_builtin(t_shell *sh, int num)
+{
+	call_builtin(sh, num);
+	printf("%s", sh->builtin_out);
+}
+
 void	exec_output_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 {
 	int		redir_fd;
@@ -46,11 +53,12 @@ void	exec_output_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 	{
 		redir_fd = open_output_file(sh, num, arg_num, flag);
 		dup2(redir_fd, STDOUT_FILENO);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-			exit_error(ERROR_EXEC);
-		else
-			exit(EXIT_SUCCESS);
 		close(redir_fd);
+		if (sh->cmds[num].builtin)
+			exec_builtin(sh, num);
+		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
+			exit_error(ERROR_EXEC);
+		exit(EXIT_SUCCESS);
 	}
 	else
 		g_pid_number = waitpid(pid, NULL, 0);
