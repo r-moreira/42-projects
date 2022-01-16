@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 17:38:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 21:35:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,17 @@ static char	*remove_flags(char *token)
 
 static void	get_args(t_shell *sh, int num, char *split, int *j)
 {
-	int	len;
+	int		len;
+	char	*no_quotes_arg;
 
-	len = ft_strlen(split);
-	if (has_alphanum(split))
+	no_quotes_arg = str_remove_quotes(split);
+	if (no_quotes_arg && has_alphanum(no_quotes_arg))
 	{
+		len = ft_strlen(no_quotes_arg);
 		sh->cmds[num].args[++(*j)] = (char *)malloc(sizeof(char) * len + 1);
-		ft_strlcpy(sh->cmds[num].args[*j], split, len + 1);
+		ft_strlcpy(sh->cmds[num].args[*j], no_quotes_arg, len + 1);
 	}
+	free(no_quotes_arg);
 }
 
 t_status	parse_cmd(t_shell *sh, int num)
