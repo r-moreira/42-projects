@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 18:13:06 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 22:09:20 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@
 # define ERROR_EXEC "minishell: Failed to execute the command: "
 # define ERROR_FORK "minishell: Error on forking process\n"
 # define ERROR_PIPE_FD "minishell: Error on creating pipe\n"
-# define ERROR_HEREDOC "minishell: Here document does not contain an input ending\n"
+# define ERROR_HEREDOC "minishell: Heredoc does not contain an input ending\n"
 
 /* ** Global Variables ** */
 int	g_pid_number;
