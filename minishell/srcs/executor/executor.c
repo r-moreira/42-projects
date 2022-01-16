@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 18:13:17 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 21:20:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,21 @@ static t_status	handle_builtin(t_shell *sh, int num)
 static void	handle_pipes(t_shell *sh, int num)
 {
 	t_bool	pipe_last_cmd;
+	t_bool	pipe;
 
+	pipe = sh->cmds[num].pipe;
 	pipe_last_cmd = FALSE;
 	if (num > 0)
 		pipe_last_cmd = sh->cmds[num - 1].pipe;
-	if (!pipe_last_cmd && sh->fd.open == ANY)
+	if (pipe && !pipe_last_cmd && sh->fd.open == ANY)
 		exec_pipe_write_fd1(sh, num);
-	else if (pipe_last_cmd && sh->fd.open == ONE)
+	else if (pipe && pipe_last_cmd && sh->fd.open == ONE)
 		exec_pipe_read_fd1_write_fd2(sh, num);
-	else if (pipe_last_cmd && sh->fd.open == TWO)
+	else if (pipe && pipe_last_cmd && sh->fd.open == TWO)
 		exec_pipe_read_fd2_write_fd1(sh, num);
-	else if (pipe_last_cmd && sh->fd.open == ONE)
+	else if (!pipe && pipe_last_cmd && sh->fd.open == ONE)
 		exec_pipe_read_fd1(sh, num);
-	else if (pipe_last_cmd && sh->fd.open == TWO)
+	else if (!pipe && pipe_last_cmd && sh->fd.open == TWO)
 		exec_pipe_read_fd2(sh, num);
 	else
 		exec_no_pipe(sh, num);
@@ -90,10 +92,8 @@ static void	call_exec(t_shell *sh, int num)
 	//handle_input_redir(sh, num);
 	//handle_output_redir(sh, num);
 
-	if (sh->cmds[num].pipe == TRUE)
-		handle_pipes(sh, num);
-	else
-		exec_no_pipe(sh, num);
+	handle_pipes(sh, num);
+
 }
 
 //////////////////TO-DOs
