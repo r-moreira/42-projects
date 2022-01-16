@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 17:46:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:17:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static t_status	handle_here_document_input(t_shell *sh, char *parsed_line)
 	if (input_end[0] == '\0')
 		return (syntax_error(ERROR_HEREDOC));
 	hdoc_fb = take_heredoc_input(sh, input_end);
+	ft_strcat(hdoc_fb, "\n");
 	ft_strlcpy(sh->heredoc_file_buffer, hdoc_fb, ft_strlen(hdoc_fb) + 1);
 	tmp = ft_remove_substr(parsed_line, input_end, ft_strlen(parsed_line));
 	ft_strlcpy(sh->input_string, tmp, ft_strlen(tmp) + 1);
