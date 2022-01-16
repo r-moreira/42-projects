@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 21:05:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 21:35:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 22:05:46 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_bool	has_alphanum(char *split)
+static t_bool	has_ascii(char *split)
 {
 	int	i;
 	int	count;
@@ -20,7 +20,7 @@ static t_bool	has_alphanum(char *split)
 	count = 0;
 	i = -1;
 	while (split[++i])
-		if (ft_isalnum(split[i]))
+		if (ft_isascii(split[i]))
 			count++;
 	if (count >= 1)
 		return (TRUE);
@@ -72,7 +72,7 @@ static void	get_args(t_shell *sh, int num, char *split, int *j)
 	char	*no_quotes_arg;
 
 	no_quotes_arg = str_remove_quotes(split);
-	if (no_quotes_arg && has_alphanum(no_quotes_arg))
+	if (no_quotes_arg && has_ascii(no_quotes_arg))
 	{
 		len = ft_strlen(no_quotes_arg);
 		sh->cmds[num].args[++(*j)] = (char *)malloc(sizeof(char) * len + 1);
