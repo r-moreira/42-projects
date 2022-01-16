@@ -6,11 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 19:48:55 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:48:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
 
 static void	exec_builtin(t_shell *sh, int num)
 {
@@ -25,17 +26,23 @@ void	exec_no_flags(t_shell *sh, int num)
 
 	if (DEBUGGER_EXEC)
 		exec_debugger_helper(sh, num, "No Flags = |Write STDOUT|");
-	pid = fork();
-	if (pid == -1)
-		exit_error(ERROR_FORK);
-	if (pid == FORKED_CHILD)
+	if (fork_builtins(sh, num))
 	{
-		if (sh->cmds[num].builtin)
-			exec_builtin(sh, num);
-		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-			exit_error(ERROR_EXEC);
-		exit(EXIT_SUCCESS);
+		pid = fork();
+		if (pid == -1)
+			exit_error(ERROR_FORK);
+		if (pid == FORKED_CHILD)
+		{
+			if (sh->cmds[num].builtin)
+				exec_builtin(sh, num);
+			else if (execve(sh->cmds[num].path, sh->cmds[num].args,
+				sh->envs) == -1)
+				exit_error(ERROR_EXEC);
+			exit(EXIT_SUCCESS);
+		}
+		else
+			g_pid_number = wait(&status);
 	}
 	else
-		g_pid_number = wait(&status);
+		exec_builtin(sh, num);
 }

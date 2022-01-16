@@ -6,11 +6,21 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 19:34:43 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:45:35 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_bool	fork_builtins(t_shell *sh, int num)
+{
+	int	len;
+
+	len = ft_strlen(sh->cmds[num].name) + 1;
+	if (ft_strncmp(sh->cmds[num].name, "cd", len) == 0)
+		return (FALSE);
+	return (TRUE);
+}
 
 t_bool	is_builtin(t_shell *sh, int num)
 {
