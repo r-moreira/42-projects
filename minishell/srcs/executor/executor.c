@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 00:23:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:21:49 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,6 @@ static void	call_exec(t_shell *sh, int num)
 		exec_no_flags(sh, num);
 }
 
-//////////////////TO-DOs
-// Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..)
-//		- Built-ins e Não Built-ins
-// Adicionar log de execução nos built-ins
-// Lidar com signals
-// Garantir o retorno do PID para: "$?"
-/////////////////////////
 void	executor(t_shell *sh)
 {
 	int	i;

@@ -6,14 +6,17 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:16:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:21:53 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// TO-DO -> "$?"
-// Ajustar o tokenizer, incluir os redirects dentro do mesmo token de comando
+//////////////////TO-DOs
+// Lidar com as flags (Process Handlers, Pipe, Dup2 e afins..) - Built-ins
+// Lidar com signals
+// Garantir o retorno do PID para: "$?"
+/////////////////////////
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	sh;
