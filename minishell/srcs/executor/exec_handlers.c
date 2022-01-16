@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:23:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 00:39:27 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:05:55 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ t_bool pipe_last_cmd)
 		exec_pipe_read_fd2(sh, num);
 }
 
-//TO-DO
 void	handle_input_redir(t_shell *sh, int num)
 {
-	(void)sh;
-	(void)num;
+	int	i;
+
+	i = -1;
+	while (++i < sh->cmds[num].redin.len)
+		exec_input_redir(sh, num, i, REDIRECT_IN);
+	if (sh->cmds[num].heredoc)
+		exec_input_redir(sh, num, i, HERE_DOCUMENT);
 }
 
 void	handle_output_redir(t_shell *sh, int num)

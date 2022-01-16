@@ -65,6 +65,7 @@ EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd2.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd1_write_fd2.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd2_write_fd1.c \
+					  $(EXECUTOR_DIR)/exec_input_redir.c \
 					  $(EXECUTOR_DIR)/exec_output_redir.c \
 					  $(EXECUTOR_DIR)/exec_handlers.c
 

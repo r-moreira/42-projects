@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 00:45:51 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:06:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ t_status	get_cmd_path(t_shell *sh, int num);
 void		executor(t_shell *sh);
 void		clear_execution(t_shell *sh);
 void		exec_no_flags(t_shell *sh, int num);
+void		exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag);
 void		exec_output_redir(t_shell *sh, int num, int arg_num, t_flag flag);
 void		exec_pipe_write_fd1(t_shell *sh, int num);
 void		exec_pipe_read_fd1(t_shell *sh, int num);
