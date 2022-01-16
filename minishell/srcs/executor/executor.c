@@ -6,11 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 21:20:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 23:44:23 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 static void	clear_execution(t_shell *sh)
 {
@@ -83,17 +85,59 @@ static void	handle_pipes(t_shell *sh, int num)
 		exec_pipe_read_fd1(sh, num);
 	else if (!pipe && pipe_last_cmd && sh->fd.open == TWO)
 		exec_pipe_read_fd2(sh, num);
+}
+
+static void	handle_input_redir(t_shell *sh, int num)
+{
+	(void)sh;
+	(void)num;
+}
+
+static void handle_output_redir(t_shell *sh, int num)
+{
+	int		redir_fd;
+	pid_t	pid;
+
+	if (DEBUGGER_EXEC)
+		exec_debugger_helper(sh, num, "Redirect In = |Write File|");
+	pid = fork();
+	if (pid == -1)
+		exit_error(ERROR_FORK);
+	if (pid == FORKED_CHILD)
+	{
+		redir_fd = open(sh->cmds[num].redout.arg[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);  //O_TRUNC = >  e //O_APPEND = >>
+		if (redir_fd == -1)
+			exit_error(ERROR_OPEN_FILE);
+		dup2(redir_fd, STDOUT_FILENO);
+		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
+			exit_error(ERROR_EXEC);
+		else
+			exit(EXIT_SUCCESS);
+		close(redir_fd);
+	}
 	else
-		exec_no_pipe(sh, num);
+		g_pid_number = waitpid(pid, NULL, 0);
 }
 
 static void	call_exec(t_shell *sh, int num)
 {
-	//handle_input_redir(sh, num);
-	//handle_output_redir(sh, num);
+	t_bool	pipe_last_cmd;
+	t_bool	pipe;
+	t_bool	redout;
 
+	redout = FALSE;
+	pipe_last_cmd = FALSE;
+	pipe = sh->cmds[num].pipe;
+	if (sh->cmds[num].redout.len > 0 || sh->cmds[num].redout_apd.len > 0)
+		redout = TRUE;
+	if (num > 0)
+		pipe_last_cmd = sh->cmds[num - 1].pipe;
+	handle_input_redir(sh, num);
+	if (redout)
+		handle_output_redir(sh, num);
 	handle_pipes(sh, num);
-
+	if (!pipe_last_cmd && !pipe && !redout)
+		exec_no_flags(sh, num);
 }
 
 //////////////////TO-DOs

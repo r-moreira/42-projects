@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 22:09:20 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 23:43:58 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@
 # define ERROR_FORK "minishell: Error on forking process\n"
 # define ERROR_PIPE_FD "minishell: Error on creating pipe\n"
 # define ERROR_HEREDOC "minishell: Heredoc does not contain an input ending\n"
+# define ERROR_OPEN_FILE "minishell: Error on open file"
 
 /* ** Global Variables ** */
 int	g_pid_number;
@@ -200,7 +201,7 @@ char		*parse_env(char *env);
 //EXECUTOR
 void		executor(t_shell *sh);
 t_status	get_cmd_path(t_shell *sh, int num);
-void		exec_no_pipe(t_shell *sh, int num);
+void		exec_no_flags(t_shell *sh, int num);
 void		exec_pipe_write_fd1(t_shell *sh, int num);
 void		exec_pipe_read_fd1(t_shell *sh, int num);
 void		exec_pipe_read_fd2(t_shell *sh, int num);

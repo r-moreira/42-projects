@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:18:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/15 23:49:23 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	get_flag_token(t_shell *sh, char *token, int num, t_flag flag)
 	while (token[start] && token[start] == ' ')
 		start++;
 	end = start;
-	while (token[end] && (ft_isalnum(token[end]) || is_quotes(token[end])))
+	while (token[end] && ft_isascii(token[end]))
 		end++;
 	arg_token = ft_substr(token, start, end - start);
 	no_quotes_token = str_remove_quotes(arg_token);
