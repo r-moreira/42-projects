@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 23:49:23 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 00:26:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ static int	get_flag_token(t_shell *sh, char *token, int num, t_flag flag)
 	start = 1;
 	if (flag == HERE_DOCUMENT || flag == REDIRECT_OUT_APPEND)
 		start++;
-	while (token[start] && token[start] == ' ')
+	while (token[start] && ft_isspace(token[start]))
 		start++;
 	end = start;
-	while (token[end] && ft_isascii(token[end]))
+	while (token[end] && !ft_isspace(token[end]))
 		end++;
 	arg_token = ft_substr(token, start, end - start);
 	no_quotes_token = str_remove_quotes(arg_token);

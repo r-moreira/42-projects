@@ -37,8 +37,6 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/get_env_key.c \
 					  $(UTILS_DIR)/strlen_no_spaces.c \
 					  $(UTILS_DIR)/logger.c \
-					  $(UTILS_DIR)/dup_n_close.c \
-					  $(UTILS_DIR)/close_fd.c \
 					  $(UTILS_DIR)/str_close_quotes.c \
 					  $(UTILS_DIR)/str_remove_quotes.c \
 					  $(UTILS_DIR)/is_quotes.c \
@@ -60,16 +58,21 @@ ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 EXECUTOR_DIR		= $(MAIN_DIR)/executor
 EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
 					  $(EXECUTOR_DIR)/get_cmd_path.c \
+					  $(EXECUTOR_DIR)/clear_execution.c \
 					  $(EXECUTOR_DIR)/exec_no_flags.c \
 					  $(EXECUTOR_DIR)/exec_pipe_write_fd1.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd1.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd2.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd1_write_fd2.c \
-					  $(EXECUTOR_DIR)/exec_pipe_read_fd2_write_fd1.c
+					  $(EXECUTOR_DIR)/exec_pipe_read_fd2_write_fd1.c \
+					  $(EXECUTOR_DIR)/exec_output_redir.c \
+					  $(EXECUTOR_DIR)/exec_handlers.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
 PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
+					  $(PHANDLERS_DIR)/dup_n_close.c \
+					  $(PHANDLERS_DIR)/close_fd.c \
 					  $(PHANDLERS_DIR)/signal_handlers.c
 
 #Built-ins functions
@@ -80,7 +83,8 @@ BUILTINS_SRCS		= $(BUILTINS_DIR)/echo.c \
 					  $(BUILTINS_DIR)/export.c \
 					  $(BUILTINS_DIR)/unset.c \
 					  $(BUILTINS_DIR)/env.c \
-					  $(BUILTINS_DIR)/exit.c
+					  $(BUILTINS_DIR)/exit.c \
+					  $(BUILTINS_DIR)/handle_builtin.c
 
 all:				$(NAME)
 

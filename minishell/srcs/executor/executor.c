@@ -6,137 +6,36 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 23:44:23 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 00:23:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdlib.h>
-#include <unistd.h>
-
-static void	clear_execution(t_shell *sh)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < sh->count.cmds)
-	{
-		j = -1;
-		while (++j < sh->cmds[i].args_count)
-			free(sh->cmds[i].args[j]);
-		j = -1;
-		while (++j < sh->cmds[i].redin.len)
-			ft_strlcpy(sh->cmds[i].redin.arg[j], "\0", 1);
-		j = -1;
-		while (++j < sh->cmds[i].redout.len)
-			ft_strlcpy(sh->cmds[i].redout.arg[j], "\0", 1);
-		j = -1;
-		while (++j < sh->cmds[i].redout_apd.len)
-			ft_strlcpy(sh->cmds[i].redout_apd.arg[j], "\0", 1);
-		sh->cmds[i].args_count = 0;
-		ft_strlcpy(sh->cmds[i].name, "\0", 1);
-		ft_strlcpy(sh->cmds[i].path, "\0", 1);
-	}
-	ft_strlcpy(sh->heredoc_file_buffer, "\0", 1);
-	ft_strlcpy(sh->input_string, "\0", 1);
-}
-
-static t_status	handle_builtin(t_shell *sh, int num)
-{
-	size_t		len;
-	char		*cmd;
-
-	cmd = sh->cmds[num].name;
-	len = ft_strlen(cmd) + 1;
-	if (ft_strncmp(cmd, "echo", len) == 0)
-		return (ft_echo(sh, num));
-	else if (ft_strncmp(cmd, "cd", len) == 0)
-		return (ft_cd(sh, num));
-	else if (ft_strncmp(cmd, "pwd", len) == 0)
-		return (ft_pwd(sh, num));
-	else if (ft_strncmp(cmd, "export", len) == 0)
-		return (ft_export(sh, num));
-	else if (ft_strncmp(cmd, "unset", len) == 0)
-		return (ft_unset(sh, num));
-	else if (ft_strncmp(cmd, "env", len) == 0)
-		return (ft_env(sh));
-	else if (ft_strncmp(cmd, "exit", len) == 0)
-		ft_exit(sh);
-	return (NOT_BUILT_IN);
-}
-
-static void	handle_pipes(t_shell *sh, int num)
-{
-	t_bool	pipe_last_cmd;
-	t_bool	pipe;
-
-	pipe = sh->cmds[num].pipe;
-	pipe_last_cmd = FALSE;
-	if (num > 0)
-		pipe_last_cmd = sh->cmds[num - 1].pipe;
-	if (pipe && !pipe_last_cmd && sh->fd.open == ANY)
-		exec_pipe_write_fd1(sh, num);
-	else if (pipe && pipe_last_cmd && sh->fd.open == ONE)
-		exec_pipe_read_fd1_write_fd2(sh, num);
-	else if (pipe && pipe_last_cmd && sh->fd.open == TWO)
-		exec_pipe_read_fd2_write_fd1(sh, num);
-	else if (!pipe && pipe_last_cmd && sh->fd.open == ONE)
-		exec_pipe_read_fd1(sh, num);
-	else if (!pipe && pipe_last_cmd && sh->fd.open == TWO)
-		exec_pipe_read_fd2(sh, num);
-}
-
-static void	handle_input_redir(t_shell *sh, int num)
-{
-	(void)sh;
-	(void)num;
-}
-
-static void handle_output_redir(t_shell *sh, int num)
-{
-	int		redir_fd;
-	pid_t	pid;
-
-	if (DEBUGGER_EXEC)
-		exec_debugger_helper(sh, num, "Redirect In = |Write File|");
-	pid = fork();
-	if (pid == -1)
-		exit_error(ERROR_FORK);
-	if (pid == FORKED_CHILD)
-	{
-		redir_fd = open(sh->cmds[num].redout.arg[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);  //O_TRUNC = >  e //O_APPEND = >>
-		if (redir_fd == -1)
-			exit_error(ERROR_OPEN_FILE);
-		dup2(redir_fd, STDOUT_FILENO);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-			exit_error(ERROR_EXEC);
-		else
-			exit(EXIT_SUCCESS);
-		close(redir_fd);
-	}
-	else
-		g_pid_number = waitpid(pid, NULL, 0);
-}
 
 static void	call_exec(t_shell *sh, int num)
 {
 	t_bool	pipe_last_cmd;
 	t_bool	pipe;
 	t_bool	redout;
+	t_bool	redin;
 
 	redout = FALSE;
+	redin = FALSE;
 	pipe_last_cmd = FALSE;
 	pipe = sh->cmds[num].pipe;
 	if (sh->cmds[num].redout.len > 0 || sh->cmds[num].redout_apd.len > 0)
 		redout = TRUE;
+	if (sh->cmds[num].redin.len > 0 || sh->cmds[num].heredoc)
+		redin = TRUE;
 	if (num > 0)
 		pipe_last_cmd = sh->cmds[num - 1].pipe;
-	handle_input_redir(sh, num);
+	if (redin)
+		handle_input_redir(sh, num);
 	if (redout)
 		handle_output_redir(sh, num);
-	handle_pipes(sh, num);
-	if (!pipe_last_cmd && !pipe && !redout)
+	if (pipe || pipe_last_cmd)
+		handle_pipes(sh, num, pipe, pipe_last_cmd);
+	if (!pipe_last_cmd && !pipe && !redout && !redin)
 		exec_no_flags(sh, num);
 }
 

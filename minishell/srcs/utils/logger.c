@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:18:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 18:25:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 00:09:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	flag_descrpt(t_shell *sh, int num)
 		sh->cmds[num].pipe);
 	i = -1;
 	while (++i < sh->cmds[num].redout.len)
-		printf("          [>] arg[%d] = [%s]\n", i, sh->cmds[num].redout.arg[i]);
+		printf("          > arg[%d] = [%s]\n", i, sh->cmds[num].redout.arg[i]);
 	i = -1;
 	while (++i < sh->cmds[num].redout_apd.len)
 		printf("          >> arg[%d] = [%s]\n", i,

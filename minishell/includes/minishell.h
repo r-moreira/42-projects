@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 23:43:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 00:45:51 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 # define ERROR_FORK "minishell: Error on forking process\n"
 # define ERROR_PIPE_FD "minishell: Error on creating pipe\n"
 # define ERROR_HEREDOC "minishell: Heredoc does not contain an input ending\n"
-# define ERROR_OPEN_FILE "minishell: Error on open file"
+# define ERROR_OPEN_FILE "minishell: Error opening file"
 
 /* ** Global Variables ** */
 int	g_pid_number;
@@ -175,8 +175,6 @@ t_bool		is_env_valid(char *env);
 char		*get_env_key(char *env);
 size_t		strlen_no_spaces(char *s);
 void		parsed_info_logger(t_shell *sh);
-void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
-void		close_fd(t_shell *sh, t_fds_num fd);
 void		str_close_quotes(char *dest, char *src, int *i, int *j);
 char		*str_remove_quotes(char *str);
 t_bool		is_quotes(char c);
@@ -187,6 +185,8 @@ void		path_debugger_helper(t_shell *sh, int i);
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
 void		run_signals(void);
+void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
+void		close_fd(t_shell *sh, t_fds_num fd);
 
 //ANALYZER
 t_status	analyzer(t_shell *sh);
@@ -199,16 +199,23 @@ t_status	parse_cmd(t_shell *sh, int num);
 char		*parse_env(char *env);
 
 //EXECUTOR
-void		executor(t_shell *sh);
 t_status	get_cmd_path(t_shell *sh, int num);
+void		executor(t_shell *sh);
+void		clear_execution(t_shell *sh);
 void		exec_no_flags(t_shell *sh, int num);
+void		exec_output_redir(t_shell *sh, int num, int arg_num, t_flag flag);
 void		exec_pipe_write_fd1(t_shell *sh, int num);
 void		exec_pipe_read_fd1(t_shell *sh, int num);
 void		exec_pipe_read_fd2(t_shell *sh, int num);
 void		exec_pipe_read_fd1_write_fd2(t_shell *sh, int num);
 void		exec_pipe_read_fd2_write_fd1(t_shell *sh, int num);
+void		handle_input_redir(t_shell *sh, int num);
+void		handle_output_redir(t_shell *sh, int num);
+void		handle_pipes(t_shell *sh, int num, t_bool pipe,
+				t_bool pipe_last_cmd);
 
 //BUILT-INS
+t_status	handle_builtin(t_shell *sh, int num);
 t_status	ft_echo(t_shell *sh, int num);
 t_status	ft_cd(t_shell *sh, int num);
 t_status	ft_pwd(t_shell *sh, int num);
