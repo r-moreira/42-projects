@@ -6,11 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:16:31 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:31:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdio.h>
 
 static t_bool	has_n_option(t_shell *sh, int num)
 {
@@ -28,7 +29,7 @@ static t_bool	has_n_option(t_shell *sh, int num)
 	return (FALSE);
 }
 
-static void	get_echo_str(t_shell *sh, char *input, t_bool n_opt)
+static void	get_echo_str(char *input, t_bool n_opt)
 {
 	char	*str;
 	int		i;
@@ -44,9 +45,10 @@ static void	get_echo_str(t_shell *sh, char *input, t_bool n_opt)
 	if (i > 0 && str[i - 1])
 		if (is_flag(input[i]) && ft_isspace(str[i - 1]))
 			str[i - 1] = '\0';
-	ft_strlcpy(sh->builtin_out, str, ft_strlen(str) + 1);
 	if (!n_opt)
-		ft_strcat(sh->builtin_out, "\n");
+		printf("%s", str);
+	else
+		printf("%s\n", str);
 	free(str);
 }
 
@@ -64,9 +66,9 @@ t_status	ft_echo(t_shell *sh, int num)
 		i += 2;
 		while (ft_isspace(input[i]))
 			i++;
-		get_echo_str(sh, input + i, TRUE);
+		get_echo_str(input + i, TRUE);
 	}
 	else
-		get_echo_str(sh, input + i, FALSE);
+		get_echo_str(input + i, FALSE);
 	return (SUCCESS);
 }

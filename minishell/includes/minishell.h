@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:15:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:31:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ typedef struct s_minishell
 	t_commands	cmds[MAX_COMMANDS_NUM];
 	char		*cmd_tokens[MAX_COMMANDS_NUM];
 	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
-	char		builtin_out[BUILTIN_OUTPUT_BUFFER];
 	char		*envs[MAX_ENVS];
 	char		*paths[MAX_PATHS];
 	t_fds		fd;
