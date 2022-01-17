@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 11:00:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:52:09 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@
 # include <readline/history.h>
 
 /* ** Set debugger ON/OFF ** */
-# define DEBUGGER_EXEC 0
+# define DEBUGGER_EXEC 1
 
 /* ** Helpers **/
 # define FORKED_CHILD 0
+# define HEREDOC_FILE "/tmp/heredoc"
 
 /* ** Buffers ** */
 # define MAX_LINE_INPUT 1248
@@ -46,6 +47,7 @@
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 2720
 # define HERE_DOCUMENT_BUFFER_SIZE 1732
+# define HERE_DOCUMENT_INPUT_END_SIZE 120
 # define BUILTIN_OUTPUT_BUFFER 4234
 
 /* ** Prompt ** */
@@ -153,6 +155,7 @@ typedef struct s_minishell
 	t_commands	cmds[MAX_COMMANDS_NUM];
 	char		*cmd_tokens[MAX_COMMANDS_NUM];
 	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
+	char		heredoc_input_end[HERE_DOCUMENT_INPUT_END_SIZE];
 	char		*envs[MAX_ENVS];
 	char		*paths[MAX_PATHS];
 	t_fds		fd;
@@ -184,6 +187,7 @@ void		executor_debugger_helper(t_shell *sh);
 void		exec_debugger_helper(t_shell *sh, int num, char *log);
 void		path_debugger_helper(t_shell *sh, int i);
 char		*strjoin_newline(char const *s1, char const *s2);
+t_bool		is_here_document(char *parsed_line);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
@@ -199,6 +203,7 @@ t_status	parser(t_shell *sh);
 t_status	parse_flags(t_shell *sh, int num);
 t_status	parse_cmd(t_shell *sh, int num);
 char		*parse_env(char *env);
+char		*parse_heredoc_input_end(char *parsed_line);
 
 //EXECUTOR
 t_status	get_cmd_path(t_shell *sh, int num);
@@ -214,6 +219,7 @@ void		exec_pipe_read_fd1_write_fd2(t_shell *sh, int num);
 void		exec_pipe_read_fd2_write_fd1(t_shell *sh, int num);
 void		handle_input_redir(t_shell *sh, int num);
 void		handle_output_redir(t_shell *sh, int num);
+t_status	handle_here_document_input(t_shell *sh);
 void		handle_pipes(t_shell *sh, int num, t_bool pipe,
 				t_bool pipe_last_cmd);
 

@@ -41,7 +41,8 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/str_remove_quotes.c \
 					  $(UTILS_DIR)/is_quotes.c \
   					  $(UTILS_DIR)/debugger_helpers.c \
-					  $(UTILS_DIR)/strjoin_newline.c
+					  $(UTILS_DIR)/strjoin_newline.c \
+					  $(UTILS_DIR)/is_here_document.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
@@ -49,7 +50,8 @@ PARSER_SRCS			= $(PARSER_DIR)/env_variables_parser.c \
 					  $(PARSER_DIR)/executor_parser.c \
 					  $(PARSER_DIR)/flags_parser.c \
 					  $(PARSER_DIR)/cmd_parser.c \
-					  $(PARSER_DIR)/env_parser.c
+					  $(PARSER_DIR)/env_parser.c \
+					  $(PARSER_DIR)/heredoc_parser.c
 
 #Analyzer
 ANALYZER_DIR		= $(MAIN_DIR)/analyzer
@@ -68,7 +70,8 @@ EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
 					  $(EXECUTOR_DIR)/exec_pipe_read_fd2_write_fd1.c \
 					  $(EXECUTOR_DIR)/exec_input_redir.c \
 					  $(EXECUTOR_DIR)/exec_output_redir.c \
-					  $(EXECUTOR_DIR)/exec_handlers.c
+					  $(EXECUTOR_DIR)/exec_handlers.c \
+					  $(EXECUTOR_DIR)/heredoc_handlers.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers

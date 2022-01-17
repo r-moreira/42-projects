@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 09:37:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:47:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 		redir_fd = open(sh->cmds[num].redin.arg[arg_num], O_RDONLY, 0644);
 	else if (flag == HERE_DOCUMENT)
 	{
-		heredoc_fd = open("/tmp/heredoc", truncate, 0644);
+		handle_here_document_input(sh);
+		heredoc_fd = open(HEREDOC_FILE, truncate, 0644);
 		if (heredoc_fd == -1)
 			exit_error(ERROR_OPEN_FILE);
 		ft_putstr_fd(sh->heredoc_file_buffer, heredoc_fd);
-		redir_fd = open("/tmp/heredoc", O_RDONLY, 0644);
+		redir_fd = open(HEREDOC_FILE, O_RDONLY, 0644);
 		close(heredoc_fd);
 	}
 	if (redir_fd == -1)
