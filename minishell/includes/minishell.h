@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 10:10:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 11:00:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-/* ** Set debuggers ON/OFF ** */
-# define DEBUGGER_BUILTIN 0
-# define DEBUGGER_EXEC 1
+/* ** Set debugger ON/OFF ** */
+# define DEBUGGER_EXEC 0
 
 /* ** Helpers **/
 # define FORKED_CHILD 0
@@ -184,6 +183,7 @@ t_bool		is_quotes(char c);
 void		executor_debugger_helper(t_shell *sh);
 void		exec_debugger_helper(t_shell *sh, int num, char *log);
 void		path_debugger_helper(t_shell *sh, int i);
+char		*strjoin_newline(char const *s1, char const *s2);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);

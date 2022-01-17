@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 10:21:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:08:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,18 @@ static char	*parse_heredoc_input_end(char *parsed_line)
 	return (input_end);
 }
 
-static char	*take_heredoc_input(t_shell *sh, char *input_end)
+//TO-DO:
+// Mover toda a logica de heredoc para os execs
+// Assim vai poder lidar com os signals
+static char	*take_heredoc_input(char *input_end)
 {
 	char	*heredoc_input;
 	char	*hdoc_line_read;
 	char	*parsed_heredoc_in;
 	char	*tmp_ptr;
 
+	tmp_ptr = NULL;
+	hdoc_line_read = NULL;
 	heredoc_input = ft_strdup("");
 	while (TRUE)
 	{
@@ -65,13 +70,10 @@ static char	*take_heredoc_input(t_shell *sh, char *input_end)
 			if (!ft_strncmp(input_end, hdoc_line_read, sizeof(input_end)))
 				break ;
 			tmp_ptr = heredoc_input;
-			heredoc_input = ft_strjoin(
-					ft_strcat(heredoc_input, "\n"), hdoc_line_read);
-			free(hdoc_line_read);
+			heredoc_input = strjoin_newline(heredoc_input, hdoc_line_read);
 			free(tmp_ptr);
+			free(hdoc_line_read);
 		}
-		else if (hdoc_line_read == NULL)
-			eof_exit_shell(sh);
 	}
 	parsed_heredoc_in = parse_env_variables(heredoc_input);
 	free(heredoc_input);
@@ -87,15 +89,14 @@ static t_status	handle_here_document_input(t_shell *sh, char *parsed_line)
 	input_end = parse_heredoc_input_end(parsed_line);
 	if (input_end[0] == '\0')
 		return (syntax_error(ERROR_HEREDOC));
-	hdoc_fb = take_heredoc_input(sh, input_end);
-	ft_strcat(hdoc_fb, "\n");
+	hdoc_fb = take_heredoc_input(input_end);
 	ft_strlcpy(sh->heredoc_file_buffer, hdoc_fb, ft_strlen(hdoc_fb) + 1);
 	tmp = ft_remove_substr(parsed_line, input_end, ft_strlen(parsed_line));
 	ft_strlcpy(sh->input_string, tmp, ft_strlen(tmp) + 1);
+	free(tmp);
 	free(parsed_line);
 	free(input_end);
 	free(hdoc_fb);
-	free(tmp);
 	return (SUCCESS);
 }
 

@@ -40,7 +40,8 @@ UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
 					  $(UTILS_DIR)/str_close_quotes.c \
 					  $(UTILS_DIR)/str_remove_quotes.c \
 					  $(UTILS_DIR)/is_quotes.c \
-  					  $(UTILS_DIR)/debugger_helpers.c
+  					  $(UTILS_DIR)/debugger_helpers.c \
+					  $(UTILS_DIR)/strjoin_newline.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser
