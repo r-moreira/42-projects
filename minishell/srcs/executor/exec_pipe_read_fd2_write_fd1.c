@@ -6,18 +6,16 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:21:23 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 18:07:53 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:37:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	exec_pipe_read_fd2_write_fd1(t_shell *sh, int num)
+static void	exec_fork(t_shell *sh, int num)
 {
 	pid_t	pid;
 
-	if (DEBUGGER_EXEC)
-		exec_debugger_helper(sh, num, "Pipe    = |Read FD2 - Write FD1|\n");
 	if (pipe(sh->fd.one) == -1)
 		exit_error(ERROR_PIPE_FD);
 	sh->fd.open = ONE;
@@ -28,7 +26,9 @@ void	exec_pipe_read_fd2_write_fd1(t_shell *sh, int num)
 	{
 		dup_n_close(sh, TWO, READ_END, STDIN_FILENO);
 		dup_n_close(sh, ONE, WRITE_END, STDOUT_FILENO);
-		if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
+		if (sh->cmds[num].builtin)
+			exec_builtin(sh, num);
+		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
 			exit_error(ERROR_EXEC);
 		else
 			exit(EXIT_SUCCESS);
@@ -38,4 +38,14 @@ void	exec_pipe_read_fd2_write_fd1(t_shell *sh, int num)
 		close_fd(sh, TWO);
 		g_pid_number = waitpid(pid, NULL, 0);
 	}
+}
+
+void	exec_pipe_read_fd2_write_fd1(t_shell *sh, int num)
+{
+	if (DEBUGGER_EXEC)
+		exec_debugger_helper(sh, num, "Pipe    = |Read FD2 - Write FD1|\n");
+	if (!has_non_fork_builtins(sh, num))
+		exec_fork(sh, num);
+	else
+		exec_builtin(sh, num);
 }
