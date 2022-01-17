@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 20:16:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:03:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void	get_echo_str(t_shell *sh, char *input, t_bool n_opt)
 		str[i] = input[i];
 		i++;
 	}
-	if (is_flag(input[i]) && str[i - 1] && ft_isspace(str[i - 1]))
-		str[i - 1] = '\0';
-	else
-		str[i] = '\0';
+	str[i] = '\0';
+	if (i > 0 && str[i - 1])
+		if (is_flag(input[i]) && ft_isspace(str[i - 1]))
+			str[i - 1] = '\0';
 	ft_strlcpy(sh->builtin_out, str, ft_strlen(str) + 1);
 	if (!n_opt)
 		ft_strcat(sh->builtin_out, "\n");

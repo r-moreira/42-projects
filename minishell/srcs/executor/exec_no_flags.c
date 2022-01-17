@@ -6,18 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 20:48:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:07:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-
-static void	exec_builtin(t_shell *sh, int num)
-{
-	call_builtin(sh, num);
-	printf("%s", sh->builtin_out);
-}
 
 void	exec_no_flags(t_shell *sh, int num)
 {

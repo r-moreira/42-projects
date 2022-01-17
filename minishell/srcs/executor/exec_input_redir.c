@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 19:49:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:07:29 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 	return (redir_fd);
 }
 
-static void	exec_builtin(t_shell *sh, int num, int redir_fd)
-{
-	call_builtin(sh, num);
-	ft_putstr_fd(sh->builtin_out, redir_fd);
-}
-
 void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 {
 	int		redir_fd;
@@ -54,20 +48,25 @@ void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 		exec_debugger_helper(sh, num, "Redirect In = |Write File|");
 	else if (DEBUGGER_EXEC && flag == HERE_DOCUMENT)
 		exec_debugger_helper(sh, num, "Here document = |Write File|");
-	pid = fork();
-	if (pid == -1)
-		exit_error(ERROR_FORK);
-	if (pid == FORKED_CHILD)
+	if (fork_builtins(sh, num))
 	{
-		redir_fd = open_input_file(sh, num, arg_num, flag);
-		dup2(redir_fd, STDIN_FILENO);
-		close(redir_fd);
-		if (sh->cmds[num].builtin)
-			exec_builtin(sh, num, redir_fd);
-		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-			exit_error(ERROR_EXEC);
-		exit(EXIT_SUCCESS);
+		pid = fork();
+		if (pid == -1)
+			exit_error(ERROR_FORK);
+		if (pid == FORKED_CHILD)
+		{
+			redir_fd = open_input_file(sh, num, arg_num, flag);
+			dup2(redir_fd, STDIN_FILENO);
+			close(redir_fd);
+			if (sh->cmds[num].builtin)
+				exec_builtin(sh, num);
+			else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
+				exit_error(ERROR_EXEC);
+			exit(EXIT_SUCCESS);
+		}
+		else
+			g_pid_number = waitpid(pid, NULL, 0);
 	}
 	else
-		g_pid_number = waitpid(pid, NULL, 0);
+		exec_builtin(sh, num);
 }

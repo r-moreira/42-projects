@@ -6,11 +6,17 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 20:45:35 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:07:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	exec_builtin(t_shell *sh, int num)
+{
+	call_builtin(sh, num);
+	printf("%s", sh->builtin_out);
+}
 
 t_bool	fork_builtins(t_shell *sh, int num)
 {
