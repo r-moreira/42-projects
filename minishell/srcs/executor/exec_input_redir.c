@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:07:29 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:16:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,37 @@ static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 	return (redir_fd);
 }
 
-void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)
+static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 {
 	int		redir_fd;
 	pid_t	pid;
 
+	pid = fork();
+	if (pid == -1)
+		exit_error(ERROR_FORK);
+	if (pid == FORKED_CHILD)
+	{
+		redir_fd = open_input_file(sh, num, arg_num, flag);
+		dup2(redir_fd, STDIN_FILENO);
+		close(redir_fd);
+		if (sh->cmds[num].builtin)
+			exec_builtin(sh, num);
+		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
+			exit_error(ERROR_EXEC);
+		exit(EXIT_SUCCESS);
+	}
+	else
+		g_pid_number = waitpid(pid, NULL, 0);
+}
+
+void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)
+{
 	if (DEBUGGER_EXEC && flag == REDIRECT_IN)
 		exec_debugger_helper(sh, num, "Redirect In = |Write File|");
 	else if (DEBUGGER_EXEC && flag == HERE_DOCUMENT)
 		exec_debugger_helper(sh, num, "Here document = |Write File|");
-	if (fork_builtins(sh, num))
-	{
-		pid = fork();
-		if (pid == -1)
-			exit_error(ERROR_FORK);
-		if (pid == FORKED_CHILD)
-		{
-			redir_fd = open_input_file(sh, num, arg_num, flag);
-			dup2(redir_fd, STDIN_FILENO);
-			close(redir_fd);
-			if (sh->cmds[num].builtin)
-				exec_builtin(sh, num);
-			else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
-				exit_error(ERROR_EXEC);
-			exit(EXIT_SUCCESS);
-		}
-		else
-			g_pid_number = waitpid(pid, NULL, 0);
-	}
+	if (!has_non_fork_builtins(sh, num))
+		exec_fork(sh, num, arg_num, flag);
 	else
 		exec_builtin(sh, num);
 }

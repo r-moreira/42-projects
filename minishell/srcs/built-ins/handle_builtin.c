@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:07:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:15:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	exec_builtin(t_shell *sh, int num)
 	printf("%s", sh->builtin_out);
 }
 
-t_bool	fork_builtins(t_shell *sh, int num)
+t_bool	has_non_fork_builtins(t_shell *sh, int num)
 {
 	int	len;
 
 	len = ft_strlen(sh->cmds[num].name) + 1;
 	if (ft_strncmp(sh->cmds[num].name, "cd", len) == 0)
-		return (FALSE);
-	return (TRUE);
+		return (TRUE);
+	return (FALSE);
 }
 
 t_bool	is_builtin(t_shell *sh, int num)

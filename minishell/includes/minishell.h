@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:07:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:15:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,7 @@ void		handle_pipes(t_shell *sh, int num, t_bool pipe,
 
 //BUILT-INS
 t_bool		is_builtin(t_shell *sh, int num);
-t_bool		fork_builtins(t_shell *sh, int num);
+t_bool		has_non_fork_builtins(t_shell *sh, int num);
 t_status	call_builtin(t_shell *sh, int num);
 void		exec_builtin(t_shell *sh, int num);
 t_status	ft_echo(t_shell *sh, int num);

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:03:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:16:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	get_echo_str(t_shell *sh, char *input, t_bool n_opt)
 	int		i;
 
 	str = (char *)malloc(sizeof(char) * ft_strlen(input) + 1);
-
 	i = 0;
 	while (input[i] && !is_flag(input[i]))
 	{
