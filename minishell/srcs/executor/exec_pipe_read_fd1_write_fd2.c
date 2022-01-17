@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:20:55 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:39:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:56:38 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	exec_fork(t_shell *sh, int num)
 {
 	pid_t	pid;
 
+	sh->fd.open = TWO;
 	if (pipe(sh->fd.two) == -1)
 		exit_error(ERROR_PIPE_FD);
-	sh->fd.open = TWO;
 	pid = fork();
 	if (pid == -1)
 		exit_error(ERROR_FORK);
