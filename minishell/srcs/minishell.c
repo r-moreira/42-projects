@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 10:29:55 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 13:21:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 ////////////////////TO-DOs
 // Lidar com signals - BUG printando 2 prompts em CTRL+C no exec.
-// Heredoc file buffer com \n desnecessário no início.
+// Ajustar o signal CTRL + C para o heredoc
+// Ajustar o redirect in + pipe, ex: cat < README.md | wc (Ajustar fds/dup)
 // Garantir o retorno do PID para: "$?"
 /////////////////////////
 int	main(int argc, char **argv, char **envp)
