@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 19:45:11 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:33:35 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ void	clear_execution(t_shell *sh)
 		ft_strlcpy(sh->cmds[i].path, "\0", 1);
 	}
 	ft_strlcpy(sh->heredoc_file_buffer, "\0", 1);
-	ft_strlcpy(sh->builtin_out, "\0", 1);
 	ft_strlcpy(sh->input_string, "\0", 1);
 }
