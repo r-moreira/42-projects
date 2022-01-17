@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:18:50 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 16:07:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:43:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ static void	export_env(t_shell *sh, char *env)
 	free(env_key);
 }
 
-//TO-DO
-//Adicionar tratamento de flags ao comando (> < | >> <<)
-//Adicionar in e out fd na struct dependendo da flag;
-//No CMD2+ Percorrer input até a flag do comando anterior,
-//	ignorando quando tiver entre aspas
 static t_status	export_with_no_arg(t_shell *sh, int num)
 {
 	int	i;
@@ -58,9 +53,14 @@ static t_status	export_with_no_arg(t_shell *sh, int num)
 t_status	ft_export(t_shell *sh, int num)
 {
 	char	*env;
+	char	*arg;
 	int		i;
+	int		len;
 
-	if (ft_strlen(sh->cmds[num].args[1]) == 0)
+	arg = sh->cmds[num].args[1];
+	if (arg)
+		len = ft_strlen(arg);
+	if (!arg || len == 0)
 		return (export_with_no_arg(sh, num));
 	i = 0;
 	while (++i < sh->cmds[num].args_count)

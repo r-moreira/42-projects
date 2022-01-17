@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:20:23 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:38:06 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:38:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void	exec_pipe_read_fd1(t_shell *sh, int num)
 	if (!has_non_fork_builtins(sh, num))
 		exec_fork(sh, num);
 	else
-		exec_builtin(sh, num);
+		call_builtin(sh, num);
 }

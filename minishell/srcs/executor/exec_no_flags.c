@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:16:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:38:03 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void	exec_no_flags(t_shell *sh, int num)
 			g_pid_number = wait(&status);
 	}
 	else
-		exec_builtin(sh, num);
+		call_builtin(sh, num);
 }

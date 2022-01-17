@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 09:29:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:53:05 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,18 @@ void	exec_builtin(t_shell *sh, int num)
 
 t_bool	has_non_fork_builtins(t_shell *sh, int num)
 {
-	int	len;
+	int		len;
 
 	len = ft_strlen(sh->cmds[num].name) + 1;
 	if (ft_strncmp(sh->cmds[num].name, "cd", len) == 0)
+		return (TRUE);
+	else if (ft_strncmp(sh->cmds[num].name, "export", len) == 0)
+	{
+		if (!sh->cmds[num].args[1] || !ft_strlen(sh->cmds[num].args[1]))
+			return (FALSE);
+		return (TRUE);
+	}
+	else if (ft_strncmp(sh->cmds[num].name, "unset", len) == 0)
 		return (TRUE);
 	return (FALSE);
 }

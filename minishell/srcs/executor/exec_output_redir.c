@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 23:55:59 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 21:15:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 09:38:10 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	exec_output_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 	if (!has_non_fork_builtins(sh, num))
 		exec_fork(sh, num, arg_num, flag);
 	else
-		exec_builtin(sh, num);
+		call_builtin(sh, num);
 }
