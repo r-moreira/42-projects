@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 09:31:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:01:27 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	get_echo_str(char *input, t_bool n_opt)
 	if (i > 0 && str[i - 1])
 		if (is_flag(input[i]) && ft_isspace(str[i - 1]))
 			str[i - 1] = '\0';
-	if (!n_opt)
+	if (n_opt)
 		printf("%s", str);
 	else
 		printf("%s\n", str);

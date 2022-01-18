@@ -6,12 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 23:28:59 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 09:37:41 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <unistd.h>
 
 static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 {

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2021/12/30 20:41:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:04:29 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static t_bool	is_closed_sglquote(char *input)
 	return (FALSE);
 }
 
-char	*get_env_token(char *input)
+char	*get_env_token(char *in)
 {
 	int		i;
 	char	*env_token;
 
 	i = 1;
-	while (!ft_isspace(input[i]) && input[i] != '$' && input[i] != '"')
+	while (in[i] && !ft_isspace(in[i]) && in[i] != '$' && in[i] != '"')
 		i++;
-	env_token = ft_substr(input, 1, i - 1);
+	env_token = ft_substr(in, 1, i - 1);
 	return (env_token);
 }
 
@@ -55,7 +55,8 @@ void	get_env_value(char *line_read, int *i, int *j, char *parsed_line_read)
 		while (env_token[++k])
 			parsed_line_read[++(*j)] = env_token[k];
 	}
-	*i += ft_strlen(get_env_token(line_read + *i));
+	*i += ft_strlen(env_token);
+	free (env_token);
 }
 
 char	*parse_env_variables(char *line_read)
