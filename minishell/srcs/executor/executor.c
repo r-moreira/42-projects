@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 09:33:20 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 23:20:04 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	call_exec(t_shell *sh, int num)
 		handle_input_redir(sh, num);
 	if (redout)
 		handle_output_redir(sh, num);
-	if (pipe || pipe_last_cmd)
+	if ((pipe || pipe_last_cmd) && !redin)
 		handle_pipes(sh, num, pipe, pipe_last_cmd);
 	if (!pipe_last_cmd && !pipe && !redout && !redin)
 		exec_no_flags(sh, num);

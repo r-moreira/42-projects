@@ -6,11 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 22:27:15 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 23:28:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <unistd.h>
 
 static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 {
@@ -45,8 +46,9 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 	int		redir_fd;
 	pid_t	pid;
 
+	sh->fd.open = ONE;
 	redir_fd = open_input_file(sh, num, arg_num, flag);
-	if (sh->cmds[num].pipe) //BUG
+	if (sh->cmds[num].pipe)
 		if (pipe(sh->fd.one) == -1)
 			exit_error(ERROR_PIPE_FD);
 	pid = fork();
@@ -56,13 +58,8 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 	{
 		dup2(redir_fd, STDIN_FILENO);
 		close(redir_fd);
-		if (sh->cmds[num].pipe) //BUG
-		{
-			if (dup2(sh->fd.one[WRITE_END], STDOUT_FILENO) == -1)
-				return (exit_error("INPUT REDIR"));
-			close(sh->fd.one[READ_END]);
-			close(sh->fd.one[WRITE_END]);
-		}
+		if (sh->cmds[num].pipe)
+			dup_n_close(sh, ONE, WRITE_END, STDOUT_FILENO);
 		if (sh->cmds[num].builtin)
 			exec_builtin(sh, num);
 		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)

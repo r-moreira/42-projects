@@ -6,15 +6,16 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 13:31:00 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 23:31:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 ////////////////////TO-DOs
+// Ajustar o redirect in + pipe.
+// 		- Verificar casos de redirect in no PIPE 2+, ex: ls -la | grep < | wc
 // Lidar com signals - BUG printando 2 prompts em CTRL+C no exec.
-// Ajustar o redirect in + pipe, ex: cat < README.md | wc (Ajustar para escrever no FD1)
 // Garantir o retorno do PID para: "$?"
 // Ajustar o signal CTRL + C para o heredoc
 /////////////////////////
