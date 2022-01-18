@@ -6,11 +6,17 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:12:09 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 13:00:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:26:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	free_aux(char *p1, char *p2)
+{
+	free(p1);
+	free(p2);
+}
 
 static char	*take_heredoc_input(char *input_end)
 {
@@ -31,9 +37,9 @@ static char	*take_heredoc_input(char *input_end)
 				break ;
 			tmp_ptr = heredoc_input;
 			heredoc_input = strjoin_newline(heredoc_input, hdoc_line_read);
-			free(tmp_ptr);
-			free(hdoc_line_read);
-		} else
+			free_aux(tmp_ptr, heredoc_input);
+		}
+		else
 			exit(EXIT_SUCCESS);
 	}
 	parsed_heredoc_in = parse_env_variables(heredoc_input);

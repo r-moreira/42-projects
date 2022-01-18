@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 21:34:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:16:45 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 /* ** Helpers **/
 # define FORKED_CHILD 0
+# define SIGNALED 130
 # define HEREDOC_FILE "/tmp/heredoc"
 
 /* ** Buffers ** */
@@ -191,9 +192,12 @@ t_bool		is_here_document(char *parsed_line);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
-void		run_signals(void);
+void		run_signals_interactive(void);
+void		run_signals_exec(void);
 void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
 void		close_fd(t_shell *sh, t_fds_num fd);
+void		wait_aux(int pid);
+
 //ANALYZER
 t_status	analyzer(t_shell *sh);
 

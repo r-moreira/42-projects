@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 23:20:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:14:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	executor(t_shell *sh)
 {
 	int	i;
 
+	g_pid_number = 0;
 	sh->fd.open = ANY;
 	if (DEBUGGER_EXEC)
 		executor_debugger_helper(sh);

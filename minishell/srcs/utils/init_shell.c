@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:23:35 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/11 21:51:28 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:13:56 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	setup_paths(t_shell *sh)
 
 void	init_shell(t_shell *sh, char **envp)
 {
+	g_pid_number = 0;
 	setup_envs(sh, envp);
 	setup_paths(sh);
 }

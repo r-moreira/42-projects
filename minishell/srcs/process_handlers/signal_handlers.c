@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:05:58 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 13:20:39 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:12:10 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,13 @@ static void	handle_sigquit(int sig)
 	(void)sig;
 }
 
-void	run_signals(void)
+void	run_signals_interactive(void)
+{
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	run_signals_exec(void)
 {
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, handle_sigquit);

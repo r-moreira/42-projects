@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 23:55:59 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 09:38:10 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:21:46 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 		exit_error(ERROR_FORK);
 	if (pid == FORKED_CHILD)
 	{
+		run_signals_exec();
 		redir_fd = open_output_file(sh, num, arg_num, flag);
 		dup2(redir_fd, STDOUT_FILENO);
 		close(redir_fd);
@@ -50,7 +51,7 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 		exit(EXIT_SUCCESS);
 	}
 	else
-		g_pid_number = waitpid(pid, NULL, 0);
+		wait_aux(pid);
 }
 
 void	exec_output_redir(t_shell *sh, int num, int arg_num, t_flag flag)

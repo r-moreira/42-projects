@@ -6,11 +6,17 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 09:37:41 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:27:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	dup_n_close_redir_fd(int redir_fd)
+{
+	dup2(redir_fd, STDIN_FILENO);
+	close(redir_fd);
+}
 
 static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 {
@@ -55,8 +61,8 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 		exit_error(ERROR_FORK);
 	if (pid == FORKED_CHILD)
 	{
-		dup2(redir_fd, STDIN_FILENO);
-		close(redir_fd);
+		run_signals_exec();
+		dup_n_close_redir_fd(redir_fd);
 		if (sh->cmds[num].pipe)
 			dup_n_close(sh, ONE, WRITE_END, STDOUT_FILENO);
 		if (sh->cmds[num].builtin)
@@ -66,7 +72,7 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 		exit(EXIT_SUCCESS);
 	}
 	else
-		g_pid_number = waitpid(pid, NULL, 0);
+		wait_aux(pid);
 }
 
 void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)

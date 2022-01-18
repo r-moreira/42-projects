@@ -78,7 +78,8 @@ PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers
 PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
 					  $(PHANDLERS_DIR)/dup_n_close.c \
 					  $(PHANDLERS_DIR)/close_fd.c \
-					  $(PHANDLERS_DIR)/signal_handlers.c
+					  $(PHANDLERS_DIR)/signal_handlers.c \
+					  $(PHANDLERS_DIR)/wait_aux.c
 
 #Built-ins functions
 BUILTINS_DIR		= $(MAIN_DIR)/built-ins

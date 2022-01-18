@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:59 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 12:20:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:23:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ char	*parse_heredoc_input_end(char *parsed_line)
 	input_end[++j] = '\0';
 	return (input_end);
 }
-
