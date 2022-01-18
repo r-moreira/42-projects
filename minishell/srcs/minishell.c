@@ -6,19 +6,26 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 20:10:43 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:32:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 ////////////////////TO-DOs
-// Redirections/Pipe Fix
+//
+//  1) Redirections/Pipe Fix
 //		- Redir in + Redir out
-// Lidar com signals - BUG printando 2 prompts em CTRL+C no exec.
-// Garantir o retorno do PID para: "$?"
-// Ajustar o signal CTRL + C para o heredoc
+//		- ...
+//
+// 2) Lidar com signals - Verificar comportamento CTRL + \
+//
+// 3) Garantir o retorno do PID para: "$?"
+//
+// 4) Ajustar o signal CTRL + C para o heredoc
+//
 /////////////////////////
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	sh;
