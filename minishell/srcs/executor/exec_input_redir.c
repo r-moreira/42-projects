@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 12:47:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:27:15 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,24 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 	int		redir_fd;
 	pid_t	pid;
 
+	redir_fd = open_input_file(sh, num, arg_num, flag);
+	if (sh->cmds[num].pipe) //BUG
+		if (pipe(sh->fd.one) == -1)
+			exit_error(ERROR_PIPE_FD);
 	pid = fork();
 	if (pid == -1)
 		exit_error(ERROR_FORK);
 	if (pid == FORKED_CHILD)
 	{
-		redir_fd = open_input_file(sh, num, arg_num, flag);
 		dup2(redir_fd, STDIN_FILENO);
 		close(redir_fd);
+		if (sh->cmds[num].pipe) //BUG
+		{
+			if (dup2(sh->fd.one[WRITE_END], STDOUT_FILENO) == -1)
+				return (exit_error("INPUT REDIR"));
+			close(sh->fd.one[READ_END]);
+			close(sh->fd.one[WRITE_END]);
+		}
 		if (sh->cmds[num].builtin)
 			exec_builtin(sh, num);
 		else if (execve(sh->cmds[num].path, sh->cmds[num].args, sh->envs) == -1)
@@ -66,9 +76,9 @@ static void	exec_fork(t_shell *sh, int num, int arg_num, t_flag flag)
 void	exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag)
 {
 	if (DEBUGGER_EXEC && flag == REDIRECT_IN)
-		exec_debugger_helper(sh, num, "Redirect In = |Write File|");
+		exec_debugger_helper(sh, num, "Redirect In = |Read File|\n");
 	else if (DEBUGGER_EXEC && flag == HERE_DOCUMENT)
-		exec_debugger_helper(sh, num, "Here document = |Write File|");
+		exec_debugger_helper(sh, num, "Here document = |Read File|\n");
 	if (!has_non_fork_builtins(sh, num))
 		exec_fork(sh, num, arg_num, flag);
 	else

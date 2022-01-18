@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:23:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 12:05:55 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:21:55 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	handle_pipes(t_shell *sh, int num, t_bool pipe,
 t_bool pipe_last_cmd)
 {
-	if (num > 0)
+	(void)pipe;(void)pipe_last_cmd;
+	exec_pipe_read_fd1(sh, num);
+	/*if (num > 0)
 		pipe_last_cmd = sh->cmds[num - 1].pipe;
 	if (pipe && !pipe_last_cmd && sh->fd.open == ANY)
 		exec_pipe_write_fd1(sh, num);
@@ -26,7 +28,7 @@ t_bool pipe_last_cmd)
 	else if (!pipe && pipe_last_cmd && sh->fd.open == ONE)
 		exec_pipe_read_fd1(sh, num);
 	else if (!pipe && pipe_last_cmd && sh->fd.open == TWO)
-		exec_pipe_read_fd2(sh, num);
+		exec_pipe_read_fd2(sh, num);*/
 }
 
 void	handle_input_redir(t_shell *sh, int num)
