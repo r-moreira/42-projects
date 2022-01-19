@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 12:05:26 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 20:42:20 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 23:38:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ static int	open_input_file(t_shell *sh, int num, int arg_num, t_flag flag)
 {
 	int	heredoc_fd;
 	int	redir_fd;
-	int	rcreate;
 	int	truncate;
 
 	heredoc_fd = -1;
 	redir_fd = -1;
-	rcreate = O_RDONLY | O_CREAT;
 	truncate = O_WRONLY | O_CREAT | O_TRUNC;
 	if (flag == REDIRECT_IN)
 		redir_fd = open(sh->cmds[num].redin.arg[arg_num], O_RDONLY, 0644);
