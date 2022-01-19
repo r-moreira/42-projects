@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 23:38:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/19 09:17:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 //
 //  1) Redirections/Pipe Fix
 //		- Adicionar close nas pipes do parent
+//		- Pipe + Redir out
 //		- Redir in + Redir out
 //		- Heredoc + Pipe (Não está pegando a flag pipe no flags parser)
 //
