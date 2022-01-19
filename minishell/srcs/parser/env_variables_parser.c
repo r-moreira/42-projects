@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 12:04:29 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 21:32:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ char	*get_env_token(char *in)
 	return (env_token);
 }
 
+t_bool	is_status_var(char *line_read, int *i)
+{
+	if (line_read[(*i) + 1])
+		if (line_read[*i] == '$' && line_read[*i + 1] == '?')
+			return (TRUE);
+	return (FALSE);
+}
+
 void	get_env_value(char *line_read, int *i, int *j, char *parsed_line_read)
 {
 	char	*env_value;
@@ -43,20 +51,24 @@ void	get_env_value(char *line_read, int *i, int *j, char *parsed_line_read)
 
 	k = -1;
 	env_token = get_env_token(line_read + *i);
-	env_value = getenv(env_token);
-	if (env_value != NULL)
+	if (is_status_var(line_read, i))
 	{
+		env_value = ft_itoa(g_pid_number);
 		while (env_value[++k])
 			parsed_line_read[++(*j)] = env_value[k];
+		free(env_value);
 	}
 	else
 	{
-		parsed_line_read[++(*j)] = '$';
-		while (env_token[++k])
-			parsed_line_read[++(*j)] = env_token[k];
+		env_value = getenv(env_token);
+		if (env_value != NULL)
+		{
+			while (env_value[++k])
+				parsed_line_read[++(*j)] = env_value[k];
+		}
 	}
 	*i += ft_strlen(env_token);
-	free (env_token);
+	free(env_token);
 }
 
 char	*parse_env_variables(char *line_read)

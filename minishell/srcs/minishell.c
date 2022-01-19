@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 20:32:34 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 21:41:47 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 //
 // 2) Lidar com signals - Verificar comportamento CTRL + \
 //
-// 3) Garantir o retorno do PID para: "$?"
-//
-// 4) Ajustar o signal CTRL + C para o heredoc
+// 3) Ajustar o signal CTRL + C para o heredoc
 //
 /////////////////////////
 

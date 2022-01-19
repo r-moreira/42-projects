@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 20:16:45 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:44:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 /* ** Set debugger ON/OFF ** */
 # define DEBUGGER_EXEC 1
 
-/* ** Helpers **/
+/* ** Helpers ** */
 # define FORKED_CHILD 0
 # define SIGNALED 130
 # define HEREDOC_FILE "/tmp/heredoc"

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 09:53:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 21:37:23 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exec_builtin(t_shell *sh, int num)
 {
 	call_builtin(sh, num);
-	exit(SUCCESS);
+	exit(EXIT_SUCCESS);
 }
 
 t_bool	has_non_fork_builtins(t_shell *sh, int num)

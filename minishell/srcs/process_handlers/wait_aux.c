@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 20:15:55 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 20:16:13 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 21:36:09 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	wait_aux(int pid)
 	if (WIFEXITED(g_pid_number))
 		g_pid_number = WEXITSTATUS(g_pid_number);
 	else
-	g_pid_number += 128;
+		g_pid_number += 128;
 }
