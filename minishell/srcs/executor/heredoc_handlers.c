@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:12:09 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 20:26:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 21:56:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*take_heredoc_input(char *input_end)
 				break ;
 			tmp_ptr = heredoc_input;
 			heredoc_input = strjoin_newline(heredoc_input, hdoc_line_read);
-			free_aux(tmp_ptr, heredoc_input);
+			free_aux(tmp_ptr, hdoc_line_read);
 		}
 		else
 			exit(EXIT_SUCCESS);

@@ -6,13 +6,15 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 21:41:47 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 21:44:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 ////////////////////TO-DOs
+//
+//  0) Fazer testes
 //
 //  1) Redirections/Pipe Fix
 //		- Redir in + Redir out

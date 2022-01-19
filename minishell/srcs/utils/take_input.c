@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 13:27:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 22:00:16 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	heredoc_aux(t_shell *sh, char *parsed)
 	ft_strlcpy(sh->heredoc_input_end, input_end, HERE_DOCUMENT_INPUT_END_SIZE);
 	tmp = ft_remove_substr(parsed, input_end, ft_strlen(parsed));
 	ft_strlcpy(sh->input_string, tmp, ft_strlen(tmp) + 1);
+	free(tmp);
 	free(input_end);
 }
 
