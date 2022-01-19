@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 21:44:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/18 22:15:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //
 //  1) Redirections/Pipe Fix
 //		- Redir in + Redir out
-//		- ...
+//		- Heredoc + Pipe
 //
 // 2) Lidar com signals - Verificar comportamento CTRL + \
 //
