@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:18:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 19:30:46 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/22 11:02:44 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	flag_descrpt(t_shell *sh, int num)
 		sh->cmds[num].redout.len,
 		sh->cmds[num].redout_apd.len,
 		sh->cmds[num].redin.len,
-		sh->cmds[num].heredoc,
-		sh->cmds[num].pipe);
+		sh->cmds[num].exec.heredoc,
+		sh->cmds[num].exec.pipe);
 	i = -1;
 	while (++i < sh->cmds[num].redout.len)
 		printf("          > arg[%d] = [%s]\n", i, sh->cmds[num].redout.arg[i]);
@@ -33,7 +33,7 @@ static void	flag_descrpt(t_shell *sh, int num)
 	i = -1;
 	while (++i < sh->cmds[num].redin.len)
 		printf("          < arg[%d] = [%s]\n", i, sh->cmds[num].redin.arg[i]);
-	if (sh->cmds->heredoc)
+	if (sh->cmds->exec.heredoc)
 		printf("          << doc:\n|%s|\n", sh->heredoc_file_buffer);
 }
 

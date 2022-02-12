@@ -61,17 +61,7 @@ ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 EXECUTOR_DIR		= $(MAIN_DIR)/executor
 EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
 					  $(EXECUTOR_DIR)/get_cmd_path.c \
-					  $(EXECUTOR_DIR)/clear_execution.c \
-					  $(EXECUTOR_DIR)/exec_no_flags.c \
-					  $(EXECUTOR_DIR)/exec_pipe_write_fd1.c \
-					  $(EXECUTOR_DIR)/exec_pipe_read_fd1.c \
-					  $(EXECUTOR_DIR)/exec_pipe_read_fd2.c \
-					  $(EXECUTOR_DIR)/exec_pipe_read_fd1_write_fd2.c \
-					  $(EXECUTOR_DIR)/exec_pipe_read_fd2_write_fd1.c \
-					  $(EXECUTOR_DIR)/exec_input_redir.c \
-					  $(EXECUTOR_DIR)/exec_output_redir.c \
-					  $(EXECUTOR_DIR)/exec_handlers.c \
-					  $(EXECUTOR_DIR)/heredoc_handlers.c
+					  $(EXECUTOR_DIR)/clear_execution.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers

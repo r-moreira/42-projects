@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 21:37:23 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/22 10:59:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_bool	is_builtin(t_shell *sh, int num)
 		is_builtin = TRUE;
 	if (is_builtin)
 	{
-		sh->cmds[num].builtin = TRUE;
+		sh->cmds[num].exec.builtin = TRUE;
 		return (TRUE);
 	}
 	return (FALSE);

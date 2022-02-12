@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 20:44:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/22 10:58:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,17 @@ typedef struct s_redir
 	int		len;
 }	t_redir;
 
+typedef struct s_exec
+{
+	t_bool	builtin;
+	t_bool	pipe;
+	t_bool	pipe_lastcmd;
+	t_bool	redin;
+	t_bool	heredoc;
+	t_bool	redout;
+	t_bool	redout_apd;
+}	t_exec;
+
 typedef struct s_commands
 {
 	char	path[MAX_PATH_LEN];
@@ -131,9 +142,7 @@ typedef struct s_commands
 	t_redir	redin;
 	t_redir	redout;
 	t_redir	redout_apd;
-	t_bool	heredoc;
-	t_bool	pipe;
-	t_bool	builtin;
+	t_exec	exec;
 }	t_commands;
 
 typedef struct s_counters
@@ -147,6 +156,11 @@ typedef struct s_fds
 {
 	int			one[2];
 	int			two[2];
+	t_bool		fd_rd1;
+	t_bool		fd_rd2;
+	t_bool		fd_wr1;
+	t_bool		fd_rd1wr2;
+	t_bool		fd_rd2wr1;
 	t_fds_num	open;
 }	t_fds;
 
@@ -213,19 +227,6 @@ char		*parse_heredoc_input_end(char *parsed_line);
 t_status	get_cmd_path(t_shell *sh, int num);
 void		executor(t_shell *sh);
 void		clear_execution(t_shell *sh);
-void		exec_no_flags(t_shell *sh, int num);
-void		exec_input_redir(t_shell *sh, int num, int arg_num, t_flag flag);
-void		exec_output_redir(t_shell *sh, int num, int arg_num, t_flag flag);
-void		exec_pipe_write_fd1(t_shell *sh, int num);
-void		exec_pipe_read_fd1(t_shell *sh, int num);
-void		exec_pipe_read_fd2(t_shell *sh, int num);
-void		exec_pipe_read_fd1_write_fd2(t_shell *sh, int num);
-void		exec_pipe_read_fd2_write_fd1(t_shell *sh, int num);
-void		handle_input_redir(t_shell *sh, int num);
-void		handle_output_redir(t_shell *sh, int num);
-t_status	handle_here_document_input(t_shell *sh);
-void		handle_pipes(t_shell *sh, int num, t_bool pipe,
-				t_bool pipe_last_cmd);
 
 //BUILT-INS
 t_bool		is_builtin(t_shell *sh, int num);

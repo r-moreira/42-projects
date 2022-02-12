@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/16 00:26:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/01/22 11:04:11 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static void	initialize_flag_struct(t_shell *sh, int num)
 	sh->cmds[num].redin.len = 0;
 	sh->cmds[num].redout.len = 0;
 	sh->cmds[num].redout_apd.len = 0;
-	sh->cmds[num].heredoc = FALSE;
-	sh->cmds[num].pipe = FALSE;
+	sh->cmds[num].exec.heredoc = FALSE;
+	sh->cmds[num].exec.pipe = FALSE;
 }
 
 static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
 {
 	if (flag == HERE_DOCUMENT)
-		sh->cmds[num].heredoc = TRUE;
+		sh->cmds[num].exec.heredoc = TRUE;
 	else if (flag == REDIRECT_IN)
 	{
 		ft_strlcpy(sh->cmds[num].redin.arg[sh->cmds[num].redin.len],
@@ -74,7 +74,7 @@ static void	get_cmd_flags(t_shell *sh, char *token, int num, int *i)
 
 	j = *i;
 	if (token[j] == '|')
-		sh->cmds[num].pipe = TRUE;
+		sh->cmds[num].exec.pipe = TRUE;
 	else if (token[j] == '<')
 	{
 		if (token[j + 1] && token[j + 1] == '<')
