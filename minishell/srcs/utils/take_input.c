@@ -6,27 +6,31 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 22:11:14 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/12 21:58:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	heredoc_aux(t_shell *sh, char *parsed)
+static t_status	heredoc_aux(t_shell *sh, char *parsed)
 {
 	char	*input_end;
 	char	*tmp;
 
 	tmp = NULL;
 	input_end = parse_heredoc_input_end(parsed);
-	printf("Input End = |%s|\n", input_end);
+	if (input_end[0] == '\0')
+	{
+		free(parsed);
+		free(input_end);
+		return (syntax_error(ERROR_HEREDOC));
+	}
 	ft_strlcpy(sh->heredoc_input_end, input_end, HERE_DOCUMENT_INPUT_END_SIZE);
-	printf("Parsed = |%s|\n", parsed);
 	tmp = ft_remove_substr(parsed, input_end, ft_strlen(parsed));
-	printf("TMP = |%s|\n", tmp);
 	ft_strlcpy(sh->input_string, tmp, ft_strlen(tmp) + 1);
 	free(tmp);
 	free(input_end);
+	return (SUCCESS);
 }
 
 t_status	take_input(t_shell *sh)
@@ -40,7 +44,10 @@ t_status	take_input(t_shell *sh)
 		add_history(line_read);
 		parsed = parse_env_variables(line_read);
 		if (is_here_document(parsed))
-			heredoc_aux(sh, parsed);
+		{
+			if (heredoc_aux(sh, parsed) == ERROR)
+				return (ERROR);
+		}
 		else
 			ft_strlcpy(sh->input_string, parsed, ft_strlen(parsed) + 1);
 		free(parsed);

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/19 09:17:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/12 21:44:09 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,9 @@
 
 ////////////////////TO-DOs
 //
-//  0) Fazer testes
+// 1) Criar execução
 //
-//  1) Redirections/Pipe Fix
-//		- Adicionar close nas pipes do parent
-//		- Pipe + Redir out
-//		- Redir in + Redir out
-//		- Heredoc + Pipe (Não está pegando a flag pipe no flags parser)
-//
-// 2) Lidar com signals - Verificar comportamento CTRL + \
-//
-// 3) Ajustar o signal CTRL + C para o heredoc
-//
+// 2) Iniciar testes
 /////////////////////////
 
 int	main(int argc, char **argv, char **envp)
