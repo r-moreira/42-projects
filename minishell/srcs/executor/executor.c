@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/22 11:01:47 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/12 21:30:23 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,7 @@
 
 static void	call_exec(t_shell *sh, int num)
 {
-	(void)sh;
-	(void)num;
-}
-
-static void	setup_exec(t_shell *sh, int num)
-{
-	(void)sh;
-	(void)num;
+	exec_no_flags(sh, num);
 }
 
 void	executor(t_shell *sh)
@@ -38,7 +31,6 @@ void	executor(t_shell *sh)
 		sh->cmds[i].exec.builtin = FALSE;
 		if (is_builtin(sh, i) == FALSE)
 			get_cmd_path(sh, i);
-		setup_exec(sh, i);
 		call_exec(sh, i);
 	}
 	clear_execution(sh);

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/22 10:58:34 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/12 21:27:38 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,7 @@ char		*parse_heredoc_input_end(char *parsed_line);
 t_status	get_cmd_path(t_shell *sh, int num);
 void		executor(t_shell *sh);
 void		clear_execution(t_shell *sh);
+void		exec_no_flags(t_shell *sh, int num);
 
 //BUILT-INS
 t_bool		is_builtin(t_shell *sh, int num);
