@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/22 11:04:11 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/12 23:15:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ static void	initialize_flag_struct(t_shell *sh, int num)
 	sh->cmds[num].redout_apd.len = 0;
 	sh->cmds[num].exec.heredoc = FALSE;
 	sh->cmds[num].exec.pipe = FALSE;
+	sh->cmds[num].exec.redin = FALSE;
+	sh->cmds[num].exec.redout = FALSE;
+	sh->cmds[num].exec.redout_apd = FALSE;
 }
 
 static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
@@ -30,18 +33,21 @@ static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
 		ft_strlcpy(sh->cmds[num].redin.arg[sh->cmds[num].redin.len],
 			token, ft_strlen(token) + 1);
 		sh->cmds[num].redin.len++;
+		sh->cmds[num].exec.redin = TRUE;
 	}
 	else if (flag == REDIRECT_OUT_APPEND)
 	{
 		ft_strlcpy(sh->cmds[num].redout_apd.arg[sh->cmds[num].redout_apd.len],
 			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout_apd.len++;
+		sh->cmds[num].exec.redout_apd = TRUE;
 	}
 	else if (flag == REDIRECT_OUT)
 	{
 		ft_strlcpy(sh->cmds[num].redout.arg[sh->cmds[num].redout.len],
 			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout.len++;
+		sh->cmds[num].exec.redout = TRUE;
 	}
 }
 
