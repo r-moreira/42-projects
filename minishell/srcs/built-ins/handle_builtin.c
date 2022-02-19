@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:21:28 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/22 10:59:39 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 20:47:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_bool	has_non_fork_builtins(t_shell *sh, int num)
 		return (TRUE);
 	}
 	else if (ft_strncmp(sh->cmds[num].name, "unset", len) == 0)
+		return (TRUE);
+	else if ((ft_strncmp(sh->cmds[num].name, "exit", len) == 0))
 		return (TRUE);
 	return (FALSE);
 }

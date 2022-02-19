@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:18:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/22 11:02:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 20:41:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	parsed_info_logger(t_shell *sh)
 	while (++i < sh->count.cmds)
 	{
 		printf("Command = |%d|\n", i);
+		printf("Builtin = |%d|\n", sh->cmds[i].exec.builtin);
 		printf("Name    = |%s|\n", sh->cmds[i].name);
 		printf("Args    =");
 		j = -1;
