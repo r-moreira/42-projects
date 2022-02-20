@@ -6,11 +6,20 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 23:11:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:18:35 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+///////////////////// TO-DO
+//Lidar com redin, heredoc, redout e redout_apd
+/////////////////////
+static void	handle_io(t_shell *sh, int num)
+{
+	(void)sh;
+	(void)num;
+}
 
 void	exec_fork(t_shell *sh, int num)
 {
@@ -21,6 +30,7 @@ void	exec_fork(t_shell *sh, int num)
 	if (pid == FORKED_CHILD)
 	{
 		run_signals_exec();
+		handle_io(sh, num);
 		handle_dup(sh);
 		if (sh->cmds[num].exec.builtin)
 			exec_builtin(sh, num);

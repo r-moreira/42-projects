@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 23:04:22 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:21:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static void	define_exec_params(t_shell *sh, int num)
 /////////////////////// TO-DO
 // Definir parâmetros para cada execução
 // Adicionar tratamentos de I/O para a função exec_cmd
+// Começar com todas as possibilidades de redirects
+// Adicionar pipes
+// Adicionar pipes + redirects
 //////////////////////////////
 void	executor(t_shell *sh)
 {
