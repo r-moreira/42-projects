@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 22:57:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:00:36 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	clear_exec_params(t_shell *sh)
+static void	reset_exec_params(t_shell *sh)
 {
 	sh->fd.open = ANY;
 	sh->fd.rd1 = FALSE;
@@ -43,7 +43,7 @@ void	executor(t_shell *sh)
 			get_cmd_path(sh, i);
 		define_exec_params(sh, i);
 		exec_cmd(sh, i);
-		clear_exec_params(sh);
+		reset_exec_params(sh);
 	}
 	clear_execution(sh);
 }
