@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 23:10:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:11:12 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ typedef struct s_exec
 	t_bool	heredoc;
 	t_bool	redout;
 	t_bool	redout_apd;
-	char	*log;
 }	t_exec;
 
 typedef struct s_commands
@@ -163,7 +162,19 @@ typedef struct s_fds
 	t_bool		rd1wr2;
 	t_bool		rd2wr1;
 	t_fds_num	open;
+	int			redin;
+	int			heredoc;
+	int			redout;
+	int			redout_apd;
 }	t_fds;
+
+typedef struct	s_dup
+{
+	t_fds_num	fd;
+	t_pipe_end	end;
+	int			fileno;
+	t_flag		flag;
+}	t_dup;
 
 typedef struct s_minishell
 {
@@ -200,19 +211,20 @@ void		str_close_quotes(char *dest, char *src, int *i, int *j);
 char		*str_remove_quotes(char *str);
 t_bool		is_quotes(char c);
 void		executor_debugger_helper(t_shell *sh);
-void		exec_debugger_helper(t_shell *sh, int num);
 void		path_debugger_helper(t_shell *sh, int i);
 char		*strjoin_newline(char const *s1, char const *s2);
 t_bool		is_here_document(char *parsed_line);
+char		*get_bool_str(t_bool boolean);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
 void		run_signals_interactive(void);
 void		run_signals_exec(void);
-void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
+void		dup_n_close_pipe(t_shell *sh, t_dup dupinfo);
+void		dup_n_close_redir_fd(int redir_fd, t_flag flag);
 void		close_fd(t_shell *sh, t_fds_num fd);
 void		wait_aux(int pid);
-void		handle_dup(t_shell *sh);
+void		handle_dup(t_shell *sh, int redir_fd);
 void		handle_pipe(t_shell *sh, int num);
 pid_t		handle_fork(void);
 
@@ -232,6 +244,7 @@ t_status	get_cmd_path(t_shell *sh, int num);
 void		executor(t_shell *sh);
 void		clear_execution(t_shell *sh);
 void		exec_cmd(t_shell *sh, int num);
+t_status	handle_here_document_input(t_shell *sh);
 
 //BUILT-INS
 t_bool		is_builtin(t_shell *sh, int num);

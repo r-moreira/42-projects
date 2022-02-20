@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:23:35 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 23:10:28 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:16:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ static void	setup_exec_params(t_shell *sh)
 	sh->fd.wr1 = FALSE;
 	sh->fd.rd1wr2 = FALSE;
 	sh->fd.rd2wr1 = FALSE;
+	sh->fd.redin = -1;
+	sh->fd.heredoc = -1;
+	sh->fd.redout = -1;
+	sh->fd.redout_apd = -1;
 }
 
 void	init_shell(t_shell *sh, char **envp)

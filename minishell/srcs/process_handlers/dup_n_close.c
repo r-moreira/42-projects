@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 12:24:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 10:11:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:14:14 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,27 @@ static void	dup_n_close_fd1(t_shell *sh, t_pipe_end end, int fileno)
 	}
 }
 
-void	dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno)
+void	dup_n_close_pipe(t_shell *sh, t_dup dupinfo)
 {
-	if (fd == ONE)
-		dup_n_close_fd1(sh, end, fileno);
-	else if (fd == TWO)
-		dup_n_close_fd2(sh, end, fileno);
+	if (dupinfo.flag == NONE)
+	{
+		if (dupinfo.fd == ONE)
+			dup_n_close_fd1(sh, dupinfo.end, dupinfo.fileno);
+		else if (dupinfo.fd == TWO)
+			dup_n_close_fd2(sh, dupinfo.end, dupinfo.fileno);
+	}
+}
+
+void	dup_n_close_redir_fd(int redir_fd, t_flag flag)
+{
+	if (flag == REDIRECT_IN || flag == HERE_DOCUMENT)
+	{
+		dup2(redir_fd, STDIN_FILENO);
+		close(redir_fd);
+	}
+	else if (flag == REDIRECT_OUT || flag == REDIRECT_OUT_APPEND)
+	{
+		dup2(redir_fd, STDOUT_FILENO);
+		close(redir_fd);
+	}
 }
