@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:23:35 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 22:56:22 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:10:28 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	setup_paths(t_shell *sh)
 		free(split[i]);
 	free(split);
 }
-
 
 static void	setup_exec_params(t_shell *sh)
 {

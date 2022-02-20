@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 22:59:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:10:47 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void clear_cmds_info(t_shell *sh)
+static void	clear_cmds_info(t_shell *sh)
 {
 	int	i;
 	int	j;

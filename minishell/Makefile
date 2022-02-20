@@ -70,7 +70,10 @@ PHANDLERS_SRCS		= $(PHANDLERS_DIR)/eof_handler.c \
 					  $(PHANDLERS_DIR)/dup_n_close.c \
 					  $(PHANDLERS_DIR)/close_fd.c \
 					  $(PHANDLERS_DIR)/signal_handlers.c \
-					  $(PHANDLERS_DIR)/wait_aux.c
+					  $(PHANDLERS_DIR)/wait_aux.c \
+					  $(PHANDLERS_DIR)/pipe_handler.c \
+					  $(PHANDLERS_DIR)/fork_handler.c \
+					  $(PHANDLERS_DIR)/dup_handler.c
 
 #Built-ins functions
 BUILTINS_DIR		= $(MAIN_DIR)/built-ins

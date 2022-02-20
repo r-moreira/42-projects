@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/19 22:35:23 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:10:02 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,9 @@ void		run_signals_exec(void);
 void		dup_n_close(t_shell *sh, t_fds_num fd, t_pipe_end end, int fileno);
 void		close_fd(t_shell *sh, t_fds_num fd);
 void		wait_aux(int pid);
+void		handle_dup(t_shell *sh);
+void		handle_pipe(t_shell *sh, int num);
+pid_t		handle_fork(void);
 
 //ANALYZER
 t_status	analyzer(t_shell *sh);
