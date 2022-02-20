@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/17 09:33:35 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 22:41:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	clear_execution(t_shell *sh)
+static void clear_cmds_info(t_shell *sh)
 {
 	int	i;
 	int	j;
@@ -36,6 +36,18 @@ void	clear_execution(t_shell *sh)
 		ft_strlcpy(sh->cmds[i].name, "\0", 1);
 		ft_strlcpy(sh->cmds[i].path, "\0", 1);
 	}
+}
+
+static void clear_helpers_info(t_shell *sh)
+{
+	(void)sh;
+}
+
+
+void	clear_execution(t_shell *sh)
+{
+	clear_cmds_info(sh);
+	clear_helpers_info(sh);
 	ft_strlcpy(sh->heredoc_file_buffer, "\0", 1);
 	ft_strlcpy(sh->input_string, "\0", 1);
 }

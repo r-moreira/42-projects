@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:23:35 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 12:13:56 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 22:56:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,21 @@ static void	setup_paths(t_shell *sh)
 	free(split);
 }
 
+
+static void	setup_exec_params(t_shell *sh)
+{
+	sh->fd.open = ANY;
+	sh->fd.rd1 = FALSE;
+	sh->fd.rd2 = FALSE;
+	sh->fd.wr1 = FALSE;
+	sh->fd.rd1wr2 = FALSE;
+	sh->fd.rd2wr1 = FALSE;
+}
+
 void	init_shell(t_shell *sh, char **envp)
 {
 	g_pid_number = 0;
 	setup_envs(sh, envp);
 	setup_paths(sh);
+	setup_exec_params(sh);
 }

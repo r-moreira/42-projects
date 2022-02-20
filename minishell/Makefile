@@ -62,7 +62,7 @@ EXECUTOR_DIR		= $(MAIN_DIR)/executor
 EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
 					  $(EXECUTOR_DIR)/get_cmd_path.c \
 					  $(EXECUTOR_DIR)/clear_execution.c \
-					  $(EXECUTOR_DIR)/exec_no_flags.c
+					  $(EXECUTOR_DIR)/exec_cmd.c
 
 #Process Handlers
 PHANDLERS_DIR		= $(MAIN_DIR)/process_handlers

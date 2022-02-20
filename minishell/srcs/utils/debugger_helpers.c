@@ -6,18 +6,18 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:45:04 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 18:24:17 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 22:34:31 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	exec_debugger_helper(t_shell *sh, int num, char *log)
+void	exec_debugger_helper(t_shell *sh, int num)
 {
 	if (sh->count.cmds == num + 1)
-		printf("%s\n======= End Execution ========\n", log);
+		printf("%s\n======= End Execution ========\n", sh->cmds[num].exec.log);
 	else
-		printf("%s", log);
+		printf("%s", sh->cmds[num].exec.log);
 }
 
 void	executor_debugger_helper(t_shell *sh)

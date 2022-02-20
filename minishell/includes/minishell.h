@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/12 21:55:35 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/19 22:35:23 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ typedef struct s_exec
 	t_bool	heredoc;
 	t_bool	redout;
 	t_bool	redout_apd;
+	char	*log;
 }	t_exec;
 
 typedef struct s_commands
@@ -156,11 +157,11 @@ typedef struct s_fds
 {
 	int			one[2];
 	int			two[2];
-	t_bool		fd_rd1;
-	t_bool		fd_rd2;
-	t_bool		fd_wr1;
-	t_bool		fd_rd1wr2;
-	t_bool		fd_rd2wr1;
+	t_bool		rd1;
+	t_bool		rd2;
+	t_bool		wr1;
+	t_bool		rd1wr2;
+	t_bool		rd2wr1;
 	t_fds_num	open;
 }	t_fds;
 
@@ -199,7 +200,7 @@ void		str_close_quotes(char *dest, char *src, int *i, int *j);
 char		*str_remove_quotes(char *str);
 t_bool		is_quotes(char c);
 void		executor_debugger_helper(t_shell *sh);
-void		exec_debugger_helper(t_shell *sh, int num, char *log);
+void		exec_debugger_helper(t_shell *sh, int num);
 void		path_debugger_helper(t_shell *sh, int i);
 char		*strjoin_newline(char const *s1, char const *s2);
 t_bool		is_here_document(char *parsed_line);
@@ -227,7 +228,7 @@ char		*parse_heredoc_input_end(char *parsed_line);
 t_status	get_cmd_path(t_shell *sh, int num);
 void		executor(t_shell *sh);
 void		clear_execution(t_shell *sh);
-void		exec_no_flags(t_shell *sh, int num);
+void		exec_cmd(t_shell *sh, int num);
 
 //BUILT-INS
 t_bool		is_builtin(t_shell *sh, int num);
