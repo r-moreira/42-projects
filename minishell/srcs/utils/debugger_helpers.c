@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:45:04 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 15:14:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:49:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_bool_str(t_bool boolean)
 	return ("NOT BOOLEAN");
 }
 
-static void print_fd_info(t_shell *sh)
+static void	print_fd_info(t_shell *sh)
 {
 	printf("FD Open    = |%d|\n", sh->fd.open);
 	printf("FD RD1     = |%s|\n", get_bool_str(sh->fd.rd1));

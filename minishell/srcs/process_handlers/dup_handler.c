@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:05:19 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:15:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:49:12 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ t_flag flag)
 	dupinfo.end = end;
 	dupinfo.fileno = fileno;
 	dupinfo.flag = flag;
-
 	return (dupinfo);
 }
 
-static void dup_pipe(t_shell *sh)
+static void	dup_pipe(t_shell *sh)
 {
 	t_dup	dupinfo;
 	t_dup	dupinfo2;
@@ -57,11 +56,11 @@ static void	dup_io(t_shell *sh, int num)
 {
 	if (sh->cmds[num].exec.redin)
 		dup_n_close_redir_fd(sh->fd.redin, REDIRECT_IN);
-	/*else*/ if (sh->cmds[num].exec.heredoc)
+	if (sh->cmds[num].exec.heredoc)
 		dup_n_close_redir_fd(sh->fd.heredoc, HERE_DOCUMENT);
-	/*else*/ if (sh->cmds[num].exec.redout)
+	if (sh->cmds[num].exec.redout)
 		dup_n_close_redir_fd(sh->fd.redout, REDIRECT_OUT);
-	/*else*/ if (sh->cmds[num].exec.redout_apd)
+	if (sh->cmds[num].exec.redout_apd)
 		dup_n_close_redir_fd(sh->fd.redout_apd, REDIRECT_OUT_APPEND);
 }
 

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:42:12 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:50:46 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static void	open_output_file(t_shell *sh, int num, int arg_num, t_flag flag)
 	if (flag == REDIRECT_OUT)
 	{
 		sh->fd.redout = open(sh->cmds[num].redout.arg[arg_num],
-			truncate, 0644);
+				truncate, 0644);
 		if (sh->fd.redout == -1)
 			exit_error(ERROR_OPEN_FILE);
 	}
 	else if (flag == REDIRECT_OUT_APPEND)
 	{
 		sh->fd.redout_apd = open(sh->cmds[num].redout_apd.arg[arg_num],
-			append, 0644);
+				append, 0644);
 		if (sh->fd.redout_apd == -1)
 			exit_error(ERROR_OPEN_FILE);
 	}
@@ -86,5 +86,5 @@ void	handle_io(t_shell *sh, int num)
 	{
 		arg_num = sh->cmds[num].redout_apd.len - 1;
 		open_output_file(sh, num, arg_num, REDIRECT_OUT_APPEND);
-	};
+	}
 }

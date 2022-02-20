@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:35:37 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:50:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ typedef struct s_fds
 	int			redout_apd;
 }	t_fds;
 
-typedef struct	s_dup
+typedef struct s_dup
 {
 	t_fds_num	fd;
 	t_pipe_end	end;
