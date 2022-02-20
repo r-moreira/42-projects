@@ -6,11 +6,36 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:35:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:42:12 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	open_output_file(t_shell *sh, int num, int arg_num, t_flag flag)
+{
+	int	redir_fd;
+	int	truncate;
+	int	append;
+
+	redir_fd = -1;
+	truncate = O_WRONLY | O_CREAT | O_TRUNC;
+	append = O_WRONLY | O_CREAT | O_APPEND;
+	if (flag == REDIRECT_OUT)
+	{
+		sh->fd.redout = open(sh->cmds[num].redout.arg[arg_num],
+			truncate, 0644);
+		if (sh->fd.redout == -1)
+			exit_error(ERROR_OPEN_FILE);
+	}
+	else if (flag == REDIRECT_OUT_APPEND)
+	{
+		sh->fd.redout_apd = open(sh->cmds[num].redout_apd.arg[arg_num],
+			append, 0644);
+		if (sh->fd.redout_apd == -1)
+			exit_error(ERROR_OPEN_FILE);
+	}
+}
 
 static void	open_redin_file(t_shell *sh, int num, int arg_num)
 {
@@ -52,6 +77,14 @@ void	handle_io(t_shell *sh, int num)
 	}
 	else if (sh->cmds[num].exec.heredoc)
 		open_heredoc_file(sh);
-	//else if (sh->cmds[num].exec.redout) {};
-	//else if (sh->cmds[num].exec.redout_apd) {};
+	else if (sh->cmds[num].exec.redout)
+	{
+		arg_num = sh->cmds[num].redout.len - 1;
+		open_output_file(sh, num, arg_num, REDIRECT_OUT);
+	}
+	else if (sh->cmds[num].exec.redout_apd)
+	{
+		arg_num = sh->cmds[num].redout_apd.len - 1;
+		open_output_file(sh, num, arg_num, REDIRECT_OUT_APPEND);
+	};
 }
