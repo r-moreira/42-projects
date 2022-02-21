@@ -6,33 +6,50 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:50:46 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/21 11:10:41 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	open_output_file(t_shell *sh, int num, int arg_num, t_flag flag)
+static void open_redout_apd_file(t_shell *sh, int num)
+{
+	int	redir_fd;
+	int	append;
+	int	i;
+
+	redir_fd = -1;
+	append = O_WRONLY | O_CREAT | O_APPEND;
+	i = -1;
+	while (++i < sh->cmds[num].redout_apd.len)
+	{
+		if (DEBUGGER_EXEC)
+			printf("Opening ouput file - O_APPEND: %s\n",
+				sh->cmds[num].redout_apd.arg[i]);
+		sh->fd.redout_apd = open(sh->cmds[num].redout_apd.arg[i],
+				append, 0644);
+		if (sh->fd.redout_apd == -1)
+			exit_error(ERROR_OPEN_FILE);
+	}
+}
+
+static void	open_redout_file(t_shell *sh, int num)
 {
 	int	redir_fd;
 	int	truncate;
-	int	append;
+	int	i;
 
-	redir_fd = -1;
 	truncate = O_WRONLY | O_CREAT | O_TRUNC;
-	append = O_WRONLY | O_CREAT | O_APPEND;
-	if (flag == REDIRECT_OUT)
+	redir_fd = -1;
+	i = -1;
+	while (++i < sh->cmds[num].redout.len)
 	{
-		sh->fd.redout = open(sh->cmds[num].redout.arg[arg_num],
+		if (DEBUGGER_EXEC)
+			printf("Opening ouput file - O_TRUNC: %s\n",
+				sh->cmds[num].redout.arg[i]);
+		sh->fd.redout = open(sh->cmds[num].redout.arg[i],
 				truncate, 0644);
 		if (sh->fd.redout == -1)
-			exit_error(ERROR_OPEN_FILE);
-	}
-	else if (flag == REDIRECT_OUT_APPEND)
-	{
-		sh->fd.redout_apd = open(sh->cmds[num].redout_apd.arg[arg_num],
-				append, 0644);
-		if (sh->fd.redout_apd == -1)
 			exit_error(ERROR_OPEN_FILE);
 	}
 }
@@ -68,23 +85,12 @@ static void	open_heredoc_file(t_shell *sh)
 
 void	handle_io(t_shell *sh, int num)
 {
-	int	arg_num;
-
 	if (sh->cmds[num].exec.redin)
-	{
-		arg_num = sh->cmds[num].redin.len - 1;
-		open_redin_file(sh, num, arg_num);
-	}
-	else if (sh->cmds[num].exec.heredoc)
+		open_redin_file(sh, num, sh->cmds[num].redin.len - 1);
+	if (sh->cmds[num].exec.heredoc)
 		open_heredoc_file(sh);
-	else if (sh->cmds[num].exec.redout)
-	{
-		arg_num = sh->cmds[num].redout.len - 1;
-		open_output_file(sh, num, arg_num, REDIRECT_OUT);
-	}
-	else if (sh->cmds[num].exec.redout_apd)
-	{
-		arg_num = sh->cmds[num].redout_apd.len - 1;
-		open_output_file(sh, num, arg_num, REDIRECT_OUT_APPEND);
-	}
+	if (sh->cmds[num].exec.redout)
+		open_redout_file(sh, num);
+	if (sh->cmds[num].exec.redout_apd)
+		open_redout_apd_file(sh, num);
 }

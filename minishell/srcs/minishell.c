@@ -6,14 +6,14 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 21:43:06 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/21 10:14:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 ////////////////////TO-DOs
-// 1) Criar execução
+// 1) Criar ex8ecução
 //
 // 2) Iniciar testes
 /////////////////////////
