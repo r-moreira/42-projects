@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:50:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 21:52:46 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ typedef struct s_exec
 {
 	t_bool	builtin;
 	t_bool	pipe;
-	t_bool	pipe_lastcmd;
 	t_bool	redin;
 	t_bool	heredoc;
 	t_bool	redout;
@@ -193,6 +192,7 @@ typedef struct s_minishell
 
 //UTILS
 void		init_shell(t_shell *sh, char **envp);
+void		setup_info(t_shell *sh);
 void		exit_error(char *err_message);
 t_status	syntax_error(char *msg);
 void		welcome_message(void);
@@ -215,6 +215,8 @@ void		path_debugger_helper(t_shell *sh, int i);
 char		*strjoin_newline(char const *s1, char const *s2);
 t_bool		is_here_document(char *parsed_line);
 char		*get_bool_str(t_bool boolean);
+void		setup_flag_info(t_shell *sh, int num);
+void		setup_fd_info(t_shell *sh);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
@@ -242,7 +244,6 @@ char		*parse_heredoc_input_end(char *parsed_line);
 //EXECUTOR
 t_status	get_cmd_path(t_shell *sh, int num);
 void		executor(t_shell *sh);
-void		clear_execution(t_shell *sh);
 void		exec_cmd(t_shell *sh, int num);
 void		handle_io(t_shell *sh, int num);
 t_status	handle_here_document_input(t_shell *sh);

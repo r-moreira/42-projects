@@ -2,3 +2,4 @@ minishell
 objs/*.o
 libft/*.o
 libft/*.a
+test/

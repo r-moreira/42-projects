@@ -6,23 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/12 23:15:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 21:52:52 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static void	initialize_flag_struct(t_shell *sh, int num)
-{
-	sh->cmds[num].redin.len = 0;
-	sh->cmds[num].redout.len = 0;
-	sh->cmds[num].redout_apd.len = 0;
-	sh->cmds[num].exec.heredoc = FALSE;
-	sh->cmds[num].exec.pipe = FALSE;
-	sh->cmds[num].exec.redin = FALSE;
-	sh->cmds[num].exec.redout = FALSE;
-	sh->cmds[num].exec.redout_apd = FALSE;
-}
 
 static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
 {
@@ -102,7 +90,7 @@ t_status	parse_flags(t_shell *sh, int num)
 	int		i;
 	char	*token;
 
-	initialize_flag_struct(sh, num);
+	setup_flag_info(sh, num);
 	token = sh->cmd_tokens[num];
 	i = 0;
 	while (token[i] && !is_flag(token[i]))

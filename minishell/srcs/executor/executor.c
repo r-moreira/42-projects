@@ -6,28 +6,15 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:43:46 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/20 21:51:20 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	reset_exec_params(t_shell *sh)
-{
-	sh->fd.open = ANY;
-	sh->fd.rd1 = FALSE;
-	sh->fd.rd2 = FALSE;
-	sh->fd.wr1 = FALSE;
-	sh->fd.rd1wr2 = FALSE;
-	sh->fd.rd2wr1 = FALSE;
-	sh->fd.redin = -1;
-	sh->fd.heredoc = -1;
-	sh->fd.redout = -1;
-	sh->fd.redout_apd = -1;
-}
-
 static void	define_exec_params(t_shell *sh, int num)
 {
+	//t_bool pipe_lastcmd;
 	(void)sh;
 	(void)num;
 }
@@ -54,7 +41,6 @@ void	executor(t_shell *sh)
 			get_cmd_path(sh, i);
 		define_exec_params(sh, i);
 		exec_cmd(sh, i);
-		reset_exec_params(sh);
+		setup_fd_info(sh);
 	}
-	clear_execution(sh);
 }

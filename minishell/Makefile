@@ -24,6 +24,7 @@ MAIN_SRCS			= $(MAIN_DIR)/minishell.c
 #Utils
 UTILS_DIR			= $(MAIN_DIR)/utils
 UTILS_SRCS			= $(UTILS_DIR)/print_prompt.c \
+					  $(UTILS_DIR)/setup_info.c \
 					  $(UTILS_DIR)/init_shell.c \
 					  $(UTILS_DIR)/take_input.c \
 					  $(UTILS_DIR)/welcome_message.c \
@@ -61,7 +62,6 @@ ANALYZER_SRCS		= $(ANALYZER_DIR)/analyzer.c
 EXECUTOR_DIR		= $(MAIN_DIR)/executor
 EXECUTOR_SRCS		= $(EXECUTOR_DIR)/executor.c \
 					  $(EXECUTOR_DIR)/get_cmd_path.c \
-					  $(EXECUTOR_DIR)/clear_execution.c \
 					  $(EXECUTOR_DIR)/exec_cmd.c \
 					  $(EXECUTOR_DIR)/heredoc_handlers.c \
 					  $(EXECUTOR_DIR)/handle_io.c
