@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 21:52:52 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:35:15 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
 			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout_apd.len++;
 		sh->cmds[num].exec.redout_apd = TRUE;
+		sh->cmds[num].exec.last_redout = REDIRECT_OUT_APPEND;
 	}
 	else if (flag == REDIRECT_OUT)
 	{
@@ -36,6 +37,7 @@ static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
 			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout.len++;
 		sh->cmds[num].exec.redout = TRUE;
+		sh->cmds[num].exec.last_redout = REDIRECT_OUT;
 	}
 }
 
@@ -52,13 +54,15 @@ static int	get_flag_token(t_shell *sh, char *token, int num, t_flag flag)
 	while (token[start] && ft_isspace(token[start]))
 		start++;
 	end = start;
-	while (token[end] && !ft_isspace(token[end]))
+	while (token[end] && !ft_isspace(token[end]) && !is_flag(token[end]))
 		end++;
 	arg_token = ft_substr(token, start, end - start);
 	no_quotes_token = str_remove_quotes(arg_token);
 	set_flags(sh, no_quotes_token, num, flag);
 	free(arg_token);
 	free(no_quotes_token);
+	if (token[end - 1] && is_flag(token[end]))
+		end--;
 	return (end);
 }
 
