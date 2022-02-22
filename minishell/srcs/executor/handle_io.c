@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 18:12:42 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 18:31:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,24 @@ static void	open_redin_file(t_shell *sh, int num, int arg_num)
 
 static void	open_heredoc_file(t_shell *sh)
 {
-	int	heredoc_fd;
-	int	truncate;
+	int		heredoc_fd;
+	int		truncate;
+	char	buffer[HERE_DOCUMENT_BUFFER_SIZE];
 
 	truncate = O_WRONLY | O_CREAT | O_TRUNC;
 	if (DEBUGGER_EXEC)
 		printf("Getting heredoc...\n");
 	handle_here_document_input(sh);
-	if (DEBUGGER_EXEC)
-		printf("Heredoc Buffer: \n|%s|\n", sh->heredoc_file_buffer);
 	heredoc_fd = open(HEREDOC_FILE, truncate, 0644);
 	if (heredoc_fd == -1)
 		exit_error(ERROR_OPEN_FILE);
 	ft_putstr_fd(sh->heredoc_file_buffer, heredoc_fd);
-	if (DEBUGGER_EXEC)
-		printf("Opening heredoc file... \n");
 	sh->fd.heredoc = open(HEREDOC_FILE, O_RDONLY, 0644);
+	if (DEBUGGER_EXEC)
+	{
+		read(sh->fd.heredoc, buffer, HERE_DOCUMENT_BUFFER_SIZE);
+		printf("Heredoc file content:\n|%s|\n", buffer);
+	}
 	if (sh->fd.heredoc == -1)
 		exit_error(ERROR_OPEN_FILE);
 	close(heredoc_fd);
