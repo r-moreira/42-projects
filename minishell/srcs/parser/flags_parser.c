@@ -6,38 +6,60 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 16:35:15 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:12:15 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
+static void update_struct(t_shell *sh, int num, t_flag flag)
 {
 	if (flag == HERE_DOCUMENT)
+	{
 		sh->cmds[num].exec.heredoc = TRUE;
+		sh->cmds[num].exec.last_redin = HERE_DOCUMENT;
+	}
 	else if (flag == REDIRECT_IN)
 	{
-		ft_strlcpy(sh->cmds[num].redin.arg[sh->cmds[num].redin.len],
-			token, ft_strlen(token) + 1);
 		sh->cmds[num].redin.len++;
 		sh->cmds[num].exec.redin = TRUE;
+		sh->cmds[num].exec.last_redin = REDIRECT_IN;
 	}
 	else if (flag == REDIRECT_OUT_APPEND)
 	{
-		ft_strlcpy(sh->cmds[num].redout_apd.arg[sh->cmds[num].redout_apd.len],
-			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout_apd.len++;
 		sh->cmds[num].exec.redout_apd = TRUE;
 		sh->cmds[num].exec.last_redout = REDIRECT_OUT_APPEND;
 	}
 	else if (flag == REDIRECT_OUT)
 	{
-		ft_strlcpy(sh->cmds[num].redout.arg[sh->cmds[num].redout.len],
-			token, ft_strlen(token) + 1);
 		sh->cmds[num].redout.len++;
 		sh->cmds[num].exec.redout = TRUE;
 		sh->cmds[num].exec.last_redout = REDIRECT_OUT;
+	}
+}
+
+static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
+{
+	if (flag == HERE_DOCUMENT)
+		update_struct(sh, num, flag);
+	else if (flag == REDIRECT_IN)
+	{
+		ft_strlcpy(sh->cmds[num].redin.arg[sh->cmds[num].redin.len],
+			token, ft_strlen(token) + 1);
+		update_struct(sh, num, flag);
+	}
+	else if (flag == REDIRECT_OUT_APPEND)
+	{
+		ft_strlcpy(sh->cmds[num].redout_apd.arg[sh->cmds[num].redout_apd.len],
+			token, ft_strlen(token) + 1);
+		update_struct(sh, num, flag);
+	}
+	else if (flag == REDIRECT_OUT)
+	{
+		ft_strlcpy(sh->cmds[num].redout.arg[sh->cmds[num].redout.len],
+			token, ft_strlen(token) + 1);
+		update_struct(sh, num, flag);
 	}
 }
 

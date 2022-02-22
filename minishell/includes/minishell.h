@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 16:33:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:06:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ typedef struct s_exec
 	t_bool	redout;
 	t_bool	redout_apd;
 	t_flag	last_redout;
+	t_flag	last_redin;
 }	t_exec;
 
 typedef struct s_commands

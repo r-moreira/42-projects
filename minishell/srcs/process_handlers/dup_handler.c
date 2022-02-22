@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:05:19 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 16:36:47 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:16:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ static void	dup_pipe(t_shell *sh)
 
 static void	dup_io(t_shell *sh, int num)
 {
-	if (sh->cmds[num].exec.redin)
+	if (sh->cmds[num].exec.redin
+			&& sh->cmds[num].exec.last_redin == REDIRECT_IN)
 		dup_n_close_redir_fd(sh->fd.redin, REDIRECT_IN);
-	if (sh->cmds[num].exec.heredoc)
+	if (sh->cmds[num].exec.heredoc
+			&& sh->cmds[num].exec.last_redin == HERE_DOCUMENT)
 		dup_n_close_redir_fd(sh->fd.heredoc, HERE_DOCUMENT);
 	if (sh->cmds[num].exec.redout
 	 		&& sh->cmds[num].exec.last_redout == REDIRECT_OUT)
