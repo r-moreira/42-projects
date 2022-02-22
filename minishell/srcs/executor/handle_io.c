@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/21 11:10:41 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 18:12:42 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ static void	open_heredoc_file(t_shell *sh)
 	if (DEBUGGER_EXEC)
 		printf("Getting heredoc...\n");
 	handle_here_document_input(sh);
+	if (DEBUGGER_EXEC)
+		printf("Heredoc Buffer: \n|%s|\n", sh->heredoc_file_buffer);
 	heredoc_fd = open(HEREDOC_FILE, truncate, 0644);
 	if (heredoc_fd == -1)
 		exit_error(ERROR_OPEN_FILE);
 	ft_putstr_fd(sh->heredoc_file_buffer, heredoc_fd);
+	if (DEBUGGER_EXEC)
+		printf("Opening heredoc file... \n");
 	sh->fd.heredoc = open(HEREDOC_FILE, O_RDONLY, 0644);
 	if (sh->fd.heredoc == -1)
 		exit_error(ERROR_OPEN_FILE);

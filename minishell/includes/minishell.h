@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 17:06:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:51:14 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ void		path_debugger_helper(t_shell *sh, int i);
 char		*strjoin_newline(char const *s1, char const *s2);
 t_bool		is_here_document(char *parsed_line);
 char		*get_bool_str(t_bool boolean);
+char		*get_flags_str(t_flag flag);
 void		setup_flag_info(t_shell *sh, int num);
 void		setup_fd_info(t_shell *sh);
 

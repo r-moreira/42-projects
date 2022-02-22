@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 16:34:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 18:06:22 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	setup_flag_info(t_shell *sh, int num)
 	sh->cmds[num].exec.redin = FALSE;
 	sh->cmds[num].exec.redout = FALSE;
 	sh->cmds[num].exec.redout_apd = FALSE;
+	sh->cmds[num].exec.last_redin = NONE;
 	sh->cmds[num].exec.last_redout = NONE;
 }
 

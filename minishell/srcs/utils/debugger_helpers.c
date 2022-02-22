@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:45:04 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:49:25 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:53:36 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,23 @@ char	*get_bool_str(t_bool boolean)
 	else if (boolean == FALSE)
 		return ("FALSE");
 	return ("NOT BOOLEAN");
+}
+
+char	*get_flags_str(t_flag flag)
+{
+	if (flag == NONE)
+		return ("NONE");
+	else if (flag == PIPE)
+		return ("PIPE");
+	else if (flag == REDIRECT_OUT)
+		return ("REDIRECT_OUT");
+	else if (flag == REDIRECT_OUT_APPEND)
+		return ("REDIRECT_OUT_APPEND");
+	else if (flag == REDIRECT_IN)
+		return ("REDIRECT_IN");
+	else if (flag == HERE_DOCUMENT)
+		return ("HERE_DOCUMENT");
+	return ("NOT FLAG");
 }
 
 static void	print_fd_info(t_shell *sh)
