@@ -6,21 +6,19 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:05:19 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 17:54:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 23:17:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_dup	dup_constructor(t_fds_num fd, t_pipe_end end, int fileno,
-t_flag flag)
+static t_dup	dup_constructor(t_fds_num fd, t_pipe_end end, int fileno)
 {
 	t_dup	dupinfo;
 
 	dupinfo.fd = fd;
 	dupinfo.end = end;
 	dupinfo.fileno = fileno;
-	dupinfo.flag = flag;
 	return (dupinfo);
 }
 
@@ -29,23 +27,23 @@ static void	dup_pipe(t_shell *sh)
 	t_dup	dupinfo;
 	t_dup	dupinfo2;
 
-	dupinfo = dup_constructor(ANY, -1, -1, NONE);
-	dupinfo2 = dup_constructor(ANY, -1, -1, NONE);
+	dupinfo = dup_constructor(ANY, -1, -1);
+	dupinfo2 = dup_constructor(ANY, -1, -1);
 	if (sh->fd.wr1)
-		dupinfo = dup_constructor(ONE, WRITE_END, STDOUT_FILENO, NONE);
+		dupinfo = dup_constructor(ONE, WRITE_END, STDOUT_FILENO);
 	else if (sh->fd.rd1)
-		dupinfo = dup_constructor(ONE, READ_END, STDIN_FILENO, NONE);
+		dupinfo = dup_constructor(ONE, READ_END, STDIN_FILENO);
 	else if (sh->fd.rd2)
-		dupinfo = dup_constructor(TWO, READ_END, STDIN_FILENO, NONE);
+		dupinfo = dup_constructor(TWO, READ_END, STDIN_FILENO);
 	else if (sh->fd.rd1wr2)
 	{
-		dupinfo = dup_constructor(ONE, READ_END, STDIN_FILENO, NONE);
-		dupinfo2 = dup_constructor(TWO, WRITE_END, STDOUT_FILENO, NONE);
+		dupinfo = dup_constructor(ONE, READ_END, STDIN_FILENO);
+		dupinfo2 = dup_constructor(TWO, WRITE_END, STDOUT_FILENO);
 	}
 	else if (sh->fd.rd2wr1)
 	{
-		dupinfo = dup_constructor(TWO, READ_END, STDIN_FILENO, NONE);
-		dupinfo2 = dup_constructor(ONE, WRITE_END, STDOUT_FILENO, NONE);
+		dupinfo = dup_constructor(TWO, READ_END, STDIN_FILENO);
+		dupinfo2 = dup_constructor(ONE, WRITE_END, STDOUT_FILENO);
 	}
 	dup_n_close_pipe(sh, dupinfo);
 	if (sh->fd.rd1wr2 || sh->fd.rd2wr1)

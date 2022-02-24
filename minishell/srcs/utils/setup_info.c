@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 18:06:22 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 22:08:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ static void	setup_cmds_info(t_shell *sh)
 	}
 }
 
+static void	setup_fd_info(t_shell *sh)
+{
+	sh->fd.open = ANY;
+	sh->fd.rd1 = FALSE;
+	sh->fd.rd2 = FALSE;
+	sh->fd.wr1 = FALSE;
+	sh->fd.rd1wr2 = FALSE;
+	sh->fd.rd2wr1 = FALSE;
+	sh->fd.redin = -1;
+	sh->fd.heredoc = -1;
+	sh->fd.redout = -1;
+	sh->fd.redout_apd = -1;
+}
+
+
 void	setup_flag_info(t_shell *sh, int num)
 {
 	sh->cmds[num].redin.len = 0;
@@ -50,20 +65,6 @@ void	setup_flag_info(t_shell *sh, int num)
 	sh->cmds[num].exec.redout_apd = FALSE;
 	sh->cmds[num].exec.last_redin = NONE;
 	sh->cmds[num].exec.last_redout = NONE;
-}
-
-void	setup_fd_info(t_shell *sh)
-{
-	sh->fd.open = ANY;
-	sh->fd.rd1 = FALSE;
-	sh->fd.rd2 = FALSE;
-	sh->fd.wr1 = FALSE;
-	sh->fd.rd1wr2 = FALSE;
-	sh->fd.rd2wr1 = FALSE;
-	sh->fd.redin = -1;
-	sh->fd.heredoc = -1;
-	sh->fd.redout = -1;
-	sh->fd.redout_apd = -1;
 }
 
 void	setup_info(t_shell *sh)

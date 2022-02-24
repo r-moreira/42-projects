@@ -6,13 +6,14 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/20 16:43:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 23:16:04 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	exec_fork(t_shell *sh, int num)
+
+static void	exec_fork(t_shell *sh, int num)
 {
 	pid_t	pid;
 
@@ -22,8 +23,6 @@ void	exec_fork(t_shell *sh, int num)
 	{
 		run_signals_exec();
 		handle_io(sh, num);
-		if (DEBUGGER_EXEC)
-			printf("======= CMD[%d] STDOUT =========\n", num);
 		handle_dup(sh, num);
 		if (sh->cmds[num].exec.builtin)
 			exec_builtin(sh, num);
@@ -42,6 +41,4 @@ void	exec_cmd(t_shell *sh, int num)
 		exec_fork(sh, num);
 	else
 		call_builtin(sh, num);
-	if (DEBUGGER_EXEC && sh->count.cmds == num + 1)
-		printf("======== End Execution ========\n");
 }
