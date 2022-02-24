@@ -6,12 +6,25 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/23 23:16:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 23:25:19 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+static void	close_parent_fd(t_shell *sh)
+{
+	if (sh->fd.rd1 || sh->fd.rd1wr2)
+	{
+		close(sh->fd.one[READ_END]);
+		close(sh->fd.one[WRITE_END]);
+	}
+	else if (sh->fd.rd2 || sh->fd.rd2wr1)
+	{
+		close(sh->fd.two[READ_END]);
+		close(sh->fd.two[WRITE_END]);
+	}
+}
 
 static void	exec_fork(t_shell *sh, int num)
 {
@@ -32,7 +45,10 @@ static void	exec_fork(t_shell *sh, int num)
 		exit(EXIT_SUCCESS);
 	}
 	else
+	{
+		close_parent_fd(sh);
 		wait_aux(pid);
+	}
 }
 
 void	exec_cmd(t_shell *sh, int num)
