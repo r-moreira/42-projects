@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/23 23:10:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 23:27:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	print_fd_info(t_shell *sh, t_bool pipe, t_bool pipe_last_cmd)
 	printf("FD RD2WR1  = |%s|\n", get_bool_str(sh->fd.rd2wr1));
 }
 
-
 static void	reset_pipe_fd_info(t_shell *sh)
 {
 	sh->fd.rd1 = FALSE;
@@ -38,7 +37,6 @@ static void	reset_pipe_fd_info(t_shell *sh)
 	sh->fd.redout = -1;
 	sh->fd.redout_apd = -1;
 }
-
 
 static void	set_open_fd(t_shell *sh)
 {

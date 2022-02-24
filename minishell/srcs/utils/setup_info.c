@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/23 22:08:24 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 23:27:52 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	setup_fd_info(t_shell *sh)
 	sh->fd.redout = -1;
 	sh->fd.redout_apd = -1;
 }
-
 
 void	setup_flag_info(t_shell *sh, int num)
 {

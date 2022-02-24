@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 17:12:15 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 23:29:08 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void update_struct(t_shell *sh, int num, t_flag flag)
+static void	update_struct(t_shell *sh, int num, t_flag flag)
 {
 	if (flag == HERE_DOCUMENT)
 	{

@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 21:53:12 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/23 23:27:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void open_redout_apd_file(t_shell *sh, int num)
+static void	open_redout_apd_file(t_shell *sh, int num)
 {
 	int	redir_fd;
 	int	append;
