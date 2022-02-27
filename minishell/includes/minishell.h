@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/26 20:32:39 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:08:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 
 /* ** Helpers ** */
 # define FORKED_CHILD 0
-# define SIGNALED 130
 # define HEREDOC_FILE "/tmp/heredoc"
 
 /* ** Buffers ** */

@@ -6,11 +6,17 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/26 21:04:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:07:50 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	free_aux(char *line_read, char *prompt)
+{
+	free(line_read);
+	free(prompt);
+}
 
 static t_status	heredoc_aux(t_shell *sh, char *parsed)
 {
@@ -54,7 +60,6 @@ t_status	take_input(t_shell *sh)
 		eof_exit_shell(sh);
 	else
 		printf("\n");
-	free(line_read);
-	free(prompt);
+	free_aux(line_read, prompt);
 	return (SUCCESS);
 }

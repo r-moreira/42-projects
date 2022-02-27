@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_prompt.c                                     :+:      :+:    :+:   */
+/*   create_prompt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 20:30:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/26 21:03:35 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:08:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char	*create_prompt(void)
 	username = get_prompt_user();
 	sysname = get_prompt_sysname();
 	cwd = get_prompt_cwd();
-
 	prompt = ft_strjoin("", username);
 	p = prompt;
 	prompt = ft_strjoin(prompt, sysname);
