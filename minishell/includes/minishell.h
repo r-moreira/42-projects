@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/23 23:06:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 20:32:39 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ void		setup_info(t_shell *sh);
 void		exit_error(char *err_message);
 t_status	syntax_error(char *msg);
 void		welcome_message(void);
-void		print_prompt(void);
+char		*create_prompt(void);
 t_status	take_input(t_shell *sh);
 t_bool		is_closed_quotes(char c, char *input);
 t_status	syntax_error(char *msg);

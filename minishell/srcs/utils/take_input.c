@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/22 22:16:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:04:36 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ t_status	take_input(t_shell *sh)
 {
 	char	*line_read;
 	char	*parsed;
+	char	*prompt;
 
-	line_read = readline(NULL);
+	prompt = create_prompt();
+	line_read = readline(prompt);
 	if (line_read && *line_read)
 	{
 		add_history(line_read);
@@ -53,5 +55,6 @@ t_status	take_input(t_shell *sh)
 	else
 		printf("\n");
 	free(line_read);
+	free(prompt);
 	return (SUCCESS);
 }

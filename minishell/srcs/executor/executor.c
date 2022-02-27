@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 13:52:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/23 23:27:43 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 19:20:12 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,6 @@ static void	define_fd_info(t_shell *sh, int num)
 		print_fd_info(sh, pipe, pipe_last_cmd);
 }
 
-/////////////////////// TO-DO
-// Definir parâmetros para cada execução
-// Adicionar pipes
-// Adicionar pipes + redirects
-//////////////////////////////
 void	executor(t_shell *sh)
 {
 	int	i;

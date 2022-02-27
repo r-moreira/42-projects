@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/21 10:14:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 20:32:54 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	main(int argc, char **argv, char **envp)
 	while (TRUE)
 	{
 		setup_info(&sh);
-		if (g_pid_number != SIGNALED)
-			print_prompt();
+		//if (g_pid_number != SIGNALED)
+			//print_prompt();
 		if (take_input(&sh) == SUCCESS)
 			if (analyzer(&sh) == SUCCESS)
 				if (parser(&sh) == SUCCESS)
