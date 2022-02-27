@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 21:35:26 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/26 23:40:16 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_status	ft_echo(t_shell *sh, int num)
 	char			*input;
 	int				i;
 
-	input = sh->input_string + 4;
+	input = str_remove_quotes(sh->input_string + 4);
 	i = 0;
 	while (ft_isspace(input[i]))
 		i++;
@@ -69,5 +69,6 @@ t_status	ft_echo(t_shell *sh, int num)
 	}
 	else
 		get_echo_str(input + i, FALSE);
+	free(input);
 	return (SUCCESS);
 }
