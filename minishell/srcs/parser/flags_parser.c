@@ -6,11 +6,12 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/23 23:29:08 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/27 01:02:41 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdio.h>
 
 static void	update_struct(t_shell *sh, int num, t_flag flag)
 {
@@ -115,16 +116,22 @@ t_status	parse_flags(t_shell *sh, int num)
 {
 	int		i;
 	char	*token;
+	char	quote;
 
 	setup_flag_info(sh, num);
 	token = sh->cmd_tokens[num];
 	i = 0;
-	while (token[i] && !is_flag(token[i]))
-		i++;
-	i--;
 	while (token[i])
 	{
-		if (is_flag(token[i]))
+		if ((token[i] == '\'' || token[i] == '"')
+			&& is_closed_quotes(token[i], token + i))
+		{
+			quote = token[i];
+			i++;
+			while (token[i] != quote)
+				i++;
+		}
+		else if (is_flag(token[i]))
 			get_cmd_flags(sh, token, num, &i);
 		if (!token[i])
 			break ;

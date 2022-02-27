@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 23:04:10 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/26 23:40:16 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/27 01:03:10 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,35 @@ static t_bool	has_n_option(t_shell *sh, int num)
 	return (FALSE);
 }
 
+static void	echo_stdout(char *str, t_bool n_opt)
+{
+	char	*no_quotes_str;
+
+	no_quotes_str = str_remove_quotes(str);
+	if (n_opt)
+		printf("%s", no_quotes_str);
+	else
+		printf("%s\n", no_quotes_str);
+	free(str);
+	free(no_quotes_str);
+}
+
+static int	handle_quotes(char *str, char *input, int i)
+{
+	char	quote;
+	int		count;
+
+	quote = input[i];
+	str[i] = input[i];
+	count = 1;
+	while (input[i + count] != quote)
+	{
+		str[i + count] = input[i + count];
+		count++;
+	}
+	return (count);
+}
+
 static void	get_echo_str(char *input, t_bool n_opt)
 {
 	char	*str;
@@ -35,8 +64,15 @@ static void	get_echo_str(char *input, t_bool n_opt)
 
 	str = (char *)malloc(sizeof(char) * ft_strlen(input) + 1);
 	i = 0;
-	while (input[i] && !is_flag(input[i]))
+	while (input[i])
 	{
+		if ((input[i] == '\'' || input[i] == '"')
+			&& is_closed_quotes(input[i], input + i))
+		{
+			i += handle_quotes(str, input, i);
+		}
+		else if (is_flag(input[i]))
+			break ;
 		str[i] = input[i];
 		i++;
 	}
@@ -44,11 +80,7 @@ static void	get_echo_str(char *input, t_bool n_opt)
 	if (i > 0 && str[i - 1])
 		if (is_flag(input[i]) && ft_isspace(str[i - 1]))
 			str[i - 1] = '\0';
-	if (n_opt)
-		printf("%s", str);
-	else
-		printf("%s\n", str);
-	free(str);
+	echo_stdout(str, n_opt);
 }
 
 t_status	ft_echo(t_shell *sh, int num)
@@ -56,7 +88,7 @@ t_status	ft_echo(t_shell *sh, int num)
 	char			*input;
 	int				i;
 
-	input = str_remove_quotes(sh->input_string + 4);
+	input = sh->input_string + 5;
 	i = 0;
 	while (ft_isspace(input[i]))
 		i++;
@@ -69,6 +101,5 @@ t_status	ft_echo(t_shell *sh, int num)
 	}
 	else
 		get_echo_str(input + i, FALSE);
-	free(input);
 	return (SUCCESS);
 }
