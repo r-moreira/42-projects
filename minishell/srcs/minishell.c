@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/26 21:08:12 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/27 23:21:49 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	init_shell(&sh, envp);
-	run_signals_interactive();
 	welcome_message();
 	while (TRUE)
 	{
+		run_signals_interactive();
 		setup_info(&sh);
 		if (take_input(&sh) == SUCCESS)
 			if (analyzer(&sh) == SUCCESS)
