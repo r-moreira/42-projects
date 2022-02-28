@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/27 23:47:18 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/28 00:04:48 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ char	*get_env_token(char *in)
 	char	*env_token;
 
 	i = 1;
-	while (in[i] && !ft_isspace(in[i]) && in[i] != '$' && in[i] != '"')
+	while (in[i] && !ft_isspace(in[i]) && in[i] != '$'
+		&& in[i] != '"' && in[i] != '\'')
 		i++;
 	env_token = ft_substr(in, 1, i - 1);
 	return (env_token);
