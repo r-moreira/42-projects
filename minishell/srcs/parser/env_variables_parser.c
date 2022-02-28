@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:34:20 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/18 21:32:19 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/27 23:47:18 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ void	get_env_value(char *line_read, int *i, int *j, char *parsed_line_read)
 
 	k = -1;
 	env_token = get_env_token(line_read + *i);
-	if (is_status_var(line_read, i))
+	if (ft_strlen(env_token) == 0)
+		parsed_line_read[++(*j)] = '$';
+	else if (is_status_var(line_read, i))
 	{
 		env_value = ft_itoa(g_pid_number);
 		while (env_value[++k])
@@ -62,10 +64,8 @@ void	get_env_value(char *line_read, int *i, int *j, char *parsed_line_read)
 	{
 		env_value = getenv(env_token);
 		if (env_value != NULL)
-		{
 			while (env_value[++k])
 				parsed_line_read[++(*j)] = env_value[k];
-		}
 	}
 	*i += ft_strlen(env_token);
 	free(env_token);

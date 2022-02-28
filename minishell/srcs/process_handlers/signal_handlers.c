@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:05:58 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/27 23:22:07 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/27 23:48:20 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	handle_sigint_exec(int sig)
 	write(1, "\n", 1);
 	(void)sig;
 }
-
 
 static void	handle_sigint_interactive(int sig)
 {
