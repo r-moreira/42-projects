@@ -6,7 +6,7 @@
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:18:49 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 00:14:37 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 00:28:00 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ static void	close_parent_fd(t_shell *sh)
 	}
 }
 
+static t_bool	has_command(t_shell *sh, int num)
+{
+	if (ft_strlen(sh->cmds[num].name))
+		return (TRUE);
+	return (FALSE);
+}
+
 static void	exec_fork(t_shell *sh, int num)
 {
 	pid_t	pid;
@@ -39,9 +46,12 @@ static void	exec_fork(t_shell *sh, int num)
 		handle_dup(sh, num);
 		if (sh->cmds[num].exec.builtin)
 			exec_builtin(sh, num);
-		else if (execve(sh->cmds[num].path, sh->cmds[num].args,
-				sh->envs) == -1)
-			exit_error(ERROR_EXEC);
+		else if (has_command(sh, num))
+		{
+			if (execve(sh->cmds[num].path, sh->cmds[num].args,
+					sh->envs) == -1)
+				exit_error(ERROR_EXEC);
+		}
 		exit(EXIT_SUCCESS);
 	}
 	else
