@@ -6,11 +6,45 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 16:02:16 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 18:13:31 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/28 23:43:27 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	clear_paths_info(t_shell *sh)
+{
+	int	i;
+
+	i = -1;
+	while (++i < sh->count.paths)
+		free(sh->paths[i]);
+	sh->count.paths = 0;
+}
+
+static void	setup_paths_info(t_shell *sh)
+{
+	char	*path_env;
+	char	**split;
+	int		i;
+
+	i = -1;
+	path_env = get_minishell_path(sh);
+	if (path_env == NULL)
+		return ;
+	split = ft_split(path_env, ':');
+	while (split[++i])
+	{
+		sh->paths[i] = (char *)malloc(sizeof(char) * ft_strlen(split[i]) + 1);
+		ft_strlcpy(sh->paths[i], split[i], ft_strlen(split[i]) + 1);
+	}
+	sh->count.paths = i;
+	sh->paths[i + 1] = NULL;
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
+}
 
 static void	cmd_name_on_path(t_shell *sh, int num)
 {
@@ -51,6 +85,7 @@ t_status	get_cmd_path(t_shell *sh, int num)
 {
 	char	*cwd;
 
+	setup_paths_info(sh);
 	cwd = get_cwd_buffer();
 	if (sh->cmds[num].name[0] == '/' || sh->cmds[num].name[0] == '.')
 	{
@@ -58,6 +93,7 @@ t_status	get_cmd_path(t_shell *sh, int num)
 		cmd_name_on_path(sh, num);
 		if (DEBUGGER_EXEC)
 			path_debugger_helper(sh, num);
+		clear_paths_info(sh);
 		return (SUCCESS);
 	}
 	else
@@ -67,6 +103,7 @@ t_status	get_cmd_path(t_shell *sh, int num)
 		free(cwd);
 		if (DEBUGGER_EXEC)
 			path_debugger_helper(sh, num);
+		clear_paths_info(sh);
 		return (SUCCESS);
 	}
 	return (ERROR);

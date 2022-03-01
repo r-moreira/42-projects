@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:28:17 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/13 22:53:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/28 23:28:46 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	eof_exit_shell(t_shell *sh)
 	while (++i < sh->count.envs)
 		free(sh->envs[i]);
 	i = -1;
-	while (++i < sh->count.paths)
-		free(sh->paths[i]);
 	printf("exit\n");
 	exit(EXIT_SUCCESS);
 }

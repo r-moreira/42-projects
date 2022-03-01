@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/27 23:21:27 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/02/28 23:30:05 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ t_bool		is_here_document(char *parsed_line);
 char		*get_bool_str(t_bool boolean);
 char		*get_flags_str(t_flag flag);
 void		setup_flag_info(t_shell *sh, int num);
+char		*get_minishell_path(t_shell *sh);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);
