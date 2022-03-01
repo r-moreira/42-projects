@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 20:30:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 00:26:04 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:18:11 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*get_prompt_sysname(void)
 	sysname = getenv("NAME");
 	if (sysname != NULL)
 	{
-		tmp = ft_strjoin("", sysname);
+		tmp = ft_strjoin(GREEN, sysname);
 		p = tmp;
 		tmp = ft_strjoin(tmp, WHITE);
 		free(p);
