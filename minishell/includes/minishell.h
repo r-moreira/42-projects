@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/28 23:30:05 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 00:27:53 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <readline/history.h>
 
 /* ** Set debugger ON/OFF ** */
-# define DEBUGGER_EXEC 1
+# define DEBUGGER_EXEC 0
 
 /* ** Helpers ** */
 # define FORKED_CHILD 0
