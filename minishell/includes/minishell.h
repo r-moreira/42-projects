@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 00:27:53 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:06:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@
 # define MAX_COMMAND_NAME 50
 # define MAX_ARGS_NUM 42
 # define MAX_ARGS_NAME 50
-# define MAX_ENVS 256
-# define MAX_PATHS 124
+# define MAX_ENVS 12486
+# define MAX_PATHS 386
 # define MAX_PATH_LEN 512
-# define MAX_CMD_REDIRECTIONS 20
+# define MAX_CMD_REDIRECTIONS 42
 # define DIR_MAX_SIZE 1024
-# define PARSED_LINE_BUFFER_SIZE 2720
-# define HERE_DOCUMENT_BUFFER_SIZE 1732
-# define HERE_DOCUMENT_INPUT_END_SIZE 120
+# define PARSED_LINE_BUFFER_SIZE 5720
+# define HERE_DOCUMENT_BUFFER_SIZE 3264
+# define HERE_DOCUMENT_INPUT_END_SIZE 268
 # define BUILTIN_OUTPUT_BUFFER 4234
 
 /* ** Prompt ** */
@@ -74,7 +74,7 @@
 # define ERROR_OPEN_FILE "minishell: Error opening file"
 
 /* ** Global Variables ** */
-int	g_pid_number;
+extern int	g_pid_number;
 
 /* ** Enums ** */
 typedef enum e_status

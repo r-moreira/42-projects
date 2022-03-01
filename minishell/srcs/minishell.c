@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:43:06 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/27 23:21:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:58:58 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-////////////////////TO-DOs
-// 1) Criar ex8ecução
-//
-// 2) Iniciar testes
-/////////////////////////
+int	g_pid_number;
 
 int	main(int argc, char **argv, char **envp)
 {
