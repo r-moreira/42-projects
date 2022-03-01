@@ -1,2 +1,2 @@
-# Starting new project
-Branch to dev exec
+# Install readline lib
+$ sudo-apt-get install libreadline6-dev

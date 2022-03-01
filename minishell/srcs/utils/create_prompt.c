@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 20:30:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/26 21:08:01 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 00:26:04 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ char	*get_prompt_user(void)
 		tmp = ft_strjoin(GREEN, username);
 		p = tmp;
 		tmp = ft_strjoin(tmp, "@");
+		free(p);
+		p = tmp;
+		tmp = ft_strjoin(tmp, WHITE);
 		free(p);
 		ft_strlcpy(ret, tmp, ft_strlen(tmp) + 1);
 		free(tmp);
