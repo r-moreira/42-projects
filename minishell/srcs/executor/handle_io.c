@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_io.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 17:17:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 23:14:32 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	open_redout_file(t_shell *sh, int num)
 	while (++i < sh->cmds[num].redout.len)
 	{
 		if (DEBUGGER_EXEC)
-			printf("Opening ouput file - O_TRUNC: %s\n",
+			printf("Opening output file - O_TRUNC: %s\n",
 				sh->cmds[num].redout.arg[i]);
 		sh->fd.redout = open(sh->cmds[num].redout.arg[i],
 				truncate, 0644);

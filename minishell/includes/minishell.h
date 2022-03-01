@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 17:18:36 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 23:06:37 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <readline/history.h>
 
 /* ** Set debugger ON/OFF ** */
-# define DEBUGGER_EXEC 0
+# define DEBUGGER_EXEC 1
 
 /* ** Ignore Workspace Envs ON/OFF ** */
 # define IGNORE_WORKSPACE_ENVS 0
