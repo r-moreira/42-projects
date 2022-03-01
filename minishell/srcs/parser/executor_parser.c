@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/01/15 15:53:52 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 00:57:44 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_status	is_token_valid(char *token)
 	alpha_count = 0;
 	i = -1;
 	while (token[++i])
-		if (ft_isalpha(token[i]))
+		if (ft_isalnum(token[i]))
 			alpha_count++;
 	if (alpha_count >= 1)
 		return (SUCCESS);

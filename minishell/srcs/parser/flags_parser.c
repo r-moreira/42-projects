@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   flags_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/27 01:02:41 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 00:58:59 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdio.h>
 
 static void	update_struct(t_shell *sh, int num, t_flag flag)
 {
