@@ -1,7 +1,7 @@
 NAME				= minishell
 
 #Compiler
-CC					= clang
+CC					= gcc
 CFLAGS				= -Wextra -Wall -Werror -g -fsanitize=address
 LIBFT_DIR 			= libft
 LIBFT 				= -L ./$(LIBFT_DIR) -lft
