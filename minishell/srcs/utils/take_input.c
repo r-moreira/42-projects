@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   take_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/26 21:07:50 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 23:47:17 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	free_aux(char *line_read, char *prompt)
 	free(prompt);
 }
 
-static t_status	heredoc_aux(t_shell *sh, char *parsed)
+static t_status	heredoc_aux(t_shell *sh, char *parsed, char *prompt)
 {
 	char	*input_end;
 
@@ -27,6 +27,7 @@ static t_status	heredoc_aux(t_shell *sh, char *parsed)
 	{
 		free(parsed);
 		free(input_end);
+		free(prompt);
 		return (syntax_error(ERROR_HEREDOC));
 	}
 	ft_strlcpy(sh->heredoc_input_end, input_end, HERE_DOCUMENT_INPUT_END_SIZE);
@@ -49,7 +50,7 @@ t_status	take_input(t_shell *sh)
 		parsed = parse_env_variables(line_read);
 		if (is_here_document(parsed))
 		{
-			if (heredoc_aux(sh, parsed) == ERROR)
+			if (heredoc_aux(sh, parsed, prompt) == ERROR)
 				return (ERROR);
 		}
 		else
