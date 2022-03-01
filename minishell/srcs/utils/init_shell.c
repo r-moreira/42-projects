@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:23:35 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/28 22:58:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:46:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	setup_not_workspace_envs(t_shell *sh, char **envp)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
+	while (envp[++i])
+	{
+		if (ft_strnstr(envp[i], "_WORKSPACE_", strlen(envp[i])) == NULL)
+		{
+			sh->envs[j] = (char *)malloc(sizeof(char) * ft_strlen(envp[i]) + 1);
+			ft_strlcpy(sh->envs[j], envp[i], ft_strlen(envp[i]) + 1);
+			j++;
+		}
+	}
+	sh->count.envs = j;
+	sh->envs[j] = NULL;
+}
 
 static void	setup_envs(t_shell *sh, char **envp)
 {
@@ -29,5 +49,8 @@ static void	setup_envs(t_shell *sh, char **envp)
 void	init_shell(t_shell *sh, char **envp)
 {
 	g_pid_number = 0;
-	setup_envs(sh, envp);
+	if (IGNORE_WORKSPACE_ENVS)
+		setup_not_workspace_envs(sh, envp);
+	else
+		setup_envs(sh, envp);
 }

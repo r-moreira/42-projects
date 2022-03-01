@@ -6,7 +6,7 @@
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 17:06:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:44:51 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 
 /* ** Set debugger ON/OFF ** */
 # define DEBUGGER_EXEC 0
+
+/* ** Ignore Workspace Envs ON/OFF ** */
+# define IGNORE_WORKSPACE_ENVS 0
 
 /* ** Helpers ** */
 # define FORKED_CHILD 0
