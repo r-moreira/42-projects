@@ -6,7 +6,7 @@
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:10:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 23:47:17 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 00:14:27 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ t_status	take_input(t_shell *sh)
 	}
 	else if (line_read == NULL)
 		eof_exit_shell(sh);
-	else
-		printf("\n");
 	free_aux(line_read, prompt);
 	return (SUCCESS);
 }
