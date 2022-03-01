@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_io.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 16:34:51 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 16:59:13 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:17:57 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	open_redout_apd_file(t_shell *sh, int num)
 	int	i;
 
 	append = O_WRONLY | O_CREAT | O_APPEND;
+	i = -1;
 	while (++i < sh->cmds[num].redout_apd.len)
 	{
 		if (DEBUGGER_EXEC)
