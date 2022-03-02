@@ -6,7 +6,7 @@
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 23:06:37 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 01:33:51 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@
 
 /* ** Errors messages ** */
 # define ERROR_PIPE "minishell: syntax error near unexpected token `|'\n"
+# define ERROR_NO_ALPNUM "minishell: syntax error. Missing alpanumeric chars\n"
+# define ERROR_INVLD_FLAG "minishell: syntax error. Invalid flag\n"
 # define ERROR_DIR "No such file or directory\n"
 # define ERROR_HOME "minishell: cd: HOME not set\n"
 # define ERROR_CMD "command not found\n"
