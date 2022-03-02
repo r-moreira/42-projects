@@ -6,7 +6,7 @@
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 02:06:40 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 02:37:09 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_status	is_flags_valid(char *token)
 	int		j;
 	int		count;
 	char	c;
-	
+
 	i = 0;
 	while (token[i])
 	{
@@ -65,12 +65,12 @@ static t_status	is_flags_valid(char *token)
 			while (token[++j] && !ft_isalnum(token[j]))
 				if (token[j] == c)
 					count++;
-			if (count >= 2)
+			if ((count == 1 && token[i + 1] != c) || (count >= 2))
 				return (NOT_TOKEN);
 		}
 		i++;
 	}
-	return (SUCCESS);	
+	return (SUCCESS);
 }
 
 t_status	parser(t_shell *sh)
@@ -84,13 +84,13 @@ t_status	parser(t_shell *sh)
 		{
 			if (parse_cmd(sh, i) == ERROR)
 				return (ERROR);
-			if(is_flags_valid(sh->cmd_tokens[i]) == SUCCESS)
+			if (is_flags_valid(sh->cmd_tokens[i]) == SUCCESS)
 			{
 				if (parse_flags(sh, i) == ERROR)
 					return (ERROR);
 			}
 			else
-				return (error_invalid_flags(sh));			
+				return (error_invalid_flags(sh));
 		}
 		else
 			return (error_no_alphanum(sh));
