@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/03 00:05:29 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:31:33 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,8 @@ char		*get_bool_str(t_bool boolean);
 char		*get_flags_str(t_flag flag);
 void		setup_flag_info(t_shell *sh, int num);
 char		*get_minishell_path(t_shell *sh);
+t_status	error_invalid_flags(t_shell *sh);
+t_status	error_no_alphanum(t_shell *sh);
 
 //PROCESS HANDLERS
 void		eof_exit_shell(t_shell *sh);

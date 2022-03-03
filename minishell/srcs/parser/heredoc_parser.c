@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:59 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/03 00:06:00 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:32:41 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ t_status	parse_heredoc_input_end(t_shell *sh, int num, char *token)
 	char	*input_end;
 
 	input_end = get_heredoc_input_end(token);
-	if (input_end[0] == '\0')
-	{
-		free(token);
-		free(input_end);
-		return (syntax_error(ERROR_HEREDOC));
-	}
 	ft_strlcpy(sh->cmds[num].heredoc.input_end[sh->cmds[num].heredoc.len],
 		input_end, HERE_DOCUMENT_INPUT_END_SIZE);
 	free(input_end);

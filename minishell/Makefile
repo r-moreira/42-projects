@@ -44,7 +44,8 @@ UTILS_SRCS			= $(UTILS_DIR)/create_prompt.c \
   					  $(UTILS_DIR)/debugger_helpers.c \
 					  $(UTILS_DIR)/strjoin_newline.c \
 					  $(UTILS_DIR)/is_here_document.c \
-					  $(UTILS_DIR)/get_minishell_path.c
+					  $(UTILS_DIR)/get_minishell_path.c \
+					  $(UTILS_DIR)/parse_errors.c
 
 #Parser
 PARSER_DIR			= $(MAIN_DIR)/parser

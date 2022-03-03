@@ -3,33 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   executor_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 13:53:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 02:37:09 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:32:26 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_status	error_invalid_flags(t_shell *sh)
+static void	free_cmd_tokens(t_shell *sh)
 {
 	int	i;
 
 	i = -1;
 	while (++i < sh->count.cmds)
 		free(sh->cmd_tokens[i]);
-	return (syntax_error(ERROR_INVLD_FLAG));
 }
 
-static t_status	error_no_alphanum(t_shell *sh)
+static t_status	check_here_document(t_shell *sh)
 {
-	int	i;
+	int		i;
+	int		j;
 
 	i = -1;
 	while (++i < sh->count.cmds)
-		free(sh->cmd_tokens[i]);
-	return (syntax_error(ERROR_NO_ALPNUM));
+	{
+		j = -1;
+		while (++j < sh->cmds[i].heredoc.len)
+		{
+			if (sh->cmds[i].heredoc.input_end[j][0] == '\0')
+				return (syntax_error(ERROR_HEREDOC));
+		}
+	}
+	return (SUCCESS);
 }
 
 static t_status	is_token_valid(char *token)
@@ -95,8 +102,8 @@ t_status	parser(t_shell *sh)
 		else
 			return (error_no_alphanum(sh));
 	}
-	i = -1;
-	while (++i < sh->count.cmds)
-		free(sh->cmd_tokens[i]);
+	free_cmd_tokens(sh);
+	if (check_here_document(sh) == ERROR)
+		return (ERROR);
 	return (SUCCESS);
 }
