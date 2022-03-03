@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/02/28 23:06:28 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 23:20:49 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ static void	setup_cmds_info(t_shell *sh)
 		j = -1;
 		while (++j < sh->cmds[i].redout_apd.len)
 			ft_strlcpy(sh->cmds[i].redout_apd.arg[j], "\0", 1);
+		j = -1;
+		while (++j < sh->cmds[i].heredoc.len)
+		{
+			ft_strlcpy(sh->cmds[i].heredoc.file_buffer[j], "\0", 1);
+			ft_strlcpy(sh->cmds[i].heredoc.input_end[j], "\0", 1);
+		}
 		sh->cmds[i].args_count = 0;
 		ft_strlcpy(sh->cmds[i].name, "\0", 1);
 		ft_strlcpy(sh->cmds[i].path, "\0", 1);
@@ -57,6 +63,7 @@ void	setup_flag_info(t_shell *sh, int num)
 	sh->cmds[num].redin.len = 0;
 	sh->cmds[num].redout.len = 0;
 	sh->cmds[num].redout_apd.len = 0;
+	sh->cmds[num].heredoc.len = 0;
 	sh->cmds[num].exec.heredoc = FALSE;
 	sh->cmds[num].exec.pipe = FALSE;
 	sh->cmds[num].exec.redin = FALSE;
@@ -70,6 +77,5 @@ void	setup_info(t_shell *sh)
 {
 	setup_cmds_info(sh);
 	setup_fd_info(sh);
-	ft_strlcpy(sh->heredoc_file_buffer, "\0", 1);
 	ft_strlcpy(sh->input_string, "\0", 1);
 }

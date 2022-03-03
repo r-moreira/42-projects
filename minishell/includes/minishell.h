@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 01:33:51 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 23:40:01 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define MAX_PATHS 386
 # define MAX_PATH_LEN 512
 # define MAX_CMD_REDIRECTIONS 42
+# define MAX_HEREDOC_INPUT 10
 # define DIR_MAX_SIZE 1024
 # define PARSED_LINE_BUFFER_SIZE 5720
 # define HERE_DOCUMENT_BUFFER_SIZE 3264
@@ -126,6 +127,13 @@ typedef struct s_redir
 	int		len;
 }	t_redir;
 
+typedef struct s_heredoc
+{
+	char	file_buffer[MAX_HEREDOC_INPUT][HERE_DOCUMENT_BUFFER_SIZE];
+	char	input_end[MAX_HEREDOC_INPUT][HERE_DOCUMENT_INPUT_END_SIZE];
+	int		len;
+}	t_heredoc;
+
 typedef struct s_exec
 {
 	t_bool	builtin;
@@ -140,14 +148,15 @@ typedef struct s_exec
 
 typedef struct s_commands
 {
-	char	path[MAX_PATH_LEN];
-	char	name[MAX_COMMAND_NAME];
-	char	*args[MAX_ARGS_NUM];
-	int		args_count;
-	t_redir	redin;
-	t_redir	redout;
-	t_redir	redout_apd;
-	t_exec	exec;
+	char		path[MAX_PATH_LEN];
+	char		name[MAX_COMMAND_NAME];
+	char		*args[MAX_ARGS_NUM];
+	int			args_count;
+	t_redir		redin;
+	t_redir		redout;
+	t_redir		redout_apd;
+	t_heredoc	heredoc;
+	t_exec		exec;
 }	t_commands;
 
 typedef struct s_counters
@@ -185,8 +194,6 @@ typedef struct s_minishell
 	char		input_string[MAX_LINE_INPUT];
 	t_commands	cmds[MAX_COMMANDS_NUM];
 	char		*cmd_tokens[MAX_COMMANDS_NUM];
-	char		heredoc_file_buffer[HERE_DOCUMENT_BUFFER_SIZE];
-	char		heredoc_input_end[HERE_DOCUMENT_INPUT_END_SIZE];
 	char		*envs[MAX_ENVS];
 	char		*paths[MAX_PATHS];
 	t_fds		fd;
@@ -252,7 +259,7 @@ t_status	get_cmd_path(t_shell *sh, int num);
 void		executor(t_shell *sh);
 void		exec_cmd(t_shell *sh, int num);
 void		handle_io(t_shell *sh, int num);
-t_status	handle_here_document_input(t_shell *sh);
+t_status	handle_here_document_input(t_shell *sh, int num);
 
 //BUILT-INS
 t_bool		is_builtin(t_shell *sh, int num);
