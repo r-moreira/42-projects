@@ -6,38 +6,44 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 23:20:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:02:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+static void	setup_cmd_info(t_shell *sh, int num)
+{
+	int	i;
+
+	i = -1;
+	while (++i < sh->cmds[num].args_count)
+		free(sh->cmds[num].args[i]);
+	i = -1;
+	while (++i < sh->cmds[num].redin.len)
+		ft_strlcpy(sh->cmds[num].redin.arg[i], "\0", 1);
+	i = -1;
+	while (++i < sh->cmds[num].redout.len)
+		ft_strlcpy(sh->cmds[num].redout.arg[i], "\0", 1);
+	i = -1;
+	while (++i < sh->cmds[num].redout_apd.len)
+		ft_strlcpy(sh->cmds[num].redout_apd.arg[i], "\0", 1);
+	i = -1;
+	while (++i < sh->cmds[num].heredoc.len)
+	{
+		ft_strlcpy(sh->cmds[num].heredoc.file_buffer[i], "\0", 1);
+		ft_strlcpy(sh->cmds[num].heredoc.input_end[i], "\0", 1);
+	}
+}
+
 static void	setup_cmds_info(t_shell *sh)
 {
 	int	i;
-	int	j;
 
 	i = -1;
 	while (++i < sh->count.cmds)
 	{
-		j = -1;
-		while (++j < sh->cmds[i].args_count)
-			free(sh->cmds[i].args[j]);
-		j = -1;
-		while (++j < sh->cmds[i].redin.len)
-			ft_strlcpy(sh->cmds[i].redin.arg[j], "\0", 1);
-		j = -1;
-		while (++j < sh->cmds[i].redout.len)
-			ft_strlcpy(sh->cmds[i].redout.arg[j], "\0", 1);
-		j = -1;
-		while (++j < sh->cmds[i].redout_apd.len)
-			ft_strlcpy(sh->cmds[i].redout_apd.arg[j], "\0", 1);
-		j = -1;
-		while (++j < sh->cmds[i].heredoc.len)
-		{
-			ft_strlcpy(sh->cmds[i].heredoc.file_buffer[j], "\0", 1);
-			ft_strlcpy(sh->cmds[i].heredoc.input_end[j], "\0", 1);
-		}
+		setup_cmd_info(sh, i);
 		sh->cmds[i].args_count = 0;
 		ft_strlcpy(sh->cmds[i].name, "\0", 1);
 		ft_strlcpy(sh->cmds[i].path, "\0", 1);

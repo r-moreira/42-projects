@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:18:33 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 23:47:30 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 23:58:11 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	flag_descrpt(t_shell *sh, int num)
 		printf("             < arg[%d] = [%s]\n", i, sh->cmds[num].redin.arg[i]);
 	i = -1;
 	while (++i < sh->cmds[num].heredoc.len)
-		printf("             < arg[%d] input end = |%s|\n", i, sh->cmds[num].heredoc.input_end[i]);
+		printf("             < arg[%d] input end = |%s|\n", i,
+			sh->cmds[num].heredoc.input_end[i]);
 }
 
 void	parsed_info_logger(t_shell *sh)

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 19:55:25 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 23:33:31 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:09:30 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,11 @@ static void	update_struct(t_shell *sh, int num, t_flag flag)
 	}
 }
 
-static t_status	get_heredoc_input_end(t_shell *sh, int num, char *token)
-{
-	char	*input_end;
-
-	input_end = parse_heredoc_input_end(token);
-	if (input_end[0] == '\0')
-	{
-		free(token);
-		free(input_end);
-		return (syntax_error(ERROR_HEREDOC));
-	}
-	ft_strlcpy(sh->cmds[num].heredoc.input_end[sh->cmds[num].heredoc.len],
-		input_end, HERE_DOCUMENT_INPUT_END_SIZE);
-	free(input_end);
-	return (SUCCESS);
-}
-
 static void	set_flags(t_shell *sh, char *token, int num, t_flag flag)
 {
 	if (flag == HERE_DOCUMENT)
 	{
-		get_heredoc_input_end(sh, num, token);
+		parse_heredoc_input_end(sh, num, token);
 		update_struct(sh, num, flag);
 	}
 	else if (flag == REDIRECT_IN)

@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:12:09 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 23:44:02 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/02 23:57:56 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ t_status	handle_here_document_input(t_shell *sh, int num)
 		if (sh->cmds[num].heredoc.input_end[i][0] == '\0')
 			return (syntax_error(ERROR_HEREDOC));
 		hdoc_fb = take_heredoc_input(sh->cmds[num].heredoc.input_end[i]);
-		ft_strlcpy(sh->cmds[num].heredoc.file_buffer[i], hdoc_fb, ft_strlen(hdoc_fb) + 1);
+		ft_strlcpy(sh->cmds[num].heredoc.file_buffer[i], hdoc_fb,
+			ft_strlen(hdoc_fb) + 1);
 		free(hdoc_fb);
 	}
 	return (SUCCESS);

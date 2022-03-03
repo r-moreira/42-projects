@@ -6,20 +6,19 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:59 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 23:54:14 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:06:00 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*parse_heredoc_input_end(char *token)
+static char	*get_heredoc_input_end(char *token)
 {
 	int		i;
 	int		j;
 	int		len;
 	char	*input_end;
 
-	printf("TOKEN = |%s| - |%s|\n\n", token, token + 1);
 	i = 0;
 	while (ft_isspace(token[i]))
 		i++;
@@ -30,4 +29,21 @@ char	*parse_heredoc_input_end(char *token)
 		input_end[++j] = token[i++];
 	input_end[++j] = '\0';
 	return (input_end);
+}
+
+t_status	parse_heredoc_input_end(t_shell *sh, int num, char *token)
+{
+	char	*input_end;
+
+	input_end = get_heredoc_input_end(token);
+	if (input_end[0] == '\0')
+	{
+		free(token);
+		free(input_end);
+		return (syntax_error(ERROR_HEREDOC));
+	}
+	ft_strlcpy(sh->cmds[num].heredoc.input_end[sh->cmds[num].heredoc.len],
+		input_end, HERE_DOCUMENT_INPUT_END_SIZE);
+	free(input_end);
+	return (SUCCESS);
 }

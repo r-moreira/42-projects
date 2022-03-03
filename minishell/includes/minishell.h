@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/02 23:40:01 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:05:29 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ t_status	parser(t_shell *sh);
 t_status	parse_flags(t_shell *sh, int num);
 t_status	parse_cmd(t_shell *sh, int num);
 char		*parse_env(char *env);
-char		*parse_heredoc_input_end(char *parsed_line);
+t_status	parse_heredoc_input_end(t_shell *sh, int num, char *token);
 
 //EXECUTOR
 t_status	get_cmd_path(t_shell *sh, int num);
