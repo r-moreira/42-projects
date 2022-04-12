@@ -5,8 +5,7 @@ irritating. It was only logical that they came up with the idea to communicate w
 a computer using interactive lines of commands in a language somewhat close
 to english.
 With Minishell, you’ll be able to travel through time and come back to problems
-people faced when Windows didn’t exist.
-
+people faced when Windows didn’t exist.\
 The objective of this project is to create a simple shell.
 ---
 
