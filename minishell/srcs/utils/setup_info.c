@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 00:17:47 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/03 00:02:43 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/15 00:47:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	setup_flag_info(t_shell *sh, int num)
 
 void	setup_info(t_shell *sh)
 {
+	ft_strlcpy(sh->input_string, "\0", 1);
 	setup_cmds_info(sh);
 	setup_fd_info(sh);
-	ft_strlcpy(sh->input_string, "\0", 1);
 }

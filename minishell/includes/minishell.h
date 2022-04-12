@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:45:12 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/03 00:31:33 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/15 02:55:00 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <readline/history.h>
 
 /* ** Set debugger ON/OFF ** */
-# define DEBUGGER_EXEC 1
+# define DEBUGGER_EXEC 0
 
 /* ** Ignore Workspace Envs ON/OFF ** */
 # define IGNORE_WORKSPACE_ENVS 0
@@ -62,6 +62,7 @@
 # define GREEN "\033[1;32m\002"
 
 /* ** Errors messages ** */
+# define ERROR_CWD "minishell: error when getting current directory"
 # define ERROR_PIPE "minishell: syntax error near unexpected token `|'\n"
 # define ERROR_NO_ALPNUM "minishell: syntax error. Missing alpanumeric chars\n"
 # define ERROR_INVLD_FLAG "minishell: syntax error. Invalid flag\n"

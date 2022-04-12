@@ -6,7 +6,7 @@
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 20:30:08 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 23:45:49 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/15 02:59:21 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,70 +17,33 @@ char	*get_prompt_user(void)
 	char	*username;
 	char	*tmp;
 	char	*ret;
-	char	*p;
 
-	ret = ft_strdup("");
 	username = getenv("USER");
 	if (username != NULL)
 	{
 		tmp = ft_strjoin(GREEN, username);
-		p = tmp;
-		tmp = ft_strjoin(tmp, "@");
-		free(p);
-		p = tmp;
-		tmp = ft_strjoin(tmp, WHITE);
-		free(p);
-		ft_strlcpy(ret, tmp, ft_strlen(tmp) + 1);
+		ret = ft_strjoin(tmp, WHITE);
 		free(tmp);
+		return (ret);
 	}
-	return (ret);
-}
-
-char	*get_prompt_sysname(void)
-{
-	char	*sysname;
-	char	*tmp;
-	char	*ret;
-	char	*p;
-
-	ret = ft_strdup("");
-	sysname = getenv("NAME");
-	if (sysname != NULL)
-	{
-		tmp = ft_strjoin(GREEN, sysname);
-		p = tmp;
-		tmp = ft_strjoin(tmp, WHITE);
-		free(p);
-		p = tmp;
-		tmp = ft_strjoin(tmp, ":");
-		free(p);
-		ft_strlcpy(ret, tmp, ft_strlen(tmp) + 1);
-		free(tmp);
-	}
-	return (ret);
+	return (NULL);
 }
 
 char	*get_prompt_cwd(void)
 {
 	char	*cwd;
 	char	*tmp;
+	char	*tmp2;
 	char	*ret;
-	char	*p;
 
 	cwd = get_cwd_buffer();
-	ret = ft_strdup("");
-	tmp = ft_strjoin("", PURPLE);
-	p = tmp;
-	tmp = ft_strjoin(tmp, cwd);
-	free(p);
-	p = tmp;
-	tmp = ft_strjoin(tmp, WHITE);
-	free(p);
-	p = tmp;
-	tmp = ft_strjoin(tmp, "$ ");
-	free(p);
-	ft_strlcpy(ret, tmp, ft_strlen(tmp) + 1);
+	if (cwd == NULL)
+		exit_error(ERROR_CWD);
+	tmp = ft_strjoin(PURPLE, cwd);
+	tmp2 = ft_strjoin(tmp, WHITE);
+	ret = ft_strjoin(tmp2, "$ ");
 	free(tmp);
+	free(tmp2);
 	free(cwd);
 	return (ret);
 }
@@ -89,22 +52,17 @@ char	*create_prompt(void)
 {
 	char	*cwd;
 	char	*username;
-	char	*sysname;
-	char	*prompt;
-	char	*p;
+	char	*ret;
 
 	username = get_prompt_user();
-	sysname = get_prompt_sysname();
 	cwd = get_prompt_cwd();
-	prompt = ft_strjoin("", username);
-	p = prompt;
-	prompt = ft_strjoin(prompt, sysname);
-	free(p);
-	p = prompt;
-	prompt = ft_strjoin(prompt, cwd);
-	free(p);
-	free(username);
-	free(sysname);
-	free(cwd);
-	return (prompt);
+	ret = NULL;
+	if (username != NULL)
+	{
+		ret = ft_strjoin(username, cwd);
+		free(username);
+		free(cwd);
+		return (ret);
+	}
+	return (cwd);
 }

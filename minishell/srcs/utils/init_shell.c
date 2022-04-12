@@ -6,7 +6,7 @@
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:23:35 by romoreir          #+#    #+#             */
-/*   Updated: 2022/03/01 17:46:57 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/03/16 02:09:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ static void	setup_envs(t_shell *sh, char **envp)
 void	init_shell(t_shell *sh, char **envp)
 {
 	g_pid_number = 0;
+	sh->count.cmds = 0;
+	sh->count.envs = 0;
+	sh->count.paths = 0;
 	if (IGNORE_WORKSPACE_ENVS)
 		setup_not_workspace_envs(sh, envp);
 	else
