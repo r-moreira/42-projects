@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 19:19:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/04/14 19:40:44 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:48:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 # include <pthread.h>
 
 long int	get_current_time(void);
+int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
 
 #endif
