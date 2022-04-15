@@ -6,16 +6,11 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 19:46:12 by rarodrig          #+#    #+#             */
-/*   Updated: 2022/04/15 15:44:42 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:47:34 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-////// TO-DO
-// 1) Alguma coisa faz o philosófo 1 morrer
-// 2) Passar a norminette
-//////
 
 int	main(int argc, char **argv)
 {
