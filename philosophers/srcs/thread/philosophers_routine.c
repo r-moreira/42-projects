@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 22:35:50 by romoreir          #+#    #+#             */
-/*   Updated: 2022/04/15 15:43:54 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:08:25 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	*handle_one_philosopher(t_philo *philo)
 	pthread_mutex_lock(&philo->control->forks[philo->right_fork]);
 	status_routine(philo, get_current_time(), "has taken a fork");
 	pthread_mutex_unlock(&philo->control->forks[philo->right_fork]);
-	status_routine(philo, get_current_time(),"died");
+	status_routine(philo, get_current_time(), "died");
 	philo->control->is_dead = TRUE;
 	return (NULL);
 }

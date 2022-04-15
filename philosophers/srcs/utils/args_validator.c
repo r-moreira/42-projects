@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 01:00:48 by romoreir          #+#    #+#             */
-/*   Updated: 2022/04/15 01:42:22 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:08:40 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_bool	is_number_of_philos_valid(char **argv)
 
 t_bool	is_number_of_arguments_valid(int argc)
 {
-
 	if (argc != 5 && argc != 6)
 	{
 		printf("%s\n", ERR_INVALID_ARGS);

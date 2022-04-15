@@ -6,13 +6,13 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 22:35:50 by romoreir          #+#    #+#             */
-/*   Updated: 2022/04/15 15:36:51 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:07:24 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
-static t_bool is_philo_dead(t_control *control, int philo_id)
+static t_bool	is_philo_dead(t_control *control, int philo_id)
 {
 	int		ms_without_eating;
 	int		ms_last_meal;
@@ -30,7 +30,7 @@ static t_bool is_philo_dead(t_control *control, int philo_id)
 	return (FALSE);
 }
 
-static t_bool is_all_philosophers_full_up(t_control *control)
+static t_bool	is_all_philosophers_full_up(t_control *control)
 {
 	if (control->required_meals_count == control->philosopher_number)
 	{
@@ -40,7 +40,7 @@ static t_bool is_all_philosophers_full_up(t_control *control)
 	return (FALSE);
 }
 
-static t_bool is_philosopher_full_up(t_control *control, int philo_id)
+static t_bool	is_philosopher_full_up(t_control *control, int philo_id)
 {
 	if (control->philo[philo_id].current_meals_count == control->required_meals
 		&& control->required_meals != -1)

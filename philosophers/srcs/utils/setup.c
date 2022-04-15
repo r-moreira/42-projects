@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 00:08:00 by romoreir          #+#    #+#             */
-/*   Updated: 2022/04/15 14:47:16 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:09:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ static void	setup_controller_utils(t_control *control)
 	control->forks = NULL;
 	control->required_meals_count = 0;
 	control->ms_start_meal = get_current_time();
-	control->forks = malloc(control->philosopher_number * sizeof(pthread_mutex_t));
+	control->forks = malloc(
+			control->philosopher_number * sizeof(pthread_mutex_t));
 	control->philo = malloc(sizeof(t_philo) * control->philosopher_number);
 }
 
-static void setup_args(t_control *control, int argc, char **argv)
+static void	setup_args(t_control *control, int argc, char **argv)
 {
 	control->required_meals = -1;
 	control->philosopher_number = ft_atoi(argv[1]);
@@ -52,7 +53,8 @@ static void setup_args(t_control *control, int argc, char **argv)
 	if (argc > 5)
 		control->required_meals = ft_atoi(argv[5]);
 }
-void setup(t_control *control, int argc, char **argv)
+
+void	setup(t_control *control, int argc, char **argv)
 {
 	setup_args(control, argc, argv);
 	setup_controller_utils(control);

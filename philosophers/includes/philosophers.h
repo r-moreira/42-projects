@@ -6,7 +6,7 @@
 /*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 19:19:24 by romoreir          #+#    #+#             */
-/*   Updated: 2022/04/15 15:34:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:07:07 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct s_philo
 	int				id;
 	int				left_fork;
 	int				right_fork;
-	long 			ms_last_meal;
+	long			ms_last_meal;
 	int				current_meals_count;
 	pthread_t		thread;
 	t_control		*control;
@@ -45,7 +45,7 @@ struct s_philo
 
 struct s_control
 {
-	long 			ms_start_meal;
+	long			ms_start_meal;
 	int				ms_to_die;
 	int				ms_to_eat;
 	int				ms_to_sleep;
@@ -60,7 +60,7 @@ struct s_control
 	pthread_mutex_t	out;
 };
 
-void 		setup(t_control *control, int argc, char **argv);
+void		setup(t_control *control, int argc, char **argv);
 t_bool		is_args_valid(int argc, char **argv);
 void		*monitor_routine(void *param);
 void		*philosophers_routine(void *param);
