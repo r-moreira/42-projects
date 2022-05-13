@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include "Fixed.h"
 
-int main( void ) {
+int main( ) {
 	Fixed a;
 	Fixed b( a );
 	Fixed c;
 	
-	cc = b;
+	c = b;
 	std::cout << a.getRawBits() << std::endl;
 	std::cout << b.getRawBits() << std::endl;
 	std::cout << c.getRawBits() << std::endl;
