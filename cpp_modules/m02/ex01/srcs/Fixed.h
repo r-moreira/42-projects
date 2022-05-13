@@ -10,17 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Fixed.h"
+#ifndef M02_FIXED_H
+#define M02_FIXED_H
 
-int main( ) {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-	
-	c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return 0;
-}
+#include <iostream>
+
+class Fixed {
+public:
+    Fixed();
+
+    ~Fixed();
+
+    Fixed(const Fixed &origin);
+
+    int getRawBits() const;
+
+    void setRawBits(int raw);
+
+    Fixed &operator=(const Fixed &origin);
+
+private:
+    int value{};
+    static const int bits = 8;
+};
+
+#endif //M02_FIXED_H
