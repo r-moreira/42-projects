@@ -31,7 +31,7 @@ public:
 
 private:
     int value{};
-    static const int n_bits = 8;
+    static const int bits = 8;
 };
 
 #endif //M02_FIXED_H
