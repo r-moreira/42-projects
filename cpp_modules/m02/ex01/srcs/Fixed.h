@@ -14,6 +14,7 @@
 #define M02_FIXED_H
 
 #include <iostream>
+#include <cmath>
 
 class Fixed {
 public:
@@ -23,15 +24,26 @@ public:
 
     Fixed(const Fixed &origin);
 
+    Fixed(const int param);
+
+    Fixed(const float param);
+
     int getRawBits() const;
 
     void setRawBits(int raw);
 
+    float toFloat() const;
+
+    int toInt() const;
+
     Fixed &operator=(const Fixed &origin);
 
+
 private:
-    int value{};
-    static const int bits = 8;
+    int _value{};
+    static const int _bits = 8;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &origin);
 
 #endif //M02_FIXED_H
