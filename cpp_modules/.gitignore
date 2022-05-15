@@ -1,5 +1,5 @@
 .idea
-cmake-build-debug
+cmake-build-debug*
 CMakeLists.txt
 
 m00/ex00/objs/*.o
@@ -29,8 +29,8 @@ m02/ex02/objs/*.o
 m02/ex02/fixed
 
 m03/ex00/objs/*.o
-m03/ex00/fixed
+m03/ex00/claptrap
 m03/ex01/objs/*.o
-m03/ex01/fixed
+m03/ex01/claptrap
 m03/ex02/objs/*.o
-m03/ex02/fixed
+m03/ex02/claptrap
