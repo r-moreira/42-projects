@@ -38,6 +38,41 @@ public:
 
     Fixed &operator=(const Fixed &origin);
 
+    bool operator>(const Fixed &origin) const;
+
+    bool operator<(const Fixed &origin) const;
+
+    bool operator>=(const Fixed &origin) const;
+
+    bool operator<=(const Fixed &origin) const;
+
+    bool operator==(const Fixed &origin) const;
+
+    bool operator!=(const Fixed &origin) const;
+
+    Fixed operator+(const Fixed &origin) const;
+
+    Fixed operator-(const Fixed &origin) const;
+
+    Fixed operator*(const Fixed &origin) const;
+
+    Fixed operator/(const Fixed &origin) const;
+
+    Fixed operator--(int);
+
+    Fixed &operator--();
+
+    Fixed operator++(int);
+
+    Fixed &operator++();
+
+    static Fixed &min(Fixed &f1, Fixed &f2);
+
+    static Fixed &max(Fixed &f1, Fixed &f2);
+
+    static const Fixed &min(Fixed const &f1, Fixed const &f2);
+
+    static const Fixed &max(Fixed const &f1, Fixed const &f2);
 
 private:
     int _value{};
