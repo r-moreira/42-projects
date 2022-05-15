@@ -13,7 +13,7 @@ $(NAME):			$(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 
 $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
