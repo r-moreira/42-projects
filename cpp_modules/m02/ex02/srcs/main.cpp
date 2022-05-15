@@ -28,7 +28,9 @@ int main() {
 
     Fixed c(42);
     Fixed d(42.21f);
+
     std::cout << std::endl << "c: " << c << " d: " << d << std::endl;
+
     std::cout << "c / d: " << c / d << std::endl;
     std::cout << "c * d: " << c * d << std::endl;
     std::cout << "c + d: " << c + d << std::endl;
