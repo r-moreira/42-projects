@@ -26,10 +26,20 @@ private:
 
 public:
     ClapTrap();
+
     ClapTrap(std::string _name);
+
     ClapTrap(const ClapTrap &ct);
-    ~ClapTrap();
-    ClapTrap& operator=(const ClapTrap& ct);
+
+    virtual ~ClapTrap();
+
+    void attack(std::string const &target);
+
+    void takeDamage(unsigned int amount);
+
+    void beRepaired(unsigned int amount);
+
+    ClapTrap &operator=(const ClapTrap &ct);
 };
 
 #endif //M03_CLAPTRAP_H

@@ -14,8 +14,20 @@
 #include "ClapTrap.h"
 
 int main() {
-    ClapTrap ct = ClapTrap("R2D2");
+    ClapTrap r2d2("R2D2");
+    ClapTrap c3p0("C3P0");
 
-    std::cout << &ct << std::endl;
-    return 0;
+    std::cout << std::endl;
+
+    r2d2.attack("C3P0");
+    c3p0.takeDamage(0);
+    c3p0.beRepaired(4);
+
+    std::cout << std::endl;
+
+    c3p0.attack("R2D2");
+    r2d2.takeDamage(0);
+    r2d2.beRepaired(2);
+
+    std::cout << std::endl;
 }
