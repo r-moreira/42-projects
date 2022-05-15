@@ -23,4 +23,38 @@ int main() {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     std::cout << Fixed::max(a, b) << std::endl;
+
+    std::cout << "\nAnother tests" << std::endl;
+
+    Fixed c(42);
+    Fixed d(42.21f);
+    std::cout << std::endl << "c: " << c << " d: " << d << std::endl;
+    std::cout << "c / d: " << c / d << std::endl;
+    std::cout << "c * d: " << c * d << std::endl;
+    std::cout << "c + d: " << c + d << std::endl;
+    std::cout << "c - d: " << c - d << std::endl;
+
+    if (c < d) {
+        std::cout << "c < d == true" << std::endl;
+    }
+
+    if (!(c > d)) {
+        std::cout << "c > d == false" << std::endl;
+    }
+
+    if ((c <= 42)) {
+        std::cout << "c <= d == true" << std::endl;
+    }
+
+    if (c >= 42) {
+        std::cout << "c >= d == true" << std::endl;
+    }
+
+    if (c != d) {
+        std::cout << "c != d == true" << std::endl;
+    }
+
+    if (!(c == d)) {
+        std::cout << "c == d false" << std::endl;
+    }
 }
