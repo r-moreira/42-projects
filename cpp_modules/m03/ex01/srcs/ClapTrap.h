@@ -10,8 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef M03_CLAPTRAP_H
+#define M03_CLAPTRAP_H
+
+#include <string>
 #include <iostream>
 
-int main() {
-    return 0;
-}
+class ClapTrap {
+
+private:
+    std::string _name;
+    unsigned int _hitPoints;
+    unsigned int _energyPoints;
+    unsigned int _attackDamage;
+
+public:
+    ClapTrap();
+
+    ClapTrap(std::string _name);
+
+    ClapTrap(const ClapTrap &ct);
+
+    virtual ~ClapTrap();
+
+    void attack(std::string const &target);
+
+    void takeDamage(unsigned int amount);
+
+    void beRepaired(unsigned int amount);
+
+    ClapTrap &operator=(const ClapTrap &ct);
+};
+
+#endif //M03_CLAPTRAP_H

@@ -99,4 +99,3 @@ void ClapTrap::beRepaired(unsigned int amount) {
 
     std::cout << "ClapTrap " << _name << " is now at " << _hitPoints << " hit points" << std::endl;
 }
-
