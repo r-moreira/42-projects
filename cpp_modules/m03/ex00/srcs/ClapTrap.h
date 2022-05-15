@@ -10,12 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef M03_CLAPTRAP_H
+#define M03_CLAPTRAP_H
+
+#include <string>
 #include <iostream>
-#include "ClapTrap.h"
 
-int main() {
-    ClapTrap ct = ClapTrap("R2D2");
+class ClapTrap {
 
-    std::cout << &ct << std::endl;
-    return 0;
-}
+private:
+    std::string _name;
+    unsigned int _hitPoints;
+    unsigned int _energyPoints;
+    unsigned int _attackDamage;
+
+public:
+    ClapTrap();
+    ClapTrap(std::string _name);
+    ClapTrap(const ClapTrap &ct);
+    ~ClapTrap();
+    ClapTrap& operator=(const ClapTrap& ct);
+};
+
+#endif //M03_CLAPTRAP_H
