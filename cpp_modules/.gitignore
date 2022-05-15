@@ -24,8 +24,8 @@ m01/ex05/complain
 m02/ex00/objs/*.o
 m02/ex00/fixed
 m02/ex01/objs/*.o
-m02/ex01/bin
+m02/ex01/fixed
 m02/ex02/objs/*.o
-m02/ex02/bin
+m02/ex02/fixed
 
 m03/
