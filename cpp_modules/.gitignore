@@ -31,6 +31,6 @@ m02/ex02/fixed
 m03/ex00/objs/*.o
 m03/ex00/claptrap
 m03/ex01/objs/*.o
-m03/ex01/claptrap
+m03/ex01/scavtrap
 m03/ex02/objs/*.o
 m03/ex02/claptrap
