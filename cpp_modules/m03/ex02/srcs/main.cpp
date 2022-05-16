@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.h"
 #include "ScavTrap.h"
+#include "FragTrap.h"
 
 int main() {
     ScavTrap r2d2("R2D2");
-    ClapTrap c3p0("C3P0");
+    FragTrap c3p0("C3P0");
 
-    r2d2.attack("r2d2");
+    c3p0.highFivesGuys();
+    r2d2.attack("C3P0");
     c3p0.takeDamage(r2d2.getAttackDamage());
     r2d2.guardGate();
 }

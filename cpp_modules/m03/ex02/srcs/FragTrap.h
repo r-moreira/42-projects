@@ -13,10 +13,23 @@
 #ifndef M03_FRAGTRAP_H
 #define M03_FRAGTRAP_H
 
+#include <string>
+#include "ClapTrap.h"
 
-class FragTrap {
+class FragTrap : public ClapTrap {
 
+public:
+    FragTrap();
+
+    FragTrap(std::string name);
+
+    FragTrap(FragTrap const &fragTrap);
+
+    ~FragTrap();
+
+    FragTrap &operator=(FragTrap const &fragTrap);
+
+    void highFivesGuys();
 };
-
 
 #endif //M03_FRAGTRAP_H
