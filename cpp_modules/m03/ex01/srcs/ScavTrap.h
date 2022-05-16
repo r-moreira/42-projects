@@ -14,8 +14,24 @@
 #define M03_SCAVTRAP_H
 
 
-class ScavTrap {
+#include "ClapTrap.h"
 
+class ScavTrap : public ClapTrap {
+
+public:
+    ScavTrap();
+
+    ScavTrap(std::string name);
+
+    ScavTrap(ScavTrap const &scavTrap);
+
+    ~ScavTrap();
+
+    ScavTrap &operator=(ScavTrap const &scavTrap);
+
+    void attack(std::string const &target);
+
+    void guardGate() const;
 };
 
 
