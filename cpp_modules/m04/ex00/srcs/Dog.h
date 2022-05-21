@@ -14,6 +14,7 @@
 #define M04_DOG_H
 
 #include "Animal.h"
+#include <iostream>
 
 class Dog : public Animal {
 public:
@@ -25,7 +26,7 @@ public:
 
     Dog &operator=(const Dog &dog);
 
-    void makeSound() const override;
+    void makeSound() const;
 };
 
 #endif //M04_DOG_H

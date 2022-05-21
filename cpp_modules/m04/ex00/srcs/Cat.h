@@ -14,6 +14,7 @@
 #define M04_CAT_H
 
 #include "Animal.h"
+#include <iostream>
 
 class Cat : public Animal {
 public:
@@ -25,7 +26,7 @@ public:
 
     Cat &operator=(const Cat &cat);
 
-    void makeSound() const override;
+    void makeSound() const;
 };
 
 #endif //M04_CAT_H
