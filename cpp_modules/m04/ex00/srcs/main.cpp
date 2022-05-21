@@ -13,6 +13,8 @@
 #include "Animal.h"
 #include "Dog.h"
 #include "Cat.h"
+#include "WrongAnimal.h"
+#include "WrongCat.h"
 
 int main() {
     const Animal *meta = new Animal();
@@ -24,6 +26,15 @@ int main() {
     j->makeSound();
     meta->makeSound();
 
-    //implement more tests
+    //more tests
+    const WrongAnimal *newMeta = new WrongCat();
+    std::cout << newMeta->getType() << " " << std::endl;
+    newMeta->makeSound();
+
+    delete meta;
+    delete j;
+    delete i;
+    delete newMeta;
+
     return 0;
 }
