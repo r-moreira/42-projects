@@ -25,7 +25,7 @@ public:
 
     Dog &operator=(const Dog &dog);
 
-    void makeSound() const;
+    void makeSound() const override;
 };
 
 #endif //M04_DOG_H

@@ -25,7 +25,7 @@ public:
 
     Cat &operator=(const Cat &cat);
 
-    void makeSound() const;
+    void makeSound() const override;
 };
 
 #endif //M04_CAT_H

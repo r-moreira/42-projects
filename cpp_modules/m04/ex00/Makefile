@@ -4,7 +4,9 @@ CFLAGS 				= -Wall -Wextra -Werror -std=c++98
 OBJS_DIR			= objs
 OBJS				= $(patsubst $(SRCS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))
 SRCS_DIR			= srcs
-SRCS 				= ${SRCS_DIR}/main.cpp
+SRCS 				= ${SRCS_DIR}/main.cpp\
+					= ${SRCS_DIR}/Cat.cpp\
+					= ${SRCS_DIR}/Dog.cpp
 
 all:				$(NAME)
 

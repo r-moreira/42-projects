@@ -22,9 +22,9 @@ protected:
 public:
     Animal();
 
-    Animal(const Animal &animal);
-
     virtual ~Animal();
+
+    Animal(const Animal &animal);
 
     Animal &operator=(const Animal &animal);
 
