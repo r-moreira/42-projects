@@ -13,21 +13,27 @@
 #include "Dog.h"
 
 Dog::Dog() : Animal() {
-    _type = "Dog";
     std::cout << "Dog constructor called" << std::endl;
+    _type = "Dog";
+    _brain = new Brain();
 }
 
 Dog::~Dog() {
     std::cout << "Dog destructor called" << std::endl;
+    delete _brain;
 }
 
 Dog::Dog(const Dog &dog) : Animal(dog) {
-    _type = dog._type;
     std::cout << "Dog copy constructor called" << std::endl;
+    *this = dog;
 }
 
 Dog &Dog::operator=(const Dog &dog) {
+    if (this == &dog) {
+        return *this;
+    }
     _type = dog._type;
+    _brain = new Brain(*dog.getBrain());
     return *this;
 }
 
@@ -35,11 +41,6 @@ void Dog::makeSound() const {
     std::cout << "AU AU!!!" << std::endl;
 }
 
-
-
-
-
-
-
-
-
+Brain *Dog::getBrain() const {
+    return _brain;
+}

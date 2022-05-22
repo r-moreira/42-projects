@@ -14,6 +14,7 @@
 #define M04_DOG_H
 
 #include "Animal.h"
+#include "Brain.h"
 #include <iostream>
 
 class Dog : public Animal {
@@ -27,6 +28,11 @@ public:
     Dog &operator=(const Dog &dog);
 
     void makeSound() const;
+
+    Brain *getBrain() const;
+
+private:
+    Brain *_brain;
 };
 
 #endif //M04_DOG_H

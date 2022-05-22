@@ -14,6 +14,7 @@
 #define M04_CAT_H
 
 #include "Animal.h"
+#include "Brain.h"
 #include <iostream>
 
 class Cat : public Animal {
@@ -27,6 +28,11 @@ public:
     Cat &operator=(const Cat &cat);
 
     void makeSound() const;
+
+    Brain *getBrain() const;
+
+private:
+    Brain *_brain;
 };
 
 #endif //M04_CAT_H

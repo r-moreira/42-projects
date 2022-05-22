@@ -13,28 +13,26 @@
 #include "Animal.h"
 #include "Dog.h"
 #include "Cat.h"
-#include "WrongAnimal.h"
-#include "WrongCat.h"
+#include <iostream>
 
 int main() {
-    const Animal *meta = new Animal();
     const Animal *j = new Dog();
     const Animal *i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound(); //will output the cat sound!
-    j->makeSound();
-    meta->makeSound();
-
-    //more tests
-    const WrongAnimal *newMeta = new WrongCat();
-    std::cout << newMeta->getType() << " " << std::endl;
-    newMeta->makeSound();
-
-    delete meta;
-    delete j;
+    delete j;//should not create a leak
     delete i;
-    delete newMeta;
 
+    //More tests
+    std::cout << std::endl;
+    const Animal *animals[4];
+    for (int len = 0; len < 4; len++) {
+        if (len % 2)
+            animals[len] = new Dog();
+        else
+            animals[len] = new Cat();
+    }
+    std::cout << std::endl;
+    for (int len = 0; len < 4; len++) {
+        delete animals[len];
+    }
     return 0;
 }
