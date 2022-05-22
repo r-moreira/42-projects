@@ -10,33 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.h"
 #include "Dog.h"
-#include "Cat.h"
-#include <iostream>
 
-int main() {
+Dog::Dog() : Animal() {
+    std::cout << "Dog constructor called" << std::endl;
+    _type = "Dog";
+    _brain = new Brain();
+}
 
-    //Abstract class test
-    //const Animal *animal = new Animal();
+Dog::~Dog() {
+    std::cout << "Dog destructor called" << std::endl;
+    delete _brain;
+}
 
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    delete j;//should not create a leak
-    delete i;
+Dog::Dog(const Dog &dog) : Animal(dog) {
+    std::cout << "Dog copy constructor called" << std::endl;
+    *this = dog;
+}
 
-    //More tests
-    std::cout << std::endl;
-    const Animal *animals[4];
-    for (int len = 0; len < 4; len++) {
-        if (len % 2)
-            animals[len] = new Dog();
-        else
-            animals[len] = new Cat();
+Dog &Dog::operator=(const Dog &dog) {
+    if (this == &dog) {
+        return *this;
     }
-    std::cout << std::endl;
-    for (int len = 0; len < 4; len++) {
-        delete animals[len];
-    }
-    return 0;
+    _type = dog._type;
+    _brain = new Brain(*dog.getBrain());
+    return *this;
+}
+
+void Dog::makeSound() const {
+    std::cout << "AU AU!!!" << std::endl;
+}
+
+Brain *Dog::getBrain() const {
+    return _brain;
 }

@@ -10,33 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef M04_CAT_H
+#define M04_CAT_H
+
 #include "Animal.h"
-#include "Dog.h"
-#include "Cat.h"
+#include "Brain.h"
 #include <iostream>
 
-int main() {
+class Cat : public Animal {
+public:
+    Cat();
 
-    //Abstract class test
-    //const Animal *animal = new Animal();
+    Cat(const Cat &cat);
 
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    delete j;//should not create a leak
-    delete i;
+    ~Cat();
 
-    //More tests
-    std::cout << std::endl;
-    const Animal *animals[4];
-    for (int len = 0; len < 4; len++) {
-        if (len % 2)
-            animals[len] = new Dog();
-        else
-            animals[len] = new Cat();
-    }
-    std::cout << std::endl;
-    for (int len = 0; len < 4; len++) {
-        delete animals[len];
-    }
-    return 0;
-}
+    Cat &operator=(const Cat &cat);
+
+    void makeSound() const;
+
+    Brain *getBrain() const;
+
+private:
+    Brain *_brain;
+};
+
+#endif //M04_CAT_H

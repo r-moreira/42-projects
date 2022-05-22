@@ -11,32 +11,38 @@
 /* ************************************************************************** */
 
 #include "Animal.h"
-#include "Dog.h"
-#include "Cat.h"
-#include <iostream>
 
-int main() {
-
-    //Abstract class test
-    //const Animal *animal = new Animal();
-
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    delete j;//should not create a leak
-    delete i;
-
-    //More tests
-    std::cout << std::endl;
-    const Animal *animals[4];
-    for (int len = 0; len < 4; len++) {
-        if (len % 2)
-            animals[len] = new Dog();
-        else
-            animals[len] = new Cat();
-    }
-    std::cout << std::endl;
-    for (int len = 0; len < 4; len++) {
-        delete animals[len];
-    }
-    return 0;
+Animal::Animal() {
+    std::cout << "Animal constructor called" << std::endl;
 }
+
+Animal::~Animal() {
+    std::cout << "Animal destructor called" << std::endl;
+}
+
+Animal::Animal(const Animal &animal) {
+    std::cout << "Animal copy constructor called" << std::endl;
+    _type = animal._type;
+}
+
+Animal &Animal::operator=(const Animal &animal) {
+    _type = animal._type;
+    return *this;
+}
+
+std::string const &Animal::getType() const {
+    return _type;
+}
+
+void Animal::makeSound() const {
+    std::cout << "UNKNOWN" << std::endl;
+}
+
+
+
+
+
+
+
+
+
