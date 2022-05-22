@@ -41,3 +41,10 @@ m04/ex01/objs/*.o
 m04/ex01/animal
 m04/ex02/objs/*.o
 m04/ex02/animal
+
+m04/ex00/objs/*.o
+m04/ex00/bin
+m04/ex01/objs/*.o
+m04/ex01/bin
+m04/ex02/objs/*.o
+m04/ex02/bin
