@@ -55,21 +55,22 @@ void Bureaucrat::signForm(Form &form) {
         std::cerr << this->_name
                   << " cannot sign "
                   << form.getName()
-                  << " because "
+                  << " because: "
                   << e.what()
                   << std::endl;
         return;
     }
     std::cout << this->_name
-              << " signs "
+              << " signed "
               << form.getName()
-              << std::endl
               << std::endl;
 }
 
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat &bureaucrat) {
-    out << "Bureaucrat - _name: " << bureaucrat.getName() << ", grade: " << bureaucrat.getGrade();
+    out << "======== Bureaucrat ========" << std::endl
+        << "Name:\t" << bureaucrat.getName() << std::endl
+        << "Grade:\t" << bureaucrat.getGrade();
     return (out);
 }
 

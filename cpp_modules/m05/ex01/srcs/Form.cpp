@@ -54,11 +54,10 @@ unsigned int Form::getExecutionGrade() const {
 }
 
 std::ostream &operator<<(std::ostream &out, Form &form) {
-    out << "========== FORM ==========" << std::endl
+    out << "========== FORM ============" << std::endl
         << "Form name:\t" << form.getName() << std::endl
         << "Sign status:\t" << form.isSigned() << std::endl
         << "Sign grade:\t" << form.getSignGrade() << std::endl
-        << "Exec grade:\t" << form.getExecutionGrade() << std::endl
-        << "==========================";
+        << "Exec grade:\t" << form.getExecutionGrade();
     return (out);
 }

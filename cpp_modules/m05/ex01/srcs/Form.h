@@ -15,7 +15,7 @@ class Form {
         ~GradeTooHighException() throw() {}
 
         const char *what() const throw() {
-            return ("Grade must not exceed level 1");
+            return ("Grade too high");
         }
 
     private:
@@ -29,7 +29,7 @@ class Form {
         ~GradeTooLowException() throw() {}
 
         const char *what() const throw() {
-            return ("Grade must not going below level 150");
+            return ("Grade too low");
         }
 
     private:

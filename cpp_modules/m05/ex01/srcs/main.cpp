@@ -2,37 +2,29 @@
 #include "Form.h"
 
 int main() {
-    Bureaucrat bureaucrat1("Number One", 149);
-    Bureaucrat bureaucrat2("Number Two", 2);
+    Bureaucrat foo("Foo", 100);
+    Bureaucrat bar("Bar", 21);
+    Form form("Random Bureaucrat Things", 42, 21);
 
-    std::cout << "-------- Decrement Test ------------- " << std::endl;
+    std::cout << foo << std::endl;
+    std::cout << bar << std::endl;
+    std::cout << form << std::endl;
+
+    std::cout << "-------- Form Grade Too Low Test -------------" << std::endl;
     try {
-        std::cout << bureaucrat1 << std::endl;
-        bureaucrat1.decrementLevel();
-        std::cout << bureaucrat1 << std::endl;
-        bureaucrat1.decrementLevel();
-        std::cout << bureaucrat1 << std::endl;
-    }
-    catch (const std::exception &e) {
-        std::cout << e.what() << std::endl;
+        foo.signForm(form);
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
     }
 
-    std::cout << "-------- Increment Test ------------- " << std::endl;
+    std::cout << "-------- Success signing the form ------------" << std::endl;
     try {
-        std::cout << bureaucrat2 << std::endl;
-        bureaucrat2.incrementLevel();
-        std::cout << bureaucrat2 << std::endl;
-        bureaucrat2.incrementLevel();
-        std::cout << bureaucrat2 << std::endl;
-    }
-    catch (const std::exception &e) {
-        std::cout << e.what() << std::endl;
+        bar.signForm(form);
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
     }
 
-    std::cout << "-------- Bureaucrat State ------------- " << std::endl;
-    std::cout << bureaucrat1 << std::endl;
-    std::cout << bureaucrat2 << std::endl;
-
+    std::cout << form << std::endl;
 
     return 0;
 }
