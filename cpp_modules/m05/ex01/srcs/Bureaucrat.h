@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include "Form.h"
+
+class Form;
 
 class Bureaucrat {
 
@@ -49,7 +52,7 @@ public:
     ~Bureaucrat();
 
     Bureaucrat &operator=(Bureaucrat const &bureaucrat);
- 
+
     const std::string &getName() const;
 
     unsigned int getGrade() const;
@@ -57,6 +60,8 @@ public:
     void incrementLevel() throw(GradeTooHighException);
 
     void decrementLevel() throw(GradeTooLowException);
+
+    void signForm(Form &form);
 };
 
 std::ostream &operator<<(std::ostream &s, Bureaucrat &bureaucrat);

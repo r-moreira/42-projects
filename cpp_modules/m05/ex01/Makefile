@@ -1,11 +1,12 @@
-NAME	 			= bureaucrat
+NAME	 			= form
 CC 					= c++
 CFLAGS 				= -Wall -Wextra -Werror -std=c++98
 OBJS_DIR			= objs
 OBJS				= $(patsubst $(SRCS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))
 SRCS_DIR			= srcs
 SRCS 				= ${SRCS_DIR}/main.cpp\
-					  ${SRCS_DIR}/Bureaucrat.cpp
+					  ${SRCS_DIR}/Bureaucrat.cpp\
+					  ${SRCS_DIR}/Form.cpp
 
 all:				$(NAME)
 
