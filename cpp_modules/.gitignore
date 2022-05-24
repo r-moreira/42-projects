@@ -47,4 +47,6 @@ m05/ex00/bureaucrat
 m05/ex01/objs/*.o
 m05/ex01/form
 m05/ex02/objs/*.o
-m05/ex02/bureaucrat
+m05/ex02/form
+m05/ex03/objs/*.o
+m05/ex03/form
