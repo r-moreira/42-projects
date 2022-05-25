@@ -43,7 +43,6 @@ public:
         std::string _msg;
     };
 
-
 public:
     Bureaucrat();
 

@@ -37,12 +37,11 @@ void Form::beSigned(const Bureaucrat &bureaucrat) throw(GradeTooLowException) {
     }
 }
 
-void Form::execute(Bureaucrat const &bureaucrat) const
-{
-    if (bureaucrat.getGrade() >= this->getSignGrade()) {
+void Form::validateExecution(Bureaucrat const &bureaucrat) const throw(GradeTooLowException, NoSignatureException) {
+    if (bureaucrat.getGrade() > getExecutionGrade()) {
         throw Form::GradeTooLowException();
     }
-    if (!_signed){
+    if (!_signed) {
         throw Form::NoSignatureException();
     }
 }
@@ -61,6 +60,14 @@ unsigned int Form::getSignGrade() const {
 
 unsigned int Form::getExecutionGrade() const {
     return _executionGrade;
+}
+
+const std::string &Form::getTarget() const {
+    return _target;
+}
+
+void Form::setTarget(const std::string &target) {
+    _target = target;
 }
 
 std::ostream &operator<<(std::ostream &out, Form &form) {

@@ -10,10 +10,6 @@ class Bureaucrat;
 class Form {
     class GradeTooHighException : public std::exception {
     public:
-        GradeTooHighException() {}
-
-        ~GradeTooHighException() throw() {}
-
         const char *what() const throw() {
             return ("Grade too high");
         }
@@ -24,10 +20,6 @@ class Form {
 
     class GradeTooLowException : public std::exception {
     public:
-        GradeTooLowException() {}
-
-        ~GradeTooLowException() throw() {}
-
         const char *what() const throw() {
             return ("Grade too low");
         }

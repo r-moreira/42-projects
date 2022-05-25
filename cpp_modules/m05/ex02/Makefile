@@ -6,7 +6,10 @@ OBJS				= $(patsubst $(SRCS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))
 SRCS_DIR			= srcs
 SRCS 				= ${SRCS_DIR}/main.cpp\
 					  ${SRCS_DIR}/Bureaucrat.cpp\
-					  ${SRCS_DIR}/Form.cpp
+					  ${SRCS_DIR}/Form.cpp\
+					  ${SRCS_DIR}/PresidentialPardonForm.cpp\
+					  ${SRCS_DIR}/RobotomyRequestForm.cpp\
+					  ${SRCS_DIR}/ShrubberyCreationForm.cpp
 
 all:				$(NAME)
 

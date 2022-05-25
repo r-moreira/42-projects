@@ -23,11 +23,10 @@ protected:
             return ("Grade too low");
         }
     };
-    class NoSignatureException : public std::exception
-    {
+
+    class NoSignatureException : public std::exception {
     public:
-        virtual const char* what() const throw()
-        {
+        virtual const char *what() const throw() {
             return ("No signature to execute this operation");
         }
     };
@@ -38,6 +37,7 @@ private:
     bool _signed;
     const unsigned int _signGrade;
     const unsigned int _executionGrade;
+    std::string _target;
 
 public:
     Form();
@@ -59,6 +59,12 @@ public:
     unsigned int getSignGrade() const;
 
     unsigned int getExecutionGrade() const;
+
+    const std::string &getTarget() const;
+
+    void setTarget(const std::string &target);
+
+    void validateExecution(Bureaucrat const &bureaucrat) const throw(GradeTooLowException, NoSignatureException);
 
     virtual void execute(Bureaucrat const &executor) const = 0;
 };

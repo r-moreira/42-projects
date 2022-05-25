@@ -17,10 +17,6 @@ public:
 
     class GradeTooHighException : public std::exception {
     public:
-        GradeTooHighException() {}
-
-        ~GradeTooHighException() throw() {}
-
         const char *what() const throw() {
             return ("Grade must not exceed level 1");
         }
@@ -31,10 +27,6 @@ public:
 
     class GradeTooLowException : public std::exception {
     public:
-        GradeTooLowException() {}
-
-        ~GradeTooLowException() throw() {}
-
         const char *what() const throw() {
             return ("Grade must not going below level 150");
         }
