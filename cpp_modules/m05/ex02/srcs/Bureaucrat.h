@@ -43,6 +43,8 @@ public:
         std::string _msg;
     };
 
+
+public:
     Bureaucrat();
 
     Bureaucrat(const std::string &name, int grade);
