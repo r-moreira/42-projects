@@ -3,37 +3,32 @@
 
 #include <string>
 #include <iostream>
-#include "Bureaucrat.h"
 
 class Bureaucrat;
 
 class Form {
+
+protected:
     class GradeTooHighException : public std::exception {
     public:
-        GradeTooHighException() {}
-
-        ~GradeTooHighException() throw() {}
-
-        const char *what() const throw() {
+        virtual const char *what() const throw() {
             return ("Grade too high");
         }
-
-    private:
-        std::string _msg;
     };
 
     class GradeTooLowException : public std::exception {
     public:
-        GradeTooLowException() {}
-
-        ~GradeTooLowException() throw() {}
-
-        const char *what() const throw() {
+        virtual const char *what() const throw() {
             return ("Grade too low");
         }
-
-    private:
-        std::string _msg;
+    };
+    class NoSignatureException : public std::exception
+    {
+    public:
+        virtual const char* what() const throw()
+        {
+            return ("No signature to execute this operation");
+        }
     };
 
 
@@ -50,7 +45,7 @@ public:
 
     Form(const Form &form);
 
-    ~Form();
+    virtual ~Form();
 
     Form &operator=(const Form &form);
 
@@ -63,6 +58,8 @@ public:
     unsigned int getSignGrade() const;
 
     unsigned int getExecutionGrade() const;
+
+    virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &s, Form &form);

@@ -62,6 +62,8 @@ public:
     void decrementLevel() throw(GradeTooLowException);
 
     void signForm(Form &form);
+
+    void executeForm(Form const &form);
 };
 
 std::ostream &operator<<(std::ostream &s, Bureaucrat &bureaucrat);

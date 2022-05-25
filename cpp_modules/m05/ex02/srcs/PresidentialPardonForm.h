@@ -1,0 +1,9 @@
+#ifndef M05_PRESIDENTIALPARDONFORM_H
+#define M05_PRESIDENTIALPARDONFORM_H
+
+class PresidentialPardonForm {
+
+};
+
+
+#endif //M05_PRESIDENTIALPARDONFORM_H
