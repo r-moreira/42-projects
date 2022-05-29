@@ -1,6 +1,7 @@
 #include "Bureaucrat.h"
 #include "PresidentialPardonForm.h"
 #include "RobotomyRequestForm.h"
+#include "ShrubberyCreationForm.h"
 
 void testForms(Form *form) {
     Bureaucrat foo("Foo", 149);
@@ -49,9 +50,15 @@ int main() {
 
     std::cout << std::endl << "========= RobotomyRequest Form Tests ==========" << std::endl << std::endl;
 
-    RobotomyRequestForm robotomyRequestForm("Thud");
+    RobotomyRequestForm robotomyRequestForm("Thud2");
     Form *form2 = &robotomyRequestForm;
     testForms(form2);
+
+    std::cout << std::endl << "========= ShrubberyCreation Form Tests ==========" << std::endl << std::endl;
+
+    ShrubberyCreationForm shrubberyCreationForm("Thud3");
+    Form *form3 = &shrubberyCreationForm;
+    testForms(form3);
 
     return 0;
 }

@@ -14,7 +14,6 @@ private:
         }
     };
 
-
 public:
 
     RobotomyRequestForm();
@@ -26,7 +25,6 @@ public:
     ~RobotomyRequestForm();
 
     RobotomyRequestForm &operator=(const RobotomyRequestForm &robotomyRequestForm);
-
 
     void execute(Bureaucrat const &bureaucrat) const;
 };

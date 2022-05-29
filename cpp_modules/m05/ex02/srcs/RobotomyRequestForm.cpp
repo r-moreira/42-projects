@@ -23,7 +23,6 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &r
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat) const {
-
     try {
         Form::validateExecution(bureaucrat);
     } catch (const GradeTooHighException &e) {
