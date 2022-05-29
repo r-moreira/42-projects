@@ -5,9 +5,9 @@ PresidentialPardonForm::PresidentialPardonForm()
     setTarget("Unknown");
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
+PresidentialPardonForm::PresidentialPardonForm(const std::string &_target)
         : Form("PresidentialPardonForm", 25, 5) {
-    setTarget(target);
+    setTarget(_target);
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &presidentialPardonForm)
@@ -34,7 +34,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     setTarget(presidentialPardonForm.getTarget());
     return *this;
 }
-
 
 std::ostream &operator<<(std::ostream &out, PresidentialPardonForm const &presidentialPardonForm) {
     out << "========== FORM ============" << std::endl
