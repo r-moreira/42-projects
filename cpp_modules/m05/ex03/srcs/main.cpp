@@ -2,6 +2,7 @@
 #include "PresidentialPardonForm.h"
 #include "RobotomyRequestForm.h"
 #include "ShrubberyCreationForm.h"
+#include "Intern.h"
 
 void testForms(Form *form) {
     Bureaucrat foo("Foo", 149);
@@ -42,23 +43,46 @@ void testForms(Form *form) {
 
 int main() {
 
+    Intern intern;
+    Form *form;
+
     std::cout << "========= PresidentialPardonForm Tests ==========" << std::endl << std::endl;
 
-    PresidentialPardonForm presidentialPardonForm("Thud");
-    Form *form = &presidentialPardonForm;
-    testForms(form);
+    try {
+        form = intern.makeForm("presidential pardon", "thud");
+        testForms(form);
+        delete form;
+    } catch (std::exception const &e) {
+        std::cerr << e.what() << std::endl;
+    }
 
     std::cout << std::endl << "========= RobotomyRequest Form Tests ==========" << std::endl << std::endl;
 
-    RobotomyRequestForm robotomyRequestForm("Thud2");
-    Form *form2 = &robotomyRequestForm;
-    testForms(form2);
+    try {
+        form = intern.makeForm("presidential pardon", "thud2");
+        testForms(form);
+        delete form;
+    } catch (std::exception const &e) {
+        std::cerr << e.what() << std::endl;
+    }
 
     std::cout << std::endl << "========= ShrubberyCreation Form Tests ==========" << std::endl << std::endl;
 
-    ShrubberyCreationForm shrubberyCreationForm("Thud3");
-    Form *form3 = &shrubberyCreationForm;
-    testForms(form3);
+    try {
+        form = intern.makeForm("shrubbery creation", "thud3");
+        testForms(form);
+        delete form;
+    } catch (std::exception const &e) {
+        std::cerr << e.what() << std::endl;
+    }
 
+    std::cout << std::endl << "========= Intern Not Found Form Test ==========" << std::endl << std::endl;
+    try {
+        form = intern.makeForm("Unknown Form", "thud4");
+        testForms(form);
+        delete form;
+    } catch (std::exception const &e) {
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }
