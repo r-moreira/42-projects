@@ -2,6 +2,8 @@
 #define CONVERSION_H
 
 #include <string>
+#include <iostream>
+#include <cstdlib>
 
 class Conversion {
 

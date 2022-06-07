@@ -1,4 +1,4 @@
-NAME	 			= bin
+NAME	 			= conversion
 CC 					= c++
 CFLAGS 				= -Wall -Wextra -Werror -std=c++98
 OBJS_DIR			= objs

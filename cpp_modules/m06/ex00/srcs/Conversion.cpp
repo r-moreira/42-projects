@@ -1,4 +1,4 @@
-#include <iostream>
+
 #include "Conversion.h"
 
 Conversion::Conversion(const std::string& input): _input(input) {}
@@ -83,10 +83,10 @@ bool Conversion::isDouble() {
 }
 
 bool Conversion::isChar() {
-    if (_input.length() == 1 && std::isprint(_input[0])) {
+
+    if (((_input[0] >= '!' && _input[0] < '0') || (_input[0] > '9' && _input[0] <= '~')) && _input[1] == '\0') {
         return true;
     }
-    std::cout << "Error: The argument must be a displayable character" << std::endl;
     return false;
 }
 

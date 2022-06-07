@@ -66,6 +66,7 @@ int main(int argc, char **argv) {
     Conversion conversion(argv[1]);
 
     if (!conversion.validateInput()) {
+        std::cout << "Error: Invalid argument" << std::endl;
         return 1;
     }
 
