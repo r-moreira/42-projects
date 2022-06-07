@@ -60,7 +60,7 @@ private:
 
     bool isDouble();
 
-    bool isPrintableChar();
+    bool isPrintableNonNumericChar();
 
     bool isPrintableChar(char c);
 

@@ -18,7 +18,7 @@ Conversion &Conversion::operator=(const Conversion &conversion) {
 
 
 void Conversion::getType() throw(InvalidArgumentException) {
-    if (isPrintableChar()) {
+    if (isPrintableNonNumericChar()) {
         _type = CHAR;
     } else if (isInt()) {
         _type = INT;
@@ -171,7 +171,7 @@ bool Conversion::isDouble() {
     return dot == 1;
 }
 
-bool Conversion::isPrintableChar() {
+bool Conversion::isPrintableNonNumericChar() {
     if (((_input[0] >= '!' && _input[0] < '0') || (_input[0] > '9' && _input[0] <= '~')) && _input[1] == '\0') {
         return true;
     }
@@ -179,7 +179,7 @@ bool Conversion::isPrintableChar() {
 }
 
 bool Conversion::isPrintableChar(char c) {
-    if (((c >= '!' && c < '0') || (c > '9' && c <= '~')) && c == '\0') {
+    if (c >= '!' && c <= '~') {
         return true;
     }
     return false;
