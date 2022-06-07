@@ -65,8 +65,10 @@ int main(int argc, char **argv) {
 
     Conversion conversion(argv[1]);
 
-    if (!conversion.validateInput()) {
-        std::cout << "Error: Invalid argument" << std::endl;
+    try {
+        conversion.getType();
+    } catch (const std::exception &e) {
+        e.what();
         return 1;
     }
 
