@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/m06.dir/ex00/srcs/Conversion.cpp.o CMakeFiles/m06.dir/ex00/srcs/main.cpp.o  -o m06 
