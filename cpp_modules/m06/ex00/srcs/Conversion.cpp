@@ -32,27 +32,43 @@ void Conversion::getType() throw(InvalidArgumentException) {
 }
 
 void Conversion::display() {
+    char c;
+    int i;
+    float f;
+    double d;
 
     try {
-        std::cout << "char:   " << toChar() << std::endl;
+        c = toChar();
+        std::cout << "char:\t" << c << std::endl;
     } catch (const std::exception &e) {
-        std::cout << "char:    " << e.what() << std::endl;
+        std::cout << "char:\t" << e.what() << std::endl;
     }
 
     try {
-        std::cout << "int:\t" << toInt() << std::endl;
+        i = toInt();
+        std::cout << "int:\t" << i << std::endl;
     } catch (const std::exception &e) {
         std::cout << "int:\t" << e.what() << std::endl;
     }
 
     try {
-        std::cout << "float:\t" << toFloat() << std::endl;
+        if (!isPseudoLiteral()) {
+            f = toFloat();
+            std::cout << "float:\t" << f << std::endl;
+        } else {
+            std::cout << "float:\t" << handlePseudoLiteral() << std::endl;
+        }
     } catch (const std::exception &e) {
         std::cout << "float:\t" << e.what() << std::endl;
     }
 
     try {
-        std::cout << "double:\t" << toDouble() << std::endl;
+        if (!isPseudoLiteral()) {
+            d = toDouble();
+            std::cout << "double:\t" << d << std::endl;
+        } else {
+            std::cout << "double:\t" << handlePseudoLiteral() << std::endl;
+        }
     } catch (const std::exception &e) {
         std::cout << "double:\t" << e.what() << std::endl;
     }
@@ -81,7 +97,6 @@ char Conversion::toChar() throw(Conversion::ImpossibleConversionException, Conve
 }
 
 int Conversion::toInt() throw(Conversion::ImpossibleConversionException) {
-
     if (isPseudoLiteral()) {
         throw ImpossibleConversionException();
     }
@@ -99,13 +114,19 @@ int Conversion::toInt() throw(Conversion::ImpossibleConversionException) {
     return static_cast<int>(result);
 }
 
-
+//TO-DO
 float Conversion::toFloat() throw(Conversion::ImpossibleConversionException) {
     return 0;
 }
 
+//TO-DO
 double Conversion::toDouble() throw(Conversion::ImpossibleConversionException) {
     return 0;
+}
+
+//TO-DO
+std::string Conversion::handlePseudoLiteral() {
+    return "TO-DO";
 }
 
 bool Conversion::isPseudoLiteral() {

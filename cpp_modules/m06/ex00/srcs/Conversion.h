@@ -71,6 +71,8 @@ private:
     float toFloat() throw(Conversion::ImpossibleConversionException);
 
     double toDouble() throw(Conversion::ImpossibleConversionException);
+
+    std::string handlePseudoLiteral();
 };
 
 
