@@ -11,16 +11,12 @@ Base *sortClass(void) {
     switch (rand() % 3) {
         case 0:
             return new A;
-            break;
         case 1:
             return new B;
-            break;
         case 2:
             return new C;
-            break;
         default:
             return NULL;
-            break;
     }
 }
 
