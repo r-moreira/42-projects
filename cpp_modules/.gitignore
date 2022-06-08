@@ -58,3 +58,10 @@ m06/ex01/objs/*.o
 m06/ex01/serialization
 m06/ex02/objs/*.o
 m06/ex02/realtype
+
+m06/ex00/objs/*.o
+m06/ex00/bin
+m06/ex01/objs/*.o
+m06/ex01/bin
+m06/ex02/objs/*.o
+m06/ex02/bin
