@@ -6,7 +6,7 @@
 #include "B.h"
 #include "A.h"
 
-Base *sortClass(void) {
+Base *sortClass() {
     srand(time(NULL));
     switch (rand() % 3) {
         case 0:
