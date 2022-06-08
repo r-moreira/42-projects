@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <climits>
+#include <float.h>
+#include <iomanip>
 
 #define CHAR    0
 #define INT     1
@@ -72,8 +74,10 @@ private:
 
     double toDouble() throw(Conversion::ImpossibleConversionException);
 
-    std::string handlePseudoLiteral();
-};
+    std::string handleFloatPseudoLiteral();
 
+    std::string handleDoublePseudoLiteral();
+
+};
 
 #endif //CONVERSION_H

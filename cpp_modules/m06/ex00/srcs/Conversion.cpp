@@ -1,3 +1,4 @@
+
 #include "Conversion.h"
 
 Conversion::Conversion(const std::string &input) : _input(input) {}
@@ -54,9 +55,9 @@ void Conversion::display() {
     try {
         if (!isPseudoLiteral()) {
             f = toFloat();
-            std::cout << "float:\t" << f << std::endl;
+            std::cout << "float:\t" << std::setprecision(1) << std::fixed << f << "f" << std::endl;
         } else {
-            std::cout << "float:\t" << handlePseudoLiteral() << std::endl;
+            std::cout << "float:\t" << handleFloatPseudoLiteral() << std::endl;
         }
     } catch (const std::exception &e) {
         std::cout << "float:\t" << e.what() << std::endl;
@@ -67,7 +68,7 @@ void Conversion::display() {
             d = toDouble();
             std::cout << "double:\t" << d << std::endl;
         } else {
-            std::cout << "double:\t" << handlePseudoLiteral() << std::endl;
+            std::cout << "double:\t" << handleDoublePseudoLiteral() << std::endl;
         }
     } catch (const std::exception &e) {
         std::cout << "double:\t" << e.what() << std::endl;
@@ -114,19 +115,43 @@ int Conversion::toInt() throw(Conversion::ImpossibleConversionException) {
     return static_cast<int>(result);
 }
 
-//TO-DO
 float Conversion::toFloat() throw(Conversion::ImpossibleConversionException) {
-    return 0;
+    if (_input.length() == 1 && !isdigit(_input[0])) {
+        return static_cast<float>(_input[0]);
+    }
+
+    double result = strtod(_input.c_str(), NULL);
+    if (result > FLT_MAX || result < FLT_MIN) {
+        throw ImpossibleConversionException();
+    }
+    return static_cast<float>(result);
 }
 
-//TO-DO
 double Conversion::toDouble() throw(Conversion::ImpossibleConversionException) {
-    return 0;
+    if (_input.length() == 1 && !isdigit(_input[0])) {
+        return static_cast<double>(_input.c_str()[0]);
+    }
+
+    long double result = strtod(_input.c_str(), NULL);
+    if (result < DBL_MIN || result > DBL_MAX) {
+        throw ImpossibleConversionException();
+    }
+    return static_cast<double>(result);
 }
 
-//TO-DO
-std::string Conversion::handlePseudoLiteral() {
-    return "TO-DO";
+std::string Conversion::handleFloatPseudoLiteral() {
+    if (_type == DOUBLE) {
+        std::string tmp = _input;
+        return tmp.append(1, 'f');
+    }
+    return _input;
+}
+
+std::string Conversion::handleDoublePseudoLiteral() {
+    if (_type == FLOAT) {
+        return _input.substr(0, _input.length() - 1);
+    }
+    return _input;
 }
 
 bool Conversion::isPseudoLiteral() {

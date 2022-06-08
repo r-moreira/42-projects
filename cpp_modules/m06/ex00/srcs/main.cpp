@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     try {
         conversion.getType();
     } catch (const std::exception &e) {
-        e.what();
+        std::cout << e.what() << std::endl;
         return 1;
     }
 
