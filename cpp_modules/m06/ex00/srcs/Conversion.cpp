@@ -17,7 +17,6 @@ Conversion &Conversion::operator=(const Conversion &conversion) {
     return *this;
 }
 
-
 void Conversion::getType() throw(InvalidArgumentException) {
     if (isPrintableNonNumericChar()) {
         _type = CHAR;
