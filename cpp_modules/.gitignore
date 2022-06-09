@@ -60,8 +60,8 @@ m06/ex02/objs/*.o
 m06/ex02/realtype
 
 m07/ex00/objs/*.o
-m07/ex00/bin
+m07/ex00/whatever
 m07/ex01/objs/*.o
-m07/ex01/bin
+m07/ex01/iter
 m07/ex02/objs/*.o
-m07/ex02/bin
+m07/ex02/array
