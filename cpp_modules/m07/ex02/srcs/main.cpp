@@ -79,7 +79,6 @@ void testEmptyConstructor() {
     }
 }
 
-
 int main(int, char **) {
     testArrayIndexOperatorValues(1000);
     testArrayException();
