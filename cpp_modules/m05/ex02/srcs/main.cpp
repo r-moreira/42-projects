@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/11 23:45:10 by romoreir          #+#    #+#             */
+/*   Updated: 2022/06/11 23:45:11 by romoreir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.h"
 #include "PresidentialPardonForm.h"
 #include "RobotomyRequestForm.h"
