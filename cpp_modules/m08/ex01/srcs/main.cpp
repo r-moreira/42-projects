@@ -2,7 +2,7 @@
 #include "Span.h"
 #include <ctime>
 
-static void subject_test() {
+static void subjectTest() {
     Span sp = Span(5);
 
     sp.addNumber(6);
@@ -95,7 +95,7 @@ static void tooFewElementsExceptionTest() {
 
 int main() {
     std::cout << "===== Subject Test (Check Algorithm) =====" << std::endl;
-    subject_test();
+    subjectTest();
 
     std::cout << "===== TooManyElementsException Test =====" << std::endl;
     tooManyElementsExceptionTest();
