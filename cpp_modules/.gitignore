@@ -67,7 +67,7 @@ m07/ex02/objs/*.o
 m07/ex02/array
 
 m08/ex00/objs/*.o
-m08/ex00/bin
+m08/ex00/easyfind
 m08/ex01/objs/*.o
 m08/ex01/bin
 m08/ex02/objs/*.o
