@@ -82,7 +82,7 @@ void PhoneBook::addContact() {
     int index;
 
     std::cout << "Please give the following contact information." << std::endl;
-    std::cout << "1 - Fist Name" << std::endl;
+    std::cout << "1 - First Name" << std::endl;
     std::cin >> firstName;
     std::cout << "2 - Last Name" << std::endl;
     std::cin >> lastName;
