@@ -75,7 +75,7 @@ public:
     static const Fixed &max(Fixed const &f1, Fixed const &f2);
 
 private:
-    int _value{};
+    int _value;
     static const int _bits = 8;
 };
 

@@ -40,7 +40,7 @@ public:
 
 
 private:
-    int _value{};
+    int _value;
     static const int _bits = 8;
 };
 
