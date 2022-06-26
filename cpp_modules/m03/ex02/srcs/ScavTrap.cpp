@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 05:05:37 by romoreir          #+#    #+#             */
-/*   Updated: 2022/05/10 05:05:37 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/06/26 03:56:32 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,9 @@ void ScavTrap::attack(const std::string &target) {
 }
 
 void ScavTrap::guardGate() const {
+	if (_hitPoints == 0) {
+        std::cout << "ClapTrap " << _name << "is dead and cannot guard gate" << std::endl;
+        return;
+    }
     std::cout << "ScavTrap is now in Gatekeeper mode." << std::endl;
 }

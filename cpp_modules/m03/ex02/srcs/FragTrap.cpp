@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 05:05:37 by romoreir          #+#    #+#             */
-/*   Updated: 2022/05/10 05:05:37 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/06/26 03:56:48 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 FragTrap::FragTrap() : ClapTrap("unknown") {
     this->setHitPoints(100);
-    this->setEnergyPoints(50);
-    this->setAttackDamage(20);
+    this->setEnergyPoints(100);
+    this->setAttackDamage(30);
     std::cout << "Default Constructor of FragTrap " << _name << " has been called!" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
     this->setHitPoints(100);
-    this->setEnergyPoints(50);
-    this->setAttackDamage(20);
+    this->setEnergyPoints(100);
+    this->setAttackDamage(30);
     std::cout << "Default Constructor of FragTrap " << _name << " has been called!" << std::endl;
 }
 
@@ -43,6 +43,10 @@ FragTrap &FragTrap::operator=(const FragTrap &fragTrap) {
 }
 
 void FragTrap::highFivesGuys() {
+	if (_hitPoints == 0) {
+        std::cout << "ClapTrap " << _name << "is dead and cannot request high five" << std::endl;
+        return;
+    }
     std::cout << "FragTrap " << _name << " is requesting a high five" << std::endl;
 }
 

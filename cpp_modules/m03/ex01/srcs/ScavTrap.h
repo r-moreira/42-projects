@@ -13,7 +13,6 @@
 #ifndef M03_SCAVTRAP_H
 #define M03_SCAVTRAP_H
 
-
 #include "ClapTrap.h"
 
 class ScavTrap : public ClapTrap {
