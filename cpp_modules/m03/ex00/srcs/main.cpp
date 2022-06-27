@@ -30,4 +30,15 @@ int main() {
     r2d2.beRepaired(2);
 
     std::cout << std::endl;
+
+	for (int i = 0; i < 9; i++) {
+		c3p0.attack("R2D2");
+	}	
+
+    std::cout << std::endl;
+
+	r2d2.takeDamage(10);
+	r2d2.attack("C3P0");
+
+	std::cout << std::endl;
 }
