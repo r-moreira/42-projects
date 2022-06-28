@@ -44,6 +44,10 @@ FragTrap &FragTrap::operator=(const FragTrap &fragTrap) {
 
 void FragTrap::highFivesGuys() {
 	if (_hitPoints == 0) {
+        std::cout << "ClapTrap " << _name << " is dead and cannot attack" << std::endl;
+        return;
+    }
+	if (_hitPoints == 0) {
         std::cout << "ClapTrap " << _name << "is dead and cannot request high five" << std::endl;
         return;
     }
