@@ -118,7 +118,7 @@ int Conversion::toInt() throw(Conversion::ImpossibleConversionException) {
 
     double result = strtod(_input.c_str(), NULL);
 
-    if (result < INT_MIN || result > INT_MAX) {
+    if (result < -INT_MAX || result > INT_MAX) {
         throw ImpossibleConversionException();
     }
 
@@ -131,7 +131,8 @@ float Conversion::toFloat() throw(Conversion::ImpossibleConversionException) {
     }
 
     double result = strtod(_input.c_str(), NULL);
-    if (result > FLT_MAX || result < FLT_MIN) {
+
+    if (result < -FLT_MAX || result > FLT_MAX) {
         throw ImpossibleConversionException();
     }
     return static_cast<float>(result);
@@ -143,7 +144,7 @@ double Conversion::toDouble() throw(Conversion::ImpossibleConversionException) {
     }
 
     long double result = strtod(_input.c_str(), NULL);
-    if (result < DBL_MIN || result > DBL_MAX) {
+    if (result < -DBL_MAX || result > DBL_MAX) {
         throw ImpossibleConversionException();
     }
     return static_cast<double>(result);
