@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romoreir < romoreir@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: romoreir <coder@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 23:47:58 by romoreir          #+#    #+#             */
-/*   Updated: 2022/06/11 23:47:58 by romoreir         ###   ########.fr       */
+/*   Updated: 2022/07/03 04:20:43 by romoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,45 @@
 #include "Array.tpp"
 #include <cstdlib>
 #include <ctime>
+
+class ComplexType {
+private: 
+  int _number; 
+  std::string _string;
+public: 
+  void setNumber(int number) { _number = number; } 
+  int getNumber() { return _number; } 
+  void setString(std::string string) { _string = string; } 
+  std::string getString() { return _string; } 
+}; 
+
+void testComplexTypeArray(void) {
+    std::cout << std::endl << "===== Complex type array test ====" << std::endl;
+
+    Array<ComplexType> complexArray = Array<class ComplexType>(5);	
+
+	for(int i = 0; i < 5; i++) {
+		std::string result = "";
+    	char alpha[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g',
+							'h', 'i', 'j', 'k', 'l', 'm', 'n',
+							'o', 'p', 'q', 'r', 's', 't', 'u',
+							'v', 'w', 'x', 'y', 'z' };
+			
+		for (int i = 0; i < 22; i++) result = result + alpha[rand() % 26];
+     	
+		complexArray[i].setNumber(i); 
+		complexArray[i].setString(result);
+	} 
+	
+	for(int i = 0; i < 5; i++) {
+		std::cout 
+			    << "complexArray[" << i << "] -> getNumber(): "
+				<< complexArray[i].getNumber() 
+				<< " | getString(): " 
+				<< complexArray[i].getString()
+				<< std::endl; 	
+	}
+}
 
 void testArrayIndexOperatorValues(const int &len) {
 
@@ -92,6 +131,7 @@ void testEmptyConstructor() {
 }
 
 int main(int, char **) {
+    std::cout << std::endl << "===== Test array features ====" << std::endl;
     testArrayIndexOperatorValues(1000);
     testArrayException();
     testSizeFunction();
@@ -99,5 +139,6 @@ int main(int, char **) {
     testArrayCopy();
     testEmptyConstructor();
 
+	testComplexTypeArray();
     return 0;
 }
