@@ -19,8 +19,6 @@
 
 template<typename T, typename Container=std::deque<T> >
 class MutantStack : public std::stack<T, Container> {
-private:
-
 public:
     MutantStack() {};
 
@@ -28,8 +26,8 @@ public:
 
     MutantStack(MutantStack const *instance) : std::stack<T, Container>(instance) {}
 
-    MutantStack &operator=(MutantStack const &right_hand_side) {
-        std::stack<T, Container>::operator=(right_hand_side);
+    MutantStack &operator=(MutantStack const &mutantStack) {
+        std::stack<T, Container>::operator=(mutantStack);
         return *this;
     }
 

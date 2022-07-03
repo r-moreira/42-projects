@@ -49,7 +49,7 @@ void Span::bulkAddNumber(std::vector<int>::iterator start, std::vector<int>::ite
         _vect.push_back(*end);
 
     } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
+        throw Span::TooManyElementsException();
     }
 }
 
