@@ -36,15 +36,26 @@ namespace ft {
 
     public:
 
-        ////////////////////// CONSTRUCTORS - RULE OF THREE //////////////////////
-        explicit vector(const allocator_type& alloc = allocator_type()) : _array(0), _size(0), _capacity(0), _alloc(alloc) {}
+        ////////////////////// CONSTRUCTORS //////////////////////
+        explicit vector(const allocator_type& alloc = allocator_type()) :
+            _array(0),
+            _size(0),
+            _capacity(0),
+            _alloc(alloc) {}
 
-        explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n), _alloc(alloc) {
+        explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) :
+            _size(n),
+            _capacity(n),
+            _alloc(alloc) {
             this->_array = new value_type[n]();
             for (size_type i = 0; i < n; i++) this->_array[i] = val;
         }
 
-        vector(const vector& v) : _array(0), _size(0), _capacity(0), _alloc(v._alloc) { *this = v; }
+        vector(const vector& v) :
+            _array(0),
+            _size(0),
+            _capacity(0),
+            _alloc(v._alloc) { *this = v; }
 
         // TODO: Create Constructor for Iterators
 
