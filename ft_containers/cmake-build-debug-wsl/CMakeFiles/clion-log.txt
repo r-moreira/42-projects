@@ -1,4 +1,0 @@
-C:\Windows\system32\wsl.exe --distribution Ubuntu --exec /bin/zsh -c "export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /home/dev/projects/42-projects/ft_containers/cmake-build-debug-wsl && /usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G 'CodeBlocks - Unix Makefiles' -S /home/dev/projects/42-projects/ft_containers -B /home/dev/projects/42-projects/ft_containers/cmake-build-debug-wsl"
--- Configuring done
--- Generating done
--- Build files have been written to: /home/dev/projects/42-projects/ft_containers/cmake-build-debug-wsl
