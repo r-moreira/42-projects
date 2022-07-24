@@ -2,17 +2,17 @@ NAME	 			= ft_containers
 CC 					= c++
 CFLAGS 				= -Wall -Wextra -Werror -std=c++98
 OBJS_DIR			= objs
-OBJS				= $(patsubst $(SRCS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))
-SRCS_DIR			= srcs/tests
-SRCS 				= ${SRCS_DIR}/main.cpp
+OBJS				= $(patsubst $(TESTS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(TESTS))
+TESTS_DIR			= tests
+TESTS 				= ${TESTS_DIR}/main.cpp
 
 all:				$(NAME)
 
 $(NAME):			$(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp
-	$(CC) $(CFLAGS) -I/srcs/containers -c $< -o $@
+$(OBJS_DIR)/%.o:	$(TESTS_DIR)/%.cpp
+	$(CC) $(CFLAGS) -I/srcs/containers -I/srcs/iterator -I/srcs/utils -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../containers/Vector.hpp"
+#include "../srcs/containers/Vector.hpp"
 #include <vector>
 #include <cstdlib>
 
@@ -14,7 +14,7 @@ void OK() { std::cout << "\033[1;32mOK\033[0m\n"; }
 void ERR() { std::cout << "\033[1;31mERROR\033[0m\n";}
 
 template<typename T, typename  V> void
-ERR(T std, V ft) {
+ERR(T ft, V std) {
     std::cout << "\033[1;31mERROR\033[0m" << std::endl;
     std::cout << "\tft = " << ft <<  std::endl;
     std::cout << "\tstd: " << std << std::endl;
