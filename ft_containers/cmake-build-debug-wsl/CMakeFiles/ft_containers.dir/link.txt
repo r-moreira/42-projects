@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/ft_containers.dir/srcs/tests/vector.cpp.o -o ft_containers 
