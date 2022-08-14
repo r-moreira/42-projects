@@ -40,7 +40,7 @@ namespace ft {
 
         pointer operator->() const { return &(operator*()); }
 
-        reverse_iterator &operator++(void) {
+        reverse_iterator &operator++() {
             --_p;
             return *this;
         }
@@ -51,7 +51,7 @@ namespace ft {
             return tmp;
         }
 
-        reverse_iterator &operator--(void) {
+        reverse_iterator &operator--() {
             ++_p;
             return *this;
         }

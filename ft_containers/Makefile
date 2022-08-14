@@ -12,7 +12,7 @@ $(NAME):			$(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 
 $(OBJS_DIR)/%.o:	$(TESTS_DIR)/%.cpp
-	$(CC) $(CFLAGS) -I/srcs/containers -I/srcs/iterator -I/srcs/utils -c $< -o $@
+	$(CC) $(CFLAGS) -I/srcs/containers -I/srcs/iterator -I/srcs/utils  -I/srcs/tree -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
