@@ -1,60 +1,11 @@
 #include <iostream>
+#include "./test_framework.h"
 #include "../srcs/containers/Vector.hpp"
+#include "ClapTrap.h"
 #include <vector>
 #include <cstdlib>
+#include <string>
 #include <sys/time.h>
-
-typedef unsigned long long timestamp_t;
-typedef long double delta_t;
-
-//timestamp_t t0 = NOW();
-// Process
-//timestamp_t t1 = NOW();
-//delta_t ft_delta DELTA(t1, t0)
-//delta_t std_delta DELTA(T1, T0)
-//IS_PERFORMANCE_OK(ft_delta, std_delta)
-
-static timestamp_t NOW () {
-    struct timeval now;
-    gettimeofday (&now, NULL);
-    return  now.tv_usec + (timestamp_t)now.tv_sec * 1000000;
-}
-
-delta_t DELTA (timestamp_t t1, timestamp_t t0) {
-   return (t1 - t0) / 1000000.0L;
-}
-
-bool IS_PERFORMANCE_OK(delta_t ft, delta_t std) {
-    return ft / 20 <= std;
-}
-
-void TEST_SECTION(const std::string& desc) {
-    std::cout << "\033[1;34m#################### "<<desc<<" ####################"<<"\033[0m\n";
-}
-
-void TEST(const std::string& desc) {
-    std::cout << "\033[1;33m> \033[0m" << desc << ": ";
-}
-
-void TODO() { std::cout << "\033[1;33mTODO\033[0m\n"; }
-
-void OK() { std::cout << "\033[1;32mOK\033[0m\n"; }
-
-void ERR(const std::string& msg) {
-    std::cout << "\033[1;31mERROR: \033[0m" << msg << "\n";
-}
-
-template<typename T, typename  V> void
-ERR(T ft, V std) {
-    std::cout << "\033[1;31mERROR: The elements are different\033[0m" << std::endl;
-    std::cout << "\tft = " << ft <<  std::endl;
-    std::cout << "\tstd: " << std << std::endl;
-}
-
-int randomIndex(int max) {
-    srand(time(NULL));
-    return rand() % max;
-}
 
 void vector_constructor_tests() {
     TEST_SECTION("VECTOR CONSTRUCTOR TESTS");
@@ -299,40 +250,130 @@ void vector_non_member_fcnt_overloads_tests() {
 
 void vector_complex_types_tests() {
     TEST_SECTION("VECTOR COMPLEX TYPES TESTS");
-    ClapTrap r2d2("R2D2");
-    ClapTrap c3p0("C3P0");
 
-    std::cout << std::endl;
+    bool isEqual = true;
 
-    r2d2.attack("C3P0");
-    c3p0.takeDamage(0);
-    c3p0.beRepaired(4);
+    TEST("Vector of complex type");
+    ft::vector<std::string> ft_string_vector;
+    std::vector<std::string> std_string_vector;
 
-    std::cout << std::endl;
+    for (int i = 0; i < 100; i++) {
+        static const char alphanum[] =
+                "0123456789"
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                "abcdefghijklmnopqrstuvwxyz";
+        int len = 36;
+        std::string tmp_str;
 
-    c3p0.attack("R2D2");
-    r2d2.takeDamage(0);
-    r2d2.beRepaired(2);
+        tmp_str.reserve(len);
+        for (int j = 0; j < len; ++j) {
+            tmp_str += alphanum[rand() % (sizeof(alphanum) - 1)];
+        }
 
-    std::cout << std::endl;
-
-    for (int i = 0; i < 9; i++) {
-        c3p0.attack("R2D2");
+        ft_string_vector.push_back(tmp_str);
+        std_string_vector.push_back(tmp_str);
     }
 
-    std::cout << std::endl;
+    for (int i = 0; i < 100; i++) {
+        std::string ft_str = ft_string_vector.at(i);
+        std::string std_str = std_string_vector.at(i);
 
-    r2d2.takeDamage(10);
-    r2d2.attack("C3P0");
+        if (ft_str != std_str) {
+            isEqual = false;
+            break;
+        }
+    }
+    isEqual ? OK() : ERR("Vectors has different complex types");
 
-    std::cout << std::endl;
+    TEST("Custom complex type");
+    ft::vector<ClapTrap> ft_claptrap_vector;
+    std::vector<ClapTrap> std_claptrap_vector;
 
-    TODO();
+    for (int i = 0; i < 100; i++) {
+        std::ostringstream os;
+        os << "CT-" << i;
+        ClapTrap ct(os.str());
+        ft_claptrap_vector.push_back(ct);
+        std_claptrap_vector.push_back(ct);
+    }
+
+    isEqual = true;
+    for (int i = 0; i < 100; i++) {
+        ClapTrap ft_ct = ft_claptrap_vector.at(i);
+        ClapTrap std_ct = std_claptrap_vector.at(i);
+        if (ft_ct.getName() != std_ct.getName()) {
+            isEqual = false;
+            break;
+        }
+    }
+    isEqual ? OK() : ERR("Vectors has different custom complex types");
 }
 
 void vector_performance_tests() {
     TEST_SECTION("VECTOR PERFORMANCE TESTS");
-    TODO();
+    int tmp;
+    struct timeval start, stop;
+
+    srand(time(NULL));
+
+    ft::vector<int> ft_vector(VECTOR_SIZE);
+    std::vector<int> std_vector(VECTOR_SIZE);
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < VECTOR_SIZE; i++) ft_vector[i] = rand();
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_VECTOR).append("Time taken to write using indices. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < VECTOR_SIZE; i++) std_vector[i] = rand();
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_VECTOR).append("Time taken to write using indices."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < VECTOR_SIZE; i++) tmp = ft_vector[i];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_VECTOR).append("Time taken to read using indices, sequentially. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < VECTOR_SIZE; i++) tmp = std_vector[i];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_VECTOR).append("Time taken to read using indices, sequentially."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < VECTOR_SIZE; i++) tmp = ft_vector[rand() % VECTOR_SIZE];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME (start, stop, std::string(FT_VECTOR).append("Time taken to read using indices, randomly. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < VECTOR_SIZE; i++) tmp = std_vector[rand() % VECTOR_SIZE];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME (start, stop, std::string(STD_VECTOR).append("Time taken to read using indices, randomly."));
+
+    ft::vector<int> ft_vector2(VECTOR_SIZE);
+    std::vector<int> std_vector2(VECTOR_SIZE);
+
+    ft::vector<int>::iterator ft_itr, ft_itr_end;
+    std::vector<int>::iterator std_itr, std_itr_end;
+
+    gettimeofday (&start, NULL);
+    for (ft_itr = ft_vector2.begin(), ft_itr_end = ft_vector2.end(); ft_itr != ft_itr_end; ft_itr++) *ft_itr = rand();
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_VECTOR).append("Time taken to write using iterators. "));
+
+    gettimeofday (&start, NULL);
+    for (std_itr = std_vector2.begin(), std_itr_end = std_vector2.end(); std_itr != std_itr_end; std_itr++) *std_itr = rand();
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_VECTOR).append("Time taken to write using iterators."));
+
+    gettimeofday (&start, NULL);
+    for (ft_itr = ft_vector2.begin(), ft_itr_end = ft_vector2.end(); ft_itr != ft_itr_end; ft_itr++) tmp = *ft_itr;
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_VECTOR).append("Time taken to read using iterators. "));
+
+    gettimeofday (&start, NULL);
+    for (std_itr = std_vector2.begin(), std_itr_end = std_vector2.end(); std_itr != std_itr_end; std_itr++) tmp = *std_itr;
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_VECTOR).append("Time taken to read using iterators."));
 }
 
 int main() {

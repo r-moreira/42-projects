@@ -8,7 +8,6 @@
 #include "../iterator/random_access_iterator.h"
 #include "../iterator/reverse_iterator.h"
 #include "../utils/type_traits.h"
-
 #include "../utils/equal.h"
 #include "../utils/lexicographical_compare.h"
 

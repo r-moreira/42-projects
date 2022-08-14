@@ -1,3 +1,4 @@
 main.o
 ft_containers
 cmake-build*
+objs/*.o
