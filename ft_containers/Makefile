@@ -6,6 +6,7 @@ OBJS				= $(patsubst $(TESTS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(TESTS_MAIN))
 TESTS_DIR			= tests
 TESTS_MAIN			= ${TESTS_DIR}/main.cpp\
 					  ${TESTS_DIR}/test_framework.cpp\
+					  ${TESTS_DIR}/vector_tests.cpp\
 					  ${TESTS_DIR}/ClapTrap.cpp
 
 all:				$(NAME)
