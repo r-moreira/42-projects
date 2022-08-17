@@ -16,7 +16,6 @@
 namespace ft {
 
     template<class T, class Alloc = std::allocator<T> >
-
     class vector {
 
     public:
@@ -275,11 +274,11 @@ namespace ft {
         }
 
         // https://m.cplusplus.com/reference/vector/vector/swap/
-        void swap(vector &x) {
-            std::swap(_alloc, x._alloc);
-            std::swap(_p, x._p);
-            std::swap(_size, x._size);
-            std::swap(_capacity, x._capacity);
+        void swap(vector &v) {
+            std::swap(_alloc, v._alloc);
+            std::swap(_p, v._p);
+            std::swap(_size, v._size);
+            std::swap(_capacity, v._capacity);
         }
 
         // Allocator: https://m.cplusplus.com/reference/vector/vector/get_allocator/
@@ -330,10 +329,10 @@ namespace ft {
     }
 
     template <class T, class Alloc>
-    bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs) { return !(rhs < lhs); }
+    bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs) { return (rhs < lhs); }
 
     template <class T, class Alloc>
-    bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs) { return (rhs < lhs); }
+    bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs) { return !(rhs < lhs); }
 
     template <class T, class Alloc>
     bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs) { return !(lhs < rhs); }

@@ -7,7 +7,7 @@ TESTS_DIR			= tests
 TESTS_MAIN			= ${TESTS_DIR}/main.cpp\
 					  ${TESTS_DIR}/test_framework.cpp\
 					  ${TESTS_DIR}/vector_tests.cpp\
-					  ${TESTS_DIR}/ClapTrap.cpp
+					  ${TESTS_DIR}/stack_tests.cpp
 
 all:				$(NAME)
 

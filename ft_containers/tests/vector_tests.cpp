@@ -1,11 +1,3 @@
-#include <iostream>
-#include "./test_framework.h"
-#include "../srcs/containers/Vector.hpp"
-#include "ClapTrap.h"
-#include <vector>
-#include <cstdlib>
-#include <string>
-#include <sys/time.h>
 #include "vector_tests.h"
 
 void vector_constructor_tests() {
@@ -21,13 +13,13 @@ void vector_constructor_tests() {
     TEST("Fill Constructor with default value");
     ft::vector<double> ft(21);
     std::vector<double> std(21);
-    i =  randomIndex(21);
+    i = random_index(21);
     ft[i] == std[i] ? OK() : ERR(ft[i], std[i]);
 
     TEST("Fill Constructor with specific value");
     ft::vector<int> ft2(21, 42);
     std::vector<int> std2(21, 42);
-    i =  randomIndex(21);
+    i = random_index(21);
     ft2[i] == std2[i] ? OK() : ERR(ft2[i], std2[i]);
 
     TEST("Iterator Constructor");
@@ -120,8 +112,8 @@ void vector_capacity_tests() {
     ft::vector<double> ft_empty;
     std::vector<double> std_empty;
     ft_empty.empty() == std_empty.empty() && ft_vect.empty() == std_vect.empty()
-    ? OK()
-    : ERR("ft and std vectors emptiness is not equal");
+        ? OK()
+        : ERR("ft and std vectors emptiness is not equal");
 
     TEST("reserve()");
     ft_vect.reserve(1000);
@@ -217,7 +209,7 @@ void vector_modifiers_tests() {
 
 }
 
-void vector_non_member_fcnt_overloads_tests() {
+void vector_non_member_overloads_tests() {
     TEST_SECTION("VECTOR NON MEMBER FUNCTION OVERLOAD TESTS");
 
     ft::vector<long> ft_vect(6, 48);
@@ -259,17 +251,7 @@ void vector_complex_types_tests() {
     std::vector<std::string> std_string_vector;
 
     for (int i = 0; i < 100; i++) {
-        static const char alphanum[] =
-                "0123456789"
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                "abcdefghijklmnopqrstuvwxyz";
-        int len = 36;
-        std::string tmp_str;
-
-        tmp_str.reserve(len);
-        for (int j = 0; j < len; ++j) {
-            tmp_str += alphanum[rand() % (sizeof(alphanum) - 1)];
-        }
+        std::string tmp_str = random_string();
 
         ft_string_vector.push_back(tmp_str);
         std_string_vector.push_back(tmp_str);
@@ -285,29 +267,6 @@ void vector_complex_types_tests() {
         }
     }
     isEqual ? OK() : ERR("Vectors has different complex types");
-
-    TEST("Custom complex type");
-    ft::vector<ClapTrap> ft_claptrap_vector;
-    std::vector<ClapTrap> std_claptrap_vector;
-
-    for (int i = 0; i < 100; i++) {
-        std::ostringstream os;
-        os << "CT-" << i;
-        ClapTrap ct(os.str());
-        ft_claptrap_vector.push_back(ct);
-        std_claptrap_vector.push_back(ct);
-    }
-
-    isEqual = true;
-    for (int i = 0; i < 100; i++) {
-        ClapTrap ft_ct = ft_claptrap_vector.at(i);
-        ClapTrap std_ct = std_claptrap_vector.at(i);
-        if (ft_ct.getName() != std_ct.getName()) {
-            isEqual = false;
-            break;
-        }
-    }
-    isEqual ? OK() : ERR("Vectors has different custom complex types");
 }
 
 void vector_performance_tests() {

@@ -30,7 +30,22 @@ void ERR(const std::string& msg) {
     std::cout << "\033[1;31mERROR: \033[0m" << msg << "\n";
 }
 
-int randomIndex(int max) {
+int random_index(int max) {
     srand(time(NULL));
     return rand() % max;
+}
+
+std::string random_string() {
+    static const char alphanum[] =
+            "0123456789"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz";
+    int len = 36;
+    std::string tmp_str;
+
+    tmp_str.reserve(len);
+    for (int j = 0; j < len; ++j) {
+        tmp_str += alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+    return tmp_str;
 }
