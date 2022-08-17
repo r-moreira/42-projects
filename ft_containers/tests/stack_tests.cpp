@@ -117,5 +117,37 @@ void stack_complex_types_tests() {
 
 void stack_performance_testes() {
     TEST_SECTION("STACK PERFORMANCE TESTS");
-    TODO();
+    int tmp;
+    struct timeval start, stop;
+
+    srand(time(NULL));
+
+    ft::stack<int, ft::vector<int> > ft_stack;
+    std::stack<int, std::vector<int> > std_stack;
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < STACK_SIZE; i++) ft_stack.push(rand());
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_STACK).append("Time taken to push to stack."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < STACK_SIZE; i++) std_stack.push(rand());
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_STACK).append("Time taken to push to stack."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < STACK_SIZE; i++) {
+        ft_stack.top();
+        ft_stack.pop();
+    }
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_STACK).append("Time taken to read and pop the stack."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < STACK_SIZE; i++) {
+        std_stack.top();
+        std_stack.pop();
+    }
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_STACK).append("Time taken to read and pop the stack."));
 }
