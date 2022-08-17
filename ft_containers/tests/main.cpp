@@ -1,5 +1,6 @@
 #include "vector_tests.h"
 #include "stack_tests.h"
+#include "map_tests.h"
 
 static void vector_tests() {
     vector_constructor_tests();
@@ -19,9 +20,13 @@ static void stack_tests() {
     stack_performance_testes();
 }
 
+static void map_tests() {
+    map_constructor_tests();
+}
 
 int main() {
     vector_tests();
     stack_tests();
+    map_tests();
     return 0;
 }

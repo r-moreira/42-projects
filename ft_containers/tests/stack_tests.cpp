@@ -117,7 +117,6 @@ void stack_complex_types_tests() {
 
 void stack_performance_testes() {
     TEST_SECTION("STACK PERFORMANCE TESTS");
-    int tmp;
     struct timeval start, stop;
 
     srand(time(NULL));
