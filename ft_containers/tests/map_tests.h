@@ -7,6 +7,7 @@
 #include <iostream>
 #include "./test_framework.h"
 #include <map>
+#include "../srcs/containers/Map.hpp"
 
 void map_constructor_tests();
 

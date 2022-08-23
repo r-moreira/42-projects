@@ -2,3 +2,5 @@ main.o
 ft_containers
 cmake-build*
 objs/*.o
+tree/
+srcs/containers/Map.hpp
