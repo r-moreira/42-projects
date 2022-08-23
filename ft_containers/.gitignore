@@ -1,5 +1,5 @@
 main.o
-ft_containers
+ft_containers_test
 cmake-build*
 objs/*.o
 tree/

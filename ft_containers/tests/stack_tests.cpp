@@ -54,7 +54,7 @@ void stack_member_functions_tests() {
 }
 
 void stack_non_member_overloads_tests() {
-    TEST_SECTION("STACK NON MEMBER FUNCTION OVERLOAD TESTS");
+    TEST_SECTION("STACK NON MEMBER FUNCTIONS OVERLOAD TESTS");
 
     ft::vector<int> ft_vector(2, 200);
     ft::vector<int> ft_vector2(6, 100);

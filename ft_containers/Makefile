@@ -1,4 +1,4 @@
-NAME	 			= ft_containers
+NAME	 			= ft_containers_test
 CC 					= c++
 CFLAGS 				= -Wall -Wextra -Werror -std=c++98
 OBJS_DIR			= objs

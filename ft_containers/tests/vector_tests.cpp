@@ -22,7 +22,7 @@ void vector_constructor_tests() {
     i = random_index(21);
     ft2[i] == std2[i] ? OK() : ERR(ft2[i], std2[i]);
 
-    TEST("Iterator Constructor");
+    TEST("Range Constructor");
     std::vector<int> tmp (4,100);
     ft::vector<int> ft3(tmp.begin(), tmp.end());
     std::vector<int> std3(tmp.begin(), tmp.end());
@@ -210,14 +210,14 @@ void vector_modifiers_tests() {
 }
 
 void vector_non_member_overloads_tests() {
-    TEST_SECTION("VECTOR NON MEMBER FUNCTION OVERLOAD TESTS");
+    TEST_SECTION("VECTOR NON MEMBER FUNCTIONS OVERLOAD TESTS");
 
     ft::vector<long> ft_vect(6, 48);
     std::vector<long> std_vect(6, 48);
     ft::vector<long> ft_tmp (12, 24);
     std::vector<long> std_tmp (12, 24);
 
-    TEST("ft::swap");
+    TEST("ft::swap()");
     ft::swap(ft_vect, ft_tmp);
     std::swap(std_vect, std_tmp);
     ft::equal(ft_vect.begin(), ft_vect.end(), std_vect.begin()) ? OK() : ERR("The vectors were different after ft/std::swap");

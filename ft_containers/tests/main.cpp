@@ -22,6 +22,14 @@ static void stack_tests() {
 
 static void map_tests() {
     map_constructor_tests();
+    map_element_access_tests();
+    map_capacity_tests();
+    map_modifiers_tests();
+    map_observers_tests();
+    map_operations_tests();
+    map_non_member_overloads_tests();
+    map_complex_types_tests();
+    map_performance_tests();
 }
 
 int main() {
