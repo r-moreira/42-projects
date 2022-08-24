@@ -3,4 +3,3 @@ ft_containers_test
 cmake-build*
 objs/*.o
 tree/
-srcs/containers/Map.hpp
