@@ -22,7 +22,7 @@ namespace ft {
     class map {
 
     public:
-        ////Member Types
+        //// Member Types
         typedef Key		                                    key_type;
         typedef T		                                    mapped_type;
         typedef Compare	                                    key_compare;
@@ -201,6 +201,7 @@ namespace ft {
     };
 
     //// Non-member function overloads
+
     // https://cplusplus.com/reference/map/map/swap-free/
     template< class Key, class T, class Compare, class Alloc >
     void swap(ft::map<Key, T, Compare, Alloc>& lhs, ft::map<Key, T, Compare, Alloc>& rhs) {
