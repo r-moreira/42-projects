@@ -115,10 +115,10 @@ namespace ft {
         mapped_type &operator[](const key_type &key) {
             iterator ret = _rbtree.find(ft::make_pair(key, mapped_type()));
 
-            if (ret != end()) return ret._ptr->value.second;
+            if (ret != end()) return ret.node_pointer->value.second;
 
             ft::pair<iterator, bool> tmp = insert(ft::make_pair(key, mapped_type()));
-            return tmp.first._ptr->value.second;
+            return tmp.first.node_pointer->value.second;
         }
 
         //// Capacity
