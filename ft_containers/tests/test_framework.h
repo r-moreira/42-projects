@@ -7,6 +7,9 @@
 #define STACK_SIZE 10000000
 #define STD_STACK  "\033[1;33m>\033[0m \033[1;35m std::stack: \033[0m"
 #define FT_STACK  "\033[1;33m>\033[0m \033[1;36m ft::stack: \033[0m"
+#define MAP_SIZE 1000000
+#define STD_MAP  "\033[1;33m>\033[0m \033[1;35m std::map: \033[0m"
+#define FT_MAP "\033[1;33m>\033[0m \033[1;36m ft::map: \033[0m"
 
 void PRINT_TIME(struct timeval& start, struct timeval& end, std::string str);
 

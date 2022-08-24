@@ -244,7 +244,7 @@ void vector_non_member_overloads_tests() {
 void vector_complex_types_tests() {
     TEST_SECTION("VECTOR COMPLEX TYPES TESTS");
 
-    bool isEqual = true;
+    bool is_equal = true;
 
     TEST("Vector of complex type");
     ft::vector<std::string> ft_string_vector;
@@ -262,11 +262,11 @@ void vector_complex_types_tests() {
         std::string std_str = std_string_vector.at(i);
 
         if (ft_str != std_str) {
-            isEqual = false;
+            is_equal = false;
             break;
         }
     }
-    isEqual ? OK() : ERR("Vectors has different complex types");
+    is_equal ? OK() : ERR("Vectors has different complex types");
 }
 
 void vector_performance_tests() {

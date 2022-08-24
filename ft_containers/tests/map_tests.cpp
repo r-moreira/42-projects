@@ -373,10 +373,107 @@ void map_non_member_overloads_tests() {
 
 void map_complex_types_tests() {
     TEST_SECTION("MAP COMPLEX TYPES TESTS");
-    TODO();
+
+    TEST("Map of complex type");
+    ft::map<int, ft::pair<double, const char *> > ft;
+    std::map<int, std::pair<double, const char *> > std;
+
+    std::string str = random_string();
+
+    for (int i = 0; i < 100; i++) {
+        ft[i] = ft::make_pair((double) i, str.c_str());
+        std[i] = std::make_pair((double) i, str.c_str());
+    }
+
+    bool is_equal = true;
+    for (int i = 0; i < 100; i++) {
+        double ft_dbl = ft[i].first;
+        double std_dbl = std[i].first;
+        const char * ft_str = ft[i].second;
+        const char * std_str = std[i].second;
+
+        if (ft_dbl != std_dbl || ft_str != std_str) {
+            is_equal = false;
+            break;
+        }
+    }
+
+    is_equal ? OK() : ERR("Map has different complex types");
 }
 
 void map_performance_tests() {
     TEST_SECTION("MAP PERFORMANCE TESTS");
-    TODO();
+    struct timeval start, stop;
+
+    srand(time(NULL));
+
+    ft::map<int, int> ft_map;
+    std::map<int, int> std_map;
+    int tmp;
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) ft_map[i] = rand();
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_MAP).append("Time taken to write using indices. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) ft_map[i] = rand();
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_MAP).append("Time taken to write using indices. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) tmp = ft_map[i];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_MAP).append("Time taken to read using indices, sequentially. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) tmp = std_map[i];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_MAP).append("Time taken to read using indices, sequentially."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) tmp = ft_map[rand() % MAP_SIZE];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME (start, stop, std::string(FT_MAP).append("Time taken to read using indices, randomly. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) tmp = std_map[rand() % MAP_SIZE];
+    gettimeofday (&stop, NULL);
+    PRINT_TIME (start, stop, std::string(STD_MAP).append("Time taken to read using indices, randomly."));
+
+    ft::map<int, int> ft_map2;
+    std::map<int, int> std_map2;
+
+    ft::map<int, int>::iterator ft_itr;
+    std::map<int, int>::iterator std_itr;
+
+    gettimeofday (&start, NULL);
+    ft_map2.insert(ft_map.begin(), ft_map.end());
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_MAP).append("Time taken to write using iterators. "));
+
+    gettimeofday (&start, NULL);
+    std_map2.insert(std_map.begin(), std_map.end());
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_MAP).append("Time taken to write using iterators."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) ft_itr = ft_map2.find(i);
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_MAP).append("Time taken to read using find(), sequentially. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) std_itr = std_map2.find(i);
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_MAP).append("Time taken to read using find(), sequentially."));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) ft_itr = ft_map2.find(rand() % MAP_SIZE);
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(FT_MAP).append("Time taken to read using find(), randomly. "));
+
+    gettimeofday (&start, NULL);
+    for (int i = 0; i < MAP_SIZE; i++) std_itr = std_map2.find(rand() % MAP_SIZE);
+    gettimeofday (&stop, NULL);
+    PRINT_TIME(start, stop, std::string(STD_MAP).append("Time taken to read using find(), randomly."));
 }
