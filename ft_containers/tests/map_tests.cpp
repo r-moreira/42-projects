@@ -476,4 +476,6 @@ void map_performance_tests() {
     for (int i = 0; i < MAP_SIZE; i++) std_itr = std_map2.find(rand() % MAP_SIZE);
     gettimeofday (&stop, NULL);
     PRINT_TIME(start, stop, std::string(STD_MAP).append("Time taken to read using find(), randomly."));
+
+    (void)tmp;
 }
