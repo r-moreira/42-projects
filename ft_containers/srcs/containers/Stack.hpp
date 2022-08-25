@@ -19,7 +19,7 @@ namespace ft {
         typedef typename container_type::const_reference	const_reference;
 
     protected:
-        //// Private Attribute
+        //// Protected Attribute
         container_type	container;
 
     public:
