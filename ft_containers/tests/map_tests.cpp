@@ -126,9 +126,11 @@ void map_modifiers_tests() {
 
     ft.insert(ft_it, ft::pair<char, int>('b', 1));
     ft.insert(ft_it, ft::pair<char, int>('c', 2));
+    ft.insert(ft_it, ft::pair<char, int>('c', 9));
     ft.insert(ft_it, ft::pair<char, int>('d', 3));
     std.insert(std_it, std::pair<char, int>('b', 1));
     std.insert(std_it, std::pair<char, int>('c', 2));
+    std.insert(std_it, std::pair<char, int>('c', 9));
     std.insert(std_it, std::pair<char, int>('d', 3));
     map_compare(ft, std) ? OK() : ERR("ft and std maps has different insert with hint behavior");
 

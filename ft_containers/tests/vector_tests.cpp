@@ -177,9 +177,23 @@ void vector_modifiers_tests() {
     ft::equal(ft_vect.begin(), ft_vect.end(), std_vect.begin()) ? OK() : ERR("The vectors were different after erase a range of elements");
 
     TEST("swap()");
+    ft::vector<float>::iterator ft_it, ft_it_tmp, ft_it2, ft_it_tmp2;
+
+    ft_it = ft_vect.begin();
+    ft_it_tmp = ft_tmp.begin();
+
     ft_vect.swap(ft_tmp);
     std_vect.swap(std_tmp);
-    ft::equal(ft_vect.begin(), ft_vect.end(), std_vect.begin()) ? OK() : ERR("The vectors were different after swap values");
+
+    ft_it2 = ft_vect.begin();
+    ft_it_tmp2 = ft_tmp.begin();
+
+    ft::equal(ft_vect.begin(), ft_vect.end(), std_vect.begin())
+        && ft::equal(ft_tmp.begin(), ft_tmp.end(), std_tmp.begin())
+        && ft_it == ft_it_tmp2
+        && ft_it_tmp == ft_it2
+            ? OK()
+            : ERR("The vectors were different after swap values");
 
     TEST("clear()");
     ft_vect.clear();
