@@ -2,14 +2,14 @@
 #define FT_CONTAINERS_TEST_FRAMEWORK_H
 
 #define VECTOR_SIZE 10000000
-#define STD_VECTOR  "\033[1;33m>\033[0m \033[1;35m std::vector: \033[0m"
-#define FT_VECTOR  "\033[1;33m>\033[0m \033[1;36m ft::vector: \033[0m"
+#define STD_VECTOR  "\033[1;33m>\033[0m \033[1;35mstd::vector: \033[0m"
+#define FT_VECTOR  "\033[1;33m>\033[0m \033[1;36mft::vector: \033[0m"
 #define STACK_SIZE 10000000
-#define STD_STACK  "\033[1;33m>\033[0m \033[1;35m std::stack: \033[0m"
-#define FT_STACK  "\033[1;33m>\033[0m \033[1;36m ft::stack: \033[0m"
+#define STD_STACK  "\033[1;33m>\033[0m \033[1;35mstd::stack: \033[0m"
+#define FT_STACK  "\033[1;33m>\033[0m \033[1;36mft::stack: \033[0m"
 #define MAP_SIZE 1000000
-#define STD_MAP  "\033[1;33m>\033[0m \033[1;35m std::map: \033[0m"
-#define FT_MAP "\033[1;33m>\033[0m \033[1;36m ft::map: \033[0m"
+#define STD_MAP  "\033[1;33m>\033[0m \033[1;35mstd::map: \033[0m"
+#define FT_MAP "\033[1;33m>\033[0m \033[1;36mft::map: \033[0m"
 
 void PRINT_TIME(struct timeval& start, struct timeval& end, std::string str);
 
