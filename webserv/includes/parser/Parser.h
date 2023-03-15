@@ -14,7 +14,6 @@ public:
 
     ~Parser();
 
-    void echo();
 };
 
 

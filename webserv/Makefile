@@ -7,11 +7,15 @@ SRCS_DIR			= srcs
 CONF_DIR			= ${SRCS_DIR}/config
 NETWORK_DIR			= ${SRCS_DIR}/network
 PARSER_DIR			= ${SRCS_DIR}/parser
+IO_DIR				= ${SRCS_DIR}/io
 
 SRCS				= ${SRCS_DIR}/webserv.cpp\
 					  ${CONF_DIR}/Configuration.cpp\
 					  ${NETWORK_DIR}/Network.cpp\
-					  ${PARSER_DIR}/Parser.cpp
+					  ${NETWORK_DIR}/Socket.cpp\
+					  ${NETWORK_DIR}/Server.cpp\
+					  ${NETWORK_DIR}/Location.cpp\
+					  ${IO_DIR}/Multiplexer.cpp
 
 all:				$(NAME)
 

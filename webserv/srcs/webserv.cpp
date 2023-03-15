@@ -1,20 +1,16 @@
-#include <iostream>
 #include "../includes/webserv.h"
-#include "../includes/config/Configuration.h"
-#include "../includes/network/Network.h"
-#include "../includes/parser/Parser.h"
+#include "../includes/io/Multiplexer.h"
 
 
 int main(int argc, char **argv, char **env) {
-    std::cout << MESSAGE << std::endl;
+    signal(SIGPIPE, SIG_IGN);
 
-    Configuration serverConfiguration;
-    Network serverNetwork;
-    Parser serverParser;
+    if (argc != 2) {
+        std::cout << "Usage :  ./webserv {PATH TO CONFIGURATION FILE}" << std::endl;
+        return (EXIT_FAILURE);
+    }
 
-    serverConfiguration.echo();
-    serverNetwork.echo();
-    serverParser.echo();
-
-    return 0;
+    Multiplexer multiplexer;
+    std::cout << "Hello World" << std::endl;
+    return EXIT_SUCCESS;
 }

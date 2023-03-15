@@ -13,7 +13,6 @@ public:
     Configuration();
     ~Configuration();
 
-    void echo();
 };
 
 

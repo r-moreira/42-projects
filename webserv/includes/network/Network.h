@@ -13,7 +13,6 @@ public:
     Network();
     ~Network();
 
-    void echo();
 };
 
 

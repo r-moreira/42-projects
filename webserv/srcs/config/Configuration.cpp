@@ -7,7 +7,3 @@
 Configuration::Configuration() {}
 
 Configuration::~Configuration() {}
-
-void Configuration::echo() {
-    std::cout << "Echo from Configuration" << std::endl;
-}

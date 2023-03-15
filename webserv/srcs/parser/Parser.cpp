@@ -7,7 +7,3 @@
 Parser::Parser() {}
 
 Parser::~Parser() {}
-
-void Parser::echo() {
-    std::cout << "Echo from Parser" << std::endl;
-}
