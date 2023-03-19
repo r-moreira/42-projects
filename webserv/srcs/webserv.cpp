@@ -60,17 +60,23 @@ void read_request(event_data_t *event_data) {
     int client_fd = event_data->client_fd;
     char buffer[READ_BUFFER_SIZE] = {};
 
-
-    long bytes_read = read(client_fd, buffer, READ_BUFFER_SIZE);
-    if (bytes_read == -1) {
-        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+    while (1) {
+        long bytes_read = read(client_fd, buffer + event_data->read_bytes, READ_BUFFER_SIZE);
+        if (bytes_read == -1) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                break;
+            }
+            std::cerr << RED << "Error while reading from client: " << strerror(errno) << RESET << std::endl;
+        } else if (bytes_read == 0) {
+            break;
+        } else{
+            event_data->read_bytes += bytes_read;
         }
-        std::cerr << RED << "Error while reading from client: " << strerror(errno) << RESET << std::endl;
-    } else if (bytes_read == 0) {
+        std::cout << YELLOW << "Read " << bytes_read << " bytes from client" << RESET << std::endl;
+        std::cout << GREEN << "HTTP Request:\n" << buffer << RESET << std::endl;
+
     }
 
-    std::cout << YELLOW << "Read " << bytes_read << " bytes from client" << RESET << std::endl;
-    std::cout << GREEN << "HTTP Request:\n" << buffer << RESET << std::endl;
     event_data->event_status = Writing;
 }
 

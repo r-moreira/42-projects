@@ -37,7 +37,7 @@
 #define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
 
 #define MAX_EPOLL_EVENTS 64
-#define READ_BUFFER_SIZE 1024
+#define READ_BUFFER_SIZE 8192
 
 
 typedef enum EVENT_STATUS {
