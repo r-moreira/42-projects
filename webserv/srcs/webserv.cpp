@@ -47,42 +47,56 @@ void set_non_blocking(int fd) {
 }
 
 void write_response(event_data_t *event_data) {
-    std::string response = "HTTP/1.1 200 OK\r\nContent-Length: 12\r\n\r\nHello World!";
+
+    std::string response;
+
+    if (event_data->read_left == 2) {
+        response = "HTTP/1.1 200 OK\r\nContent-Length: 20\r\n\r\nHello World!";
+    } else {
+        response = "\nWrite 2";
+    }
+
     if (send(event_data->client_fd, response.c_str(), response.length(), 0) < 0) {
         std::cerr << RED << "Error while writing to client: " << strerror(errno) << RESET << std::endl;
     }
     std::cout << YELLOW << "Response sent to client" << RESET << std::endl;
     std::cout << BLUE << "Response: " << response << RESET << std::endl;
-    event_data->event_status = Ended;
+
+    event_data->read_left--; //Exemplo de controle para saber quando terminar a escrita
+
+    if (event_data->read_left == 0) {
+        event_data->event_status = Ended;
+    }
 }
 
-void read_request(event_data_t *event_data) {
+std::string read_request(event_data_t *event_data) {
     int client_fd = event_data->client_fd;
     char buffer[READ_BUFFER_SIZE] = {};
 
-    while (1) {
-        long bytes_read = read(client_fd, buffer + event_data->read_bytes, READ_BUFFER_SIZE);
-        if (bytes_read == -1) {
-            if (errno == EAGAIN || errno == EWOULDBLOCK) {
-                break;
-            }
-            std::cerr << RED << "Error while reading from client: " << strerror(errno) << RESET << std::endl;
-        } else if (bytes_read == 0) {
-            break;
-        } else{
-            event_data->read_bytes += bytes_read;
-        }
-        std::cout << YELLOW << "Read " << bytes_read << " bytes from client" << RESET << std::endl;
-        std::cout << GREEN << "HTTP Request:\n" << buffer << RESET << std::endl;
+    long bytes_read = read(client_fd, buffer, READ_BUFFER_SIZE);
 
+    if (bytes_read == -1) {
+        std::cerr << RED << "Error while reading from client: " << strerror(errno) << RESET << std::endl;
     }
 
-    event_data->event_status = Writing;
+    if (buffer[READ_BUFFER_SIZE - 1] == 0) {
+        event_data->event_status = Writing;
+    }
+
+    event_data->read_bytes += bytes_read;
+    event_data->read_buffer = buffer;
+
+    std::cout << YELLOW << "Read " <<   event_data->read_bytes << " bytes from client" << RESET << std::endl;
+    std::cout << GREEN << "HTTP Request:\n" << buffer << RESET << std::endl;
+
+    std::string tmp = buffer;
+    return tmp;
 }
 
 void process_event(event_data_t *event_data) {
+
     if (event_data->event_status == Reading) {
-        read_request(event_data);
+      read_request(event_data);
     } else if (event_data->event_status == Writing) {
         write_response(event_data);
     }
@@ -98,7 +112,7 @@ void io_multiplexing_event_loop(int server_socket_fd) {
     struct epoll_event server_event = {};
     struct epoll_event request_event = {};
 
-    server_event.events = EPOLLIN | EPOLLET;
+    server_event.events = EPOLLIN;
     server_event.data.fd = server_socket_fd;
 
     if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, server_socket_fd, &server_event) == -1) {
@@ -132,14 +146,15 @@ void io_multiplexing_event_loop(int server_socket_fd) {
 
                 set_non_blocking(client_fd);
 
-                event_data_t *event_data = new event_data_t; //desalocar depois
+                event_data_t *event_data = new event_data_t;
                 event_data->header = "";
                 event_data->client_fd = client_fd;
                 event_data->read_bytes = 0;
                 event_data->event_status = Reading;
+                event_data->read_left = 2; //TEMPORÁRIO
 
                 request_event.data.ptr = event_data;
-                request_event.events = EPOLLIN | EPOLLET;
+                request_event.events = EPOLLIN;
 
                 if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &request_event) == -1) {
                     std::cerr << RED << "Error while adding client to epoll: " << strerror(errno) << RESET << std::endl;
@@ -150,7 +165,7 @@ void io_multiplexing_event_loop(int server_socket_fd) {
                 process_event(event_data);
                 switch (event_data->event_status) {
                     case Reading:  //Checar se vai cair nessa condição alguma vez
-                        request_event.events = EPOLLIN | EPOLLET;
+                        request_event.events = EPOLLIN;
                         request_event.data.ptr = event_data;
                         if (epoll_ctl(epoll_fd, EPOLL_CTL_MOD, event_data->client_fd, &request_event) < 0) {
                             std::cerr << RED << "Error while adding reading event to epoll: " << strerror(errno)
@@ -159,7 +174,7 @@ void io_multiplexing_event_loop(int server_socket_fd) {
                         }
                         break;
                     case Writing:
-                        request_event.events = EPOLLOUT | EPOLLET;
+                        request_event.events = EPOLLOUT;
                         request_event.data.ptr = event_data;
                         if (epoll_ctl(epoll_fd, EPOLL_CTL_MOD, event_data->client_fd, &request_event) < 0) {
                             std::cerr << RED << "Error while adding writing event to epoll: " << strerror(errno)
@@ -189,7 +204,8 @@ int main(int argc, char **argv, char **env) {
         return EXIT_FAILURE;
     }
 
-    int server_socket_fd = create_server_socket(8081);
+    srand(time(NULL));
+    int server_socket_fd = create_server_socket(8080 + (rand() % 10));
     set_non_blocking(server_socket_fd);
     io_multiplexing_event_loop(server_socket_fd);
 

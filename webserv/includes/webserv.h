@@ -11,6 +11,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <string>
+#include <sstream>
 #include <cstring>
 #include <vector>
 #include <sys/sendfile.h>
@@ -37,7 +38,7 @@
 #define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
 
 #define MAX_EPOLL_EVENTS 64
-#define READ_BUFFER_SIZE 8192
+#define READ_BUFFER_SIZE 120 //Trocar para um valor maior, ex: 8192
 
 
 typedef enum EVENT_STATUS {
@@ -51,6 +52,7 @@ typedef struct EventData {
     std::string header;
     size_t read_bytes;
     size_t read_left;
+    std::string read_buffer;
     FILE *file;
     event_status_t event_status;
 } event_data_t;
