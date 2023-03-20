@@ -1,4 +1,5 @@
 #include "../includes/webserv.h"
+#include "../includes/parser/HttpRequestParser.h"
 
 /*
  * * AF_INET is the IP address family of the server
@@ -69,7 +70,27 @@ void write_response(event_data_t *event_data) {
     }
 }
 
-std::string read_request(event_data_t *event_data) {
+void parse_request(event_data_t *event_data) {
+
+    std::cout << MAGENTA << "Request Data:\n " << event_data->read_buffer << RESET << std::endl;
+
+    const char *buffer = event_data->read_buffer.c_str();
+
+    Request request;
+    HttpRequestParser parser;
+
+    HttpRequestParser::ParseResult result = parser.parse(request, buffer, buffer + strlen(buffer));
+
+    if (result == HttpRequestParser::ParsingCompleted) {
+        std::cout << "Parsed Request:\n" << request.inspect() << std::endl;
+    } else {
+        std::cerr << "Parsing failed" << std::endl;
+        //Return error page
+    }
+    event_data->event_status = Writing;
+}
+
+void read_request(event_data_t *event_data) {
     int client_fd = event_data->client_fd;
     char buffer[READ_BUFFER_SIZE] = {};
 
@@ -79,24 +100,21 @@ std::string read_request(event_data_t *event_data) {
         std::cerr << RED << "Error while reading from client: " << strerror(errno) << RESET << std::endl;
     }
 
-    if (buffer[READ_BUFFER_SIZE - 1] == 0) {
-        event_data->event_status = Writing;
-    }
-
     event_data->read_bytes += bytes_read;
-    event_data->read_buffer = buffer;
+    event_data->read_buffer.append(buffer);
 
-    std::cout << YELLOW << "Read " <<   event_data->read_bytes << " bytes from client" << RESET << std::endl;
+    std::cout << YELLOW << "Read " << event_data->read_bytes << " bytes from client" << RESET << std::endl;
     std::cout << GREEN << "HTTP Request:\n" << buffer << RESET << std::endl;
 
-    std::string tmp = buffer;
-    return tmp;
+    if (buffer[READ_BUFFER_SIZE - 1] == 0) {
+        parse_request(event_data);
+    }
 }
 
 void process_event(event_data_t *event_data) {
 
     if (event_data->event_status == Reading) {
-      read_request(event_data);
+        read_request(event_data);
     } else if (event_data->event_status == Writing) {
         write_response(event_data);
     }
