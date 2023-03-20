@@ -112,7 +112,7 @@ void io_multiplexing_event_loop(int server_socket_fd) {
     struct epoll_event server_event = {};
     struct epoll_event request_event = {};
 
-    server_event.events = EPOLLIN;
+    server_event.events = EPOLLIN | EPOLLET;
     server_event.data.fd = server_socket_fd;
 
     if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, server_socket_fd, &server_event) == -1) {
@@ -164,7 +164,7 @@ void io_multiplexing_event_loop(int server_socket_fd) {
                 event_data_t *event_data = (event_data_t *) epoll_events[i].data.ptr;
                 process_event(event_data);
                 switch (event_data->event_status) {
-                    case Reading:  //Checar se vai cair nessa condição alguma vez
+                    case Reading:
                         request_event.events = EPOLLIN;
                         request_event.data.ptr = event_data;
                         if (epoll_ctl(epoll_fd, EPOLL_CTL_MOD, event_data->client_fd, &request_event) < 0) {
