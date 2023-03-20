@@ -1,5 +1,48 @@
 #include "../includes/webserv.h"
 #include "../includes/parser/HttpRequestParser.h"
+#include "../includes/parser/UrlParser.h"
+
+std::string fileExtension[] = {
+        "aac", "avi", "bmp", "css", "gif", "ico", "js",
+        "json", "mp3", "mp4", "otf", "png", "php", "rtf",
+        "svg", "txt", "webm", "webp", "woff", "woff", "zip",
+        "html", "htm", "jpeg", "jpg",
+};
+
+std::string ContentType[] = {
+        "Content-Type: audio/aac\r\n\r\n",
+        "Content-Type: video/x-msvideo\r\n\r\n",
+        "Content-Type: image/bmp\r\n\r\n",
+        "Content-Type: text/css\r\n\r\n",
+        "Content-Type: image/gif\r\n\r\n",
+        "Content-Type: image/vnd.microsoft.icon\r\n\r\n",
+        "Content-Type: text/javascript\r\n\r\n",
+        "Content-Type: application/json\r\n\r\n",
+        "Content-Type: audio/mpeg\r\n\r\n",
+        "Content-Type: video/mp4\r\n\r\n",
+        "Content-Type: font/otf\r\n\r\n",
+        "Content-Type: image/png\r\n\r\n",
+        "Content-Type: application/x-httpd-php\r\n\r\n",
+        "Content-Type: application/rtf\r\n\r\n",
+        "Content-Type: image/svg+xml\r\n\r\n",
+        "Content-Type: text/plain\r\n\r\n",
+        "Content-Type: video/webm\r\n\r\n",
+        "Content-Type: video/webp\r\n\r\n",
+        "Content-Type: font/woff\r\n\r\n",
+        "Content-Type: font/woff2\r\n\r\n",
+        "Content-Type: application/zip\r\n\r\n",
+        "Content-Type: text/html\r\n\r\n",
+        "Content-Type: text/html\r\n\r\n",
+        "Content-Type: image/jpeg\r\n\r\n",
+        "Content-Type: image/jpeg\r\n\r\n",
+};
+
+std::string Messages[] = {
+        "HTTP/1.1 200 Ok\r\n ",
+        "HTTP/1.0 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<!doctype html><html><body>System is busy right now.</body></html>",
+        "HTTP/1.0 404 File not found\r\nContent-Type: text/html\r\n\r\n<!doctype html><html><body>The reuested file does not exist on this server</body></html>"
+};
+
 
 /*
  * * AF_INET is the IP address family of the server
@@ -48,7 +91,6 @@ void set_non_blocking(int fd) {
 }
 
 void write_response(event_data_t *event_data) {
-
     std::string response;
 
     if (event_data->read_left == 2) {
@@ -70,7 +112,7 @@ void write_response(event_data_t *event_data) {
     }
 }
 
-void parse_request(event_data_t *event_data) {
+Request parse_request(event_data_t *event_data) {
 
     std::cout << MAGENTA << "Request Data:\n " << event_data->read_buffer << RESET << std::endl;
 
@@ -82,17 +124,19 @@ void parse_request(event_data_t *event_data) {
     HttpRequestParser::ParseResult result = parser.parse(request, buffer, buffer + strlen(buffer));
 
     if (result == HttpRequestParser::ParsingCompleted) {
-        std::cout << "Parsed Request:\n" << request.inspect() << std::endl;
+        std::cout << WHITE << "Parsed Request:\n" << request.inspect() << RESET << std::endl;
     } else {
-        std::cerr << "Parsing failed" << std::endl;
-        //Return error page
+        std::cerr << RED << "Parsing failed" << RESET << std::endl;
+        //Return error page, end connection
     }
     event_data->event_status = Writing;
+    return request;
 }
 
 void read_request(event_data_t *event_data) {
     int client_fd = event_data->client_fd;
     char buffer[READ_BUFFER_SIZE] = {};
+    Request request;
 
     long bytes_read = read(client_fd, buffer, READ_BUFFER_SIZE);
 
@@ -107,12 +151,12 @@ void read_request(event_data_t *event_data) {
     std::cout << GREEN << "HTTP Request:\n" << buffer << RESET << std::endl;
 
     if (buffer[READ_BUFFER_SIZE - 1] == 0) {
-        parse_request(event_data);
+        request = parse_request(event_data);
     }
+    event_data->request = request;
 }
 
 void process_event(event_data_t *event_data) {
-
     if (event_data->event_status == Reading) {
         read_request(event_data);
     } else if (event_data->event_status == Writing) {

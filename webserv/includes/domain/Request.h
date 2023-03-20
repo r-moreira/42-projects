@@ -43,6 +43,10 @@ struct Request {
         stream << "+ keep-alive: " << keepAlive << "\n";;
         return stream.str();
     }
+
+    const std::string &getUri() const {
+        return uri;
+    }
 };
 
 

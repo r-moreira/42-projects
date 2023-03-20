@@ -25,6 +25,7 @@
 #include <netinet/in.h>
 #include <fstream>
 #include <fcntl.h>
+#include "domain/Request.h"
 
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
@@ -54,8 +55,16 @@ typedef struct EventData {
     size_t read_left;
     std::string read_buffer;
     FILE *file;
+    Request request;
     event_status_t event_status;
 } event_data_t;
+
+typedef enum {
+    HTTP_HEADER,
+    BAD_REQUEST,
+    NOT_FOUND
+
+} messageType;
 
 
 #endif //WEBSERV_WEBSERV_H
