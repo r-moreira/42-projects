@@ -90,26 +90,50 @@ void set_non_blocking(int fd) {
     }
 }
 
+std::string getHeaders(std::string file_path) {
+    std::string headers = "HTTP/1.1 200 Ok\r\n";
+    std::string extension = file_path.substr(file_path.find_last_of(".") + 1);
+    for (int i = 0; i < 25; i++) {
+        if (extension == fileExtension[i]) {
+            headers += ContentType[i];
+            return headers;
+        }
+    }
+    return "HTTP/1.1 200 Ok\r\nContent-Type: text/html\r\n\r\n";
+}
+
 void write_response(event_data_t *event_data) {
-    std::string response;
+    UrlParser urlParser;
+    std::string file_path = "./public" + event_data->request.getUri();
 
-    if (event_data->read_left == 2) {
-        response = "HTTP/1.1 200 OK\r\nContent-Length: 20\r\n\r\nHello World!";
-    } else {
-        response = "\nWrite 2";
+    if (send(event_data->client_fd, getHeaders(file_path).c_str(), getHeaders(file_path).size(), 0) < 0) {
+        std::cerr << RED << "Error while writing status header to client: " << strerror(errno) << RESET << std::endl;
+        //return error page, end connection
     }
 
-    if (send(event_data->client_fd, response.c_str(), response.length(), 0) < 0) {
+    std::ifstream file;
+    file.open(file_path.c_str(), std::ios::in | std::ios::binary);
+
+    std::string contents((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    std::cout << YELLOW << " Transmission Data Size " << contents.length() << " Bytes." << RESET << std::endl;
+
+    std::cout << YELLOW << "Sending..." << RESET << std::endl;
+
+    long bytes_sent = send(event_data->client_fd , contents.c_str() , contents.length() , 0 );
+    if (bytes_sent < 0) {
         std::cerr << RED << "Error while writing to client: " << strerror(errno) << RESET << std::endl;
-    }
-    std::cout << YELLOW << "Response sent to client" << RESET << std::endl;
-    std::cout << BLUE << "Response: " << response << RESET << std::endl;
-
-    event_data->read_left--; //Exemplo de controle para saber quando terminar a escrita
-
-    if (event_data->read_left == 0) {
+        //return error page, end connection
         event_data->event_status = Ended;
     }
+
+    std::cout << YELLOW << "Transmitted Data Size " << bytes_sent << " Bytes." << RESET << std::endl;
+
+    std::cout << GREEN << "File Transfer Complete." << RESET << std::endl;
+
+    //TODO:
+    // * Adicionar controle para saber quando terminou de enviar o arquivo
+    // * Adicionar possibilidade de enviar em "chunks"
+    event_data->event_status = Ended;
 }
 
 Request parse_request(event_data_t *event_data) {
@@ -142,6 +166,10 @@ void read_request(event_data_t *event_data) {
 
     if (bytes_read == -1) {
         std::cerr << RED << "Error while reading from client: " << strerror(errno) << RESET << std::endl;
+    } else if (bytes_read == 0) {
+        std::cout << YELLOW << "Client disconnected" << RESET << std::endl;
+        event_data->event_status = Ended;
+        return;
     }
 
     event_data->read_bytes += bytes_read;
