@@ -1,0 +1,8 @@
+*.o
+webserv
+a.out
+cmake-build-debug/
+cmake-build-debug-docker/
+.idea/
+.DS_Store
+public/uploaded-files/*

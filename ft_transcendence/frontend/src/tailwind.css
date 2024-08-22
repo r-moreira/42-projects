@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	h1 {
+		@apply text-2xl;
+	}
+	h2 {
+		@apply text-xl;
+	}
+	h3 {
+		@apply text-lg;
+	}
+	a {
+		@apply text-blue-600 underline;
+	}
+	body {
+		@apply text-white font-anton;
+		@apply bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-slate-900 via-black to-slate-950 bg-no-repeat;
+	}
+}
+
+@layer components {
+	.btn-primary {
+		@apply bg-[#38761d] border-4 hover:bg-[#5bb72b];
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl uppercase;
+		@apply py-2 px-4;
+		@apply disabled:bg-slate-400;
+		@apply transition-all;
+	}
+
+	.btn-primary-yellow {
+		@apply bg-[#f59e0b] border-4 hover:bg-[#fbbf24];
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl uppercase;
+		@apply py-2 px-4;
+		@apply disabled:bg-slate-400;
+		@apply transition-all;
+	}
+
+	.btn-primary-red {
+		@apply bg-[#ef4444] border-4 hover:bg-[#f87171];
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl uppercase;
+		@apply py-2 px-4;
+		@apply disabled:bg-slate-400;
+		@apply transition-all;
+	}
+
+	.key-style {
+		@apply flex;
+		@apply items-center;
+		@apply justify-center;
+		@apply bg-white;
+		@apply rounded-lg;
+		@apply h-20;
+		@apply w-20;
+		@apply m-2;
+		@apply text-4xl uppercase;
+	}
+
+	.key-style-disabled {
+		@apply flex;
+		@apply items-center;
+		@apply justify-center;
+		@apply bg-gray-800;
+		@apply rounded-lg;
+		@apply h-20;
+		@apply w-20;
+		@apply m-2;
+		@apply text-4xl uppercase;
+	}
+
+	.achievement {
+		@apply flex;
+		@apply items-center;
+		@apply justify-center;
+		@apply rounded-2xl;
+		@apply h-28;
+		@apply w-28;
+		@apply border-[6px];
+	}
+
+	.achievement-none {
+		@apply opacity-60;
+		@apply bg-[#27272a];
+		@apply border-[#3f3f46];
+		@apply text-[#3f3f46];
+	}
+
+	.achievement-bronze {
+		@apply bg-[#cd7f32];
+		@apply border-[#b45309];
+		@apply text-[#b45309];
+	}
+
+	.achievement-silver {
+		@apply bg-[#c0c0c0];
+		@apply border-[#64748b];
+		@apply text-[#64748b];
+	}
+
+	.achievement-gold {
+		@apply bg-[#ffd700];
+		@apply border-[#ca8a04];
+		@apply text-[#ca8a04];
+	}
+
+	.achievement-icon {
+		@apply text-4xl uppercase;
+	}
+
+	.btn-op {
+		@apply bg-[#38761d] border-4;
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl uppercase;
+		@apply py-2 px-4;
+		@apply disabled:bg-slate-400;
+		@apply transition-all;
+	}
+
+	.btn-deleted {
+		@apply bg-[#000000] border-4 hover:bg-[#b91c1c];
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl uppercase;
+		@apply py-2 px-4;
+		@apply text-center;
+	}
+
+	.btn-history {
+		@apply border-4 border-yellow-600;
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl uppercase;
+		@apply py-2 px-4;
+		@apply text-center;
+		@apply text-2xl;
+		@apply text-yellow-600
+	}
+
+	.btn-users {
+		@apply border-4 border-white;
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl uppercase;
+		@apply py-2 px-4;
+		@apply text-center;
+		@apply text-2xl;
+		@apply text-white
+	}
+
+	.input-primary {
+		@apply bg-[#000000] border-4;
+		@apply rounded-lg;
+		@apply w-full;
+		@apply text-2xl;
+		@apply py-2 px-4;
+		@apply disabled:text-gray-500 disabled:bg-gray-800;
+	}
+
+	.upload-image {
+		@apply bg-[#000000] border-4;
+		@apply rounded-lg;
+		@apply w-1/5;
+		@apply text-2xl;
+		@apply py-2 px-4;
+	}
+
+	.profile-image {
+		@apply w-1/6;
+		@apply align-middle;
+	}
+	.upload {
+		@apply h-16;
+		@apply w-16;
+		@apply cursor-pointer;
+	}
+	.smallButton {
+		@apply lg:w-14 lg:h-14 w-14 h-14 xl:w-16 xl:h-16;
+		@apply rounded-full md:text-2xl;
+	}
+
+	.bigButton{
+		@apply text-white;
+		@apply lg:w-20 lg:h-20 w-16 h-16 xl:w-24 xl:h-24;
+		@apply rounded-full;
+		@apply text-3xl;
+	}
+	.play {
+		/* Defina os estilos do botão Play aqui */
+		@apply bg-red-700;
+	}
+
+	.chat {
+		@apply bg-yellow-600;
+	}
+	.history {
+		/* Defina os estilos do botão History aqui */
+		@apply bg-green-700;
+		@apply text-white;
+	}
+
+	.settings {
+		/* Defina os estilos do botão Settings aqui */
+		@apply bg-yellow-400;
+		@apply text-black;
+	}
+
+	.logout {
+		@apply bg-slate-800;
+		@apply text-white;
+		@apply lg:text-4xl text-2xl;
+	}
+	.icon-link{
+		@apply text-white;
+	}
+
+	::-webkit-scrollbar {
+		@apply w-3;
+	  }
+
+	::-webkit-scrollbar-track {
+		@apply rounded-l-full;
+
+	  }
+
+	::-webkit-scrollbar-thumb {
+		@apply bg-[#ffffff] hover:bg-[#c52127] rounded-l-full;
+	}
+}
