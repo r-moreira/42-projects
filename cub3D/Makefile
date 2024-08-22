@@ -9,8 +9,8 @@ LIBFT				= ${LIBFT_DIR}/libft.a
 #Compiler
 CC					= gcc
 CFLAGS				= -Wextra -Wall -Werror -g -fsanitize=address
-IFLAGS 				= -I includes
-LFLAGS				= -lm -lXext -lX11
+IFLAGS 				= -I includes 
+LFLAGS				= -lm -lXext -lX11 
 
 #Objects
 OBJS_DIR 			= objs
